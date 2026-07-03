@@ -313,11 +313,14 @@ def leer_semana():
         if len(row) < 6:
             continue
         marca, fecha, dia, proy, real, avance = row[:6]
+        def num(x):
+            x = str(x).strip().replace(",", ".")
+            return float(x) if x else 0.0
         out.setdefault(marca, []).append({
             "fecha": fecha, "dia": dia,
-            "proy": int(float(proy or 0)),
-            "real": int(float(real or 0)),
-            "avance": float(avance or 0),
+            "proy": int(num(proy)),
+            "real": int(num(real)),
+            "avance": num(avance),
         })
     return out
 
