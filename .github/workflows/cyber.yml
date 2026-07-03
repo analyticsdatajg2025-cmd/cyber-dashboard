@@ -1,24 +1,19 @@
 name: Cyber Dashboard
-
 on:
   schedule:
     # Horas Lima (UTC-5) cada 2h: 09,11,13,15,17 Lima = 14,16,18,20,22 UTC
     - cron: "0 14,16,18,20,22 * * *"
   workflow_dispatch:   # botón para correr manual
-
 permissions:
   contents: write       # para commitear data.json
-
 jobs:
   reporte:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-
       - name: Cache de pip y Playwright
         uses: actions/cache@v4
         with:
@@ -26,21 +21,17 @@ jobs:
             ~/.cache/pip
             ~/.cache/ms-playwright
           key: deps-${{ hashFiles('requirements.txt') }}
-
       - name: Instalar dependencias
         run: |
           pip install -r requirements.txt
           python -m playwright install chromium
-
       - name: Escribir secretos a archivos locales
         run: |
           echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
           printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
           echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
-
       - name: Correr pipeline
-        run: python main.py
-
+        run: python pipeline.py          # ← ANTES: python main.py
       - name: Commitear data.json
         if: success()
         run: |
@@ -49,7 +40,6 @@ jobs:
           git add data.json
           git commit -m "corte $(date -u +%H:%M) UTC" || echo "sin cambios"
           git push
-
       - name: Limpiar secretos
         if: always()
         run: rm -f mi_token.txt gmail.txt credenciales.json
