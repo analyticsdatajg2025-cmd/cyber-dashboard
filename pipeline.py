@@ -1,29 +1,26 @@
 """
 pipeline.py — EL CEREBRO. Es lo único que corre el cron.
 
-Fusiona lo que antes estaba repartido en:
-  reporte_datos.py + extras.py + build_data.py + escribir_sheet.py + main.py
-
 Flujo de una corrida:
-  1. Extrae todo de Yandex (una sola vez por marca): funnel, sesiones/hora,
-     ingresos/hora, campañas, top productos.
-  2. Lee las proyecciones del Excel (solo hojas CYBER DAYS / CYBER WOW).
-  3. Escribe data.json      -> lo consume dashboard.html.
-  4. Escribe Google Sheet   -> pestañas Cortes + Semana (gerencia).
-  5. Genera PNG + correo    -> flujo WhatsApp (vive en correo.py, no cambia).
+  1. Extrae de Yandex (por marca): funnel, sesiones/hora, ingresos/hora,
+     campañas, top productos.
+  2. Lee proyecciones del Excel (hojas CYBER DAYS / CYBER WOW).
+  3. Escribe data.json          -> lo consume dashboard.html.
+  4. Escribe Google Sheet BACKEND (Cortes + Semana, totales por día).
+  5. Escribe Google Sheet META HORARIA (columnas Real por día/hora) y arma
+     el bloque semana_horas del data.json (tabla por hora del dashboard).
+  6. Genera PNG + correo (flujo WhatsApp, vive en correo.py).
 
-Si algo falla: manda correo de alerta y sale con código != 0
-(para que GitHub Actions marque el run como fallido).
-
-Fuera de las dos semanas de cyber no hay proyecciones horarias: el pipeline
-corre igual, solo que la meta queda en 0 (el dashboard lo maneja sin romperse).
+Si algo falla: correo de alerta y sale con código != 0.
+Fuera de las semanas cyber no hay proyección horaria: corre igual con meta 0.
 """
 import json
 import sys
 import traceback
 import requests
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
 
 # ---------------------------------------------------------------------------
 # CONFIG
@@ -37,31 +34,29 @@ URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
 
 SALIDA_JSON  = "data.json"
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
-
-# Modelo de atribución que ve gerencia por defecto en Yandex
-ATTRIBUTION = "lastsign"
+ATTRIBUTION  = "lastsign"
 
 MARCAS = {
     "LA CURACAO":  {"contador": "98373248"},
     "TIENDAS EFE": {"contador": "98373144"},
 }
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
 # --- Ventanas de los cybers de julio 2026 (editables) ---
 CYBER_DAYS = (date(2026, 7, 6),  date(2026, 7, 12))   # 6 al 12 julio
 CYBER_WOW  = (date(2026, 7, 13), date(2026, 7, 19))   # 13 al 19 julio
 
-# Columna base por marca en las hojas CYBER (weekday Lun=0 -> primera col de datos):
-#   LA CURACAO : HORA=A, LUNES=B(2) ... DOMINGO=H(8)
-#   TIENDAS EFE: HORA=J, LUNES=K(11) ... DOMINGO=Q(17)
+# Columna base por marca en el Excel de proyecciones:
+#   LA CURACAO : Lunes=B(2) ... Domingo=H(8)
+#   TIENDAS EFE: Lunes=K(11) ... Domingo=Q(17)
 COL_BASE = {"LA CURACAO": 2, "TIENDAS EFE": 11}
 
 
 # ---------------------------------------------------------------------------
-# PROYECCIONES (solo CYBER DAYS / CYBER WOW)
+# PROYECCIONES (Excel, solo CYBER DAYS / CYBER WOW)
 # ---------------------------------------------------------------------------
 def hoja_evento(hoy=None):
-    """Devuelve el nombre de la hoja según la fecha, o None si no es semana cyber."""
     hoy = hoy or date.today()
     if CYBER_DAYS[0] <= hoy <= CYBER_DAYS[1]:
         return "CYBER DAYS"
@@ -71,13 +66,12 @@ def hoja_evento(hoy=None):
 
 
 def leer_proyecciones(marca, hoy=None):
-    """Lista de 24 proyecciones (hora 0..23) para la marca y el día de hoy.
-    Fuera de semana cyber devuelve 24 ceros."""
+    """24 proyecciones (hora 0..23) para la marca y el día dado. Fuera de cyber: ceros."""
     hoy = hoy or date.today()
     hoja = hoja_evento(hoy)
     if hoja is None:
         return [0.0] * 24
-    col = COL_BASE[marca] + hoy.weekday()      # Lun=0 -> col base
+    col = COL_BASE[marca] + hoy.weekday()
     wb = load_workbook(ARCHIVO_PROY, data_only=True)
     ws = wb[hoja]
     return [float(ws.cell(row=3 + h, column=col).value or 0) for h in range(24)]
@@ -87,12 +81,23 @@ def leer_proyecciones(marca, hoy=None):
 # EXTRACCIÓN YANDEX
 # ---------------------------------------------------------------------------
 def traer_sesiones_hora(contador):
+    """Sesiones/hora de HOY. Devuelve (serie24, corte)."""
     p = {"ids": contador, "metrics": "ym:s:visits",
          "date1": "today", "date2": "today", "group": "hour"}
     d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
     serie = [int(v or 0) for v in d["data"][0]["metrics"][0]]
     corte = d.get("last_period_index", 23)
     return serie, corte
+
+
+def traer_sesiones_hora_fecha(contador, fecha):
+    """Sesiones/hora de una fecha específica (YYYY-MM-DD). Devuelve serie24."""
+    p = {"ids": contador, "metrics": "ym:s:visits",
+         "date1": fecha, "date2": fecha, "group": "hour"}
+    d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
+    if not d.get("data"):
+        return [0] * 24
+    return [int(v or 0) for v in d["data"][0]["metrics"][0]]
 
 
 def traer_funnel(contador):
@@ -104,26 +109,18 @@ def traer_funnel(contador):
     t = requests.get(URL_DATA, headers=HEADERS, params=p).json()["totals"]
     sesiones, ingresos, compras, vistos, carrito, comprados = t
     return {
-        "ingresos": ingresos,
-        "compras": int(compras),
-        "vistos": int(vistos),
-        "carrito": int(carrito),
-        "comprados": int(comprados),
+        "ingresos": ingresos, "compras": int(compras), "vistos": int(vistos),
+        "carrito": int(carrito), "comprados": int(comprados),
         "cr": (compras / sesiones) if sesiones else 0,
         "ticket": (ingresos / compras) if compras else 0,
     }
 
 
 def traer_campanas(contador, top=100):
-    p = {
-        "ids": contador,
-        "dimensions": "ym:s:UTMCampaign",
-        "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
-        "date1": "today", "date2": "today",
-        "sort": "-ym:s:ecommerceRevenue",
-        "limit": top,
-        "attribution": ATTRIBUTION,
-    }
+    p = {"ids": contador, "dimensions": "ym:s:UTMCampaign",
+         "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
+         "date1": "today", "date2": "today", "sort": "-ym:s:ecommerceRevenue",
+         "limit": top, "attribution": ATTRIBUTION}
     d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
     out = []
     for fila in d.get("data", []):
@@ -135,16 +132,12 @@ def traer_campanas(contador, top=100):
 
 
 def traer_top_productos(contador, top=100):
-    p = {
-        "ids": contador,
-        "dimensions": "ym:s:productName,ym:s:productID",
-        "metrics": ("ym:s:productImpressions,ym:s:productBasketsQuantity,"
-                    "ym:s:productPurchasedQuantity,ym:s:visits,"
-                    "ym:s:productPurchasedPrice"),
-        "date1": "today", "date2": "today",
-        "sort": "-ym:s:productPurchasedQuantity",
-        "limit": top,
-    }
+    p = {"ids": contador, "dimensions": "ym:s:productName,ym:s:productID",
+         "metrics": ("ym:s:productImpressions,ym:s:productBasketsQuantity,"
+                     "ym:s:productPurchasedQuantity,ym:s:visits,"
+                     "ym:s:productPurchasedPrice"),
+         "date1": "today", "date2": "today",
+         "sort": "-ym:s:productPurchasedQuantity", "limit": top}
     d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
     out = []
     for fila in d.get("data", []):
@@ -168,7 +161,7 @@ def traer_ingresos_hora(contador):
 
 
 # ---------------------------------------------------------------------------
-# REPORTE (crudo) — lo consumen el PNG/correo y el payload del dashboard
+# REPORTE (crudo)
 # ---------------------------------------------------------------------------
 def armar_reporte(marca):
     cfg = MARCAS[marca]
@@ -188,17 +181,14 @@ def armar_reporte(marca):
 
 
 # ---------------------------------------------------------------------------
-# PAYLOAD data.json (lo lee dashboard.html)
+# PAYLOAD data.json
 # ---------------------------------------------------------------------------
 def construir_marca(marca):
-    """Devuelve (reporte_crudo, bloque_json). El crudo se reusa para el PNG."""
     r = armar_reporte(marca)
     contador = MARCAS[marca]["contador"]
-
     campanas  = traer_campanas(contador)
     productos = traer_top_productos(contador)
     ing_hora  = traer_ingresos_hora(contador)
-
     corte = r["corte"]
     por_hora = [{
         "h": h,
@@ -206,36 +196,26 @@ def construir_marca(marca):
         "ses_real": r["real"][h] if h <= corte else None,
         "ing_real": ing_hora[h]   if h <= corte else None,
     } for h in range(24)]
-
     f = r["funnel"]
     bloque = {
         "meta_sesiones_dia":   round(r["meta"]),
         "meta_sesiones_corte": round(sum(r["proy"][:corte + 1])),
         "real": {
-            "sesiones":  r["real_acum"],
-            "ingresos":  round(f["ingresos"], 2),
-            "cr":        round(f["cr"], 4),
-            "ticket":    round(f["ticket"], 2),
-            "compras":   f["compras"],
-            "vistos":    f["vistos"],
-            "carrito":   f["carrito"],
-            "comprados": f["comprados"],
+            "sesiones":  r["real_acum"], "ingresos": round(f["ingresos"], 2),
+            "cr": round(f["cr"], 4), "ticket": round(f["ticket"], 2),
+            "compras": f["compras"], "vistos": f["vistos"],
+            "carrito": f["carrito"], "comprados": f["comprados"],
         },
-        "por_hora": por_hora,
-        "campanas": campanas,
-        "top_productos": productos,
+        "por_hora": por_hora, "campanas": campanas, "top_productos": productos,
     }
     return r, bloque
 
 
 def construir_payload():
-    """Recorre todas las marcas una sola vez. Devuelve (payload, reportes_crudos)."""
     payload = {
         "generado": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "corte": None,
-        "attribution": ATTRIBUTION,
-        "marcas": {},
-        "semana": {},
+        "corte": None, "attribution": ATTRIBUTION,
+        "marcas": {}, "semana": {}, "semana_horas": {},
     }
     reportes = {}
     for marca in MARCAS:
@@ -247,10 +227,83 @@ def construir_payload():
 
 
 # ---------------------------------------------------------------------------
-# GOOGLE SHEET (gspread) — pestañas Cortes + Semana
+# SEMANA HORAS — detalle proy/real por hora, por día del cyber, por marca
 # ---------------------------------------------------------------------------
-NOMBRE_SHEET = "CYBER 2026 - BACKEND"    # <-- ajusta al nombre real de tu Sheet
-DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+def dias_del_evento(hoy=None):
+    """(nombre_hoja, [fechas desde el inicio del evento hasta hoy]) o (None, [])."""
+    hoy = hoy or date.today()
+    hoja = hoja_evento(hoy)
+    if hoja is None:
+        return None, []
+    inicio = CYBER_DAYS[0] if hoja == "CYBER DAYS" else CYBER_WOW[0]
+    dias, d = [], inicio
+    while d <= hoy:
+        dias.append(d)
+        d += timedelta(days=1)
+    return hoja, dias
+
+
+def construir_semana_horas(reportes, hoy=None):
+    """Para cada marca y cada día del evento: 24 filas {h, proy, real}.
+    Hoy usa el real ya extraído (limitado al corte); días pasados se re-consultan
+    a Yandex (día completo). Devuelve (nombre_hoja, dict)."""
+    hoy = hoy or date.today()
+    hoja, dias = dias_del_evento(hoy)
+    out = {m: {} for m in MARCAS}
+    if hoja is None:
+        return None, out
+    for marca, cfg in MARCAS.items():
+        cont = cfg["contador"]
+        for d in dias:
+            proy = leer_proyecciones(marca, d)
+            if d == hoy:
+                serie, corte = reportes[marca]["real"], reportes[marca]["corte"]
+            else:
+                serie, corte = traer_sesiones_hora_fecha(cont, str(d)), 23
+            filas = [{
+                "h": h,
+                "proy": round(proy[h]),
+                "real": (serie[h] if h <= corte else None),
+            } for h in range(24)]
+            out[marca][str(d)] = {"dia": DIAS_CORTOS[d.weekday()], "horas": filas}
+    return hoja, out
+
+
+# ---------------------------------------------------------------------------
+# GOOGLE SHEET "META HORARIA" — escribe la columna Real por día/hora
+# ---------------------------------------------------------------------------
+# Sheet: "Meta horaria Cyber Julio26"
+META_SHEET_KEY = "1kucg2oRhJGWrNET_OdS-AVO9Kdc5NE7jeFJO01mT6oE"
+META_TAB = {"CYBER DAYS": "Cyber days", "CYBER WOW": "Cyber wow"}
+# Fila de la hora 0 de cada bloque de marca:
+META_BASE_ROW = {"LA CURACAO": 3, "TIENDAS EFE": 33}
+
+
+def escribir_meta_horaria(nombre_evento, semana_horas):
+    """Escribe la columna Real de cada día (por marca) en el Sheet Meta horaria.
+    Real col = 3 + weekday*4 (C,G,K,O,S,W,AA). VAR/%VAR son fórmulas del Sheet."""
+    import gspread
+    if not nombre_evento:
+        return
+    gc = gspread.service_account(filename="credenciales.json")
+    ws = gc.open_by_key(META_SHEET_KEY).worksheet(META_TAB[nombre_evento])
+    reqs = []
+    for marca, dias in semana_horas.items():
+        base = META_BASE_ROW[marca]
+        for fecha, info in dias.items():
+            w = date.fromisoformat(fecha).weekday()
+            col = get_column_letter(3 + w * 4)
+            valores = [[(fila["real"] if fila["real"] is not None else "")]
+                       for fila in info["horas"]]
+            reqs.append({"range": f"{col}{base}:{col}{base + 23}", "values": valores})
+    if reqs:
+        ws.batch_update(reqs, value_input_option="USER_ENTERED")
+
+
+# ---------------------------------------------------------------------------
+# GOOGLE SHEET "BACKEND" (gspread) — pestañas Cortes + Semana (totales/día)
+# ---------------------------------------------------------------------------
+NOMBRE_SHEET = "CYBER 2026 - BACKEND"
 
 
 def _abrir_sheet():
@@ -260,7 +313,6 @@ def _abrir_sheet():
 
 
 def escribir_corte(reportes):
-    """Escribe/sobrescribe la fila del corte por marca (idempotente marca+fecha+hora)."""
     ss = _abrir_sheet()
     sh = ss.worksheet("Cortes")
     filas = sh.get_all_values()
@@ -282,7 +334,6 @@ def escribir_corte(reportes):
 
 
 def escribir_semana(reportes):
-    """Actualiza el total del día por marca (idempotente marca+fecha)."""
     ss = _abrir_sheet()
     sh = ss.worksheet("Semana")
     filas = sh.get_all_values()
@@ -304,23 +355,22 @@ def escribir_semana(reportes):
 
 
 def leer_semana():
-    """Lee la pestaña Semana para inyectarla en data.json (vista Semana del dashboard)."""
     ss = _abrir_sheet()
     sh = ss.worksheet("Semana")
     filas = sh.get_all_values()[1:]
     out = {}
+
+    def num(x):
+        x = str(x).strip().replace(",", ".")
+        return float(x) if x else 0.0
+
     for row in filas:
         if len(row) < 6:
             continue
         marca, fecha, dia, proy, real, avance = row[:6]
-        def num(x):
-            x = str(x).strip().replace(",", ".")
-            return float(x) if x else 0.0
         out.setdefault(marca, []).append({
             "fecha": fecha, "dia": dia,
-            "proy": int(num(proy)),
-            "real": int(num(real)),
-            "avance": num(avance),
+            "proy": int(num(proy)), "real": int(num(real)), "avance": num(avance),
         })
     return out
 
@@ -329,7 +379,6 @@ def leer_semana():
 # ALERTA DE FALLO
 # ---------------------------------------------------------------------------
 def alerta(msg):
-    """Correo simple de alerta si el pipeline truena."""
     try:
         from email.message import EmailMessage
         import smtplib, ssl
@@ -354,26 +403,41 @@ def main():
     print("Extrayendo de Yandex...")
     payload, reportes = construir_payload()
 
-    # Google Sheet (si falla, el JSON igual se escribe)
+    # Sheet BACKEND (Cortes + Semana totales)
     try:
         escribir_corte(reportes)
         escribir_semana(reportes)
         payload["semana"] = leer_semana()
-        print("Sheet actualizado.")
+        print("Sheet BACKEND actualizado.")
     except Exception as e:
-        print(f"Aviso: Sheet no actualizado ({e}). El JSON sigue.")
+        print(f"Aviso: Sheet BACKEND no actualizado ({e}). El JSON sigue.")
+
+    # Detalle por hora (semana_horas) -> JSON del dashboard
+    try:
+        nombre_ev, semana_horas = construir_semana_horas(reportes)
+        payload["semana_horas"] = semana_horas
+    except Exception as e:
+        print(f"Aviso: semana_horas no construida ({e}).")
+        nombre_ev, semana_horas = None, {}
+
+    # Sheet META HORARIA (columnas Real)
+    try:
+        if nombre_ev:
+            escribir_meta_horaria(nombre_ev, semana_horas)
+            print("Sheet META HORARIA actualizado.")
+    except Exception as e:
+        print(f"Aviso: Meta horaria no escrita ({e}). El JSON sigue.")
 
     # data.json
     with open(SALIDA_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"{SALIDA_JSON} escrito.")
 
-    # PNG + correo (flujo WhatsApp, vive en correo.py)
+    # PNG + correo
     from correo import construir_html, render_png, construir_correo, enviar
     reps_lista = []
     for marca, r in reportes.items():
-        html = construir_html(r)
-        render_png(html, f"reporte_{marca.replace(' ', '_')}.png")
+        render_png(construir_html(r), f"reporte_{marca.replace(' ', '_')}.png")
         reps_lista.append(r)
     enviar(construir_correo(reps_lista))
     print("PNG + correo enviados.")
