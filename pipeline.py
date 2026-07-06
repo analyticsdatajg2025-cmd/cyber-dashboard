@@ -39,7 +39,7 @@ ATTRIBUTION  = "lastsign"
 MARCAS = {
     "LA CURACAO":  {"contador": "98373248"},
     "TIENDAS EFE": {"contador": "98373144"},
-    "JUNTOZ": {"contador": "104690802"}
+    "JUNTOZ": {"contador": "98373308"}
 }
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
