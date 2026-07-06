@@ -39,6 +39,7 @@ ATTRIBUTION  = "lastsign"
 MARCAS = {
     "LA CURACAO":  {"contador": "98373248"},
     "TIENDAS EFE": {"contador": "98373144"},
+    "JUNTOZ": {"contador": "104690802"}
 }
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
@@ -50,7 +51,7 @@ CYBER_WOW  = (date(2026, 7, 13), date(2026, 7, 19))   # 13 al 19 julio
 # Columna base por marca en el Excel de proyecciones:
 #   LA CURACAO : Lunes=B(2) ... Domingo=H(8)
 #   TIENDAS EFE: Lunes=K(11) ... Domingo=Q(17)
-COL_BASE = {"LA CURACAO": 2, "TIENDAS EFE": 11}
+COL_BASE = {"LA CURACAO": 2, "TIENDAS EFE": 11, "JUNTOZ": 20}
 
 
 # ---------------------------------------------------------------------------
@@ -276,7 +277,7 @@ def construir_semana_horas(reportes, hoy=None):
 META_SHEET_KEY = "1kucg2oRhJGWrNET_OdS-AVO9Kdc5NE7jeFJO01mT6oE"
 META_TAB = {"CYBER DAYS": "Cyber days", "CYBER WOW": "Cyber wow"}
 # Fila de la hora 0 de cada bloque de marca:
-META_BASE_ROW = {"LA CURACAO": 3, "TIENDAS EFE": 33}
+META_BASE_ROW = {"LA CURACAO": 3, "TIENDAS EFE": 33, "JUNTOZ": 63}
 
 
 def escribir_meta_horaria(nombre_evento, semana_horas):
