@@ -25,6 +25,7 @@ DESTINATARIOS = ["brandonveraf@gmail.com"]
 PALETA = {
     "LA CURACAO":  {"primary": "#F5B800", "texto_header": "#1a1a1a"},
     "TIENDAS EFE": {"primary": "#1C6DD0", "texto_header": "#ffffff"},
+    "JUNTOZ": {"primary": "#9300b4", "texto_header": "#ffffff"},
 }
 
 
