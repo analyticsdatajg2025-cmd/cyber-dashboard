@@ -2,7 +2,7 @@ name: Cyber Dashboard
 on:
   schedule:
     # Horas Lima (UTC-5) cada hora 09–21 Lima = 14–23 UTC + 00,01,02 UTC del día siguiente
-    - cron: "0 0,1,2,14,15,16,17,18,19,20,21,22,23 * * *"
+    - cron: "17 0,1,2,14,15,16,17,18,19,20,21,22,23 * * *"
   workflow_dispatch:   # botón para correr manual
 permissions:
   contents: write       # para commitear data.json
