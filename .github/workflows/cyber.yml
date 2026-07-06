@@ -9,6 +9,8 @@ permissions:
 jobs:
   reporte:
     runs-on: ubuntu-latest
+    env:
+      TZ: America/Lima    # ← el runner corre en UTC; sin esto date.today() se adelanta al día siguiente de noche
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,7 +33,7 @@ jobs:
           printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
           echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
       - name: Correr pipeline
-        run: python pipeline.py          # ← ANTES: python main.py
+        run: python pipeline.py
       - name: Commitear data.json
         if: success()
         run: |
