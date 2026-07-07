@@ -5,7 +5,7 @@ on:
     - cron: "17 0,1,2,14,15,16,17,18,19,20,21,22,23 * * *"
   workflow_dispatch:   # botón para correr manual
 permissions:
-  contents: write       # para commitear data.json
+  contents: write       # para commitear data.json e historico.json
 jobs:
   reporte:
     runs-on: ubuntu-latest
@@ -34,12 +34,14 @@ jobs:
           echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
       - name: Correr pipeline
         run: python pipeline.py
-      - name: Commitear data.json
+      - name: Commitear data.json + historico.json
         if: success()
         run: |
           git config user.name  "cyber-bot"
           git config user.email "bot@conecta.pe"
+          # add explícito (NUNCA -A ni .) para no subir los secretos que aún están en disco
           git add data.json
+          git add historico.json || true   # tolera que aún no exista en la 1ra corrida
           git commit -m "corte $(date -u +%H:%M) UTC" || echo "sin cambios"
           git push
       - name: Limpiar secretos
