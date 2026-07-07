@@ -33,6 +33,7 @@ URL_DATA   = "https://api-metrika.yandex.net/stat/v1/data"
 URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
 
 SALIDA_JSON  = "data.json"
+SALIDA_HISTORICO = "historico.json"
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
 ATTRIBUTION  = "lastsign"
 
@@ -101,12 +102,12 @@ def traer_sesiones_hora_fecha(contador, fecha):
     return [int(v or 0) for v in d["data"][0]["metrics"][0]]
 
 
-def traer_funnel(contador):
+def traer_funnel(contador, fecha="today"):
     metrics = ["ym:s:visits", "ym:s:ecommerceRevenue", "ym:s:ecommercePurchases",
                "ym:s:productImpressions", "ym:s:productBasketsQuantity",
                "ym:s:productPurchasedQuantity"]
     p = {"ids": contador, "metrics": ",".join(metrics),
-         "date1": "today", "date2": "today"}
+         "date1": fecha, "date2": fecha}
     t = requests.get(URL_DATA, headers=HEADERS, params=p).json()["totals"]
     sesiones, ingresos, compras, vistos, carrito, comprados = t
     return {
@@ -117,10 +118,10 @@ def traer_funnel(contador):
     }
 
 
-def traer_campanas(contador, top=100):
+def traer_campanas(contador, top=100, fecha="today"):
     p = {"ids": contador, "dimensions": "ym:s:UTMCampaign",
          "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
-         "date1": "today", "date2": "today", "sort": "-ym:s:ecommerceRevenue",
+         "date1": fecha, "date2": fecha, "sort": "-ym:s:ecommerceRevenue",
          "limit": top, "attribution": ATTRIBUTION}
     d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
     out = []
@@ -132,12 +133,12 @@ def traer_campanas(contador, top=100):
     return out
 
 
-def traer_top_productos(contador, top=100):
+def traer_top_productos(contador, top=100, fecha="today"):
     p = {"ids": contador, "dimensions": "ym:s:productName,ym:s:productID",
          "metrics": ("ym:s:productImpressions,ym:s:productBasketsQuantity,"
                      "ym:s:productPurchasedQuantity,ym:s:visits,"
                      "ym:s:productPurchasedPrice"),
-         "date1": "today", "date2": "today",
+         "date1": fecha, "date2": fecha,
          "sort": "-ym:s:productPurchasedQuantity", "limit": top}
     d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
     out = []
@@ -151,9 +152,9 @@ def traer_top_productos(contador, top=100):
     return out
 
 
-def traer_ingresos_hora(contador):
+def traer_ingresos_hora(contador, fecha="today"):
     p = {"ids": contador, "metrics": "ym:s:ecommerceRevenue",
-         "date1": "today", "date2": "today", "group": "hour"}
+         "date1": fecha, "date2": fecha, "group": "hour"}
     d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
     if not d.get("data"):
         return [0.0] * 24
@@ -268,6 +269,77 @@ def construir_semana_horas(reportes, hoy=None):
             } for h in range(24)]
             out[marca][str(d)] = {"dia": DIAS_CORTOS[d.weekday()], "horas": filas}
     return hoja, out
+
+
+# ---------------------------------------------------------------------------
+# HISTÓRICO (historico.json) — días YA CERRADOS, mismo shape que marcas[x]
+# ---------------------------------------------------------------------------
+def construir_bloque_fecha(marca, fecha):
+    """Bloque de un día CERRADO (corte 23, 24h reales) con el MISMO shape que
+    construir_marca(). `fecha` es un objeto date."""
+    cont = MARCAS[marca]["contador"]
+    fstr = str(fecha)
+    proy      = leer_proyecciones(marca, fecha)
+    real      = traer_sesiones_hora_fecha(cont, fstr)     # 24h completas
+    funnel    = traer_funnel(cont, fstr)
+    campanas  = traer_campanas(cont, fecha=fstr)
+    productos = traer_top_productos(cont, fecha=fstr)
+    ing_hora  = traer_ingresos_hora(cont, fecha=fstr)
+    por_hora = [{
+        "h": h,
+        "ses_proy": round(proy[h]),
+        "ses_real": real[h],
+        "ing_real": ing_hora[h],
+    } for h in range(24)]
+    meta = round(sum(proy))
+    return {
+        "dia": DIAS_CORTOS[fecha.weekday()],
+        "fecha": fstr,
+        "meta_sesiones_dia":   meta,
+        "meta_sesiones_corte": meta,          # día cerrado: corte = día completo
+        "real": {
+            "sesiones": sum(real), "ingresos": round(funnel["ingresos"], 2),
+            "cr": round(funnel["cr"], 4), "ticket": round(funnel["ticket"], 2),
+            "compras": funnel["compras"], "vistos": funnel["vistos"],
+            "carrito": funnel["carrito"], "comprados": funnel["comprados"],
+        },
+        "por_hora": por_hora, "campanas": campanas, "top_productos": productos,
+    }
+
+
+def actualizar_historico(hoy=None):
+    """Mantiene historico.json con los días del evento YA CERRADOS (desde el
+    inicio del evento hasta AYER). Rellena los que falten y refresca solo 'ayer'
+    (por si Yandex asentó tarde). Los días más antiguos ya guardados no se
+    vuelven a consultar. El primer día del evento aún no cierra: no hace nada.
+    Es un flujo aditivo; si falla, main() lo captura y el resto sigue igual."""
+    hoy = hoy or date.today()
+    hoja, dias = dias_del_evento(hoy)
+    cerrados = [d for d in dias if d < hoy]
+
+    hist = {"marcas": {m: {} for m in MARCAS}}
+    try:
+        with open(SALIDA_HISTORICO, "r", encoding="utf-8") as f:
+            prev = json.load(f)
+        if isinstance(prev.get("marcas"), dict):
+            for m in MARCAS:
+                hist["marcas"][m] = prev["marcas"].get(m, {})
+    except FileNotFoundError:
+        pass
+
+    if cerrados:
+        ayer = hoy - timedelta(days=1)
+        for marca in MARCAS:
+            for d in cerrados:
+                key = str(d)
+                if key in hist["marcas"][marca] and d != ayer:
+                    continue   # ya guardado y no es 'ayer' -> no re-consultar
+                hist["marcas"][marca][key] = construir_bloque_fecha(marca, d)
+
+    hist["generado"] = datetime.now().astimezone().isoformat(timespec="seconds")
+    with open(SALIDA_HISTORICO, "w", encoding="utf-8") as f:
+        json.dump(hist, f, ensure_ascii=False, indent=2)
+    return hist
 
 
 # ---------------------------------------------------------------------------
@@ -433,6 +505,13 @@ def main():
     with open(SALIDA_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"{SALIDA_JSON} escrito.")
+
+    # historico.json (días cerrados) — aditivo, NO bloquea el flujo en vivo
+    try:
+        actualizar_historico()
+        print(f"{SALIDA_HISTORICO} actualizado.")
+    except Exception as e:
+        print(f"Aviso: {SALIDA_HISTORICO} no actualizado ({e}). El resto sigue.")
 
     # PNG + correo
     from correo import construir_html, render_png, construir_correo, enviar
