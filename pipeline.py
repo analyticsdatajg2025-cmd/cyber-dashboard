@@ -21,6 +21,9 @@ import requests
 from datetime import datetime, date, timedelta
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
+import re
+
+RE_CAMPANA_NUMERICA = re.compile(r"^\d{15,22}$") 
 
 # ---------------------------------------------------------------------------
 # CONFIG
@@ -36,6 +39,125 @@ SALIDA_JSON  = "data.json"
 SALIDA_HISTORICO = "historico.json"
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
 ATTRIBUTION  = "lastsign"
+
+CAMPANAS_META = {
+    "LA CURACAO": {
+        "120234590485200367": "CURACAO_social-media_facebook_conversiones-HOGAR",
+        "120234592898620367": "Sebas / CURACAO_social-media_facebook_conversiones-VIDEO",
+        "120234601486280367": "CURACAO_social-media_facebook_conversiones-LINEA-BLANCA",
+        "120234589433020367": "CURACAO_social-media_facebook_conversiones-TELEFONIA",
+        "120235019554320367": "CURACAO_social-media_facebook_conversiones-COMPUTO",
+        "120241139755810367": "CURACAO_PISO_facebook_2025_alcance_SOLO_POR_HOY",
+        "120240083028940367": "CURACAO_PISO_facebook_alcance_REPOWER_VIDEO",
+        "120239176840340367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_LB",
+        "120234727712310367": "CURACAO_social-media_facebook_conversiones-PADS",
+        "120235716510800367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_TLF",
+        "120240447583300367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_COMPUTO",
+        "120234715177880367": "CURACAO_social-media_facebook_conversiones-ACCESORIOS",
+        "120234606215930367": "CURACAO_social-media_facebook_conversiones-AUDIO",
+        "120245549456450367": "CURACAO_PISO_facebook_2026_alcance_CierraPuertas",
+        "120240584847660367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_AUDIO",
+        "120242107885040367": "CURACAO_PISO_facebook_alcance_REPOWER_PADS",
+        "120234669678800367": "CURACAO_social-media_facebook_conversiones-DIGITAL",
+        "120251450643280367": "CURACAO_facebook_interaccion_GENERICO",
+        "120241194687780367": "CURACAO_social-media_facebook_FEEDOM",
+        "120229489114750367": "CURACAO_social-media_facebook_CONECTADOS_conversaciones",
+        "120249514628650367": "CURACAO_OMNI_facebook_alcance_CARRUSELES",
+        "120245930290960367": "CURACAO_facebook_interaccion_CYBER_sorteo",
+        "120240823792620367": "CURACAO_social-media_facebook_INTERACCION_HORATECH",
+        "120245809931760367": "CURACAO_social-media_facebook_ALCANCE_HORATECH",
+        "120241554555440367": "CURACAO_facebook_conversiones-CATALOGO-HOGAR",
+        "120247690081510367": "CURACAO_social-media_facebook_consideration_CYBER",
+        "120242155783700367": "CURACAO_PISO_facebook_alcance_BOMBAS_VIDEO",
+        "120245610643240367": "CURACAO_OMNI_facebook_interaccion_CierraPuertas_sorteo",
+        "120248788311010367": "CURACAO_social-media_facebook_ALCANCE_GENERICO",
+        "120244539178720367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_HOGAR",
+        "120251459842970367": "CURACAO_social-media_facebook_ALCANCE_ADV-ZTE",
+        "120242498510510367": "CURACAO_social-media_facebook_ADV_alcance_MABE_LB",
+        "120237406640550367": "CURACAO_social-media_facebook_ADV_alcance_SAMSUNG",
+        "120244538917510367": "CURACAO_PISO_facebook_2025_alcance_REPOWER_ACCESORIOS",
+        "120236001477860367": "CURACAO_social-media_facebook_ADV_alcance_SAMSUNG_TLF",
+        "120241553532050367": "CURACAO_facebook_conversiones-CATALOGO-LINEA-BLANCA",
+        "120241554032840367": "CURACAO_facebook_conversiones-CATALOGO-VIDEO",
+        "120249501257030367": "CURACAO_social-media_facebook_ADV_alcance_XIAOMI_TLF",
+        "120229269369930367": "CURACAO_social-media_facebook_ADV-SAMSUNG_alcance_TELEFONIA",
+        "120241609090800367": "CURACAO_PISO_facebook_alcance_REPOWER_MULTICAT",
+        "120253945095040367": "CURACAO_social-media_facebook_trafico_ELECTROLUX",
+        "120243845421170367": "CURACAO_PISO_facebook_trafico_REPOWER_VIDEO",
+        "120245941846580367": "CURACAO_social-media_facebook_ADV_alcance_NVIDIA_COMPUTO",
+        "120250555160070367": "CURACAO_facebook_ADV_alcance_AMD_COMPUTO",
+        "120243223967760367": "CURACAO_social-media_facebook_ADV_alcance_INTEL_COMPUTO",
+        "120241684713590367": "CURACAO_facebook_conversiones-CATALOGO_DIGITAL",
+        "120236058386720367": "CURACAO_social-media_facebook_ADV_alcance_SAMSUNG_LB",
+        "120237395430930367": "CURACAO_social-media_facebook_ADV_alcance_SAMSUNG_TLF-16.10",
+        "120243846791980367": "CURACAO_PISO_facebook_trafico_REPOWER_TLF",
+        "120248069439090367": "CURACAO_social-media_facebook_ADV_alcance_HYUNDAI_VIDEO",
+        "120243462137640367": "CURACAO_social-media_facebook_ADV_alcance_HISENSE_VIDEO",
+        "120246861435760367": "CURACAO_social-media_facebook_ADV_alcance_JBL_AUDIO",
+        "120248070369490367": "CURACAO_facebook_conversion_CATALOGO_CYBER",
+        "120245980996160367": "CURACAO_social-media_facebook_ADV_alcance_FORLI_HOGAR",
+        "120248068609720367": "CURACAO_social-media_facebook_ADV_alcance_INDURAMA_LB",
+        "120245980283370367": "CURACAO_social-media_facebook_ADV_alcance_AMD_COMPUTO",
+        "120249612862600367": "CURACAO_social-media_facebook_ADV-INDURAMA_alcance_LINEA-BLANCA",
+        "120255274922860367": "CURACAO_social-media_facebook_conversiones-remarketing",
+        "120248163873260367": "CURACAO_social-media_facebook_ADV_alcance_MRGRILL-HOGAR",
+        "120248164842220367": "CURACAO_social-media_facebook_ADV_alcance_CISNE-HOGAR",
+        "120251268572330367": "CURACAO_social-media_facebook_ADV_alcance_MABE_LB",
+        "120233754325890367": "CURACAO_social-media_facebook_ADV_alcance_GOPRO",
+        "120248952315010367": "CURACAO_social-media_facebook_ADV-HYUNDAI_alcance_LINEA-BLANCA",
+        "120239949571290367": "CURACAO_social-media_facebook_ADV_alcance_BLACK_FRIDAY",
+    },
+    "TIENDAS EFE": {
+        "120230728497840225": "EFE_social-media_facebook_conversiones-LINEA_BLANCA",
+        "120231164329030225": "EFE_social-media_facebook_conversiones-HOGAR",
+        "120232753604350225": "EFE_PISO_facebook_2025_alcance_REPOWER_VIDEO",
+        "120230729288370225": "EFE_social-media_facebook_conversiones-COMPUTO",
+        "120236368406740225": "EFE_PISO_facebook_2025_alcance_SOLO_POR_HOY",
+        "120230729117380225": "EFE_social-media_facebook_conversiones-TELEFONIA",
+        "120235019214480225": "EFE_PISO_facebook_2025_alcance_REPOWER_LINEA_BLANCA",
+        "120236223665690225": "EFE_PISO_facebook_2025_alcance_REPOWER_COMPUTO",
+        "120243299525760225": "EFE_facebook_conversiones_catalogo_VIDEO",
+        "120230730448300225": "EFE_social-media_facebook_conversiones-VIDEO",
+        "120243663201740225": "EFE_social-media_facebook_2026_conversiones-telefonía",
+        "120231729539770225": "EFE_PISO_facebook_2025_alcance_REPOWER_TLF",
+        "120229645840320225": "EFE_social-media_facebook_2025_conversiones-PADS",
+        "120243672117310225": "EFE_social-media_facebook_2026_conversiones-video",
+        "120240186851630225": "EFE_PISO_facebook_alcance_CIERRAPUERTAS",
+        "120243663913340225": "EFE_social-media_facebook_2026_conversiones-lb",
+        "120214902727080225": "COLDEX_social-media_facebook_2025_TRAFICO",
+        "120232398213020225": "EFE_social-media_facebook_2025_conversiones-AUDIO",
+        "120237661385030225": "EFE_PISO_facebook_alcance_BOMBAS_VIDEO",
+        "120213987067410225": "COLDEX_social-media_facebook_2025_01_INTERACCION-LANZAMIENTO",
+        "120237627055480225": "EFE_PISO_facebook_alcance_REPOWER_PADS",
+        "120235803787860225": "EFE_PISO_facebook_2025_alcance_REPOWER_AUDIO_BW",
+        "120226374015830225": "EFE_social-media_facebook_CONECTADOS_conversaciones",
+        "120237232793970225": "EFE_facebook_conversiones_CATALOGO_HOGAR",
+        "120231560180980225": "EFE_social-media_facebook_conversiones-ACCESORIOS",
+        "120237553939830225": "EFE_facebook_conversiones_CATALOGO_PADS",
+        "120240512722280225": "EFE_facebook_interaccion__SORTEO_CYBERDAYS",
+        "120239384590700225": "EFE_PISO_facebook_2025_alcance_REPOWER_HOGAR",
+        "120240219235420225": "EFE_OMNI_facebook_interaccion_CIERRAPUERTAS",
+        "120241816731520225": "EFE_social-media_facebook_CONSIDERATION_CYBER",
+        "120237248449310225": "EFE_facebook_conversiones_CATALOGO_LINEA-BLANCA",
+        "120239384463670225": "EFE_PISO_facebook_2025_alcance_REPOWER_ACCESORIOS",
+        "120225163924040225": "EFE_social-media_facebook_ADV-SAMSUNG_alcance_VIDEO",
+        "120237184375990225": "EFE_PISO_facebook_2025_alcance_REPOWER_MULTICATEGORIA",
+        "120245854008960225": "EFE_social-media_facebook_trafico-ELECTROLUX",
+        "120237248515650225": "EFE_facebook_conversiones_CATALOGO_VIDEO",
+        "120231729721980225": "EFE_PISO_facebook_2025_trafico_REPOWER_TLF",
+        "120238787203240225": "EFE_PISO_facebook_trafico_REPOWER_VIDEO",
+        "120225265142040225": "EFE_social-media_facebook_ADV-SAMSUNG_alcance_LINEABLANCA",
+        "120231992811170225": "EFE_social-media_facebook_ADV-SAMSUNG_alcance_LB",
+        "120243669038550225": "EFE_social-media_facebook_2026_conversiones-apple",
+        "120237553648260225": "EFE_facebook_conversiones_CATALOGO_AUDIO",
+        "120234508379610225": "EFE_social-media_facebook_ADV-SAMSUNG_alcance_VIDEO - Copia",
+        "120242078945160225": "EFE_facebook_conversiones_CATALOGO_RMKT",
+        "120227738272320225": "EFE_social-media_facebook_2025_07_conversiones-DIGITAL",
+        "120244731141860225": "Nueva campaña de Tráfico - Copia",
+        "120244732296660225": "Nueva campaña de Tráfico - Copia (2)",
+        "120235751331610225": "EFE_social-media_facebook_ADV-alcance_BLACK_WEEK",
+    },
+}
 
 MARCAS = {
     "LA CURACAO":  {"contador": "98373248"},
@@ -117,6 +239,18 @@ def traer_funnel(contador, fecha="today"):
         "ticket": (ingresos / compras) if compras else 0,
     }
 
+def evaluar_campanas_numericas(campanas, marca):
+    """Recorre la lista de campañas ya traída de Yandex y, si el nombre es
+    puro número (Meta/Google sin UTM), lo reemplaza por el nombre real desde
+    CAMPANAS_META. Si no está catalogado, lo deja tageado como 'sin catalogar'
+    en vez de mostrar el número pelado. JUNTOZ no tiene mapa: queda igual."""
+    mapa_marca = CAMPANAS_META.get(marca, {})
+    for c in campanas:
+        nombre = c["nombre"]
+        if RE_CAMPANA_NUMERICA.match(nombre):
+            real = mapa_marca.get(nombre)
+            c["nombre"] = real if real else f"Facebook Ads (sin catalogar: {nombre})"
+    return campanas
 
 def traer_campanas(contador, top=100, fecha="today"):
     p = {"ids": contador, "dimensions": "ym:s:UTMCampaign",
@@ -189,6 +323,7 @@ def construir_marca(marca):
     r = armar_reporte(marca)
     contador = MARCAS[marca]["contador"]
     campanas  = traer_campanas(contador)
+    campanas  = evaluar_campanas_numericas(campanas, marca)
     productos = traer_top_productos(contador)
     ing_hora  = traer_ingresos_hora(contador)
     corte = r["corte"]
@@ -283,6 +418,7 @@ def construir_bloque_fecha(marca, fecha):
     real      = traer_sesiones_hora_fecha(cont, fstr)     # 24h completas
     funnel    = traer_funnel(cont, fstr)
     campanas  = traer_campanas(cont, fecha=fstr)
+    campanas  = evaluar_campanas_numericas(campanas, marca)
     productos = traer_top_productos(cont, fecha=fstr)
     ing_hora  = traer_ingresos_hora(cont, fecha=fstr)
     por_hora = [{
