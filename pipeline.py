@@ -165,7 +165,7 @@ MARCAS = {
     "JUNTOZ": {"contador": "98373308"}
 }
 
-EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
+
 
 def dia_pertenece_a_evento(d):
     """True/nombre si la fecha cae dentro de CYBER DAYS o CYBER WOW, sin
@@ -182,6 +182,7 @@ DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 # --- Ventanas de los cybers de julio 2026 (editables) ---
 CYBER_DAYS = (date(2026, 7, 6),  date(2026, 7, 12))   # 6 al 12 julio
 CYBER_WOW  = (date(2026, 7, 13), date(2026, 7, 19))   # 13 al 19 julio
+EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
 
 # Columna base por marca en el Excel de proyecciones:
 #   LA CURACAO : Lunes=B(2) ... Domingo=H(8)
