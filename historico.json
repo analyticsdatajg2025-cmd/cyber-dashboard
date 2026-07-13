@@ -8161,14 +8161,14 @@
         "meta_sesiones_dia": 22496,
         "meta_sesiones_corte": 22496,
         "real": {
-          "sesiones": 84118,
-          "ingresos": 142695.55,
-          "cr": 0.0018,
-          "ticket": 932.65,
-          "compras": 153,
-          "vistos": 41884,
-          "carrito": 2421,
-          "comprados": 211
+          "sesiones": 84128,
+          "ingresos": 155659.55,
+          "cr": 0.0019,
+          "ticket": 991.46,
+          "compras": 157,
+          "vistos": 42119,
+          "carrito": 2440,
+          "comprados": 267
         },
         "por_hora": [
           {
@@ -8246,7 +8246,7 @@
           {
             "h": 12,
             "ses_proy": 1168,
-            "ses_real": 4341,
+            "ses_real": 4342,
             "ing_real": 9430.0
           },
           {
@@ -8270,7 +8270,7 @@
           {
             "h": 16,
             "ses_proy": 1060,
-            "ses_real": 6082,
+            "ses_real": 6083,
             "ing_real": 7342.8
           },
           {
@@ -8294,26 +8294,26 @@
           {
             "h": 20,
             "ses_proy": 986,
-            "ses_real": 5019,
+            "ses_real": 5020,
             "ing_real": 8331.2
           },
           {
             "h": 21,
             "ses_proy": 934,
-            "ses_real": 4102,
+            "ses_real": 4103,
             "ing_real": 2841.0
           },
           {
             "h": 22,
             "ses_proy": 803,
-            "ses_real": 3373,
+            "ses_real": 3376,
             "ing_real": 0.0
           },
           {
             "h": 23,
             "ses_proy": 628,
-            "ses_real": 3708,
-            "ing_real": 25365.0
+            "ses_real": 3711,
+            "ing_real": 38329.0
           }
         ],
         "campanas": [
@@ -8499,7 +8499,7 @@
           },
           {
             "nombre": "CURACAO_google_display_home_2024_trafico_ecommerce",
-            "sesiones": 14403,
+            "sesiones": 14404,
             "compras": 0,
             "ingresos": 0.0
           },
@@ -8602,12 +8602,21 @@
         ],
         "top_productos": [
           {
+            "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
+            "sku": "BLSTKAGRPB053",
+            "vistos": 36,
+            "carrito": 52,
+            "comprados": 55,
+            "sesiones": 708,
+            "ingresos": 7725.0
+          },
+          {
             "nombre": "Celular Motorola 256GB 8GB Edge 70 Fusion 6.8\" Azul",
             "sku": "EDGE70FUSAZUL",
-            "vistos": 197,
+            "vistos": 201,
             "carrito": 0,
             "comprados": 22,
-            "sesiones": 1272,
+            "sesiones": 1281,
             "ingresos": 23118.0
           },
           {
@@ -8616,16 +8625,16 @@
             "vistos": 192,
             "carrito": 38,
             "comprados": 6,
-            "sesiones": 708,
+            "sesiones": 709,
             "ingresos": 1014.0
           },
           {
             "nombre": "Impresora Multifuncional HP Smart Tank 580 Wi-Fi Color",
             "sku": "ST 580",
-            "vistos": 234,
+            "vistos": 236,
             "carrito": 16,
             "comprados": 5,
-            "sesiones": 1941,
+            "sesiones": 1946,
             "ingresos": 1995.0
           },
           {
@@ -8643,7 +8652,7 @@
             "vistos": 43,
             "carrito": 12,
             "comprados": 4,
-            "sesiones": 102,
+            "sesiones": 103,
             "ingresos": 476.0
           },
           {
@@ -8661,7 +8670,7 @@
             "vistos": 154,
             "carrito": 18,
             "comprados": 3,
-            "sesiones": 392,
+            "sesiones": 393,
             "ingresos": 627.0
           },
           {
@@ -8676,10 +8685,10 @@
           {
             "nombre": "Apple iPhone 17 256GB 6.3\" Lavanda",
             "sku": "MG6M4BE/A",
-            "vistos": 333,
+            "vistos": 335,
             "carrito": -3,
             "comprados": 2,
-            "sesiones": 2534,
+            "sesiones": 2544,
             "ingresos": 6798.0
           },
           {
@@ -8688,7 +8697,7 @@
             "vistos": 62,
             "carrito": 7,
             "comprados": 2,
-            "sesiones": 166,
+            "sesiones": 168,
             "ingresos": 118.0
           },
           {
@@ -8715,7 +8724,7 @@
             "vistos": 78,
             "carrito": 5,
             "comprados": 2,
-            "sesiones": 445,
+            "sesiones": 444,
             "ingresos": 1198.0
           },
           {
@@ -8742,7 +8751,7 @@
             "vistos": 28,
             "carrito": 5,
             "comprados": 2,
-            "sesiones": 91,
+            "sesiones": 92,
             "ingresos": 478.0
           },
           {
@@ -8751,13 +8760,13 @@
             "vistos": 65,
             "carrito": 3,
             "comprados": 2,
-            "sesiones": 330,
+            "sesiones": 331,
             "ingresos": 418.0
           },
           {
             "nombre": "Silla Gamer Lyzor con posapiés + Mochila Maillon Basilea Portalaptop",
             "sku": "SGBTWN135A_b",
-            "vistos": 62,
+            "vistos": 63,
             "carrito": 7,
             "comprados": 2,
             "sesiones": 306,
@@ -8775,10 +8784,10 @@
           {
             "nombre": "TV iFFALCON 43\" QLED FHD Google 43S55A by TCL  ",
             "sku": "43S55A",
-            "vistos": 41,
+            "vistos": 42,
             "carrito": -3,
             "comprados": 2,
-            "sesiones": 1492,
+            "sesiones": 1500,
             "ingresos": 1298.0
           },
           {
@@ -8800,6 +8809,15 @@
             "ingresos": 1969.0
           },
           {
+            "nombre": "Apple iPhone 17 Pro Max 5G 256GB 6.9\"  Silver",
+            "sku": "MFYM4BE/A",
+            "vistos": 95,
+            "carrito": -1,
+            "comprados": 1,
+            "sesiones": 2477,
+            "ingresos": 5299.0
+          },
+          {
             "nombre": "Aspiradora vertical Eletrolux 1000W Power Speed Negro",
             "sku": "STK12",
             "vistos": 44,
@@ -8811,10 +8829,10 @@
           {
             "nombre": "Audífonos In Ear JBL Tune 310C USB C Negro",
             "sku": "BGJBL310CBK",
-            "vistos": 7,
+            "vistos": 8,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 151,
+            "sesiones": 152,
             "ingresos": 79.0
           },
           {
@@ -8823,7 +8841,7 @@
             "vistos": 2,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 31,
+            "sesiones": 32,
             "ingresos": 29.0
           },
           {
@@ -8832,7 +8850,7 @@
             "vistos": 18,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 85,
+            "sesiones": 86,
             "ingresos": 49.0
           },
           {
@@ -8958,7 +8976,7 @@
             "vistos": 12,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 162,
+            "sesiones": 163,
             "ingresos": 269.0
           },
           {
@@ -9057,7 +9075,7 @@
             "vistos": 37,
             "carrito": 4,
             "comprados": 1,
-            "sesiones": 216,
+            "sesiones": 217,
             "ingresos": 119.0
           },
           {
@@ -9120,7 +9138,7 @@
             "vistos": 30,
             "carrito": 3,
             "comprados": 1,
-            "sesiones": 200,
+            "sesiones": 202,
             "ingresos": 79.0
           },
           {
@@ -9183,7 +9201,7 @@
             "vistos": 25,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 42,
+            "sesiones": 41,
             "ingresos": 4999.0
           },
           {
@@ -9192,7 +9210,7 @@
             "vistos": 37,
             "carrito": 3,
             "comprados": 1,
-            "sesiones": 1636,
+            "sesiones": 1637,
             "ingresos": 999.0
           },
           {
@@ -9201,7 +9219,7 @@
             "vistos": 31,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 191,
+            "sesiones": 192,
             "ingresos": 649.0
           },
           {
@@ -9210,7 +9228,7 @@
             "vistos": 7,
             "carrito": 5,
             "comprados": 1,
-            "sesiones": 67,
+            "sesiones": 69,
             "ingresos": 669.0
           },
           {
@@ -9219,7 +9237,7 @@
             "vistos": 9,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 149,
+            "sesiones": 150,
             "ingresos": 559.0
           },
           {
@@ -9228,7 +9246,7 @@
             "vistos": 3,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 36,
+            "sesiones": 37,
             "ingresos": 2259.0
           },
           {
@@ -9237,7 +9255,7 @@
             "vistos": 5,
             "carrito": -1,
             "comprados": 1,
-            "sesiones": 105,
+            "sesiones": 108,
             "ingresos": 259.0
           },
           {
@@ -9273,7 +9291,7 @@
             "vistos": 14,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 70,
+            "sesiones": 69,
             "ingresos": 569.0
           },
           {
@@ -9282,7 +9300,7 @@
             "vistos": 37,
             "carrito": 3,
             "comprados": 1,
-            "sesiones": 123,
+            "sesiones": 126,
             "ingresos": 199.0
           },
           {
@@ -9309,16 +9327,16 @@
             "vistos": 52,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 1290,
+            "sesiones": 1297,
             "ingresos": 3199.0
           },
           {
             "nombre": "Laptop HP 15.6\" Intel Core Ultra 5 1TB 24GB 15-FD2355LA",
             "sku": "15-FD2355LA",
-            "vistos": 342,
+            "vistos": 345,
             "carrito": -3,
             "comprados": 1,
-            "sesiones": 2797,
+            "sesiones": 2807,
             "ingresos": 2499.0
           },
           {
@@ -9327,7 +9345,7 @@
             "vistos": 76,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 1165,
+            "sesiones": 1173,
             "ingresos": 2999.0
           },
           {
@@ -9336,7 +9354,7 @@
             "vistos": 98,
             "carrito": -1,
             "comprados": 1,
-            "sesiones": 1258,
+            "sesiones": 1268,
             "ingresos": 2699.0
           },
           {
@@ -9345,13 +9363,13 @@
             "vistos": 116,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 1308,
+            "sesiones": 1317,
             "ingresos": 4799.0
           },
           {
             "nombre": "Lavadora LG 13 KG WT13BVTB Negro",
             "sku": "WT13BVTB",
-            "vistos": 52,
+            "vistos": 56,
             "carrito": 7,
             "comprados": 1,
             "sesiones": 952,
@@ -9385,21 +9403,12 @@
             "ingresos": 39.0
           },
           {
-            "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
-            "sku": "BLSTKAGRPB053",
-            "vistos": 34,
-            "carrito": 51,
-            "comprados": 1,
-            "sesiones": 705,
-            "ingresos": 219.0
-          },
-          {
             "nombre": "Licuadora Personal Thomas 600ML 250W TH-300PB",
             "sku": "TH-300PB",
-            "vistos": 28,
+            "vistos": 29,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 226,
+            "sesiones": 228,
             "ingresos": 99.0
           },
           {
@@ -9417,7 +9426,7 @@
             "vistos": 19,
             "carrito": 3,
             "comprados": 1,
-            "sesiones": 197,
+            "sesiones": 199,
             "ingresos": 119.0
           },
           {
@@ -9426,7 +9435,7 @@
             "vistos": 27,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 215,
+            "sesiones": 217,
             "ingresos": 89.0
           },
           {
@@ -9435,7 +9444,7 @@
             "vistos": 71,
             "carrito": 4,
             "comprados": 1,
-            "sesiones": 130,
+            "sesiones": 132,
             "ingresos": 99.0
           },
           {
@@ -9491,15 +9500,6 @@
             "comprados": 1,
             "sesiones": 1,
             "ingresos": 114.2
-          },
-          {
-            "nombre": "Olla Multifuncional Electrolux Experience ECC20",
-            "sku": "ECC20",
-            "vistos": 21,
-            "carrito": 1,
-            "comprados": 1,
-            "sesiones": 31,
-            "ingresos": 159.0
           }
         ]
       }
@@ -17539,14 +17539,14 @@
         "meta_sesiones_dia": 15004,
         "meta_sesiones_corte": 15004,
         "real": {
-          "sesiones": 40924,
-          "ingresos": 105221.8,
-          "cr": 0.003,
-          "ticket": 869.6,
-          "compras": 121,
-          "vistos": 25013,
-          "carrito": 1651,
-          "comprados": 142
+          "sesiones": 40932,
+          "ingresos": 113101.8,
+          "cr": 0.0032,
+          "ticket": 876.76,
+          "compras": 129,
+          "vistos": 25162,
+          "carrito": 1670,
+          "comprados": 152
         },
         "por_hora": [
           {
@@ -17606,7 +17606,7 @@
           {
             "h": 9,
             "ses_proy": 924,
-            "ses_real": 1855,
+            "ses_real": 1857,
             "ing_real": 3766.0
           },
           {
@@ -17636,13 +17636,13 @@
           {
             "h": 14,
             "ses_proy": 702,
-            "ses_real": 2025,
+            "ses_real": 2026,
             "ing_real": 6767.7
           },
           {
             "h": 15,
             "ses_proy": 729,
-            "ses_real": 2093,
+            "ses_real": 2094,
             "ing_real": 11775.8
           },
           {
@@ -17660,13 +17660,13 @@
           {
             "h": 18,
             "ses_proy": 669,
-            "ses_real": 1889,
+            "ses_real": 1890,
             "ing_real": 17259.0
           },
           {
             "h": 19,
             "ses_proy": 692,
-            "ses_real": 1960,
+            "ses_real": 1961,
             "ing_real": 776.0
           },
           {
@@ -17690,8 +17690,8 @@
           {
             "h": 23,
             "ses_proy": 419,
-            "ses_real": 2875,
-            "ing_real": 0.0
+            "ses_real": 2877,
+            "ing_real": 7880.0
           }
         ],
         "campanas": [
@@ -17703,7 +17703,7 @@
           },
           {
             "nombre": "EFE_google_pmax_lineablanca_set_2024_conversiones",
-            "sesiones": 1727,
+            "sesiones": 1728,
             "compras": 6,
             "ingresos": 7464.0
           },
@@ -17865,7 +17865,7 @@
           },
           {
             "nombre": "EFE-TRAFICO-AON-JUN26",
-            "sesiones": 8531,
+            "sesiones": 8533,
             "compras": 0,
             "ingresos": 0.0
           },
@@ -17895,7 +17895,7 @@
           },
           {
             "nombre": "EFE_google_display_home_2024_trafico_ecommerce",
-            "sesiones": 4177,
+            "sesiones": 4178,
             "compras": 0,
             "ingresos": 0.0
           },
@@ -17994,10 +17994,10 @@
           {
             "nombre": "Mesa Plegable Bord 180CM MESAPL180NG Negro + Cooler Merci Hogar Pinguino 18 LT Azul",
             "sku": "MESAPL180NG_b",
-            "vistos": 407,
+            "vistos": 408,
             "carrito": 86,
             "comprados": 24,
-            "sesiones": 457,
+            "sesiones": 459,
             "ingresos": 2856.0
           },
           {
@@ -18010,22 +18010,22 @@
             "ingresos": 2178.0
           },
           {
-            "nombre": "IPHONE 17 PRO MAX 256GB SILVER",
-            "sku": "CIPN17PMSL256T5903MP",
-            "vistos": 294,
-            "carrito": 17,
-            "comprados": 5,
-            "sesiones": 387,
-            "ingresos": 24995.0
-          },
-          {
             "nombre": "Mesa Plegable Bord 180CM Blanco MESAPL180BL",
             "sku": "MESAPL180BL",
-            "vistos": 99,
-            "carrito": 13,
-            "comprados": 4,
-            "sesiones": 213,
-            "ingresos": 396.0
+            "vistos": 100,
+            "carrito": 15,
+            "comprados": 6,
+            "sesiones": 215,
+            "ingresos": 594.0
+          },
+          {
+            "nombre": "IPHONE 17 PRO MAX 256GB SILVER",
+            "sku": "CIPN17PMSL256T5903MP",
+            "vistos": 296,
+            "carrito": 17,
+            "comprados": 5,
+            "sesiones": 388,
+            "ingresos": 24995.0
           },
           {
             "nombre": "Parlante inalámbrico JBL Bluetooth IP68 Charge 6 Negro",
@@ -18033,16 +18033,16 @@
             "vistos": 111,
             "carrito": 19,
             "comprados": 3,
-            "sesiones": 632,
+            "sesiones": 633,
             "ingresos": 1587.0
           },
           {
             "nombre": "Apple iPhone 17 Pro Max 5G 256GB 6.9\"  Silver",
             "sku": "MFYM4BE/A",
-            "vistos": 148,
+            "vistos": 154,
             "carrito": 0,
             "comprados": 2,
-            "sesiones": 1231,
+            "sesiones": 1232,
             "ingresos": 10598.0
           },
           {
@@ -18069,7 +18069,7 @@
             "vistos": 107,
             "carrito": 13,
             "comprados": 2,
-            "sesiones": 577,
+            "sesiones": 578,
             "ingresos": 338.0
           },
           {
@@ -18087,7 +18087,7 @@
             "vistos": 131,
             "carrito": 10,
             "comprados": 2,
-            "sesiones": 613,
+            "sesiones": 614,
             "ingresos": 798.0
           },
           {
@@ -18100,12 +18100,21 @@
             "ingresos": 1598.0
           },
           {
+            "nombre": "Silla Gamer Lyzor con Posapiés SGBWTWN135A Negra y Blanca",
+            "sku": "SGBWTWN135A",
+            "vistos": 42,
+            "carrito": 8,
+            "comprados": 2,
+            "sesiones": 175,
+            "ingresos": 408.0
+          },
+          {
             "nombre": "Silla Gamer Lyzor con posapiés + Mochila Maillon Basilea Portalaptop",
             "sku": "SGBTWN135A_b",
-            "vistos": 38,
+            "vistos": 39,
             "carrito": 6,
             "comprados": 2,
-            "sesiones": 180,
+            "sesiones": 184,
             "ingresos": 458.0
           },
           {
@@ -18129,19 +18138,19 @@
           {
             "nombre": "Audífonos True Wireless Skullcandy Jib True 2 Negro",
             "sku": "BS-1020076",
-            "vistos": 7,
+            "vistos": 8,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 24,
+            "sesiones": 27,
             "ingresos": 69.0
           },
           {
             "nombre": "Barra de sonido Klip Xtreme BoomBar KSB-230",
             "sku": "KSB-230",
-            "vistos": 6,
+            "vistos": 7,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 44,
+            "sesiones": 45,
             "ingresos": 199.0
           },
           {
@@ -18226,12 +18235,21 @@
             "ingresos": 359.0
           },
           {
+            "nombre": "Celular Motorola 256GB 8GB Edge 70 Fusion 6.8\" Azul",
+            "sku": "EDGE70FUSAZUL",
+            "vistos": 92,
+            "carrito": 0,
+            "comprados": 1,
+            "sesiones": 838,
+            "ingresos": 1039.0
+          },
+          {
             "nombre": "Celular Motorola Moto G05 4GB 128GB 6.7\" Verde",
             "sku": "G05VERDE",
             "vistos": 14,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 155,
+            "sesiones": 156,
             "ingresos": 329.0
           },
           {
@@ -18240,7 +18258,7 @@
             "vistos": 6,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 160,
+            "sesiones": 162,
             "ingresos": 449.0
           },
           {
@@ -18249,8 +18267,17 @@
             "vistos": 48,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 194,
+            "sesiones": 196,
             "ingresos": 789.0
+          },
+          {
+            "nombre": "Celular Samsung Galaxy S25 FE 256GB 8GB 6.7\" Negro",
+            "sku": "SM-S731BZKMLTP",
+            "vistos": 6,
+            "carrito": -1,
+            "comprados": 1,
+            "sesiones": 154,
+            "ingresos": 2419.0
           },
           {
             "nombre": "Celular Xiaomi Redmi Note 15 256GB 8GB 6.7\" Black",
@@ -18258,7 +18285,7 @@
             "vistos": 60,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 302,
+            "sesiones": 304,
             "ingresos": 849.0
           },
           {
@@ -18330,7 +18357,7 @@
             "vistos": 14,
             "carrito": 5,
             "comprados": 1,
-            "sesiones": 138,
+            "sesiones": 140,
             "ingresos": 119.0
           },
           {
@@ -18357,7 +18384,7 @@
             "vistos": 20,
             "carrito": 3,
             "comprados": 1,
-            "sesiones": 227,
+            "sesiones": 229,
             "ingresos": 3099.0
           },
           {
@@ -18366,7 +18393,7 @@
             "vistos": 3,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 48,
+            "sesiones": 50,
             "ingresos": 49.0
           },
           {
@@ -18384,7 +18411,7 @@
             "vistos": 8,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 41,
+            "sesiones": 42,
             "ingresos": 59.0
           },
           {
@@ -18474,7 +18501,7 @@
             "vistos": 66,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 577,
+            "sesiones": 580,
             "ingresos": 1749.0
           },
           {
@@ -18483,16 +18510,16 @@
             "vistos": 217,
             "carrito": -2,
             "comprados": 1,
-            "sesiones": 670,
+            "sesiones": 672,
             "ingresos": 2499.0
           },
           {
             "nombre": "Laptop Lenovo IdeaPad Slim 3i 15.3\" Windows 11 Intel Core i7 16GB 512GB",
             "sku": "83K100KTLM",
-            "vistos": 149,
+            "vistos": 150,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 635,
+            "sesiones": 637,
             "ingresos": 2699.0
           },
           {
@@ -18503,6 +18530,15 @@
             "comprados": 1,
             "sesiones": 446,
             "ingresos": 1099.0
+          },
+          {
+            "nombre": "Lavadora Samsung 17KG EcoBubble WA40F17E7CPE Gris Grafito",
+            "sku": "WA40F17E7CPE",
+            "vistos": 18,
+            "carrito": 2,
+            "comprados": 1,
+            "sesiones": 434,
+            "ingresos": 999.0
           },
           {
             "nombre": "Lentes Mauka Green",
@@ -18519,7 +18555,7 @@
             "vistos": 17,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 523,
+            "sesiones": 526,
             "ingresos": 219.0
           },
           {
@@ -18530,6 +18566,15 @@
             "comprados": 1,
             "sesiones": 3,
             "ingresos": 149.0
+          },
+          {
+            "nombre": "Mesa Plegable Merci Hogar 150cm MESAPL150BL",
+            "sku": "MESAPL150BL",
+            "vistos": 5,
+            "carrito": 1,
+            "comprados": 1,
+            "sesiones": 14,
+            "ingresos": 89.0
           },
           {
             "nombre": "Minoxidil Kirkland 5% Caja 6 Frascos - Barba - Cabello y Cejas",
@@ -18588,10 +18633,10 @@
           {
             "nombre": "Parrilla Mr Grill Cilíndrica con Tapa                                                                                          ",
             "sku": "0055CC",
-            "vistos": 73,
+            "vistos": 74,
             "carrito": 9,
             "comprados": 1,
-            "sesiones": 170,
+            "sesiones": 171,
             "ingresos": 89.0
           },
           {
@@ -18627,8 +18672,17 @@
             "vistos": 17,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 114,
+            "sesiones": 115,
             "ingresos": 1949.0
+          },
+          {
+            "nombre": "Refrigeradora LG Top Freezer 241 LT LinearCooling Multi-Air Flow VT24BPY Plateada",
+            "sku": "380274062MP",
+            "vistos": 7,
+            "carrito": 1,
+            "comprados": 1,
+            "sesiones": 33,
+            "ingresos": 939.0
           },
           {
             "nombre": "Refrigeradora Samsung 255LT RT25FARADS8",
@@ -18636,16 +18690,16 @@
             "vistos": 16,
             "carrito": 2,
             "comprados": 1,
-            "sesiones": 343,
+            "sesiones": 344,
             "ingresos": 1399.0
           },
           {
             "nombre": "SAMSUNG S26 ULTRA 12GB 512GB COBALT VIOLET",
             "sku": "SAMSUNG26ULTRAVIOLET5125903MP",
-            "vistos": 59,
-            "carrito": 8,
+            "vistos": 61,
+            "carrito": 9,
             "comprados": 1,
-            "sesiones": 400,
+            "sesiones": 405,
             "ingresos": 4399.0
           },
           {
@@ -18667,13 +18721,22 @@
             "ingresos": 169.0
           },
           {
-            "nombre": "Silla Gamer Lyzor con Posapiés SGBWTWN135A Negra y Blanca",
-            "sku": "SGBWTWN135A",
-            "vistos": 41,
-            "carrito": 7,
+            "nombre": "TV Hisense 43\" QLED 4K UHD Vidaa 43Q6QV",
+            "sku": "43Q6QV/PE",
+            "vistos": 5,
+            "carrito": 0,
             "comprados": 1,
-            "sesiones": 173,
-            "ingresos": 209.0
+            "sesiones": 903,
+            "ingresos": 799.0
+          },
+          {
+            "nombre": "TV Hyundai 55\" Google  TV 4K Ultra HD Smart TV HYLED5529QG",
+            "sku": "HYLED5529QG",
+            "vistos": 3,
+            "carrito": 0,
+            "comprados": 1,
+            "sesiones": 785,
+            "ingresos": 1199.0
           },
           {
             "nombre": "TV Samsung 65\" FHD 4K Q8F Vision AI Smart TV QN65Q8FAAGXPE (2025)",
@@ -18681,7 +18744,7 @@
             "vistos": 9,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 284,
+            "sesiones": 286,
             "ingresos": 2349.0
           },
           {
@@ -18699,7 +18762,7 @@
             "vistos": 24,
             "carrito": 8,
             "comprados": 1,
-            "sesiones": 955,
+            "sesiones": 961,
             "ingresos": 1599.0
           },
           {
@@ -18708,7 +18771,7 @@
             "vistos": 84,
             "carrito": 0,
             "comprados": 1,
-            "sesiones": 1131,
+            "sesiones": 1138,
             "ingresos": 949.0
           },
           {
@@ -18822,69 +18885,6 @@
           {
             "nombre": "1 Revista Condorito Volumen 1",
             "sku": "CNDT12453MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "1 Revista Condorito Volumen 4",
-            "sku": "CNDT42453MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "10 Leuconychia Lápiz Reparación Biológica Tratamiento Hongos",
-            "sku": "COD192_14137MP",
-            "vistos": 1,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "100% CREATINA 250GR UNIVERSE NUTRITION",
-            "sku": "20242125711MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "100% CREATINA MONOHIDRATADA 500 GRAMOS UNIVERSE NUTRITION",
-            "sku": "20240795711MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "12 Jabón A Base De Avena Aclara -T 80Gr",
-            "sku": "COD553_45034MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "12 Jabón A Base De Avena Aclara -T 80Gr",
-            "sku": "DCOD553_44137MP",
-            "vistos": 0,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 1,
-            "ingresos": 0.0
-          },
-          {
-            "nombre": "12 Jabón Con Glutathione Aclara - T",
-            "sku": "COD554_45034MP",
             "vistos": 0,
             "carrito": 0,
             "comprados": 0,
@@ -26401,14 +26401,14 @@
         "meta_sesiones_dia": 5496,
         "meta_sesiones_corte": 5496,
         "real": {
-          "sesiones": 22808,
-          "ingresos": 66550.17,
-          "cr": 0.0033,
-          "ticket": 887.34,
-          "compras": 75,
-          "vistos": 16265,
-          "carrito": 1425,
-          "comprados": 103
+          "sesiones": 22809,
+          "ingresos": 69488.17,
+          "cr": 0.0034,
+          "ticket": 902.44,
+          "compras": 77,
+          "vistos": 16470,
+          "carrito": 1449,
+          "comprados": 105
         },
         "por_hora": [
           {
@@ -26552,8 +26552,8 @@
           {
             "h": 23,
             "ses_proy": 153,
-            "ses_real": 1280,
-            "ing_real": 768.39
+            "ses_real": 1281,
+            "ing_real": 3706.39
           }
         ],
         "campanas": [
@@ -26748,20 +26748,20 @@
           {
             "nombre": "Whisky Johnnie Walker Blue Label 750ml",
             "sku": "3144274",
-            "vistos": 194,
-            "carrito": 117,
+            "vistos": 197,
+            "carrito": 119,
             "comprados": 14,
-            "sesiones": 187,
+            "sesiones": 188,
             "ingresos": 9688.0
           },
           {
             "nombre": "Consola Nintendo Switch 2",
             "sku": "2770687",
-            "vistos": 304,
-            "carrito": 41,
-            "comprados": 6,
+            "vistos": 306,
+            "carrito": 42,
+            "comprados": 7,
             "sesiones": 243,
-            "ingresos": 11934.0
+            "ingresos": 13923.0
           },
           {
             "nombre": "Atoderm Creme 500 Ml",
@@ -26793,16 +26793,16 @@
           {
             "nombre": "IPHONE 17 PRO MAX 256GB SILVER",
             "sku": "3207826",
-            "vistos": 156,
+            "vistos": 159,
             "carrito": 36,
             "comprados": 3,
-            "sesiones": 125,
+            "sesiones": 127,
             "ingresos": 14997.0
           },
           {
             "nombre": "Sesderma C-Vit Liposomal Sérum - Frasco 30 ML",
             "sku": "2662104",
-            "vistos": 25,
+            "vistos": 26,
             "carrito": 7,
             "comprados": 3,
             "sesiones": 14,
@@ -26899,6 +26899,15 @@
             "ingresos": 299.0
           },
           {
+            "nombre": "Bicicleta Spinning Magnética P450 Premium Color: Gris",
+            "sku": "2931557",
+            "vistos": 0,
+            "carrito": 0,
+            "comprados": 1,
+            "sesiones": 1,
+            "ingresos": 1349.0
+          },
+          {
             "nombre": "Bicimoto Electric Motare Flash Negro Color: negro",
             "sku": "3146650",
             "vistos": 0,
@@ -26982,10 +26991,10 @@
           {
             "nombre": "Consola Nintendo Switch 2 Choose Your Game Bundle",
             "sku": "3227336",
-            "vistos": 5,
+            "vistos": 7,
             "carrito": 1,
             "comprados": 1,
-            "sesiones": 6,
+            "sesiones": 8,
             "ingresos": 2249.0
           },
           {
@@ -27216,10 +27225,10 @@
           {
             "nombre": "Refrigeradora Electrolux 436LT No Frost Side By Side Inverter ERS432HBWD",
             "sku": "2615459",
-            "vistos": 303,
+            "vistos": 304,
             "carrito": 23,
             "comprados": 1,
-            "sesiones": 266,
+            "sesiones": 267,
             "ingresos": 1549.0
           },
           {
@@ -27234,7 +27243,7 @@
           {
             "nombre": "Scooter Eléctrico Xiaomi 6 GL Negro",
             "sku": "3017558",
-            "vistos": 102,
+            "vistos": 104,
             "carrito": 7,
             "comprados": 1,
             "sesiones": 81,
@@ -27635,19 +27644,10 @@
             "comprados": 0,
             "sesiones": 1,
             "ingresos": 0.0
-          },
-          {
-            "nombre": "42 parches médicos eliminación de verrugas callos y ojos de pescado",
-            "sku": "2254965",
-            "vistos": 3,
-            "carrito": 0,
-            "comprados": 0,
-            "sesiones": 2,
-            "ingresos": 0.0
           }
         ]
       }
     }
   },
-  "generado": "2026-07-13T00:12:47-05:00"
+  "generado": "2026-07-13T01:03:16-05:00"
 }
