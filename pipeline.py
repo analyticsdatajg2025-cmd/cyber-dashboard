@@ -164,6 +164,18 @@ MARCAS = {
     "TIENDAS EFE": {"contador": "98373144"},
     "JUNTOZ": {"contador": "98373308"}
 }
+
+EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
+
+def dia_pertenece_a_evento(d):
+    """True/nombre si la fecha cae dentro de CYBER DAYS o CYBER WOW, sin
+    importar cuál esté 'activo' hoy. Clave para no perder el último día
+    de un evento cuando ya cruzamos al siguiente."""
+    for nombre, (ini, fin) in EVENTOS:
+        if ini <= d <= fin:
+            return nombre
+    return None
+
 DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
 DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
@@ -444,14 +456,23 @@ def construir_bloque_fecha(marca, fecha):
 
 
 def actualizar_historico(hoy=None):
-    """Mantiene historico.json con los días del evento YA CERRADOS (desde el
-    inicio del evento hasta AYER). Rellena los que falten y refresca solo 'ayer'
-    (por si Yandex asentó tarde). Los días más antiguos ya guardados no se
-    vuelven a consultar. El primer día del evento aún no cierra: no hace nada.
-    Es un flujo aditivo; si falla, main() lo captura y el resto sigue igual."""
+    """Mantiene historico.json con TODOS los días ya cerrados de CYBER DAYS
+    y CYBER WOW (no solo los del evento activo hoy). Así, al cruzar de un
+    evento a otro, el último día del evento anterior sí se cierra y guarda.
+    Rellena los que falten y refresca 'ayer' (por si Yandex asentó tarde).
+    Los días más antiguos ya guardados no se vuelven a consultar."""
     hoy = hoy or date.today()
-    hoja, dias = dias_del_evento(hoy)
-    cerrados = [d for d in dias if d < hoy]
+    ayer = hoy - timedelta(days=1)
+
+    inicio_total = min(CYBER_DAYS[0], CYBER_WOW[0])
+    fin_total    = max(CYBER_DAYS[1], CYBER_WOW[1])
+
+    cerrados = []
+    d = inicio_total
+    while d <= min(ayer, fin_total):
+        if dia_pertenece_a_evento(d):
+            cerrados.append(d)
+        d += timedelta(days=1)
 
     hist = {"marcas": {m: {} for m in MARCAS}}
     try:
@@ -464,7 +485,6 @@ def actualizar_historico(hoy=None):
         pass
 
     if cerrados:
-        ayer = hoy - timedelta(days=1)
         for marca in MARCAS:
             for d in cerrados:
                 key = str(d)
