@@ -221,7 +221,13 @@ def traer_sesiones_hora(contador):
     """Sesiones/hora de HOY. Devuelve (serie24, corte)."""
     p = {"ids": contador, "metrics": "ym:s:visits",
          "date1": "today", "date2": "today", "group": "hour"}
-    d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
+    r = requests.get(URL_BYTIME, headers=HEADERS, params=p)
+    d = r.json()
+    if not d.get("data"):
+        raise RuntimeError(
+            f"Yandex sin 'data' (contador {contador}, HTTP {r.status_code}): "
+            f"{d.get('message') or d.get('errors') or d}"
+        )
     serie = [int(v or 0) for v in d["data"][0]["metrics"][0]]
     corte = d.get("last_period_index", 23)
     return serie, corte
