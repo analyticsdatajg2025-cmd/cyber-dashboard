@@ -6,7 +6,12 @@ Fusiona render.py + enviar_correo.py. No cambia el comportamiento:
   - construir_correo(reportes) -> enviar(msg)        manda 1 correo con las 2 PNG
 
 Lo llama pipeline.py al final de cada corrida. También corre solo para probar.
+
+NETO: las tres tarjetas de arriba (Venta neta / CR neto / Ticket neto) se jalan
+de neto.json (bloque 'hoy' por marca). Si la marca no tiene neto (JUNTOZ no es
+web pura) o neto.json no existe, esas tarjetas caen a gross automáticamente.
 """
+import json
 import smtplib, ssl
 from email.message import EmailMessage
 from datetime import date
@@ -21,6 +26,9 @@ GMAIL_PASS = _lineas[1].replace(" ", "")
 # A quién mandar el reporte (tú mismo, para reenviar por WhatsApp).
 DESTINATARIOS = ["brandonveraf@gmail.com"]
 
+# neto.json vive en la raíz del repo (mismo dir que este script en la corrida).
+ARCHIVO_NETO = "neto.json"
+
 # Paleta por marca
 PALETA = {
     "LA CURACAO":  {"primary": "#F5B800", "texto_header": "#1a1a1a"},
@@ -31,6 +39,36 @@ PALETA = {
 
 def fmt_k(v):
     return f"{v/1000:.1f}k" if v >= 10000 else f"{v:,.0f}"
+
+
+# ---------------------------------------------------------------------------
+# NETO — lectura de neto.json (bloque 'hoy' por marca)
+# ---------------------------------------------------------------------------
+def cargar_neto():
+    """Lee neto.json del repo. Devuelve {} si no existe o está corrupto
+    (así el reporte no se cae: simplemente muestra gross)."""
+    try:
+        with open(ARCHIVO_NETO, "r", encoding="utf-8") as fh:
+            return json.load(fh)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def neto_de_marca(marca, sesiones):
+    """Bloque 'hoy' de neto.json para la marca. Devuelve dict con
+    venta_neta / cr_neto / ticket_neto, o None si esa marca no tiene neto
+    (ej. JUNTOZ, o neto.json ausente).
+    CR neto = trx_netas / sesiones (las mismas sesiones gross del corte),
+    igual que lo calcula el dashboard para 'hoy'."""
+    bloque = cargar_neto().get("marcas", {}).get(marca, {}).get("hoy")
+    if not bloque:
+        return None
+    trx = bloque.get("trx_netas", 0)
+    return {
+        "venta_neta":  bloque.get("venta_neta", 0.0),
+        "ticket_neto": bloque.get("ticket_neto", 0.0),
+        "cr_neto":     (trx / sesiones) if sesiones else 0.0,
+    }
 
 
 CSS = """
@@ -62,11 +100,22 @@ def construir_html(r):
     prim, txt = pal["primary"], pal["texto_header"]
     f = r["funnel"]
 
+    # --- Tarjetas superiores: NETO si hay, si no GROSS (JUNTOZ / neto.json ausente) ---
+    neto = neto_de_marca(r["marca"], r["real_acum"])
+    if neto:
+        card_venta  = f'<div class="card"><div class="lbl">Venta neta</div><div class="val">{fmt_k(neto["venta_neta"])} S/.</div></div>'
+        card_cr     = f'<div class="card"><div class="lbl">CR Neto</div><div class="val">{neto["cr_neto"]*100:.2f} %</div></div>'
+        card_ticket = f'<div class="card"><div class="lbl">Ticket neto</div><div class="val">{neto["ticket_neto"]:,.2f} S/.</div></div>'
+    else:
+        card_venta  = f'<div class="card"><div class="lbl">Ingresos Gross</div><div class="val">{fmt_k(f["ingresos"])} S/.</div></div>'
+        card_cr     = f'<div class="card"><div class="lbl">CR Gross</div><div class="val">{f["cr"]*100:.2f} %</div></div>'
+        card_ticket = f'<div class="card"><div class="lbl">Ticket Promedio</div><div class="val">{f["ticket"]:,.2f} S/.</div></div>'
+
     cards = f"""
     <div class="cards">
-      <div class="card"><div class="lbl">Ingresos Gross</div><div class="val">{fmt_k(f['ingresos'])} S/.</div></div>
-      <div class="card"><div class="lbl">CR Gross</div><div class="val">{f['cr']*100:.2f} %</div></div>
-      <div class="card"><div class="lbl">Ticket Promedio</div><div class="val">{f['ticket']:,.2f} S/.</div></div>
+      {card_venta}
+      {card_cr}
+      {card_ticket}
     </div>
     <div class="cards" style="margin-top:10px;">
       <div class="card"><div class="lbl">Artículos vistos</div><div class="val">{fmt_k(f['vistos'])}</div></div>
