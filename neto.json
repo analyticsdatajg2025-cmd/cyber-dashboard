@@ -1,16 +1,16 @@
 {
-  "generado": "2026-07-15T17:20:17-05:00",
-  "corte": 17,
-  "corte_neto": 17,
-  "fecha_hoy": "2026-07-15",
+  "generado": "2026-07-16T09:36:25-05:00",
+  "corte": 9,
+  "corte_neto": 9,
+  "fecha_hoy": "2026-07-16",
   "igv": 1.18,
   "fuente_dias_cerrados": "excel_manual",
   "marcas": {
     "TIENDAS EFE": {
       "hoy": {
-        "venta_neta": 136173.18,
-        "trx_netas": 185,
-        "ticket_neto": 736.07
+        "venta_neta": 49093.52,
+        "trx_netas": 66,
+        "ticket_neto": 743.84
       },
       "por_dia": {
         "2026-07-06": {
@@ -66,14 +66,20 @@
           "cr_neto": 0.0027,
           "ticket_neto": 724.0,
           "manual": true
+        },
+        "2026-07-15": {
+          "venta_neta": 0.0,
+          "cr_neto": 0.0,
+          "ticket_neto": 0.0,
+          "manual": true
         }
       }
     },
     "LA CURACAO": {
       "hoy": {
-        "venta_neta": 187617.12,
-        "trx_netas": 235,
-        "ticket_neto": 798.37
+        "venta_neta": 58023.81,
+        "trx_netas": 72,
+        "ticket_neto": 805.89
       },
       "por_dia": {
         "2026-07-06": {
@@ -128,6 +134,12 @@
           "venta_neta": 343405.0,
           "cr_neto": 0.0023,
           "ticket_neto": 720.0,
+          "manual": true
+        },
+        "2026-07-15": {
+          "venta_neta": 0.0,
+          "cr_neto": 0.0,
+          "ticket_neto": 0.0,
           "manual": true
         }
       }
