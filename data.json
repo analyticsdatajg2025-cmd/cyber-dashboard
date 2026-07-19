@@ -1,20 +1,20 @@
 {
-  "generado": "2026-07-19T11:15:56-05:00",
-  "corte": 11,
+  "generado": "2026-07-19T12:28:30-05:00",
+  "corte": 12,
   "attribution": "lastsign",
   "marcas": {
     "LA CURACAO": {
       "meta_sesiones_dia": 19496,
-      "meta_sesiones_corte": 9224,
+      "meta_sesiones_corte": 10236,
       "real": {
-        "sesiones": 17131,
-        "ingresos": 21328.55,
-        "cr": 0.0022,
-        "ticket": 561.28,
-        "compras": 38,
-        "vistos": 7614,
-        "carrito": 485,
-        "comprados": 40
+        "sesiones": 20606,
+        "ingresos": 27265.55,
+        "cr": 0.0024,
+        "ticket": 556.44,
+        "compras": 49,
+        "vistos": 9922,
+        "carrito": 657,
+        "comprados": 53
       },
       "por_hora": [
         {
@@ -44,7 +44,7 @@
         {
           "h": 4,
           "ses_proy": 228,
-          "ses_real": 507,
+          "ses_real": 508,
           "ing_real": 288.0
         },
         {
@@ -62,13 +62,13 @@
         {
           "h": 7,
           "ses_proy": 1071,
-          "ses_real": 1878,
+          "ses_real": 1879,
           "ing_real": 938.0
         },
         {
           "h": 8,
           "ses_proy": 1096,
-          "ses_real": 2172,
+          "ses_real": 2176,
           "ing_real": 1825.0
         },
         {
@@ -80,20 +80,20 @@
         {
           "h": 10,
           "ses_proy": 1279,
-          "ses_real": 2671,
-          "ing_real": 2998.0
+          "ses_real": 2672,
+          "ing_real": 3447.0
         },
         {
           "h": 11,
           "ses_proy": 1188,
-          "ses_real": 609,
-          "ing_real": 1329.0
+          "ses_real": 2847,
+          "ing_real": 6580.0
         },
         {
           "h": 12,
           "ses_proy": 1012,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 1230,
+          "ing_real": 237.0
         },
         {
           "h": 13,
@@ -164,55 +164,61 @@
       ],
       "campanas": [
         {
+          "nombre": "CURACAO_google_aon_pmax_high-ticket_2024_conversiones_ecommerce",
+          "sesiones": 300,
+          "compras": 4,
+          "ingresos": 2535.0
+        },
+        {
+          "nombre": "CURACAO_google_shopping_marca_tactica_2024_conversiones_top-index",
+          "sesiones": 356,
+          "compras": 2,
+          "ingresos": 1667.0
+        },
+        {
           "nombre": "CURACAO_google_pmax_video_oct_2024_conversiones",
-          "sesiones": 142,
+          "sesiones": 179,
           "compras": 2,
           "ingresos": 1628.0
         },
         {
           "nombre": "CURACAO_google_pmax_lineablanca_oct_2024_conversiones",
-          "sesiones": 186,
+          "sesiones": 250,
           "compras": 1,
           "ingresos": 1549.0
         },
         {
-          "nombre": "CURACAO_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 290,
-          "compras": 1,
-          "ingresos": 1469.0
-        },
-        {
-          "nombre": "CURACAO_google_aon_pmax_high-ticket_2024_conversiones_ecommerce",
-          "sesiones": 203,
+          "nombre": "Facebook Ads (sin catalogar: 120255429982800367)",
+          "sesiones": 114,
           "compras": 2,
-          "ingresos": 1288.0
+          "ingresos": 538.0
         },
         {
           "nombre": "CURACAO_google_aon_pmax_low_ticket_2024_conversiones_ecommerce",
-          "sesiones": 198,
+          "sesiones": 254,
           "compras": 5,
           "ingresos": 497.4
         },
         {
           "nombre": "CURACAO_social-media_facebook_conversiones-EXTENSIÓN CYBER",
-          "sesiones": 98,
+          "sesiones": 110,
           "compras": 1,
           "ingresos": 429.0
         },
         {
           "nombre": "CURACAO_google_search-brand_aon_2024_conversiones",
-          "sesiones": 122,
+          "sesiones": 143,
           "compras": 2,
           "ingresos": 238.0
         },
         {
-          "nombre": "Facebook Ads (sin catalogar: 120255429982800367)",
-          "sesiones": 92,
-          "compras": 1,
-          "ingresos": 89.0
+          "nombre": "CURACAO_social-media_facebook_conversiones-TELEFONIA",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
         },
         {
-          "nombre": "CURACAO_social-media_facebook_conversiones-TELEFONIA",
+          "nombre": "CURACAO_social-media_facebook_conversiones-HOGAR",
           "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
@@ -231,25 +237,25 @@
         },
         {
           "nombre": "CURACAO_PISO_facebook_2025_alcance_REPOWER_LB",
-          "sesiones": 5,
+          "sesiones": 7,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "CURACAO_PISO_facebook_alcance_REPOWER_VIDEO",
-          "sesiones": 22,
+          "sesiones": 28,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "CURACAO_PISO_facebook_2025_alcance_REPOWER_COMPUTO",
-          "sesiones": 14,
+          "sesiones": 20,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120255519519700367)",
-          "sesiones": 36,
+          "sesiones": 38,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -267,13 +273,13 @@
         },
         {
           "nombre": "CURACAO_google_aon_pmax_laptops_2024_conversiones_ecommerce",
-          "sesiones": 7,
+          "sesiones": 9,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "CURACAO_google_display_home_2024_trafico_ecommerce",
-          "sesiones": 1329,
+          "sesiones": 1421,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -284,8 +290,14 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "CURACAO_google_display_sin_feed_marca_aon_2024_trafico_ecommerce",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "CURACAO_google_pmax_celulares_marcas_set_2024_conversiones",
-          "sesiones": 6,
+          "sesiones": 9,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -297,7 +309,7 @@
         },
         {
           "nombre": "CURACAO_social-media_facebook_conversiones-CYBER WOW",
-          "sesiones": 64,
+          "sesiones": 73,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -315,13 +327,13 @@
         },
         {
           "nombre": "CURACAO_social-media_tiktok_trafico_generico",
-          "sesiones": 5,
+          "sesiones": 6,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "LACURACAO-TRAFICO-AON-JUN26",
-          "sesiones": 9054,
+          "sesiones": 10991,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -340,22 +352,31 @@
       ],
       "top_productos": [
         {
+          "nombre": "Combo Facusa Tetera Hogar 3LT + Termo Sifón 1.9LT Acero Inoxidable + Set de tazas 6PZS Aurora",
+          "sku": "F135002132_b",
+          "vistos": 103,
+          "carrito": 18,
+          "comprados": 4,
+          "sesiones": 91,
+          "ingresos": 356.0
+        },
+        {
           "nombre": "Caja China Mr Grill Mini Nogal + Parrilla de Varillas",
           "sku": "CCMININOGAL+PV",
-          "vistos": 11,
+          "vistos": 14,
           "carrito": 3,
           "comprados": 2,
-          "sesiones": 36,
+          "sesiones": 42,
           "ingresos": 178.0
         },
         {
-          "nombre": "Combo Facusa Tetera Hogar 3LT + Termo Sifón 1.9LT Acero Inoxidable + Set de tazas 6PZS Aurora",
-          "sku": "F135002132_b",
-          "vistos": 97,
-          "carrito": 17,
+          "nombre": "Impresora Multifuncional HP Smart Tank 580 Wi-Fi Color",
+          "sku": "ST 580",
+          "vistos": 110,
+          "carrito": 12,
           "comprados": 2,
-          "sesiones": 87,
-          "ingresos": 178.0
+          "sesiones": 758,
+          "ingresos": 858.0
         },
         {
           "nombre": "Kit de Cámaras de seguridad Tapo C200 + Tapo C310 - TP-LINK",
@@ -367,12 +388,21 @@
           "ingresos": 420.0
         },
         {
+          "nombre": "Parrilla Mr Grill Cilíndrica con Tapa                                                                                          ",
+          "sku": "0055CC",
+          "vistos": 129,
+          "carrito": 27,
+          "comprados": 2,
+          "sesiones": 124,
+          "ingresos": 178.0
+        },
+        {
           "nombre": "Aspiradora Karcher 1000W 10LT WDL1",
           "sku": "WDL1",
           "vistos": 2,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 8,
           "ingresos": 199.0
         },
         {
@@ -390,7 +420,7 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 10,
+          "sesiones": 12,
           "ingresos": 829.0
         },
         {
@@ -399,16 +429,16 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 9,
+          "sesiones": 12,
           "ingresos": 18.9
         },
         {
           "nombre": "Cafetera Thomas 1.7LT TH-134B + Hervidor 2200W TH-6250B",
           "sku": "TH-6250B+TH-134",
-          "vistos": 11,
+          "vistos": 13,
           "carrito": 5,
           "comprados": 1,
-          "sesiones": 8,
+          "sesiones": 11,
           "ingresos": 119.0
         },
         {
@@ -423,28 +453,46 @@
         {
           "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
           "sku": "SM-A576BDBNLTP",
-          "vistos": 101,
+          "vistos": 121,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 412,
+          "sesiones": 484,
+          "ingresos": 1469.0
+        },
+        {
+          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Violet",
+          "sku": "SM-A576BZVNLTP",
+          "vistos": 58,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 427,
           "ingresos": 1469.0
         },
         {
           "nombre": "Cocina a Gas Coldex 24\" CX 608 Plus",
           "sku": "CX 608 PLUS",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 77,
+          "sesiones": 99,
           "ingresos": 899.0
+        },
+        {
+          "nombre": "Colchón Paraíso Medallón 1.5PLZ + 1 Almohada + 1 Protector",
+          "sku": "MED-105-EM_N-N",
+          "vistos": 4,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 19,
+          "ingresos": 389.0
         },
         {
           "nombre": "Colchón paraíso Zebra 18 1.5PLZ x 6\"",
           "sku": "ZEBRA18-105-6RA",
-          "vistos": 3,
+          "vistos": 4,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 4,
+          "sesiones": 6,
           "ingresos": 199.0
         },
         {
@@ -453,16 +501,16 @@
           "vistos": 1,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 29,
+          "sesiones": 32,
           "ingresos": 429.0
         },
         {
           "nombre": "Convertidor a Smart TV Google Onn Streaming Box 4K UHD Chromecast",
           "sku": "EFEGC04209",
-          "vistos": 4,
+          "vistos": 7,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 5,
+          "sesiones": 6,
           "ingresos": 189.0
         },
         {
@@ -471,8 +519,17 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 18,
+          "sesiones": 21,
           "ingresos": 1329.0
+        },
+        {
+          "nombre": "EcoBuds Glacier",
+          "sku": "S2EOW-Q764",
+          "vistos": 2,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 22,
+          "ingresos": 59.0
         },
         {
           "nombre": "Estufa Eléctrica Kendal Fibra Carbono Wifi 700W 14m2 KFC- 600D",
@@ -484,30 +541,57 @@
           "ingresos": 329.0
         },
         {
+          "nombre": "Frigobar Electrolux Premium 90L ERD090G2HWG Gris",
+          "sku": "GTX-ERD090G2HWG",
+          "vistos": 3,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 23,
+          "ingresos": 449.0
+        },
+        {
           "nombre": "Hidrolavadora Karcher 1200W Portátil",
           "sku": "K PORTATIL",
-          "vistos": 47,
+          "vistos": 52,
           "carrito": 4,
           "comprados": 1,
-          "sesiones": 108,
+          "sesiones": 122,
           "ingresos": 179.0
+        },
+        {
+          "nombre": "Jib Usb C Bone",
+          "sku": "S2JMY-S001",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 36,
+          "ingresos": 39.0
         },
         {
           "nombre": "Juego de Sartenes Facusa Yana 20, 24 y 26",
           "sku": "F098003010",
-          "vistos": 30,
-          "carrito": 6,
+          "vistos": 37,
+          "carrito": 8,
           "comprados": 1,
-          "sesiones": 34,
+          "sesiones": 41,
           "ingresos": 49.0
+        },
+        {
+          "nombre": "Laptop Lenovo IdeaPad Slim 3 15.6\" Windows 11 PRO AMD Ryzen 3 8GB 512GB 15AMN8-82XQ00YNLM",
+          "sku": "82XQ00YNLM",
+          "vistos": 6,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 40,
+          "ingresos": 2159.0
         },
         {
           "nombre": "Lavadora Electrolux 13KG EWIW13F2USVG",
           "sku": "EWIW13F2USVG",
-          "vistos": 4,
-          "carrito": -1,
+          "vistos": 8,
+          "carrito": 0,
           "comprados": 1,
-          "sesiones": 36,
+          "sesiones": 48,
           "ingresos": 649.0
         },
         {
@@ -516,34 +600,34 @@
           "vistos": 4,
           "carrito": 4,
           "comprados": 1,
-          "sesiones": 22,
+          "sesiones": 31,
           "ingresos": 949.0
         },
         {
           "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
           "sku": "BLSTKAGRPB053",
-          "vistos": 28,
-          "carrito": 6,
+          "vistos": 42,
+          "carrito": 8,
           "comprados": 1,
-          "sesiones": 159,
+          "sesiones": 192,
           "ingresos": 139.0
         },
         {
           "nombre": "Licuadora Personal Bord 500ML Nutrimix 400W BOLIC0.5/400",
           "sku": "BOLIC0.5/400",
           "vistos": 10,
-          "carrito": 3,
+          "carrito": 4,
           "comprados": 1,
-          "sesiones": 98,
+          "sesiones": 121,
           "ingresos": 59.0
         },
         {
           "nombre": "Mesa Plegable Bord 180CM Negro MESAPL180NG",
           "sku": "MESAPL180NG",
-          "vistos": 8,
-          "carrito": 1,
+          "vistos": 13,
+          "carrito": 3,
           "comprados": 1,
-          "sesiones": 22,
+          "sesiones": 32,
           "ingresos": 99.0
         },
         {
@@ -552,7 +636,7 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 39.0
         },
         {
@@ -565,21 +649,30 @@
           "ingresos": 339.0
         },
         {
+          "nombre": "Push Play Active Black",
+          "sku": "S2PPW-S749",
+          "vistos": 4,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 31,
+          "ingresos": 159.0
+        },
+        {
           "nombre": "Refrigeradora Coldex 263LT NF RX280PLUS",
           "sku": "RX 280 PLUS",
-          "vistos": 19,
+          "vistos": 24,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 1022,
+          "sesiones": 1271,
           "ingresos": 999.0
         },
         {
           "nombre": "Refrigeradora Electrolux 138LT ERT18G2HNI",
           "sku": "ERT18G2HNI",
-          "vistos": 27,
+          "vistos": 29,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 506,
+          "sesiones": 625,
           "ingresos": 549.0
         },
         {
@@ -588,16 +681,16 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 39,
+          "sesiones": 48,
           "ingresos": 2899.0
         },
         {
           "nombre": "Set de Ollas Facusa Clásica 12PZS + Tetera 3LT",
           "sku": "CLASICASX12T3L",
-          "vistos": 62,
+          "vistos": 68,
           "carrito": 13,
           "comprados": 1,
-          "sesiones": 62,
+          "sesiones": 68,
           "ingresos": 199.0
         },
         {
@@ -606,16 +699,16 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 12,
+          "sesiones": 13,
           "ingresos": 89.0
         },
         {
           "nombre": "Silla Gamer Lyzor con posapiés SGBTWN135A Negra",
           "sku": "SGBTWN135A",
-          "vistos": 6,
-          "carrito": 1,
+          "vistos": 9,
+          "carrito": 3,
           "comprados": 1,
-          "sesiones": 41,
+          "sesiones": 52,
           "ingresos": 199.0
         },
         {
@@ -624,16 +717,16 @@
           "vistos": 11,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 41,
+          "sesiones": 45,
           "ingresos": 1299.0
         },
         {
           "nombre": "TV LG 55\" Nano 4K UHD AI Smart TV 55NU800BPSB 2026",
           "sku": "55NU800BPSB",
-          "vistos": 11,
+          "vistos": 12,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 264,
+          "sesiones": 313,
           "ingresos": 1429.0
         },
         {
@@ -642,7 +735,7 @@
           "vistos": 8,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 287,
+          "sesiones": 339,
           "ingresos": 679.0
         },
         {
@@ -651,7 +744,7 @@
           "vistos": 1,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 20,
+          "sesiones": 24,
           "ingresos": 649.0
         },
         {
@@ -691,6 +784,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "\"Multi puerto HUB 4 puertos USB 3.0 luz led para Windows - Mac \"",
+          "sku": "TEC_0814254MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "1 Aloe Vera 99% Gel Calmante 260ml + 1 Crema Depiladora Dr Rashel 100G",
           "sku": "COD4535034MP",
           "vistos": 0,
@@ -702,6 +804,15 @@
         {
           "nombre": "1 Aloe vera 99% - Gel Calmante 260ml + 1 Dr Rashel Depilador 100gr",
           "sku": "COD4534137MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "1 Repisa Coleccionadora",
+          "sku": "PRC12453MP",
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
@@ -853,6 +964,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "2 Locion Corporal Cocoa Butter 500Ml",
+          "sku": "DCOD517-14137MP",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "2 MAQUINA PROFESIONAL SONAR 3 EN 1 AZUL",
           "sku": "MAY46_24137MP",
           "vistos": 0,
@@ -939,7 +1059,7 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 0.0
         },
         {
@@ -1038,7 +1158,7 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 7,
+          "sesiones": 12,
           "ingresos": 0.0
         },
         {
@@ -1096,17 +1216,26 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "2 UNID PLANTADO X4 CON PINZA",
+          "sku": "JU56_25489MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 2,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "2 Und Grips Nintendo Switch Joy Con Mando Joystick Diseño Aleatorio",
           "sku": "ACCNIN80703580MP",
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 0.0
         },
         {
-          "nombre": "2 Ventiladores  Imperial TY-18130WM malla de metal 5 aspas 18\"",
-          "sku": "TY-18130WM_M_METAL_PACK021318MP",
+          "nombre": "2 Uni Polvos Acrilicos Acry Love #1 - 56g",
+          "sku": "LOV20_25516MP",
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
@@ -1114,125 +1243,8 @@
           "ingresos": 0.0
         },
         {
-          "nombre": "2 und Lámpara de Mesa LED de Media Luna",
-          "sku": "ACE15_25516MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Aceite Masajeador Corporal De Rosa - Fruit Of The Wakali",
-          "sku": "COD648_35034MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Aceite Masajeador Corporal de Rosa - Fruit of the Wakali",
-          "sku": "COD648_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Aceite Nutritivo Argan 60G",
-          "sku": "ZCOD482_25267MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Acondicionador de Aloe Vera 550ml - Wokali",
-          "sku": "COD921_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Acondicionador de Bamboo 550ml - Wokali",
-          "sku": "COD920_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 BALANZAS DIGITALES DE PESO INTELIGENTES BLUETOOTH",
-          "sku": "MAY38_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 CALEFACTOR ANGRY BIRDS ROSADO",
-          "sku": "MAY16_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 CALEFACTOR ANGRY BIRDS VERDE",
-          "sku": "MAY17_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 CALEFACTOR HANDY HATER 400wsts",
-          "sku": "MAY18_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 CALEFACTOR PORTÁTIL FLAME HEATER DE 1000WSTS",
-          "sku": "MAY35_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Cera en perlas 100g - Millefiori",
-          "sku": "COD973_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema Antihongos Para Pies de Atleta - Semifun 20g",
-          "sku": "COD688_35034MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema de Afeitar  xtracare 396 gr - para piel sensible",
-          "sku": "COD424_34137MP",
+          "nombre": "2 Uni Polvos Acrilicos Acry Love #2 - 56g",
+          "sku": "LOV21_25516MP",
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
@@ -1243,16 +1255,16 @@
     },
     "TIENDAS EFE": {
       "meta_sesiones_dia": 12997,
-      "meta_sesiones_corte": 6149,
+      "meta_sesiones_corte": 6824,
       "real": {
-        "sesiones": 13590,
-        "ingresos": 24293.6,
-        "cr": 0.003,
-        "ticket": 592.53,
-        "compras": 41,
-        "vistos": 6727,
-        "carrito": 464,
-        "comprados": 64
+        "sesiones": 16272,
+        "ingresos": 32563.4,
+        "cr": 0.0033,
+        "ticket": 603.03,
+        "compras": 54,
+        "vistos": 8416,
+        "carrito": 667,
+        "comprados": 77
       },
       "por_hora": [
         {
@@ -1300,38 +1312,38 @@
         {
           "h": 7,
           "ses_proy": 714,
-          "ses_real": 1581,
+          "ses_real": 1582,
           "ing_real": 447.0
         },
         {
           "h": 8,
           "ses_proy": 731,
-          "ses_real": 1555,
+          "ses_real": 1556,
           "ing_real": 12768.9
         },
         {
           "h": 9,
           "ses_proy": 801,
-          "ses_real": 1797,
+          "ses_real": 1798,
           "ing_real": 3864.0
         },
         {
           "h": 10,
           "ses_proy": 853,
-          "ses_real": 2075,
-          "ing_real": 1517.9
+          "ses_real": 2077,
+          "ing_real": 7527.7
         },
         {
           "h": 11,
           "ses_proy": 792,
-          "ses_real": 452,
-          "ing_real": 0.0
+          "ses_real": 2128,
+          "ing_real": 1034.0
         },
         {
           "h": 12,
           "ses_proy": 675,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 1001,
+          "ing_real": 1226.0
         },
         {
           "h": 13,
@@ -1403,45 +1415,63 @@
       "campanas": [
         {
           "nombre": "EFE_google_pmax_aon_linea_hard_2024_conversiones_ecommerce",
-          "sesiones": 720,
+          "sesiones": 878,
           "compras": 1,
           "ingresos": 3799.0
         },
         {
           "nombre": "EFE_google_pmax_aon_low-ticket_2024_conversiones",
-          "sesiones": 444,
-          "compras": 11,
-          "ingresos": 1783.0
+          "sesiones": 595,
+          "compras": 15,
+          "ingresos": 2679.0
+        },
+        {
+          "nombre": "EFE_google_shopping_marca_tactica_2024_conversiones_top-index",
+          "sesiones": 237,
+          "compras": 1,
+          "ingresos": 1499.0
+        },
+        {
+          "nombre": "EFE_social-media_facebook_conversiones-LINEA_BLANCA",
+          "sesiones": 141,
+          "compras": 1,
+          "ingresos": 799.0
         },
         {
           "nombre": "EFE_social-media_facebook_conversiones-HOGAR",
-          "sesiones": 137,
-          "compras": 2,
-          "ingresos": 188.0
+          "sesiones": 178,
+          "compras": 3,
+          "ingresos": 277.0
         },
         {
           "nombre": "EFE_google_pmax_aon_high_ticket_2024_PROVINCIA_conversiones",
-          "sesiones": 170,
+          "sesiones": 253,
           "compras": 1,
           "ingresos": 159.0
         },
         {
           "nombre": "EFE_social-media_facebook_2025_conversiones-AUDIO",
-          "sesiones": 175,
+          "sesiones": 211,
           "compras": 1,
           "ingresos": 128.0
         },
         {
           "nombre": "Efe_Brand-Consideration-Jul-2026",
-          "sesiones": 102,
+          "sesiones": 113,
           "compras": 1,
           "ingresos": 89.0
         },
         {
           "nombre": "EFE_social-media_facebook_2025_conversiones-PADS",
-          "sesiones": 111,
+          "sesiones": 139,
           "compras": 1,
           "ingresos": 49.0
+        },
+        {
+          "nombre": " EFECTIVA_social-media_facebook_prestamo_aon_2026_6_alcance_prestamos-electro-julio",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
         },
         {
           "nombre": " EFECTIVA_social-media_facebook_prestamo_aon_2026_7_alcance_prestamos-electro-julio",
@@ -1457,13 +1487,7 @@
         },
         {
           "nombre": "EFE_social-media_facebook_2025_07_conversiones-DIGITAL",
-          "sesiones": 11,
-          "compras": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "EFE_social-media_facebook_conversiones-LINEA_BLANCA",
-          "sesiones": 122,
+          "sesiones": 12,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1475,13 +1499,13 @@
         },
         {
           "nombre": "EFE_PISO_facebook_2025_alcance_REPOWER_TLF",
-          "sesiones": 4,
+          "sesiones": 5,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_PISO_facebook_2025_alcance_REPOWER_VIDEO",
-          "sesiones": 11,
+          "sesiones": 12,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1493,7 +1517,7 @@
         },
         {
           "nombre": "EFE_social-media_facebook_2026_conversiones-telefonía",
-          "sesiones": 40,
+          "sesiones": 54,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1505,13 +1529,13 @@
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120246977262740225)",
-          "sesiones": 7,
+          "sesiones": 8,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "48086581-202607_EFE_WORKFLOWS",
-          "sesiones": 1,
+          "sesiones": 2,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1541,7 +1565,7 @@
         },
         {
           "nombre": "EFE-TRAFICO-AON-JUN26",
-          "sesiones": 4454,
+          "sesiones": 5419,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1553,7 +1577,7 @@
         },
         {
           "nombre": "EFE_PISO_facebook_2025_alcance_REPOWER_LINEA_BLANCA",
-          "sesiones": 4,
+          "sesiones": 7,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1565,37 +1589,31 @@
         },
         {
           "nombre": "EFE_PISO_facebook_2025_alcance_REPOWER_VIDEO",
-          "sesiones": 2,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_google_display_home_2024_trafico_ecommerce",
-          "sesiones": 2772,
+          "sesiones": 2946,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_google_display_sin_feed_aon_2024_trafico",
-          "sesiones": 1,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_google_pmax_lineablanca_set_2024_conversiones",
-          "sesiones": 119,
+          "sesiones": 137,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_google_search_brand_aon_2024_conversiones",
           "sesiones": 10,
-          "compras": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "EFE_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 200,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1613,13 +1631,13 @@
         },
         {
           "nombre": "EFE_social-media_facebook_conversiones-HOGAR",
-          "sesiones": 2,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "bbdd-atencion-digital-efe-cpc-jul26",
-          "sesiones": 42,
+          "sesiones": 51,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1632,57 +1650,57 @@
       ],
       "top_productos": [
         {
-          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
-          "sku": "SM-A576BDBNLTP",
-          "vistos": 58,
-          "carrito": 0,
-          "comprados": 7,
-          "sesiones": 429,
-          "ingresos": 10283.0
-        },
-        {
           "nombre": "Caja China Mr Grill Mini Nogal + Parrilla de Varillas",
           "sku": "CCMININOGAL+PV",
-          "vistos": 70,
-          "carrito": 17,
-          "comprados": 6,
-          "sesiones": 179,
-          "ingresos": 534.0
+          "vistos": 97,
+          "carrito": 23,
+          "comprados": 7,
+          "sesiones": 232,
+          "ingresos": 623.0
+        },
+        {
+          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
+          "sku": "SM-A576BDBNLTP",
+          "vistos": 72,
+          "carrito": 0,
+          "comprados": 7,
+          "sesiones": 509,
+          "ingresos": 10283.0
         },
         {
           "nombre": "Audífonos In Ear Lenovo Bluetooth IPX5 HE05 Negro",
           "sku": "HE05",
-          "vistos": 3,
-          "carrito": 5,
+          "vistos": 4,
+          "carrito": 6,
           "comprados": 5,
-          "sesiones": 5,
+          "sesiones": 6,
           "ingresos": 145.0
         },
         {
           "nombre": "Audífonos In Ear Redmi Buds 6 Play Negro + Morral",
           "sku": "BGBUDS6PLKIT20",
-          "vistos": 20,
+          "vistos": 23,
           "carrito": 2,
           "comprados": 3,
-          "sesiones": 33,
+          "sesiones": 42,
           "ingresos": 177.0
         },
         {
           "nombre": "Combo Facusa Tetera Hogar 3LT + Termo Sifón 1.9LT Acero Inoxidable + Set de tazas 6PZS Aurora",
           "sku": "F135002132_b",
-          "vistos": 23,
-          "carrito": 7,
+          "vistos": 30,
+          "carrito": 9,
           "comprados": 3,
-          "sesiones": 26,
+          "sesiones": 32,
           "ingresos": 417.0
         },
         {
           "nombre": "Mesa Plegable Bord 180CM Negro MESAPL180NG",
           "sku": "MESAPL180NG",
-          "vistos": 7,
-          "carrito": 3,
+          "vistos": 15,
+          "carrito": 4,
           "comprados": 3,
-          "sesiones": 15,
+          "sesiones": 23,
           "ingresos": 297.0
         },
         {
@@ -1695,13 +1713,31 @@
           "ingresos": 138.0
         },
         {
+          "nombre": "Aspiradora vertical Eletrolux 1000W Power Speed Negro",
+          "sku": "STK12",
+          "vistos": 21,
+          "carrito": 7,
+          "comprados": 2,
+          "sesiones": 59,
+          "ingresos": 158.0
+        },
+        {
           "nombre": "Freidora de Aire Taurus 5LT Silver Fryer II ",
           "sku": "PE9720090A",
-          "vistos": 72,
-          "carrito": 11,
+          "vistos": 112,
+          "carrito": 14,
           "comprados": 2,
-          "sesiones": 187,
+          "sesiones": 238,
           "ingresos": 338.0
+        },
+        {
+          "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
+          "sku": "BLSTKAGRPB053",
+          "vistos": 60,
+          "carrito": 20,
+          "comprados": 2,
+          "sesiones": 218,
+          "ingresos": 278.0
         },
         {
           "nombre": "Linterna Táctica Profesional 2000LM Recargable USB-C Con Imán Potente Luz COB Zoom Ajustable Y Power Bank",
@@ -1715,10 +1751,19 @@
         {
           "nombre": "Mini Cilindro Ahumador Mr. Grill Fierro",
           "sku": "MINICILINDROMG",
-          "vistos": 27,
+          "vistos": 33,
           "carrito": 3,
           "comprados": 2,
-          "sesiones": 155,
+          "sesiones": 201,
+          "ingresos": 198.0
+        },
+        {
+          "nombre": "Silla de Oficina Bord Ejecutiva Negro",
+          "sku": "SOBORD6161",
+          "vistos": 9,
+          "carrito": 2,
+          "comprados": 2,
+          "sesiones": 27,
           "ingresos": 198.0
         },
         {
@@ -1727,7 +1772,7 @@
           "vistos": 4,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 28,
+          "sesiones": 35,
           "ingresos": 249.0
         },
         {
@@ -1736,7 +1781,7 @@
           "vistos": 0,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 6,
+          "sesiones": 7,
           "ingresos": 159.0
         },
         {
@@ -1760,11 +1805,20 @@
         {
           "nombre": "Cargador Samsung 25W carga rápida",
           "sku": "PS39964182",
-          "vistos": 9,
+          "vistos": 10,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 5,
+          "sesiones": 7,
           "ingresos": 59.0
+        },
+        {
+          "nombre": "Cargador Ugreen para Carro 145W 55910B Negro",
+          "sku": "EFEGC05112",
+          "vistos": 5,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 3,
+          "ingresos": 129.0
         },
         {
           "nombre": "Cava de vinos Electrolux para 12 botellas ERW122XAMB",
@@ -1772,34 +1826,34 @@
           "vistos": 8,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 15,
+          "sesiones": 17,
           "ingresos": 359.0
         },
         {
           "nombre": "Celular BMobile AX754+ Pro 32GB 1GB 5\" Azul",
           "sku": "AX754PLUSPROAZ",
-          "vistos": 13,
+          "vistos": 18,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 32,
+          "sesiones": 41,
           "ingresos": 99.0
         },
         {
           "nombre": "Celular Samsung Galaxy A17 256GB 8GB 6.7\" Negro",
           "sku": "SM-A175FZKKLTP",
-          "vistos": 40,
+          "vistos": 53,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 630,
+          "sesiones": 770,
           "ingresos": 749.0
         },
         {
           "nombre": "Celular Samsung Galaxy S25 Ultra 512GB 12GB 6.9\" Titanio Azul Plata",
           "sku": "S25UL-512SILBLU",
-          "vistos": 31,
+          "vistos": 35,
           "carrito": -1,
           "comprados": 1,
-          "sesiones": 469,
+          "sesiones": 554,
           "ingresos": 3799.0
         },
         {
@@ -1808,8 +1862,17 @@
           "vistos": 4,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 19,
+          "sesiones": 23,
           "ingresos": 379.0
+        },
+        {
+          "nombre": "Cocina de pie Electrolux 4 Quemadores FE4GP Negro",
+          "sku": "FE4GP",
+          "vistos": 30,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 152,
+          "ingresos": 799.0
         },
         {
           "nombre": "Colchón Komfort Spazzio 2PLZ",
@@ -1817,7 +1880,7 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 13,
+          "sesiones": 14,
           "ingresos": 409.0
         },
         {
@@ -1830,58 +1893,67 @@
           "ingresos": 259.0
         },
         {
-          "nombre": "Laptop Lenovo IdeaPad Slim 3i 15.3\" Windows 11 Intel Core i5 8GB 512GB",
-          "sku": "83K100WJLM",
-          "vistos": 19,
-          "carrito": 0,
+          "nombre": "Colchón Paraíso Pocket Max 2PLZ",
+          "sku": "POCKMAX-135",
+          "vistos": 2,
+          "carrito": 2,
           "comprados": 1,
-          "sesiones": 133,
-          "ingresos": 1989.0
+          "sesiones": 12,
+          "ingresos": 549.0
         },
         {
-          "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
-          "sku": "BLSTKAGRPB053",
-          "vistos": 44,
-          "carrito": 7,
+          "nombre": "Laptop Lenovo IdeaPad Slim 3i 15.3\" Windows 11 Intel Core i5 8GB 512GB",
+          "sku": "83K100WJLM",
+          "vistos": 27,
+          "carrito": 0,
           "comprados": 1,
-          "sesiones": 170,
-          "ingresos": 139.0
+          "sesiones": 164,
+          "ingresos": 1989.0
         },
         {
           "nombre": "Licuadora Oster 1.5LT 2V Negro",
           "sku": "BLSTKAGBPB053",
-          "vistos": 8,
+          "vistos": 15,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 58,
+          "sesiones": 76,
           "ingresos": 149.0
         },
         {
           "nombre": "Licuadora Personal Bord 500ML Nutrimix 400W BOLIC0.5/400",
           "sku": "BOLIC0.5/400",
           "vistos": 12,
-          "carrito": 4,
+          "carrito": 5,
           "comprados": 1,
-          "sesiones": 107,
+          "sesiones": 136,
           "ingresos": 59.0
         },
         {
           "nombre": "Licuadora Thomas 1.75LT TH-840D",
           "sku": "TH-840D",
-          "vistos": 5,
+          "vistos": 6,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 24,
+          "sesiones": 31,
           "ingresos": 349.0
         },
         {
           "nombre": "Mouse Gamer Primus Gaming Wireless RGB USB Gladius 12800P PMO-301",
           "sku": "ID011PGL13",
+          "vistos": 4,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 3,
+          "ingresos": 29.0
+        },
+        {
+          "nombre": "Pack Escolar Mochila Skullcandy + Audífonos In Ear Nooz + Cargador Portátil Nooz",
+          "sku": "PACKB2S26",
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 2,
-          "ingresos": 29.0
+          "sesiones": 7,
+          "ingresos": 99.0
         },
         {
           "nombre": "Parlante inalámbrico Sony Bluetooth IP67 SRS-ULT10 Negro",
@@ -1889,25 +1961,25 @@
           "vistos": 0,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 2,
+          "sesiones": 3,
           "ingresos": 289.0
         },
         {
           "nombre": "Parrilla Mr Grill Cilíndrica con Tapa                                                                                          ",
           "sku": "0055CC",
-          "vistos": 73,
-          "carrito": 13,
+          "vistos": 94,
+          "carrito": 15,
           "comprados": 1,
-          "sesiones": 199,
+          "sesiones": 254,
           "ingresos": 89.0
         },
         {
           "nombre": "Plancha Ligera de Vapor con Base Antiadherente Oster ",
           "sku": "GCSTBS380253",
-          "vistos": 23,
+          "vistos": 25,
           "carrito": 12,
           "comprados": 1,
-          "sesiones": 49,
+          "sesiones": 58,
           "ingresos": 49.0
         },
         {
@@ -1920,12 +1992,39 @@
           "ingresos": 259.0
         },
         {
+          "nombre": "Refrigeradora Coldex 263LT NF RX280PLUS",
+          "sku": "RX 280 PLUS",
+          "vistos": 10,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 411,
+          "ingresos": 999.0
+        },
+        {
+          "nombre": "Refrigeradora Electrolux 436LT No Frost Side By Side Inverter ERS432HBWD",
+          "sku": "ERS432HBWD",
+          "vistos": 50,
+          "carrito": 6,
+          "comprados": 1,
+          "sesiones": 194,
+          "ingresos": 1499.0
+        },
+        {
+          "nombre": "SAMSUNG GALAXY S25 ULTRA 512GB 12GB 200MP 6.9\" TITANIUM GRAY",
+          "sku": "SS25ULGRY512CM5903MP",
+          "vistos": 5,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 47,
+          "ingresos": 3499.0
+        },
+        {
           "nombre": "Sesh Anc Active Black",
           "sku": "S2SAW-S749",
-          "vistos": 6,
+          "vistos": 7,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 12,
+          "sesiones": 15,
           "ingresos": 199.0
         },
         {
@@ -1938,21 +2037,21 @@
           "ingresos": 39.0
         },
         {
-          "nombre": "Silla de Oficina Bord Ejecutiva Negro",
-          "sku": "SOBORD6161",
-          "vistos": 8,
-          "carrito": 1,
+          "nombre": "Silla Gamer Lyzor con posapiés SGBWTWN135B Black White",
+          "sku": "SGBWTWN135B",
+          "vistos": 20,
+          "carrito": 4,
           "comprados": 1,
-          "sesiones": 24,
-          "ingresos": 99.0
+          "sesiones": 42,
+          "ingresos": 199.0
         },
         {
           "nombre": "Silla de Oficina Ergonomica con Soporte Lumbar GUSS - Negro",
           "sku": "17553877290073024MP",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 8,
+          "sesiones": 9,
           "ingresos": 155.0
         },
         {
@@ -1967,10 +2066,10 @@
         {
           "nombre": "TV Hyundai 43\" QLED Google TV HYLED4326QG",
           "sku": "HYLED4326QG",
-          "vistos": 7,
+          "vistos": 9,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 406,
+          "sesiones": 526,
           "ingresos": 699.0
         },
         {
@@ -1989,6 +2088,15 @@
           "carrito": 0,
           "comprados": 0,
           "sesiones": 4,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "1 Aloe vera 99%  + 1 Crema depiladora Lampiña",
+          "sku": "COD4524137MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
           "ingresos": 0.0
         },
         {
@@ -2105,7 +2213,7 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 2,
+          "sesiones": 3,
           "ingresos": 0.0
         },
         {
@@ -2115,6 +2223,24 @@
           "carrito": 0,
           "comprados": 0,
           "sesiones": 2,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "2 Gel De Caracol Regenerador De Piel - Snail 99% 300Ml",
+          "sku": "COD730_25034MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "2 Grip Joystick Nintendo Switch Diseño Aleatorio",
+          "sku": "ACCNIN8070",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
           "ingresos": 0.0
         },
         {
@@ -2199,6 +2325,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "2 Mineral UV Filters SPF 30 + Antioxidants - The Ordinary x 50ml",
+          "sku": "COD825_25034MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "2 MÁQUINA DE COSER",
           "sku": "MAY37_24137MP",
           "vistos": 0,
@@ -2222,7 +2357,16 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 3,
+          "sesiones": 5,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "2 Pluma blanqueadora de dientes Okeny's 5ml",
+          "sku": "COD610_24137MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
           "ingresos": 0.0
         },
         {
@@ -2249,7 +2393,7 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 0.0
         },
         {
@@ -2258,7 +2402,7 @@
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 8,
+          "sesiones": 9,
           "ingresos": 0.0
         },
         {
@@ -2307,6 +2451,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "2 Und Grips Nintendo Switch Joy Con Mando Joystick Diseño Aleatorio",
+          "sku": "ACCNIN80703580MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "2 Vaselina Pura La Cooper X 80G",
           "sku": "COD804_25034MP",
           "vistos": 0,
@@ -2325,6 +2478,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "2 Ventiladores  Imperial TY-18130WM malla de metal 5 aspas 18\"",
+          "sku": "TY-18130WM_M_METAL_PACK021318MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "24 Cremero Frasco 80 ml",
           "sku": "COD584_64137MP",
           "vistos": 0,
@@ -2336,6 +2498,24 @@
         {
           "nombre": "2X1 Madagascar Centella Ampoule 30 ml – Skin1004",
           "sku": "KR106_25261MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "2X1 Madagascar Centella Poremizing Fresh Ampoule 30ml Skin1004",
+          "sku": "KR160_25261MP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "2X1 Madagascar Centella Toning Toner 30 Ml Skin1004 Tonico",
+          "sku": "KR168_25261MP",
           "vistos": 0,
           "carrito": 0,
           "comprados": 0,
@@ -2368,183 +2548,21 @@
           "comprados": 0,
           "sesiones": 3,
           "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Aceite Corporal Vitamina C - Dr. Rashel 100ml",
-          "sku": "COD883_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Cera extracto Aceite de vainilla 200g - Depile.",
-          "sku": "COD958_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Cera extracto caléndula y orquídea 200g - Depile",
-          "sku": "COD957_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema Hidratante piel mixta a grasa 30gr - Dermo Sumak",
-          "sku": "DERM27_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema Hidratante piel mixta a grasa 30gr - Dermo Sumak",
-          "sku": "DERMA27_35267MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema de Afeitar  xtracare 396 gr - para piel sensible",
-          "sku": "COD424_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Cremero Frasco 80 ml",
-          "sku": "COD584_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 DUCHA PORTATIL",
-          "sku": "MAY04_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 ELEVADOR DE MUEBLE",
-          "sku": "MAY36_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 ESCURRIDOR DE PLATOS 85 CM",
-          "sku": "MAY40_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Kit Neceser Cremero De Viaje 6 Piezas Rosado",
-          "sku": "COD778_35034MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Kit Neceser Cremero De Viaje 6 Piezas Turquesa",
-          "sku": "COD778_65034MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Kit Neceser Cremero de Viaje 6 piezas Turquesa",
-          "sku": "COD778_64137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Kit vitamina c con ácido hialurónico iluminador y antienvejecimiento",
-          "sku": "COD954_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 LLAVE DE GASFITERIA 18 EN 1",
-          "sku": "MAY29_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Loción Corporal Purificante e Hidratante Coco 500ml - Wokali",
-          "sku": "COD909_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 MASCARILLA LABIAL DE COLÁGENO CRISTALINA DORADA NIÑA - BIOAQUA",
-          "sku": "DCOD1106_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 MÁQUINA DE COSER",
-          "sku": "MAY37_34137MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
         }
       ]
     },
     "JUNTOZ": {
       "meta_sesiones_dia": 20256,
-      "meta_sesiones_corte": 9583,
+      "meta_sesiones_corte": 10635,
       "real": {
-        "sesiones": 11197,
-        "ingresos": 16611.49,
-        "cr": 0.0025,
-        "ticket": 593.27,
-        "compras": 28,
-        "vistos": 5641,
-        "carrito": 513,
-        "comprados": 36
+        "sesiones": 12623,
+        "ingresos": 25211.01,
+        "cr": 0.003,
+        "ticket": 663.45,
+        "compras": 38,
+        "vistos": 6796,
+        "carrito": 656,
+        "comprados": 47
       },
       "por_hora": [
         {
@@ -2604,26 +2622,26 @@
         {
           "h": 9,
           "ses_proy": 1248,
-          "ses_real": 1386,
+          "ses_real": 1387,
           "ing_real": 5763.05
         },
         {
           "h": 10,
           "ses_proy": 1329,
           "ses_real": 1156,
-          "ing_real": 1839.9
+          "ing_real": 4138.9
         },
         {
           "h": 11,
           "ses_proy": 1234,
-          "ses_real": 277,
-          "ing_real": 444.45
+          "ses_real": 1205,
+          "ing_real": 3584.97
         },
         {
           "h": 12,
           "ses_proy": 1052,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 497,
+          "ing_real": 3160.0
         },
         {
           "h": 13,
@@ -2695,21 +2713,27 @@
       "campanas": [
         {
           "nombre": "JUNTOZ_google_search_brand_aon_2024_conversiones",
-          "sesiones": 181,
-          "compras": 3,
-          "ingresos": 2171.95
+          "sesiones": 230,
+          "compras": 6,
+          "ingresos": 5294.52
         },
         {
           "nombre": "JUNTOZ_google_pmax-generico_aon_2024_conversiones_rev1",
-          "sesiones": 1982,
-          "compras": 14,
-          "ingresos": 2160.14
+          "sesiones": 2462,
+          "compras": 16,
+          "ingresos": 2683.04
         },
         {
           "nombre": "JUNTOZ_google_pmax-soft_aon_2024_conversiones",
-          "sesiones": 115,
+          "sesiones": 151,
           "compras": 1,
           "ingresos": 134.9
+        },
+        {
+          "nombre": "JUNTOZ_google_pmax-hard_aon_2024_conversiones",
+          "sesiones": 441,
+          "compras": 1,
+          "ingresos": 126.65
         },
         {
           "nombre": " JUNTOZ_google_display_sin_feed_aon_2024_trafico_video,JUNTOZ_google_display_sin_feed_aon_2024_trafico_video",
@@ -2725,43 +2749,37 @@
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_2024_trafico_computo",
-          "sesiones": 1373,
+          "sesiones": 1407,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_2024_trafico_lb",
-          "sesiones": 93,
+          "sesiones": 102,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_2024_trafico_telefonia",
-          "sesiones": 109,
+          "sesiones": 124,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_aon_2024_trafico_deporte",
-          "sesiones": 62,
+          "sesiones": 70,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_aon_2024_trafico_video",
-          "sesiones": 1354,
-          "compras": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "JUNTOZ_google_pmax-hard_aon_2024_conversiones",
-          "sesiones": 352,
+          "sesiones": 1399,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_search_brand_aon_2024_1_visitas-web",
-          "sesiones": 1,
+          "sesiones": 2,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -2773,13 +2791,13 @@
         },
         {
           "nombre": "JUNTOZ_social-media_facebook_marca_aon_2025_conversiones_juntoz-hard",
-          "sesiones": 411,
+          "sesiones": 513,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_social-media_facebook_marca_aon_2025_conversiones_juntoz-soft",
-          "sesiones": 88,
+          "sesiones": 121,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -2791,13 +2809,13 @@
         },
         {
           "nombre": "Juntoz_hard_2026_trafico",
-          "sesiones": 2209,
+          "sesiones": 2250,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "bbva",
-          "sesiones": 2,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -2812,17 +2830,41 @@
           "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
+        },
+        {
+          "nombre": "sem4 Abril23 ",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
         }
       ],
       "top_productos": [
         {
+          "nombre": "Perfume Dolce & Gabbana Light Blue EDT 100 ml para Mujer",
+          "sku": "3117554",
+          "vistos": 18,
+          "carrito": 10,
+          "comprados": 2,
+          "sesiones": 8,
+          "ingresos": 598.0
+        },
+        {
           "nombre": "AFNAN 9 PM ELIXIR EXTRAIT DE PARFUM 100 ML",
           "sku": "3089598",
-          "vistos": 1,
+          "vistos": 3,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 2,
+          "sesiones": 4,
           "ingresos": 199.0
+        },
+        {
+          "nombre": "Audífonos Bluetooth SONY In Ear WI-C100 IPX4 25 Horas Color: Negro",
+          "sku": "2911550",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 94.9
         },
         {
           "nombre": "Bravecto 2 - 4,5 kg 112,5 mg",
@@ -2843,6 +2885,15 @@
           "ingresos": 83.9
         },
         {
+          "nombre": "Cerradura Digital Inteligente 5 Modos De Apertura Color: Negro",
+          "sku": "3203120",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 160.0
+        },
+        {
           "nombre": "Citizen Chronograph Quartz Black Dial AN3660-81E",
           "sku": "3097493",
           "vistos": 11,
@@ -2850,6 +2901,15 @@
           "comprados": 1,
           "sesiones": 6,
           "ingresos": 1099.0
+        },
+        {
+          "nombre": "Consola Nintendo Switch 2 + Donkey Kong Bananza",
+          "sku": "2883660",
+          "vistos": 5,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 2,
+          "ingresos": 2499.0
         },
         {
           "nombre": "Cuchilla Para Licuadora Xpert Oster® BLSTAA3092",
@@ -2863,11 +2923,20 @@
         {
           "nombre": "Dúo Pack Gel de Baño Protector Isdin Avena Piel Sensible - Frasco 750 Ml",
           "sku": "2728475",
-          "vistos": 1,
-          "carrito": 1,
+          "vistos": 2,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 2,
+          "ingresos": 134.9
+        },
+        {
+          "nombre": "Escalera Aluminio Banqueta de 8 Pasos. Cap. Max. de Carga: 150 Kg. Tipo III (Domestica)",
+          "sku": "3151157",
+          "vistos": 0,
+          "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 134.9
+          "ingresos": 299.9
         },
         {
           "nombre": "Freidora de Aire Taurus 5LT Silver Fryer II",
@@ -2890,38 +2959,47 @@
         {
           "nombre": "IPHONE 17 PRO MAX DE 256GB ESIM - SILVER - EN LISTA BLANCA",
           "sku": "3242722",
-          "vistos": 10,
+          "vistos": 11,
           "carrito": 5,
           "comprados": 1,
-          "sesiones": 9,
+          "sesiones": 10,
           "ingresos": 4989.0
         },
         {
           "nombre": "IPHONE 17 PRO MAX ORANGE 256GB",
           "sku": "3240385",
-          "vistos": 24,
-          "carrito": 9,
+          "vistos": 29,
+          "carrito": 11,
           "comprados": 1,
-          "sesiones": 24,
+          "sesiones": 29,
           "ingresos": 4999.0
         },
         {
           "nombre": "LATTAFA KHAMRAH DUKHAN EAU DE PARFUM 100 ML",
           "sku": "3089517",
-          "vistos": 2,
+          "vistos": 3,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 139.0
         },
         {
           "nombre": "LATTAFA PERFUMES KHAMRAH EAU DE PARFUM 100ML",
           "sku": "3089306",
-          "vistos": 5,
+          "vistos": 6,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 6,
+          "sesiones": 7,
           "ingresos": 149.0
+        },
+        {
+          "nombre": "LAVADORA AUTOMATICA 13 KG INDURAMA LRI-13BLA",
+          "sku": "2674932",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 669.0
         },
         {
           "nombre": "LENTES DE SOL NEW WAYFARER RB2132 UNISEX/ COLOR: GRIS TRANSPARENTE Talla: M/L",
@@ -2951,6 +3029,15 @@
           "ingresos": 100.73
         },
         {
+          "nombre": "Laptop HP Victus Gaming 15-fa2013dx 15.6\" Intel Core i5 512GB SSD 8GB NVIDIA RTX 3050",
+          "sku": "2941362",
+          "vistos": 2,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 2,
+          "ingresos": 3160.0
+        },
+        {
           "nombre": "MINOXIDIL 2.5MG - 60 TAB",
           "sku": "3145999",
           "vistos": 3,
@@ -2971,7 +3058,7 @@
         {
           "nombre": "Mando inalámbrico Xbox One + Cable Usb para Windows 10 Negro Carbon",
           "sku": "1514657",
-          "vistos": 5,
+          "vistos": 6,
           "carrito": 2,
           "comprados": 1,
           "sesiones": 3,
@@ -3025,20 +3112,11 @@
         {
           "nombre": "PROTEÍNA WHEY PRO 1.1 KG COOKIES + MUÑEQUERA",
           "sku": "3147339",
-          "vistos": 5,
+          "vistos": 7,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 3,
-          "ingresos": 59.0
-        },
-        {
-          "nombre": "Perfume Dolce & Gabbana Light Blue EDT 100 ml para Mujer",
-          "sku": "3117554",
-          "vistos": 14,
-          "carrito": 9,
-          "comprados": 1,
           "sesiones": 5,
-          "ingresos": 299.0
+          "ingresos": 59.0
         },
         {
           "nombre": "Power Bank Ugreen 45W 20000 mAh con Cable Integrado 55988B",
@@ -3097,10 +3175,10 @@
         {
           "nombre": "Reproductor de DVD y CDs Yuntel DVD-230H",
           "sku": "2429030",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 124.0
         },
         {
@@ -3122,22 +3200,58 @@
           "ingresos": 199.0
         },
         {
-          "nombre": "TV iFFALCON 32\" QLED FHD Google 32S55A by TCL",
-          "sku": "3239951",
-          "vistos": 2,
+          "nombre": "Silla Gamer Skullcandy Ergonómica con Posapiés - Gris",
+          "sku": "3188229",
+          "vistos": 5,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 2,
+          "sesiones": 4,
+          "ingresos": 299.0
+        },
+        {
+          "nombre": "TV iFFALCON 32\" QLED FHD Google 32S55A by TCL",
+          "sku": "3239951",
+          "vistos": 4,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 4,
           "ingresos": 429.0
         },
         {
           "nombre": "The Ordinary Glycolic Acid 7% Exfoliating Toner 240 ML",
           "sku": "3084971",
-          "vistos": 3,
+          "vistos": 4,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 125.0
+        },
+        {
+          "nombre": "Tripode K&F Concept KF09.143 MS24",
+          "sku": "3061586",
+          "vistos": 2,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 129.0
+        },
+        {
+          "nombre": "UGREEN Nexode Air 65W USB-C GaN con Cable 100W para Celulares, Tabletas y Laptops",
+          "sku": "3220955",
+          "vistos": 11,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 9,
+          "ingresos": 126.65
+        },
+        {
+          "nombre": "Xiaomi Poco X8 Pro 256gb 8gb Ram White",
+          "sku": "3227334",
+          "vistos": 7,
+          "carrito": 3,
+          "comprados": 1,
+          "sesiones": 4,
+          "ingresos": 1419.0
         },
         {
           "nombre": "\"Luminaria Solar LED Tricolor con Control 400W 3500Lm  OP-SFL519-400\"",
@@ -3151,10 +3265,10 @@
         {
           "nombre": "100% CREATINA MONOHIDRATADA 500 GRAMOS UNIVERSE NUTRITION",
           "sku": "2886783",
-          "vistos": 5,
+          "vistos": 6,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 5,
+          "sesiones": 6,
           "ingresos": 0.0
         },
         {
@@ -3169,6 +3283,24 @@
         {
           "nombre": "3 Coco Life - Aceite De Coco X 250 Ml",
           "sku": "2522930",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "3 Minoxidil 5% + 1 Dermaroller + 1 Gotero",
+          "sku": "3072861",
+          "vistos": 2,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 2,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "345 Relief Cream",
+          "sku": "3118215",
           "vistos": 1,
           "carrito": 0,
           "comprados": 0,
@@ -3239,21 +3371,39 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "AIRPODS 4 – AME APPLE",
+          "sku": "2971708",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "AIRPODS PRO 3 - Apple",
           "sku": "3146951",
-          "vistos": 24,
+          "vistos": 31,
           "carrito": 1,
           "comprados": 0,
-          "sesiones": 24,
+          "sesiones": 30,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "ALIMENTO DE GATO CAT CHOW GATITOS 8KG",
+          "sku": "2084856",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
           "ingresos": 0.0
         },
         {
           "nombre": "AMERICAN TOURISTER  ATLAS CABINA TAUPE",
           "sku": "3094869",
-          "vistos": 4,
+          "vistos": 5,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 4,
+          "sesiones": 5,
           "ingresos": 0.0
         },
         {
@@ -3293,6 +3443,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "APARADOR LANCER 4 PUERTAS 1 CAJON GRAFITO ROBLE 180CM",
+          "sku": "3147427",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "APPLE IPAD 11 128GB A16 | AZUL + REGALO",
           "sku": "2794279",
           "vistos": 2,
@@ -3304,19 +3463,19 @@
         {
           "nombre": "APPLE IPAD 11 128GB A16 | ROSADO + REGALO",
           "sku": "2794277",
-          "vistos": 7,
+          "vistos": 8,
           "carrito": 1,
           "comprados": 0,
-          "sesiones": 4,
+          "sesiones": 5,
           "ingresos": 0.0
         },
         {
           "nombre": "APPLE IPAD 11 128GB A16 | SILVER + REGALO",
           "sku": "2794281",
-          "vistos": 2,
+          "vistos": 5,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 2,
+          "sesiones": 4,
           "ingresos": 0.0
         },
         {
@@ -3358,10 +3517,10 @@
         {
           "nombre": "ARMAF ODYSSEY MANDARIN SKY ELIXIR FOR MEN EDP 100 ML",
           "sku": "3089272",
-          "vistos": 3,
+          "vistos": 4,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 0.0
         },
         {
@@ -3421,19 +3580,19 @@
         {
           "nombre": "AUDIFONOS BLUETOOTH AIRPODS PRO 2DA GEN - BLANCO",
           "sku": "3094880",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 0.0
         },
         {
           "nombre": "AUDIFONOS PHILIPS ON EAR TAH4105BK NEGRO",
           "sku": "2560080",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 0,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 2,
           "ingresos": 0.0
         },
         {
@@ -3482,6 +3641,15 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "Abanico Portatil para Auto 3 Cabezales Negro con Soporte Ajustable",
+          "sku": "3139475",
+          "vistos": 1,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 1,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "Access Point TP-Link EAP625-Outdoor HD AX1800 Mesh WiFi 6",
           "sku": "3188315",
           "vistos": 1,
@@ -3502,6 +3670,15 @@
         {
           "nombre": "Acer Soporte de Monitor Ajustable 17\"-34\" – Brazo Ergonómico con Resorte de Gas, Montaje VESA 75x75/100x100, Rotación 360°, Abrazadera en C y Base de Ojal",
           "sku": "3061737",
+          "vistos": 3,
+          "carrito": 0,
+          "comprados": 0,
+          "sesiones": 3,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "Aclara-T Crema De Manos Tropical - Frasco 60 G",
+          "sku": "2954826",
           "vistos": 1,
           "carrito": 0,
           "comprados": 0,
@@ -3547,10 +3724,10 @@
         {
           "nombre": "Adaptador Apple de Carga dinámico de 40 W (máx. 60 W) - Blanco",
           "sku": "3211718",
-          "vistos": 1,
-          "carrito": 1,
+          "vistos": 3,
+          "carrito": 3,
           "comprados": 0,
-          "sesiones": 1,
+          "sesiones": 3,
           "ingresos": 0.0
         },
         {
@@ -3561,465 +3738,11 @@
           "comprados": 0,
           "sesiones": 1,
           "ingresos": 0.0
-        },
-        {
-          "nombre": "Adaptador Hub 8 en 1Tipo C Lector de tarjetas SD TF 3,5 Audio",
-          "sku": "3192124",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Adaptador USB-C Samsung Original 25W – Carga Rápida",
-          "sku": "2686619",
-          "vistos": 3,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Adidas - Paleta de Padel Adipower Multiweight 3.3",
-          "sku": "2423514",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Aditivo Protector de Motor Liqui Moly Motor Protect  Reduce Desgaste y Prolonga la Vida del Motor",
-          "sku": "3187603",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Aerochamber Niños Mask (Aerocámara Niños)",
-          "sku": "1277234",
-          "vistos": 2,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Aerochamber Plus Infant (0 - 18m) Mask",
-          "sku": "1277233",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeef Lattafa 100Ml Edp Lattafa Perf-85",
-          "sku": "2960870",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora Eléctrica Philips S1151 Inalámbrica Uso en Seco y Húmedo",
-          "sku": "2632139",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora Eléctrica XIAOMI Electric Shaver S200 Negro",
-          "sku": "3187825",
-          "vistos": 0,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora Eléctrica Xiaomi S301 - Impermeable IPX7 y Carga USB-C",
-          "sku": "3220882",
-          "vistos": 0,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora Eléctrica Xiaomi S302",
-          "sku": "3187453",
-          "vistos": 0,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora Oneblade Philips QP1424_10",
-          "sku": "2457656",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Afeitadora de barba oneblade philips qp2824_10",
-          "sku": "2485400",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Agua Desmin- Desionizada ALKA La Brasiliana Ablandador Capilar (1Lt) x 2UNIDADES",
-          "sku": "2434736",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Agua Destilada No Estéril de 20 L",
-          "sku": "2967927",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Agua Micelar Effaclar Pieles Mixtas a Grasas 400ml",
-          "sku": "2764214",
-          "vistos": 4,
-          "carrito": 2,
-          "comprados": 0,
-          "sesiones": 3,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "Aguardiente Antioqueño Rojo 750ml - 12 UND",
-          "sku": "2768437",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
         }
       ]
     }
   },
-  "semana": {
-    "LA CURACAO": [
-      {
-        "fecha": "2026-07-06",
-        "dia": "Lun",
-        "proy": 105010,
-        "real": 63611,
-        "avance": 0.6841
-      },
-      {
-        "fecha": "2026-07-07",
-        "dia": "Mar",
-        "proy": 89991,
-        "real": 75984,
-        "avance": 0.875
-      },
-      {
-        "fecha": "2026-07-08",
-        "dia": "Mié",
-        "proy": 74992,
-        "real": 82702,
-        "avance": 1.1028
-      },
-      {
-        "fecha": "2026-07-09",
-        "dia": "Jue",
-        "proy": 82492,
-        "real": 82947,
-        "avance": 1.1614
-      },
-      {
-        "fecha": "2026-07-10",
-        "dia": "Vie",
-        "proy": 59994,
-        "real": 83585,
-        "avance": 1.4438
-      },
-      {
-        "fecha": "2026-07-11",
-        "dia": "Sáb",
-        "proy": 30447,
-        "real": 86024,
-        "avance": 2.8254
-      },
-      {
-        "fecha": "2026-07-12",
-        "dia": "Dom",
-        "proy": 22496,
-        "real": 80479,
-        "avance": 3.5775
-      },
-      {
-        "fecha": "2026-07-13",
-        "dia": "Lun",
-        "proy": 180018,
-        "real": 140539,
-        "avance": 0.801
-      },
-      {
-        "fecha": "2026-07-14",
-        "dia": "Mar",
-        "proy": 197230,
-        "real": 171542,
-        "avance": 0.9013
-      },
-      {
-        "fecha": "2026-07-15",
-        "dia": "Mié",
-        "proy": 157484,
-        "real": 182413,
-        "avance": 1.2003
-      },
-      {
-        "fecha": "2026-07-16",
-        "dia": "Jue",
-        "proy": 137986,
-        "real": 114326,
-        "avance": 0.8586
-      },
-      {
-        "fecha": "2026-07-17",
-        "dia": "Vie",
-        "proy": 83992,
-        "real": 84162,
-        "avance": 1.0384
-      },
-      {
-        "fecha": "2026-07-18",
-        "dia": "Sáb",
-        "proy": 19498,
-        "real": 56577,
-        "avance": 2.9685
-      },
-      {
-        "fecha": "2026-07-19",
-        "dia": "Dom",
-        "proy": 19496,
-        "real": 17131,
-        "avance": 1.8572
-      }
-    ],
-    "TIENDAS EFE": [
-      {
-        "fecha": "2026-07-06",
-        "dia": "Lun",
-        "proy": 70007,
-        "real": 69233,
-        "avance": 1.1168
-      },
-      {
-        "fecha": "2026-07-07",
-        "dia": "Mar",
-        "proy": 59994,
-        "real": 67588,
-        "avance": 1.1674
-      },
-      {
-        "fecha": "2026-07-08",
-        "dia": "Mié",
-        "proy": 49995,
-        "real": 74819,
-        "avance": 1.4965
-      },
-      {
-        "fecha": "2026-07-09",
-        "dia": "Jue",
-        "proy": 55002,
-        "real": 49468,
-        "avance": 1.0388
-      },
-      {
-        "fecha": "2026-07-10",
-        "dia": "Vie",
-        "proy": 39996,
-        "real": 48148,
-        "avance": 1.2475
-      },
-      {
-        "fecha": "2026-07-11",
-        "dia": "Sáb",
-        "proy": 20299,
-        "real": 36188,
-        "avance": 1.7827
-      },
-      {
-        "fecha": "2026-07-12",
-        "dia": "Dom",
-        "proy": 15004,
-        "real": 38093,
-        "avance": 2.5389
-      },
-      {
-        "fecha": "2026-07-13",
-        "dia": "Lun",
-        "proy": 120012,
-        "real": 114406,
-        "avance": 0.978
-      },
-      {
-        "fecha": "2026-07-14",
-        "dia": "Mar",
-        "proy": 131487,
-        "real": 104251,
-        "avance": 0.8216
-      },
-      {
-        "fecha": "2026-07-15",
-        "dia": "Mié",
-        "proy": 104990,
-        "real": 97633,
-        "avance": 0.9637
-      },
-      {
-        "fecha": "2026-07-16",
-        "dia": "Jue",
-        "proy": 91991,
-        "real": 102170,
-        "avance": 1.1509
-      },
-      {
-        "fecha": "2026-07-17",
-        "dia": "Vie",
-        "proy": 55994,
-        "real": 76547,
-        "avance": 1.4166
-      },
-      {
-        "fecha": "2026-07-18",
-        "dia": "Sáb",
-        "proy": 12999,
-        "real": 42498,
-        "avance": 3.3447
-      },
-      {
-        "fecha": "2026-07-19",
-        "dia": "Dom",
-        "proy": 12997,
-        "real": 13590,
-        "avance": 2.2101
-      }
-    ],
-    "JUNTOZ": [
-      {
-        "fecha": "2026-07-06",
-        "dia": "Lun",
-        "proy": 75870,
-        "real": 72406,
-        "avance": 1.0777
-      },
-      {
-        "fecha": "2026-07-07",
-        "dia": "Mar",
-        "proy": 63291,
-        "real": 65781,
-        "avance": 1.077
-      },
-      {
-        "fecha": "2026-07-08",
-        "dia": "Mié",
-        "proy": 59994,
-        "real": 52630,
-        "avance": 0.8773
-      },
-      {
-        "fecha": "2026-07-09",
-        "dia": "Jue",
-        "proy": 46018,
-        "real": 46484,
-        "avance": 1.1667
-      },
-      {
-        "fecha": "2026-07-10",
-        "dia": "Vie",
-        "proy": 46490,
-        "real": 50536,
-        "avance": 1.1265
-      },
-      {
-        "fecha": "2026-07-11",
-        "dia": "Sáb",
-        "proy": 11623,
-        "real": 32624,
-        "avance": 2.8068
-      },
-      {
-        "fecha": "2026-07-12",
-        "dia": "Dom",
-        "proy": 5496,
-        "real": 21544,
-        "avance": 3.9199
-      },
-      {
-        "fecha": "2026-07-13",
-        "dia": "Lun",
-        "proy": 129909,
-        "real": 105310,
-        "avance": 0.8317
-      },
-      {
-        "fecha": "2026-07-14",
-        "dia": "Mar",
-        "proy": 109466,
-        "real": 72437,
-        "avance": 0.6857
-      },
-      {
-        "fecha": "2026-07-15",
-        "dia": "Mié",
-        "proy": 103027,
-        "real": 77550,
-        "avance": 0.78
-      },
-      {
-        "fecha": "2026-07-16",
-        "dia": "Jue",
-        "proy": 84336,
-        "real": 90377,
-        "avance": 1.1105
-      },
-      {
-        "fecha": "2026-07-17",
-        "dia": "Vie",
-        "proy": 54812,
-        "real": 44871,
-        "avance": 0.8483
-      },
-      {
-        "fecha": "2026-07-18",
-        "dia": "Sáb",
-        "proy": 40676,
-        "real": 41583,
-        "avance": 1.0458
-      },
-      {
-        "fecha": "2026-07-19",
-        "dia": "Dom",
-        "proy": 20256,
-        "real": 11197,
-        "avance": 1.1684
-      }
-    ]
-  },
+  "semana": {},
   "semana_horas": {
     "LA CURACAO": {
       "2026-07-13": {
@@ -4723,7 +4446,7 @@
           {
             "h": 14,
             "proy": 1127,
-            "real": 2938
+            "real": 2939
           },
           {
             "h": 15,
@@ -4743,12 +4466,12 @@
           {
             "h": 18,
             "proy": 876,
-            "real": 3060
+            "real": 3062
           },
           {
             "h": 19,
             "proy": 842,
-            "real": 2978
+            "real": 2980
           },
           {
             "h": 20,
@@ -4758,12 +4481,12 @@
           {
             "h": 21,
             "proy": 659,
-            "real": 2956
+            "real": 2958
           },
           {
             "h": 22,
             "proy": 569,
-            "real": 2838
+            "real": 2841
           },
           {
             "h": 23,
@@ -4798,7 +4521,7 @@
           {
             "h": 4,
             "proy": 228,
-            "real": 507
+            "real": 508
           },
           {
             "h": 5,
@@ -4813,12 +4536,12 @@
           {
             "h": 7,
             "proy": 1071,
-            "real": 1878
+            "real": 1879
           },
           {
             "h": 8,
             "proy": 1096,
-            "real": 2172
+            "real": 2176
           },
           {
             "h": 9,
@@ -4828,17 +4551,17 @@
           {
             "h": 10,
             "proy": 1279,
-            "real": 2671
+            "real": 2672
           },
           {
             "h": 11,
             "proy": 1188,
-            "real": 609
+            "real": 2847
           },
           {
             "h": 12,
             "proy": 1012,
-            "real": null
+            "real": 1230
           },
           {
             "h": 13,
@@ -5595,12 +5318,12 @@
           {
             "h": 13,
             "proy": 742,
-            "real": 2345
+            "real": 2346
           },
           {
             "h": 14,
             "proy": 751,
-            "real": 2292
+            "real": 2294
           },
           {
             "h": 15,
@@ -5640,12 +5363,12 @@
           {
             "h": 22,
             "proy": 380,
-            "real": 2111
+            "real": 2112
           },
           {
             "h": 23,
             "proy": 292,
-            "real": 1439
+            "real": 1440
           }
         ]
       },
@@ -5690,32 +5413,32 @@
           {
             "h": 7,
             "proy": 714,
-            "real": 1581
+            "real": 1582
           },
           {
             "h": 8,
             "proy": 731,
-            "real": 1555
+            "real": 1556
           },
           {
             "h": 9,
             "proy": 801,
-            "real": 1797
+            "real": 1798
           },
           {
             "h": 10,
             "proy": 853,
-            "real": 2075
+            "real": 2077
           },
           {
             "h": 11,
             "proy": 792,
-            "real": 452
+            "real": 2128
           },
           {
             "h": 12,
             "proy": 675,
-            "real": null
+            "real": 1001
           },
           {
             "h": 13,
@@ -6577,7 +6300,7 @@
           {
             "h": 9,
             "proy": 1248,
-            "real": 1386
+            "real": 1387
           },
           {
             "h": 10,
@@ -6587,12 +6310,12 @@
           {
             "h": 11,
             "proy": 1234,
-            "real": 277
+            "real": 1205
           },
           {
             "h": 12,
             "proy": 1052,
-            "real": null
+            "real": 497
           },
           {
             "h": 13,
