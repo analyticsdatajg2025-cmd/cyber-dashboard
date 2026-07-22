@@ -1,0 +1,46 @@
+name: Monitor Diario
+on:
+  schedule:
+    # 11:43 UTC = 06:43 Lima (UTC-5). Minuto raro para esquivar la congestión
+    # del tope de hora; a esa hora AYER ya cerró completo en Yandex.
+    - cron: "43 11 * * *"
+  workflow_dispatch:      # botón para correr manual
+permissions:
+  contents: write         # para commitear data.json e historico.json
+jobs:
+  reporte:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Lima     # sin esto date.today() se adelanta de noche
+      MODO: diario         # <-- clave: activa el modo diario en pipeline.py
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Cache de pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: deps-${{ hashFiles('requirements.txt') }}
+      - name: Instalar dependencias
+        # Sin Playwright: el diario no genera PNG ni correo.
+        run: pip install -r requirements.txt
+      - name: Escribir secretos a archivos locales
+        run: |
+          echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+          echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
+      - name: Correr pipeline (diario)
+        run: python pipeline.py
+      - name: Commitear data.json + historico.json
+        if: success()
+        run: |
+          git config user.name  "cyber-bot"
+          git config user.email "bot@conecta.pe"
+          git add data.json
+          git add historico.json || true
+          git commit -m "diario $(date -u +%F) $(date -u +%H:%M) UTC" || echo "sin cambios"
+          git push
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt credenciales.json gmail.txt
