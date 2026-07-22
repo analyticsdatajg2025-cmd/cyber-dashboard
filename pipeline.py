@@ -18,6 +18,8 @@ import json
 import sys
 import traceback
 import requests
+import os
+from proy_diaria import leer_proyeccion_diaria, leer_neto_diario, ES_DIARIO
 from datetime import datetime, date, timedelta
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
@@ -35,8 +37,11 @@ HEADERS = {"Authorization": f"OAuth {TOKEN}"}
 URL_DATA   = "https://api-metrika.yandex.net/stat/v1/data"
 URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
 
-SALIDA_JSON  = "data.json"
-SALIDA_HISTORICO = "historico.json"
+SALIDA_JSON      = "data.json"      if ES_DIARIO else "data_cyber.json"
+SALIDA_HISTORICO = "historico.json" if ES_DIARIO else "historico_cyber.json"
+
+HIST_INICIO = date(2026, 7, 13)     # ancla del histórico diario (edítalo)
+HIST_RETENCION_DIAS = None          # None = guarda todo; ej. 180 = ~6 meses
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
 ATTRIBUTION  = "lastsign"
 
@@ -213,6 +218,21 @@ def leer_proyecciones(marca, hoy=None):
     ws = wb[hoja]
     return [float(ws.cell(row=3 + h, column=col).value or 0) for h in range(24)]
 
+def proy_horaria(marca, fecha=None):
+    """24 valores. En diario no hay curva horaria -> ceros."""
+    if ES_DIARIO:
+        return [0.0] * 24
+    return leer_proyecciones(marca, fecha or date.today())
+
+
+def meta_diaria(marca, fecha=None):
+    """Meta de sesiones del día (número único).
+    diario -> Google Sheet; cyber -> suma de la proyección horaria."""
+    fecha = fecha or date.today()
+    if ES_DIARIO:
+        return leer_proyeccion_diaria(marca, fecha)
+    return sum(leer_proyecciones(marca, fecha))
+
 
 # ---------------------------------------------------------------------------
 # EXTRACCIÓN YANDEX
@@ -321,11 +341,11 @@ def traer_ingresos_hora(contador, fecha="today"):
 def armar_reporte(marca):
     cfg = MARCAS[marca]
     dia_idx = date.today().weekday()
-    proy = leer_proyecciones(marca)
+    proy = proy_horaria(marca)
     real, corte = traer_sesiones_hora(cfg["contador"])
     funnel = traer_funnel(cfg["contador"])
     real_acum = sum(real[:corte + 1])
-    meta = sum(proy)
+    meta = meta_diaria(marca)
     return {
         "marca": marca, "dia": DIAS[dia_idx], "fecha": str(date.today()),
         "corte": corte, "proy": proy, "real": real,
@@ -411,7 +431,7 @@ def construir_semana_horas(reportes, hoy=None):
     for marca, cfg in MARCAS.items():
         cont = cfg["contador"]
         for d in dias:
-            proy = leer_proyecciones(marca, d)
+            proy = proy_horaria(marca, d)
             if d == hoy:
                 serie, corte = reportes[marca]["real"], reportes[marca]["corte"]
             else:
@@ -433,7 +453,7 @@ def construir_bloque_fecha(marca, fecha):
     construir_marca(). `fecha` es un objeto date."""
     cont = MARCAS[marca]["contador"]
     fstr = str(fecha)
-    proy      = leer_proyecciones(marca, fecha)
+    proy = proy_horaria(marca, fecha)
     real      = traer_sesiones_hora_fecha(cont, fstr)     # 24h completas
     funnel    = traer_funnel(cont, fstr)
     campanas  = traer_campanas(cont, fecha=fstr)
@@ -446,7 +466,7 @@ def construir_bloque_fecha(marca, fecha):
         "ses_real": real[h],
         "ing_real": ing_hora[h],
     } for h in range(24)]
-    meta = round(sum(proy))
+    meta = round(meta_diaria(marca, fecha))
     return {
         "dia": DIAS_CORTOS[fecha.weekday()],
         "fecha": fstr,
@@ -461,6 +481,50 @@ def construir_bloque_fecha(marca, fecha):
         "por_hora": por_hora, "campanas": campanas, "top_productos": productos,
     }
 
+def semana_desde_historico(hist, dias=14):
+    """Comparativa 'Semana' del diario con días CERRADOS (números finales)."""
+    out = {}
+    for marca in MARCAS:
+        dd = hist.get("marcas", {}).get(marca, {})
+        filas = []
+        for f in sorted(dd.keys())[-dias:]:
+            b = dd[f]
+            proy = b.get("meta_sesiones_dia", 0)
+            real = b.get("real", {}).get("sesiones", 0)
+            filas.append({"fecha": f, "dia": b.get("dia", ""),
+                          "proy": int(proy), "real": int(real),
+                          "avance": (real / proy) if proy else 0})
+        out[marca] = filas
+    return out
+
+
+def construir_neto_diario_desde_sheet(hoy=None):
+    """Arma neto.json (venta_neta / cr_neto / ticket_neto) leyendo R / O / AL
+    del Sheet de reporte diario. Solo LC y EFE. Reemplaza a neto.py en el diario."""
+    hoy = hoy or date.today()
+    ayer = hoy - timedelta(days=1)
+    out = {
+        "generado": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "fecha_hoy": str(hoy), "fuente": "sheet_reporte_diario", "marcas": {},
+    }
+    for marca in ("TIENDAS EFE", "LA CURACAO"):
+        bloque = {"por_dia": {}}
+        n_hoy = leer_neto_diario(marca, hoy)
+        if n_hoy:
+            bloque["hoy"] = n_hoy
+        d = HIST_INICIO
+        while d <= ayer:
+            n = leer_neto_diario(marca, d)
+            if n:
+                bloque["por_dia"][str(d)] = {
+                    "venta_neta": n["venta_neta"], "cr_neto": n["cr_neto"],
+                    "ticket_neto": n["ticket_neto"],
+                }
+            d += timedelta(days=1)
+        out["marcas"][marca] = bloque
+    with open("neto.json", "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=2)
+    return out
 
 def actualizar_historico(hoy=None):
     """Mantiene historico.json con TODOS los días ya cerrados de CYBER DAYS
@@ -471,15 +535,24 @@ def actualizar_historico(hoy=None):
     hoy = hoy or date.today()
     ayer = hoy - timedelta(days=1)
 
-    inicio_total = min(CYBER_DAYS[0], CYBER_WOW[0])
-    fin_total    = max(CYBER_DAYS[1], CYBER_WOW[1])
-
-    cerrados = []
-    d = inicio_total
-    while d <= min(ayer, fin_total):
-        if dia_pertenece_a_evento(d):
+    if ES_DIARIO:
+        inicio = HIST_INICIO
+        if HIST_RETENCION_DIAS:
+            inicio = max(inicio, hoy - timedelta(days=HIST_RETENCION_DIAS))
+        cerrados = []
+        d = inicio
+        while d <= ayer:
             cerrados.append(d)
-        d += timedelta(days=1)
+            d += timedelta(days=1)
+    else:
+        inicio_total = min(CYBER_DAYS[0], CYBER_WOW[0])
+        fin_total    = max(CYBER_DAYS[1], CYBER_WOW[1])
+        cerrados = []
+        d = inicio_total
+        while d <= min(ayer, fin_total):
+            if dia_pertenece_a_evento(d):
+                cerrados.append(d)
+            d += timedelta(days=1)
 
     hist = {"marcas": {m: {} for m in MARCAS}}
     try:
@@ -577,6 +650,8 @@ def escribir_semana(reportes):
     dia = DIAS_CORTOS[date.today().weekday()]
     for marca, r in reportes.items():
         proy_corte = round(sum(r["proy"][:r["corte"] + 1]))
+        if ES_DIARIO:
+            proy_corte = round(r["meta"])   # sin curva horaria: avance vs meta del día
         nueva = [marca, hoy, dia, round(r["meta"]), r["real_acum"],
                  round(r["real_acum"] / proy_corte, 4) if proy_corte else 0]
         idx = None
@@ -670,20 +745,32 @@ def main():
     print(f"{SALIDA_JSON} escrito.")
 
     # historico.json (días cerrados) — aditivo, NO bloquea el flujo en vivo
+    # historico.json (días cerrados) — aditivo, NO bloquea el flujo en vivo
     try:
-        actualizar_historico()
+        hist = actualizar_historico()
         print(f"{SALIDA_HISTORICO} actualizado.")
+        if ES_DIARIO:
+            # 'Semana' con días cerrados y neto desde el Sheet; regraba data.json.
+            payload["semana"] = semana_desde_historico(hist)
+            with open(SALIDA_JSON, "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=2)
+            construir_neto_diario_desde_sheet()
+            print("neto.json (desde Sheet) escrito.")
     except Exception as e:
-        print(f"Aviso: {SALIDA_HISTORICO} no actualizado ({e}). El resto sigue.")
+        print(f"Aviso: histórico/neto no actualizado ({e}). El resto sigue.")
 
     # PNG + correo
-    from correo import construir_html, render_png, construir_correo, enviar
-    reps_lista = []
-    for marca, r in reportes.items():
-        render_png(construir_html(r), f"reporte_{marca.replace(' ', '_')}.png")
-        reps_lista.append(r)
-    enviar(construir_correo(reps_lista))
-    print("PNG + correo enviados.")
+    # PNG + correo (solo en modo cyber)
+    if not ES_DIARIO:
+        from correo import construir_html, render_png, construir_correo, enviar
+        reps_lista = []
+        for marca, r in reportes.items():
+            render_png(construir_html(r), f"reporte_{marca.replace(' ', '_')}.png")
+            reps_lista.append(r)
+        enviar(construir_correo(reps_lista))
+        print("PNG + correo enviados.")
+    else:
+        print("Modo diario: sin correo.")
 
 
 if __name__ == "__main__":
@@ -692,5 +779,6 @@ if __name__ == "__main__":
     except Exception:
         err = traceback.format_exc()
         print(err, file=sys.stderr)
-        alerta(err)
+        if not ES_DIARIO:
+            alerta(err)
         sys.exit(1)
