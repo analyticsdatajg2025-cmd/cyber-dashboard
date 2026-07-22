@@ -40,7 +40,7 @@ URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
 SALIDA_JSON      = "data.json"      if ES_DIARIO else "data_cyber.json"
 SALIDA_HISTORICO = "historico.json" if ES_DIARIO else "historico_cyber.json"
 
-HIST_INICIO = date(2026, 7, 13)     # ancla del histórico diario (edítalo)
+HIST_INICIO = date(2026, 7, 6)     # ancla del histórico diario (edítalo)
 HIST_RETENCION_DIAS = None          # None = guarda todo; ej. 180 = ~6 meses
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
 ATTRIBUTION  = "lastsign"
