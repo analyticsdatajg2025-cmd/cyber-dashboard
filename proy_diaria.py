@@ -106,6 +106,10 @@ def _num(v):
         return 0.0
 
 
+def _vacia(x):
+    return x is None or (isinstance(x, str) and x.strip() == "")
+
+
 def _cargar_tab(tab):
     ws = _abrir().worksheet(tab)
     try:
@@ -114,19 +118,19 @@ def _cargar_tab(tab):
         vals = ws.get_all_values()
     tabla, bloque = {}, None
     for row in vals:
-        c = _norm(row[2]) if len(row) > 2 else ""
-        if c in _BANNERS:
-            bloque = _BANNERS[c]
-            continue
-        if "consolidado" in c:
-            bloque = None
-            continue
-        if bloque is None:
-            continue
-
         def cel(campo):
             i = _COL[campo]
             return row[i] if len(row) > i else None
+
+        c = _norm(row[2]) if len(row) > 2 else ""
+        # Un banner de bloque = col C con texto y col D (fecha) + col F (proy) vacías.
+        # La Curacao / Tiendas Efe -> marca; Consolidado, SkullCandy y cualquier
+        # otro banner -> None (así no contaminan el bloque anterior).
+        if c and _vacia(cel("fecha")) and _vacia(cel("proy")):
+            bloque = _BANNERS.get(c)
+            continue
+        if bloque is None:
+            continue
 
         f = _a_fecha(cel("fecha"))
         if f is None:
