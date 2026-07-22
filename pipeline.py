@@ -748,10 +748,15 @@ def main():
             payload["semana"] = semana_desde_historico(hist)
             with open(SALIDA_JSON, "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=2)
-            construir_neto_diario_desde_sheet()
-            print("neto.json (desde Sheet) escrito.")
+            
     except Exception as e:
         print(f"Aviso: histórico/neto no actualizado ({e}). El resto sigue.")
+    if ES_DIARIO:
+        try:
+            construir_neto_diario_desde_sheet()
+            print("neto.json (desde Sheet) escrito.")
+        except Exception as e:
+            print(f"Aviso: neto.json no escrito ({e}).")
 
     # PNG + correo
     # PNG + correo (solo en modo cyber)
