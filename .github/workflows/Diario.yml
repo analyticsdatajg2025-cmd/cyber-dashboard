@@ -3,7 +3,7 @@ on:
   schedule:
     # 11:43 UTC = 06:43 Lima (UTC-5). Minuto raro para esquivar la congestión
     # del tope de hora; a esa hora AYER ya cerró completo en Yandex.
-    - cron: "43 11 * * *"
+    - cron: "37 14 * * *"
   workflow_dispatch:      # botón para correr manual
 permissions:
   contents: write         # para commitear data.json e historico.json
