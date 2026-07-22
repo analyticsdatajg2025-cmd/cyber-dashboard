@@ -499,33 +499,27 @@ def semana_desde_historico(hist, dias=14):
 
 
 def construir_neto_diario_desde_sheet(hoy=None):
-    """Arma neto.json (venta_neta / cr_neto / ticket_neto) leyendo R / O / AL
-    del Sheet de reporte diario. Solo LC y EFE. Reemplaza a neto.py en el diario."""
+    """neto.json desde el Sheet (R/O/AL). Solo días CERRADOS (t-1 hacia atrás);
+    'hoy' NO lleva neto."""
     hoy = hoy or date.today()
     ayer = hoy - timedelta(days=1)
-    out = {
-        "generado": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "fecha_hoy": str(hoy), "fuente": "sheet_reporte_diario", "marcas": {},
-    }
+    out = {"generado": datetime.now().astimezone().isoformat(timespec="seconds"),
+           "fecha_hoy": str(hoy), "fuente": "sheet_reporte_diario", "marcas": {}}
     for marca in ("TIENDAS EFE", "LA CURACAO"):
-        bloque = {"por_dia": {}}
-        n_hoy = leer_neto_diario(marca, hoy)
-        if n_hoy:
-            bloque["hoy"] = n_hoy
+        por_dia = {}
         d = HIST_INICIO
         while d <= ayer:
             n = leer_neto_diario(marca, d)
             if n:
-                bloque["por_dia"][str(d)] = {
-                    "venta_neta": n["venta_neta"], "cr_neto": n["cr_neto"],
-                    "ticket_neto": n["ticket_neto"],
-                }
+                por_dia[str(d)] = {"venta_neta": n["venta_neta"],
+                                   "cr_neto": n["cr_neto"],
+                                   "ticket_neto": n["ticket_neto"]}
             d += timedelta(days=1)
-        out["marcas"][marca] = bloque
+        out["marcas"][marca] = {"por_dia": por_dia}
     with open("neto.json", "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     return out
-
+  
 def actualizar_historico(hoy=None):
     """Mantiene historico.json con TODOS los días ya cerrados de CYBER DAYS
     y CYBER WOW (no solo los del evento activo hoy). Así, al cruzar de un
