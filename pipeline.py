@@ -57,7 +57,7 @@ ARCHIVO_NETO     = "neto.json"
 
 HIST_INICIO = date(2026, 7, 6)     # ancla del historico (no baja de aqui)
 HIST_RETENCION_DIAS = 60           # dias cerrados que se conservan
-HIST_REFRESH_DIAS = 3              # dias cerrados recientes que se vuelven a
+HIST_REFRESH_DIAS = 4              # dias cerrados recientes que se vuelven a
                                    # consultar en cada corrida diaria: Yandex
                                    # sigue asentando datos por 1-2 dias, asi el
                                    # historico deja de quedar congelado con la
@@ -610,16 +610,23 @@ def construir_neto_diario_desde_sheet(hoy=None):
 
     for marca in ("TIENDAS EFE", "LA CURACAO"):
         antes = marcas_prev.get(marca, {}) if isinstance(marcas_prev.get(marca), dict) else {}
+        por_dia_prev = antes.get("por_dia", {}) or {}
         por_dia = {}
         d = inicio
         while d <= ayer:
+            key = str(d)
             n = leer_neto_diario(marca, d)
             if n:
-                por_dia[str(d)] = {
+                por_dia[key] = {
                     "venta_neta":  n["venta_neta"],
                     "cr_neto":     n["cr_neto"],
                     "ticket_neto": n["ticket_neto"],
                 }
+            elif key in por_dia_prev:
+                # El Sheet no devolvio nada para este dia (IMPORTRANGE cargando,
+                # #REF!, fila aun sin llenar). Conservamos lo ultimo bueno en vez
+                # de borrar la venta neta del dashboard.
+                por_dia[key] = por_dia_prev[key]
             d += timedelta(days=1)
         bloque = {"por_dia": por_dia}
         if antes.get("hoy") is not None:
