@@ -1,18 +1,18 @@
 name: Monitor Diario
 on:
   schedule:
-    # 11:43 UTC = 06:43 Lima (UTC-5). Minuto raro para esquivar la congestión
-    # del tope de hora; a esa hora AYER ya cerró completo en Yandex.
-    - cron: "37 14 * * *"
-  workflow_dispatch:      # botón para correr manual
+    # 15:20 UTC = 10:20 Lima. Despues de que el Sheet mensual ya esta llenado
+    # (max 10:00) y con AYER ya cerrado en Yandex.
+    - cron: "20 15 * * *"
+  workflow_dispatch:      # boton para correr manual
 permissions:
-  contents: write         # para commitear data.json e historico.json
+  contents: write
 jobs:
   reporte:
     runs-on: ubuntu-latest
     env:
       TZ: America/Lima     # sin esto date.today() se adelanta de noche
-      MODO: diario         # <-- clave: activa el modo diario en pipeline.py
+      MODO: diario         # si hoy cae en ventana cyber, el pipeline se salta solo
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,18 +29,22 @@ jobs:
       - name: Escribir secretos a archivos locales
         run: |
           echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+          printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
           echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
-      - name: Correr pipeline (diario)
+      - name: Correr pipeline
         run: python pipeline.py
-      - name: Commitear data.json + historico.json
+      - name: Commitear JSONs
         if: success()
         run: |
           git config user.name  "cyber-bot"
           git config user.email "bot@conecta.pe"
+          # add explicito (NUNCA -A ni .) para no subir los secretos del disco
           git add data.json
           git add historico.json || true
+          git add neto.json || true
           git commit -m "diario $(date -u +%F) $(date -u +%H:%M) UTC" || echo "sin cambios"
-          git push
+          # neto.py puede haber pusheado desde la PC entre medio
+          git pull --rebase && git push
       - name: Limpiar secretos
         if: always()
-        run: rm -f mi_token.txt credenciales.json gmail.txt
+        run: rm -f mi_token.txt gmail.txt credenciales.json
