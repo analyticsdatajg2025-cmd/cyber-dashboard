@@ -3,7 +3,7 @@ on:
   schedule:
     # 15:20 UTC = 10:20 Lima. Despues de que el Sheet mensual ya esta llenado
     # (max 10:00) y con AYER ya cerrado en Yandex.
-    - cron: "20 15 * * *"
+    - cron: "51 19 * * *"
   workflow_dispatch:      # boton para correr manual
 permissions:
   contents: write
