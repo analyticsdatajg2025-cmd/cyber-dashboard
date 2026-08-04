@@ -1,25 +1,38 @@
 """
-pipeline.py — EL CEREBRO. Es lo único que corre el cron.
+pipeline.py — EL CEREBRO. Es lo unico que corre el cron.
+
+DOS MODOS, DECIDIDOS SOLO POR LA FECHA
+--------------------------------------
+  CYBER   -> hoy cae dentro de CYBER_DAYS / CYBER_WOW.
+             Corre cada hora. Proyeccion horaria del Excel. JUNTOZ visible.
+             Escribe Sheets BACKEND + META HORARIA. Manda PNG + correo.
+  DIARIO  -> cualquier otro dia del anio.
+             Corre 1 vez al dia. Solo meta diaria (col F del Sheet mensual),
+             sin curva horaria. JUNTOZ excluido. Sin correo. Sin Sheets.
+
+Para activar el modo cyber SOLO se editan CYBER_DAYS / CYBER_WOW abajo.
+
+La variable de entorno MODO dice QUE WORKFLOW esta corriendo, no que hacer:
+  MODO=diario -> si hoy ES cyber, el job se salta (lo cubre el horario).
+  MODO=cyber  -> si hoy NO es cyber, el job se salta.
+  MODO=auto   -> corre siempre con el modo que toque (util para probar local).
 
 Flujo de una corrida:
   1. Extrae de Yandex (por marca): funnel, sesiones/hora, ingresos/hora,
-     campañas, top productos.
-  2. Lee proyecciones del Excel (hojas CYBER DAYS / CYBER WOW).
-  3. Escribe data.json          -> lo consume dashboard.html.
-  4. Escribe Google Sheet BACKEND (Cortes + Semana, totales por día).
-  5. Escribe Google Sheet META HORARIA (columnas Real por día/hora) y arma
-     el bloque semana_horas del data.json (tabla por hora del dashboard).
-  6. Genera PNG + correo (flujo WhatsApp, vive en correo.py).
+     campanias, top productos.
+  2. Proyeccion: Excel horario (cyber) o Sheet mensual col F (diario).
+  3. Escribe data.json + historico.json + neto.json (bloque por_dia).
+  4. Solo en cyber: Sheets BACKEND / META HORARIA + PNG + correo.
 
-Si algo falla: correo de alerta y sale con código != 0.
-Fuera de las semanas cyber no hay proyección horaria: corre igual con meta 0.
+Si algo falla: correo de alerta y sale con codigo != 0.
 """
 import json
 import sys
 import traceback
 import requests
 import os
-from proy_diaria import leer_proyeccion_diaria, leer_neto_diario, ES_DIARIO
+from proy_diaria import (leer_proyeccion_diaria, leer_neto_diario,
+                         leer_meta_mensual)
 from datetime import datetime, date, timedelta
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
@@ -37,11 +50,16 @@ HEADERS = {"Authorization": f"OAuth {TOKEN}"}
 URL_DATA   = "https://api-metrika.yandex.net/stat/v1/data"
 URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
 
-SALIDA_JSON      = "data.json"      if ES_DIARIO else "data_cyber.json"
-SALIDA_HISTORICO = "historico.json" if ES_DIARIO else "historico_cyber.json"
+# UN SOLO juego de archivos para los dos modos. El dashboard lee siempre estos.
+SALIDA_JSON      = "data.json"
+SALIDA_HISTORICO = "historico.json"
+ARCHIVO_NETO     = "neto.json"
 
-HIST_INICIO = date(2026, 7, 6)     # ancla del histórico diario (edítalo)
-HIST_RETENCION_DIAS = None          # None = guarda todo; ej. 180 = ~6 meses
+HIST_INICIO = date(2026, 7, 6)     # ancla del historico (no baja de aqui)
+HIST_RETENCION_DIAS = 60           # dias cerrados que se conservan
+BACKFILL_MAX = 7                   # dias faltantes que se rellenan por corrida
+                                   # (protege la cuota de Yandex al volver de
+                                   #  un hueco largo, ej. JUNTOZ al entrar cyber)
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
 ATTRIBUTION  = "lastsign"
 
@@ -189,6 +207,37 @@ CYBER_DAYS = (date(2026, 7, 6),  date(2026, 7, 12))   # 6 al 12 julio
 CYBER_WOW  = (date(2026, 7, 13), date(2026, 7, 19))   # 13 al 19 julio
 EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
 
+
+# ---------------------------------------------------------------------------
+# MODO — se decide SOLO por la fecha de hoy
+# ---------------------------------------------------------------------------
+def _hoy_es_cyber(d=None):
+    d = d or date.today()
+    for _, (ini, fin) in EVENTOS:
+        if ini <= d <= fin:
+            return True
+    return False
+
+
+ES_CYBER  = _hoy_es_cyber()
+ES_DIARIO = not ES_CYBER
+MODO_JOB  = os.environ.get("MODO", "auto").strip().lower().rstrip(".")
+
+# En diario JUNTOZ no se consulta ni se publica (es marketplace, no entra en el
+# seguimiento diario). El codigo queda intacto: solo cambia que marcas corren.
+MARCAS_ACTIVAS = {m: c for m, c in MARCAS.items()
+                  if ES_CYBER or m != "JUNTOZ"}
+
+
+def job_le_toca():
+    """True si este workflow debe trabajar hoy. Evita que el job diario y el
+    horario se pisen: cada uno se salta los dias del otro."""
+    if MODO_JOB == "diario":
+        return not ES_CYBER
+    if MODO_JOB == "cyber":
+        return ES_CYBER
+    return True          # 'auto' / sin variable -> corre siempre
+
 # Columna base por marca en el Excel de proyecciones:
 #   LA CURACAO : Lunes=B(2) ... Domingo=H(8)
 #   TIENDAS EFE: Lunes=K(11) ... Domingo=Q(17)
@@ -219,15 +268,25 @@ def leer_proyecciones(marca, hoy=None):
     return [float(ws.cell(row=3 + h, column=col).value or 0) for h in range(24)]
 
 def proy_horaria(marca, fecha=None):
-    """24 valores. En diario no hay curva horaria -> ceros."""
+    """24 valores de proyeccion por hora. Solo existe en cyber.
+    En diario devuelve ceros y el JSON publica null (no hay curva horaria)."""
     if ES_DIARIO:
         return [0.0] * 24
     return leer_proyecciones(marca, fecha or date.today())
 
 
+def serie_proy_json(proy):
+    """La proyeccion tal como sale al JSON: numeros en cyber, null en diario.
+    Publicar null (y no 0) evita que el grafico pinte una linea plana en cero
+    y que la tabla muestre una columna de ceros."""
+    if ES_DIARIO:
+        return [None] * 24
+    return [round(v) for v in proy]
+
+
 def meta_diaria(marca, fecha=None):
-    """Meta de sesiones del día (número único).
-    diario -> Google Sheet; cyber -> suma de la proyección horaria."""
+    """Meta de sesiones del dia (numero unico).
+    diario -> Sheet mensual col F; cyber -> suma de la proyeccion horaria."""
     fecha = fecha or date.today()
     if ES_DIARIO:
         return leer_proyeccion_diaria(marca, fecha)
@@ -366,16 +425,20 @@ def construir_marca(marca):
     productos = traer_top_productos(contador)
     ing_hora  = traer_ingresos_hora(contador)
     corte = r["corte"]
+    proy_json = serie_proy_json(r["proy"])
     por_hora = [{
         "h": h,
-        "ses_proy": round(r["proy"][h]),
+        "ses_proy": proy_json[h],
         "ses_real": r["real"][h] if h <= corte else None,
         "ing_real": ing_hora[h]   if h <= corte else None,
     } for h in range(24)]
     f = r["funnel"]
+    # meta al corte: solo tiene sentido con curva horaria (cyber).
+    # En diario va null y el dashboard compara contra la meta del dia.
+    meta_corte = None if ES_DIARIO else round(sum(r["proy"][:corte + 1]))
     bloque = {
         "meta_sesiones_dia":   round(r["meta"]),
-        "meta_sesiones_corte": round(sum(r["proy"][:corte + 1])),
+        "meta_sesiones_corte": meta_corte,
         "real": {
             "sesiones":  r["real_acum"], "ingresos": round(f["ingresos"], 2),
             "cr": round(f["cr"], 4), "ticket": round(f["ticket"], 2),
@@ -391,10 +454,14 @@ def construir_payload():
     payload = {
         "generado": datetime.now().astimezone().isoformat(timespec="seconds"),
         "corte": None, "attribution": ATTRIBUTION,
-        "marcas": {}, "semana": {}, "semana_horas": {},
+        "modo": "cyber" if ES_CYBER else "diario",
+        "evento": hoja_evento(),          # 'CYBER DAYS' / 'CYBER WOW' / None
+        "en_vivo": ES_CYBER,              # el dashboard decide el badge con esto
+        "hist_retencion_dias": HIST_RETENCION_DIAS,
+        "marcas": {}, "semana": {}, "semana_horas": {}, "mes": {},
     }
     reportes = {}
-    for marca in MARCAS:
+    for marca in MARCAS_ACTIVAS:
         r, bloque = construir_marca(marca)
         payload["marcas"][marca] = bloque
         reportes[marca] = r
@@ -425,10 +492,10 @@ def construir_semana_horas(reportes, hoy=None):
     a Yandex (día completo). Devuelve (nombre_hoja, dict)."""
     hoy = hoy or date.today()
     hoja, dias = dias_del_evento(hoy)
-    out = {m: {} for m in MARCAS}
+    out = {m: {} for m in MARCAS_ACTIVAS}
     if hoja is None:
         return None, out
-    for marca, cfg in MARCAS.items():
+    for marca, cfg in MARCAS_ACTIVAS.items():
         cont = cfg["contador"]
         for d in dias:
             proy = proy_horaria(marca, d)
@@ -460,9 +527,10 @@ def construir_bloque_fecha(marca, fecha):
     campanas  = evaluar_campanas_numericas(campanas, marca)
     productos = traer_top_productos(cont, fecha=fstr)
     ing_hora  = traer_ingresos_hora(cont, fecha=fstr)
+    proy_json = serie_proy_json(proy)
     por_hora = [{
         "h": h,
-        "ses_proy": round(proy[h]),
+        "ses_proy": proy_json[h],
         "ses_real": real[h],
         "ing_real": ing_hora[h],
     } for h in range(24)]
@@ -471,7 +539,7 @@ def construir_bloque_fecha(marca, fecha):
         "dia": DIAS_CORTOS[fecha.weekday()],
         "fecha": fstr,
         "meta_sesiones_dia":   meta,
-        "meta_sesiones_corte": meta,          # día cerrado: corte = día completo
+        "meta_sesiones_corte": meta,          # dia cerrado: corte = dia completo
         "real": {
             "sesiones": sum(real), "ingresos": round(funnel["ingresos"], 2),
             "cr": round(funnel["cr"], 4), "ticket": round(funnel["ticket"], 2),
@@ -484,7 +552,7 @@ def construir_bloque_fecha(marca, fecha):
 def semana_desde_historico(hist, dias=14):
     """Comparativa 'Semana' del diario con días CERRADOS (números finales)."""
     out = {}
-    for marca in MARCAS:
+    for marca in MARCAS_ACTIVAS:
         dd = hist.get("marcas", {}).get(marca, {})
         filas = []
         for f in sorted(dd.keys())[-dias:]:
@@ -499,54 +567,142 @@ def semana_desde_historico(hist, dias=14):
 
 
 def construir_neto_diario_desde_sheet(hoy=None):
-    """neto.json desde el Sheet (R/O/AL). Solo días CERRADOS (t-1 hacia atrás);
-    'hoy' NO lleva neto."""
+    """Actualiza el bloque 'por_dia' de neto.json con los dias CERRADOS del
+    Sheet mensual (col R Venta Real / col O % CR Real / col AL Ticket Real).
+
+    CONTRATO DE ESCRITURA DE neto.json — dos procesos lo tocan:
+      · pipeline.py (nube, todos los dias) -> escribe SOLO 'por_dia'.
+      · neto.py     (tu PC, solo en cyber) -> escribe SOLO 'hoy' desde el CSV.
+    Por eso aqui se hace merge sobre el archivo existente y NUNCA se toca el
+    bloque 'hoy': si lo reescribieramos, borrariamos el neto en vivo del cyber.
+
+    Los valores del Sheet se publican TAL CUAL: no se divide entre IGV ni se
+    recalcula nada. Lo que ves en la col R es lo que sale en el dashboard.
+    """
     hoy = hoy or date.today()
     ayer = hoy - timedelta(days=1)
-    out = {"generado": datetime.now().astimezone().isoformat(timespec="seconds"),
-           "fecha_hoy": str(hoy), "fuente": "sheet_reporte_diario", "marcas": {}}
+    inicio = max(HIST_INICIO, hoy - timedelta(days=HIST_RETENCION_DIAS or 60))
+
+    # 1. Punto de partida: lo que ya esta publicado (para no perder 'hoy').
+    try:
+        with open(ARCHIVO_NETO, "r", encoding="utf-8") as fh:
+            prev = json.load(fh)
+    except (FileNotFoundError, json.JSONDecodeError):
+        prev = {}
+    marcas_prev = prev.get("marcas", {}) if isinstance(prev.get("marcas"), dict) else {}
+
+    out = {
+        "generado": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "fecha_hoy": str(hoy),
+        "modo": "cyber" if ES_CYBER else "diario",
+        "fuente_dias_cerrados": "sheet_reporte_diario",
+        "marcas": {},
+    }
+    # metadatos de neto.py (corte del neto en vivo) se conservan si existen
+    for k in ("corte", "corte_neto", "igv"):
+        if k in prev:
+            out[k] = prev[k]
+
     for marca in ("TIENDAS EFE", "LA CURACAO"):
+        antes = marcas_prev.get(marca, {}) if isinstance(marcas_prev.get(marca), dict) else {}
         por_dia = {}
-        d = HIST_INICIO
+        d = inicio
         while d <= ayer:
             n = leer_neto_diario(marca, d)
             if n:
-                por_dia[str(d)] = {"venta_neta": n["venta_neta"],
-                                   "cr_neto": n["cr_neto"],
-                                   "ticket_neto": n["ticket_neto"]}
+                por_dia[str(d)] = {
+                    "venta_neta":  n["venta_neta"],
+                    "cr_neto":     n["cr_neto"],
+                    "ticket_neto": n["ticket_neto"],
+                }
             d += timedelta(days=1)
-        out["marcas"][marca] = {"por_dia": por_dia}
-    with open("neto.json", "w", encoding="utf-8") as f:
+        bloque = {"por_dia": por_dia}
+        if antes.get("hoy") is not None:
+            bloque["hoy"] = antes["hoy"]      # intacto: lo maneja neto.py
+        out["marcas"][marca] = bloque
+
+    with open(ARCHIVO_NETO, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     return out
-  
+
+
+# ---------------------------------------------------------------------------
+# VISTA MES — acumulado del mes vs meta del mes (suma de la col F del Sheet)
+# ---------------------------------------------------------------------------
+def construir_mes(hist, reportes, hoy=None):
+    """Por marca: meta del mes, real acumulado (dias cerrados del historico +
+    lo que va de hoy), proyeccion de cierre y el detalle dia por dia."""
+    hoy = hoy or date.today()
+    ini_mes = hoy.replace(day=1)
+    fin_mes = (ini_mes + timedelta(days=32)).replace(day=1) - timedelta(days=1)
+
+    out = {}
+    for marca in MARCAS_ACTIVAS:
+        dd = hist.get("marcas", {}).get(marca, {})
+        dias, real_acum = [], 0
+        d = ini_mes
+        while d <= fin_mes:
+            key = str(d)
+            if d == hoy:
+                real = reportes[marca]["real_acum"] if marca in reportes else None
+                parcial = True
+            elif key in dd:
+                real = dd[key].get("real", {}).get("sesiones", 0)
+                parcial = False
+            else:
+                real, parcial = None, False
+            if real is not None:
+                real_acum += real
+            dias.append({"fecha": key, "dia": DIAS_CORTOS[d.weekday()],
+                         "proy": round(leer_proyeccion_diaria(marca, d)),
+                         "real": real, "parcial": parcial})
+            d += timedelta(days=1)
+
+        meta = round(leer_meta_mensual(marca, hoy))
+        # Cierre estimado: se cuentan los dias ya cerrados; hoy va aparte porque
+        # esta a medio dia y arrastraria el promedio hacia abajo.
+        cerrados = [x for x in dias if x["real"] is not None and not x["parcial"]]
+        prom = (sum(x["real"] for x in cerrados) / len(cerrados)) if cerrados else 0
+        restantes = (fin_mes - hoy).days          # dias despues de hoy
+        proy_cierre = round(real_acum + prom * restantes) if prom else None
+
+        out[marca] = {
+            "mes": hoy.strftime("%Y-%m"),
+            "meta": meta,
+            "real": real_acum,
+            "avance": (real_acum / meta) if meta else 0,
+            "dias_cerrados": len(cerrados),
+            "dias_mes": fin_mes.day,
+            "proy_cierre": proy_cierre,
+            "dias": dias,
+        }
+    return out
+
+
 def actualizar_historico(hoy=None):
-    """Mantiene historico.json con TODOS los días ya cerrados de CYBER DAYS
-    y CYBER WOW (no solo los del evento activo hoy). Así, al cruzar de un
-    evento a otro, el último día del evento anterior sí se cierra y guarda.
-    Rellena los que falten y refresca 'ayer' (por si Yandex asentó tarde).
-    Los días más antiguos ya guardados no se vuelven a consultar."""
+    """Mantiene historico.json con los dias ya CERRADOS.
+
+    · Ventana: desde HIST_INICIO (o los ultimos HIST_RETENCION_DIAS) hasta ayer.
+    · 'Ayer' se refresca siempre (Yandex a veces asienta tarde).
+    · Los dias ya guardados no se vuelven a consultar.
+    · Los faltantes se rellenan de a BACKFILL_MAX por corrida, del mas reciente
+      al mas antiguo. Esto evita reventar la cuota de Yandex cuando hay un hueco
+      grande (caso tipico: JUNTOZ, que no se consulta en diario, al entrar cyber
+      tendria 60 dias vacios de golpe).
+    · Fuera de la ventana de retencion se podan los dias viejos.
+    """
     hoy = hoy or date.today()
     ayer = hoy - timedelta(days=1)
 
-    if ES_DIARIO:
-        inicio = HIST_INICIO
-        if HIST_RETENCION_DIAS:
-            inicio = max(inicio, hoy - timedelta(days=HIST_RETENCION_DIAS))
-        cerrados = []
-        d = inicio
-        while d <= ayer:
-            cerrados.append(d)
-            d += timedelta(days=1)
-    else:
-        inicio_total = min(CYBER_DAYS[0], CYBER_WOW[0])
-        fin_total    = max(CYBER_DAYS[1], CYBER_WOW[1])
-        cerrados = []
-        d = inicio_total
-        while d <= min(ayer, fin_total):
-            if dia_pertenece_a_evento(d):
-                cerrados.append(d)
-            d += timedelta(days=1)
+    inicio = HIST_INICIO
+    if HIST_RETENCION_DIAS:
+        inicio = max(inicio, hoy - timedelta(days=HIST_RETENCION_DIAS))
+
+    ventana = []
+    d = inicio
+    while d <= ayer:
+        ventana.append(d)
+        d += timedelta(days=1)
 
     hist = {"marcas": {m: {} for m in MARCAS}}
     try:
@@ -555,16 +711,27 @@ def actualizar_historico(hoy=None):
         if isinstance(prev.get("marcas"), dict):
             for m in MARCAS:
                 hist["marcas"][m] = prev["marcas"].get(m, {})
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         pass
 
-    if cerrados:
-        for marca in MARCAS:
-            for d in cerrados:
-                key = str(d)
-                if key in hist["marcas"][marca] and d != ayer:
-                    continue   # ya guardado y no es 'ayer' -> no re-consultar
-                hist["marcas"][marca][key] = construir_bloque_fecha(marca, d)
+    validos = {str(d) for d in ventana}
+    for marca in MARCAS_ACTIVAS:
+        guardados = hist["marcas"].setdefault(marca, {})
+
+        # 1. Poda de dias fuera de la ventana de retencion
+        for key in [k for k in guardados if k not in validos]:
+            del guardados[key]
+
+        # 2. Refresco de ayer + relleno de faltantes (mas reciente primero)
+        pendientes = [d for d in reversed(ventana)
+                      if str(d) not in guardados or d == ayer]
+        for d in pendientes[:BACKFILL_MAX]:
+            guardados[str(d)] = construir_bloque_fecha(marca, d)
+
+        faltan = len(pendientes) - BACKFILL_MAX
+        if faltan > 0:
+            print(f"  {marca}: quedan {faltan} dias por rellenar "
+                  f"(se completan en las proximas corridas).")
 
     hist["generado"] = datetime.now().astimezone().isoformat(timespec="seconds")
     with open(SALIDA_HISTORICO, "w", encoding="utf-8") as f:
@@ -689,10 +856,10 @@ def alerta(msg):
         import smtplib, ssl
         from correo import GMAIL_USER, GMAIL_PASS, DESTINATARIOS
         m = EmailMessage()
-        m["Subject"] = "FALLO pipeline Cyber - revisar"
+        m["Subject"] = f"FALLO pipeline ({'cyber' if ES_CYBER else 'diario'}) - revisar"
         m["From"] = GMAIL_USER
         m["To"] = ", ".join(DESTINATARIOS)
-        m.set_content("El pipeline de Cyber falló:\n\n" + msg)
+        m.set_content(f"El pipeline ({'cyber' if ES_CYBER else 'diario'}) fallo:\n\n" + msg)
         ctx = ssl.create_default_context()
         with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ctx) as s:
             s.login(GMAIL_USER, GMAIL_PASS)
@@ -705,62 +872,74 @@ def alerta(msg):
 # MAIN
 # ---------------------------------------------------------------------------
 def main():
+    if not job_le_toca():
+        modo_hoy = "cyber" if ES_CYBER else "diario"
+        print(f"Hoy es dia {modo_hoy} y este job es MODO={MODO_JOB}. "
+              f"No hago nada (lo cubre el otro workflow).")
+        return
+
+    print(f"MODO {'CYBER' if ES_CYBER else 'DIARIO'} · "
+          f"marcas: {', '.join(MARCAS_ACTIVAS)}")
     print("Extrayendo de Yandex...")
     payload, reportes = construir_payload()
 
-    # Sheet BACKEND (Cortes + Semana totales)
-    try:
-        escribir_corte(reportes)
-        escribir_semana(reportes)
-        payload["semana"] = leer_semana()
-        print("Sheet BACKEND actualizado.")
-    except Exception as e:
-        print(f"Aviso: Sheet BACKEND no actualizado ({e}). El JSON sigue.")
+    # --- Sheets BACKEND / META HORARIA: solo tienen sentido en cyber ---
+    if ES_CYBER:
+        try:
+            escribir_corte(reportes)
+            escribir_semana(reportes)
+            payload["semana"] = leer_semana()
+            print("Sheet BACKEND actualizado.")
+        except Exception as e:
+            print(f"Aviso: Sheet BACKEND no actualizado ({e}). El JSON sigue.")
 
-    # Detalle por hora (semana_horas) -> JSON del dashboard
-    try:
-        nombre_ev, semana_horas = construir_semana_horas(reportes)
-        payload["semana_horas"] = semana_horas
-    except Exception as e:
-        print(f"Aviso: semana_horas no construida ({e}).")
-        nombre_ev, semana_horas = None, {}
+        try:
+            nombre_ev, semana_horas = construir_semana_horas(reportes)
+            payload["semana_horas"] = semana_horas
+        except Exception as e:
+            print(f"Aviso: semana_horas no construida ({e}).")
+            nombre_ev, semana_horas = None, {}
 
-    # Sheet META HORARIA (columnas Real)
-    try:
-        if nombre_ev:
-            escribir_meta_horaria(nombre_ev, semana_horas)
-            print("Sheet META HORARIA actualizado.")
-    except Exception as e:
-        print(f"Aviso: Meta horaria no escrita ({e}). El JSON sigue.")
+        try:
+            if nombre_ev:
+                escribir_meta_horaria(nombre_ev, semana_horas)
+                print("Sheet META HORARIA actualizado.")
+        except Exception as e:
+            print(f"Aviso: Meta horaria no escrita ({e}). El JSON sigue.")
 
-    # data.json
+    # data.json (primera escritura: el dashboard ya tiene lo del dia)
     with open(SALIDA_JSON, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"{SALIDA_JSON} escrito.")
 
-    # historico.json (días cerrados) — aditivo, NO bloquea el flujo en vivo
-    # historico.json (días cerrados) — aditivo, NO bloquea el flujo en vivo
+    # historico.json — aditivo, NO bloquea el flujo en vivo
+    hist = None
     try:
         hist = actualizar_historico()
         print(f"{SALIDA_HISTORICO} actualizado.")
-        if ES_DIARIO:
-            # 'Semana' con días cerrados y neto desde el Sheet; regraba data.json.
+    except Exception as e:
+        print(f"Aviso: historico no actualizado ({e}). El resto sigue.")
+
+    # Semana + Mes desde el historico (dias cerrados, numeros finales)
+    if hist is not None:
+        try:
             payload["semana"] = semana_desde_historico(hist)
+            payload["mes"] = construir_mes(hist, reportes)
             with open(SALIDA_JSON, "w", encoding="utf-8") as f:
                 json.dump(payload, f, ensure_ascii=False, indent=2)
-            
-    except Exception as e:
-        print(f"Aviso: histórico/neto no actualizado ({e}). El resto sigue.")
-    if ES_DIARIO:
-        try:
-            construir_neto_diario_desde_sheet()
-            print("neto.json (desde Sheet) escrito.")
+            print("Semana + Mes reconstruidos desde el historico.")
         except Exception as e:
-            print(f"Aviso: neto.json no escrito ({e}).")
+            print(f"Aviso: semana/mes no reconstruidos ({e}).")
 
-    # PNG + correo
-    # PNG + correo (solo en modo cyber)
-    if not ES_DIARIO:
+    # neto.json — bloque 'por_dia' desde el Sheet. Nunca toca 'hoy'.
+    try:
+        construir_neto_diario_desde_sheet()
+        print("neto.json actualizado (por_dia desde el Sheet).")
+    except Exception as e:
+        print(f"Aviso: neto.json no actualizado ({e}).")
+
+    # PNG + correo: solo en cyber
+    if ES_CYBER:
         from correo import construir_html, render_png, construir_correo, enviar
         reps_lista = []
         for marca, r in reportes.items():
@@ -778,6 +957,5 @@ if __name__ == "__main__":
     except Exception:
         err = traceback.format_exc()
         print(err, file=sys.stderr)
-        if not ES_DIARIO:
-            alerta(err)
+        alerta(err)          # tambien en diario: si se cae, hay que enterarse
         sys.exit(1)
