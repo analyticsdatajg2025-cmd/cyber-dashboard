@@ -57,6 +57,11 @@ ARCHIVO_NETO     = "neto.json"
 
 HIST_INICIO = date(2026, 7, 6)     # ancla del historico (no baja de aqui)
 HIST_RETENCION_DIAS = 60           # dias cerrados que se conservan
+HIST_REFRESH_DIAS = 3              # dias cerrados recientes que se vuelven a
+                                   # consultar en cada corrida diaria: Yandex
+                                   # sigue asentando datos por 1-2 dias, asi el
+                                   # historico deja de quedar congelado con la
+                                   # foto del primer dia.
 BACKFILL_MAX = 7                   # dias faltantes que se rellenan por corrida
                                    # (protege la cuota de Yandex al volver de
                                    #  un hueco largo, ej. JUNTOZ al entrar cyber)
@@ -679,6 +684,32 @@ def construir_mes(hist, reportes, hoy=None):
     return out
 
 
+def refrescar_metas_historico(hist):
+    """Vuelve a leer del Sheet la meta de sesiones de TODOS los dias guardados.
+
+    Por que: la meta de un dia cerrado se congelaba con el valor que tuviera el
+    Sheet la manana siguiente. Si en ese momento el IMPORTRANGE estaba cargando
+    o daba #REF!, el dia quedaba con meta 0 para siempre (caso 2026-08-01).
+    Releerla en cada corrida es barato -- la pestania del mes ya esta cacheada,
+    no cuesta llamadas extra a Yandex -- y ademas recoge cualquier correccion
+    que hagas despues en el Sheet.
+
+    Solo pisa el valor guardado cuando el Sheet devuelve algo > 0, para que un
+    error transitorio nunca borre una meta buena."""
+    cambios = 0
+    for marca in MARCAS_ACTIVAS:
+        for key, bloque in hist.get("marcas", {}).get(marca, {}).items():
+            try:
+                nueva = round(leer_proyeccion_diaria(marca, date.fromisoformat(key)))
+            except Exception:
+                continue
+            if nueva > 0 and nueva != bloque.get("meta_sesiones_dia"):
+                bloque["meta_sesiones_dia"]   = nueva
+                bloque["meta_sesiones_corte"] = nueva
+                cambios += 1
+    return cambios
+
+
 def actualizar_historico(hoy=None):
     """Mantiene historico.json con los dias ya CERRADOS.
 
@@ -722,16 +753,30 @@ def actualizar_historico(hoy=None):
         for key in [k for k in guardados if k not in validos]:
             del guardados[key]
 
-        # 2. Refresco de ayer + relleno de faltantes (mas reciente primero)
-        pendientes = [d for d in reversed(ventana)
-                      if str(d) not in guardados or d == ayer]
-        for d in pendientes[:BACKFILL_MAX]:
+        # 2. Refresco de los ultimos dias + relleno de faltantes.
+        # En cyber corre cada hora, asi que basta con refrescar 'ayer';
+        # en diario refrescamos HIST_REFRESH_DIAS porque solo hay una pasada.
+        n_ref = HIST_REFRESH_DIAS if ES_DIARIO else 1
+        recientes = {str(ayer - timedelta(days=i)) for i in range(n_ref)}
+
+        refrescar  = [d for d in ventana if str(d) in recientes]
+        faltantes  = [d for d in reversed(ventana)
+                      if str(d) not in guardados and str(d) not in recientes]
+        for d in refrescar + faltantes[:BACKFILL_MAX]:
             guardados[str(d)] = construir_bloque_fecha(marca, d)
 
-        faltan = len(pendientes) - BACKFILL_MAX
+        faltan = len(faltantes) - BACKFILL_MAX
         if faltan > 0:
             print(f"  {marca}: quedan {faltan} dias por rellenar "
                   f"(se completan en las proximas corridas).")
+
+    # Metas re-leidas del Sheet (arregla dias congelados con meta 0)
+    try:
+        n = refrescar_metas_historico(hist)
+        if n:
+            print(f"  metas del historico corregidas desde el Sheet: {n}")
+    except Exception as e:
+        print(f"  Aviso: no pude refrescar metas del historico ({e}).")
 
     hist["generado"] = datetime.now().astimezone().isoformat(timespec="seconds")
     with open(SALIDA_HISTORICO, "w", encoding="utf-8") as f:
