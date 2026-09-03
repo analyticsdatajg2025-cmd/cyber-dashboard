@@ -1,6 +1,6 @@
 {
-  "generado": "2026-09-02T17:02:43-05:00",
-  "fecha_hoy": "2026-09-02",
+  "generado": "2026-09-03T16:56:41-05:00",
+  "fecha_hoy": "2026-09-03",
   "modo": "diario",
   "fuente_dias_cerrados": "sheet_reporte_diario",
   "marcas": {
@@ -290,6 +290,11 @@
           "venta_neta": 63845.3,
           "cr_neto": 0.004971,
           "ticket_neto": 632.13
+        },
+        "2026-09-02": {
+          "venta_neta": 48738.16,
+          "cr_neto": 0.003255,
+          "ticket_neto": 761.53
         }
       },
       "hoy": {
@@ -586,9 +591,14 @@
           "ticket_neto": 1746.78
         },
         "2026-09-01": {
-          "venta_neta": 45888.18,
-          "cr_neto": 0.002598,
-          "ticket_neto": 777.77
+          "venta_neta": 49080.41,
+          "cr_neto": 0.00273,
+          "ticket_neto": 791.62
+        },
+        "2026-09-02": {
+          "venta_neta": 55105.88,
+          "cr_neto": 0.002802,
+          "ticket_neto": 715.66
         }
       },
       "hoy": {
