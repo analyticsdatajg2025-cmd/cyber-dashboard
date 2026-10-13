@@ -1,6 +1,6 @@
 {
-  "generado": "2026-10-11T18:13:38-05:00",
-  "corte": 18,
+  "generado": "2026-10-12T20:38:59-05:00",
+  "corte": 20,
   "attribution": "lastsign",
   "modo": "diario",
   "evento": null,
@@ -8,7 +8,7 @@
   "hist_retencion_dias": 60,
   "marcas": {
     "LA CURACAO": {
-      "meta_sesiones_dia": 18237,
+      "meta_sesiones_dia": 33434,
       "meta_sesiones_corte": null,
       "real": {
         "sesiones": 0,
@@ -138,14 +138,14 @@
         {
           "h": 19,
           "ses_proy": null,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 0,
+          "ing_real": 0.0
         },
         {
           "h": 20,
           "ses_proy": null,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 0,
+          "ing_real": 0.0
         },
         {
           "h": 21,
@@ -170,7 +170,7 @@
       "top_productos": []
     },
     "TIENDAS EFE": {
-      "meta_sesiones_dia": 14921,
+      "meta_sesiones_dia": 27355,
       "meta_sesiones_corte": null,
       "real": {
         "sesiones": 0,
@@ -300,14 +300,14 @@
         {
           "h": 19,
           "ses_proy": null,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 0,
+          "ing_real": 0.0
         },
         {
           "h": 20,
           "ses_proy": null,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 0,
+          "ing_real": 0.0
         },
         {
           "h": 21,
@@ -334,13 +334,6 @@
   },
   "semana": {
     "LA CURACAO": [
-      {
-        "fecha": "2026-09-27",
-        "dia": "Dom",
-        "proy": 21736,
-        "real": 20283,
-        "avance": 0.9331523739418476
-      },
       {
         "fecha": "2026-09-28",
         "dia": "Lun",
@@ -431,16 +424,16 @@
         "proy": 20263,
         "real": 17183,
         "avance": 0.8479988155751863
+      },
+      {
+        "fecha": "2026-10-11",
+        "dia": "Dom",
+        "proy": 18237,
+        "real": 0,
+        "avance": 0.0
       }
     ],
     "TIENDAS EFE": [
-      {
-        "fecha": "2026-09-27",
-        "dia": "Dom",
-        "proy": 17784,
-        "real": 16851,
-        "avance": 0.9475371120107963
-      },
       {
         "fecha": "2026-09-28",
         "dia": "Lun",
@@ -531,6 +524,13 @@
         "proy": 16579,
         "real": 65880,
         "avance": 3.973701670788347
+      },
+      {
+        "fecha": "2026-10-11",
+        "dia": "Dom",
+        "proy": 14921,
+        "real": 0,
+        "avance": 0.0
       }
     ]
   },
@@ -541,9 +541,9 @@
       "meta": 1013158,
       "real": 240966,
       "avance": 0.23783654671828086,
-      "dias_cerrados": 10,
+      "dias_cerrados": 11,
       "dias_mes": 31,
-      "proy_cierre": 722898,
+      "proy_cierre": 657180,
       "dias": [
         {
           "fecha": "2026-10-01",
@@ -620,14 +620,14 @@
           "dia": "Dom",
           "proy": 18237,
           "real": 0,
-          "parcial": true
+          "parcial": false
         },
         {
           "fecha": "2026-10-12",
           "dia": "Lun",
           "proy": 33434,
-          "real": null,
-          "parcial": false
+          "real": 0,
+          "parcial": true
         },
         {
           "fecha": "2026-10-13",
@@ -769,9 +769,9 @@
       "meta": 828947,
       "real": 462596,
       "avance": 0.5580525654836799,
-      "dias_cerrados": 10,
+      "dias_cerrados": 11,
       "dias_mes": 31,
-      "proy_cierre": 1387788,
+      "proy_cierre": 1261625,
       "dias": [
         {
           "fecha": "2026-10-01",
@@ -848,14 +848,14 @@
           "dia": "Dom",
           "proy": 14921,
           "real": 0,
-          "parcial": true
+          "parcial": false
         },
         {
           "fecha": "2026-10-12",
           "dia": "Lun",
           "proy": 27355,
-          "real": null,
-          "parcial": false
+          "real": 0,
+          "parcial": true
         },
         {
           "fecha": "2026-10-13",
