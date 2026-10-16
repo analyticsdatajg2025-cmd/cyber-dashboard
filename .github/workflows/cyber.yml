@@ -15,6 +15,10 @@ jobs:
     env:
       MODO: cyber
       TZ: America/Lima    # el runner corre en UTC; sin esto date.today() se adelanta de noche
+      # IDs de propiedad GA4 (Settings > Secrets and variables > Actions > Variables)
+      GA4_PROP_CURACAO: ${{ vars.GA4_PROP_CURACAO }}
+      GA4_PROP_EFE: ${{ vars.GA4_PROP_EFE }}
+      GA4_PROP_JUNTOZ: ${{ vars.GA4_PROP_JUNTOZ }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,7 +37,6 @@ jobs:
           python -m playwright install chromium
       - name: Escribir secretos a archivos locales
         run: |
-          echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
           printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
           echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
       - name: Correr pipeline
@@ -52,4 +55,4 @@ jobs:
           git pull --rebase && git push
       - name: Limpiar secretos
         if: always()
-        run: rm -f mi_token.txt gmail.txt credenciales.json
+        run: rm -f gmail.txt credenciales.json
