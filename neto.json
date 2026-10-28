@@ -1,16 +1,11 @@
 {
-  "generado": "2026-10-27T18:16:09-05:00",
-  "fecha_hoy": "2026-10-27",
+  "generado": "2026-10-28T18:40:25-05:00",
+  "fecha_hoy": "2026-10-28",
   "modo": "diario",
   "fuente_dias_cerrados": "sheet_reporte_diario",
   "marcas": {
     "TIENDAS EFE": {
       "por_dia": {
-        "2026-08-28": {
-          "venta_neta": 120927.54,
-          "cr_neto": 0.003634,
-          "ticket_neto": 1679.55
-        },
         "2026-08-29": {
           "venta_neta": 78802.49,
           "cr_neto": 0.005093,
@@ -282,9 +277,9 @@
           "ticket_neto": 708.94
         },
         "2026-10-23": {
-          "venta_neta": 48910.23,
-          "cr_neto": 0.003263,
-          "ticket_neto": 815.17
+          "venta_neta": 48994.13,
+          "cr_neto": 0.003318,
+          "ticket_neto": 803.18
         },
         "2026-10-24": {
           "venta_neta": 15442.52,
@@ -292,9 +287,19 @@
           "ticket_neto": 482.58
         },
         "2026-10-25": {
-          "venta_neta": 5488.42,
-          "cr_neto": 0.000956,
-          "ticket_neto": 343.03
+          "venta_neta": 13546.91,
+          "cr_neto": 0.001614,
+          "ticket_neto": 501.74
+        },
+        "2026-10-26": {
+          "venta_neta": 36837.36,
+          "cr_neto": 0.002985,
+          "ticket_neto": 558.14
+        },
+        "2026-10-27": {
+          "venta_neta": 38346.73,
+          "cr_neto": 0.003002,
+          "ticket_neto": 782.59
         }
       },
       "hoy": {
@@ -305,11 +310,6 @@
     },
     "LA CURACAO": {
       "por_dia": {
-        "2026-08-28": {
-          "venta_neta": 95254.4,
-          "cr_neto": 0.003322,
-          "ticket_neto": 907.18
-        },
         "2026-08-29": {
           "venta_neta": 82400.76,
           "cr_neto": 0.005003,
@@ -596,9 +596,19 @@
           "ticket_neto": 896.49
         },
         "2026-10-25": {
-          "venta_neta": 20618.31,
-          "cr_neto": 0.00241,
-          "ticket_neto": 448.22
+          "venta_neta": 222064.05,
+          "cr_neto": 0.003196,
+          "ticket_neto": 3640.39
+        },
+        "2026-10-26": {
+          "venta_neta": 47832.21,
+          "cr_neto": 0.002535,
+          "ticket_neto": 434.84
+        },
+        "2026-10-27": {
+          "venta_neta": 47822.53,
+          "cr_neto": 0.003569,
+          "ticket_neto": 549.68
         }
       },
       "hoy": {
