@@ -55,7 +55,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);
 .kpi .v{font-size:2.6vh;font-weight:800;margin-top:.4vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
 .funnel{display:flex;flex-direction:column;gap:.7vh;}
-.fr{display:grid;grid-template-columns:8.5vw 1fr 4.6vw;align-items:center;gap:.6vw;font-size:1.5vh;}
+.fr{display:grid;grid-template-columns:10vw 1fr 4.6vw;align-items:center;gap:.6vw;font-size:1.5vh;}
 .fr .n{color:var(--muted);}
 .fr .bar{height:1.7vh;background:var(--grid);border-radius:4px;overflow:hidden;}
 .fr .bar i{display:block;height:100%;background:var(--c);border-radius:4px;}
@@ -87,7 +87,7 @@ td.s{font-weight:700;white-space:nowrap;}
 <div class="app">
   <div class="top">
     <div class="title"><span id="ev">VENTAS EN VIVO</span>
-      <span class="sub">LA CURACAO · TIENDAS EFE · JUNTOZ — DATA GROSS · INCLUYE IGV</span></div>
+      <span class="sub">LA CURACAO · TIENDAS EFE · JUNTOZ — DATA GROSS</span></div>
     <div class="fresh warn" id="fresh">Cargando…</div>
     <div class="clock"><b id="hora">--:--:--</b><span id="fecha"></span></div>
   </div>
@@ -103,8 +103,8 @@ td.s{font-weight:700;white-space:nowrap;}
 /* ======================= CONFIG ======================= */
 const REPO = "https://raw.githubusercontent.com/analyticsdatajg2025-cmd/cyber-dashboard/main/";
 const FUENTES = [REPO + "panel.json", "./panel.json"];
-const FILAS_FUENTES = 5;               // fuentes visibles por marca
-const FILAS_TOP = 5;                  // filas visibles del top por marca
+const FILAS_FUENTES = 6;               // fuentes visibles por marca
+const FILAS_TOP = 3;                  // filas visibles del top por marca
 const REFRESCO_MS = 60 * 1000;        // cada cuanto revisa si hay datos nuevos
 const FRESCO_MIN = 20, ATRASO_MIN = 35; // verde <= 20 min, ambar <= 35, rojo mas
 const EVENTOS = [                      // [nombre, inicio, fin] (incluye la vispera)
@@ -174,12 +174,13 @@ function frescura(){
 
 /* ---------------- render ---------------- */
 function funnelHTML(f){
-  // Los 3 pasos se miden en unidades de producto (vistas de ficha, unidades
-  // al carrito, unidades compradas), asi el porcentaje entre pasos es valido.
-  // Las sesiones NO van aqui: una sesion ve varias fichas.
-  const pasos = [['Vistos',f.vistos,''],
-                 ['Al carrito',f.carrito,'pasa al carrito'],
-                 ['Comprados',f.comprados,'compra']];
+  // tipo "sesiones" (como GA4): cada paso cuenta SESIONES, nunca supera al anterior.
+  // tipo "unidades" (respaldo): fichas vistas / unidades al carrito / compradas.
+  const pasos = f.tipo === 'sesiones'
+    ? [['Sesiones',f.sesiones,''], ['Vieron producto',f.vistos,'ve producto'],
+       ['Agregaron al carrito',f.carrito,'agrega al carrito'], ['Compraron',f.comprados,'compra']]
+    : [['Vistos',f.vistos,''], ['Al carrito',f.carrito,'pasa al carrito'],
+       ['Comprados',f.comprados,'compra']];
   const max = Math.max(1, pasos[0][1]||0);
   return pasos.map(([n,v,txt],i)=>{
     const prev = i ? pasos[i-1][1] : null;
@@ -197,7 +198,7 @@ function fuentesHTML(fs){
   const totIng = fs.reduce((a,x)=>a+(x.ingresos||0),0);
   const totSes = fs.reduce((a,x)=>a+(x.sesiones||0),0);
   const porVentas = totIng > 0;
-  return '<table class="src"><thead><tr><th>Fuente</th><th>% '+(porVentas?'ventas':'sesiones')+'</th>'+
+  return '<table class="src"><thead><tr><th>Canal</th><th>% '+(porVentas?'ventas':'sesiones')+'</th>'+
     '<th>Ses.</th><th>Trx</th><th>Ventas</th></tr></thead><tbody>'+
     filas.map(x=>{
       const sh = porVentas ? x.ingresos/totIng : (totSes ? x.sesiones/totSes : 0);
@@ -232,9 +233,9 @@ function columna(m, b){
       '<div class="kpi"><div class="lbl">CR</div><div class="v">'+fmt.pct(k.cr)+'</div></div>'+
       '<div class="kpi"><div class="lbl">Ticket</div><div class="v">S/ '+fmt.s(k.ticket)+'</div></div>'+
     '</div>'+
-    '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día · unidades de producto</div>'+
+    '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día · '+(b.funnel.tipo==='sesiones'?'sesiones':'unidades de producto')+'</div>'+
       '<div class="funnel">'+funnelHTML(b.funnel)+'</div></div>'+
-    '<div><div class="lbl" style="margin-bottom:.6vh">Fuentes de tráfico · hoy</div>'+fuentesHTML(b.fuentes)+'</div>'+
+    '<div><div class="lbl" style="margin-bottom:.6vh">Canales · hoy</div>'+fuentesHTML(b.fuentes)+'</div>'+
     '<div class="top10"><div class="lbl" style="margin-bottom:.6vh">Top productos · hoy</div>'+topHTML(b.top)+'</div>'+
   '</div>';
 }
