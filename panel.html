@@ -121,6 +121,11 @@ const MARCAS = {
 const fmt = {
   n: v => Number(v||0).toLocaleString('es-PE'),
   s: v => Number(v||0).toLocaleString('es-PE',{maximumFractionDigits:0}),
+  // compacto para tarjetas angostas: S/ 850 · S/ 1.2k · S/ 12k
+  sk: v => { v = Number(v||0);
+             return 'S/ ' + (v >= 10000 ? Math.round(v/1000) + 'k'
+                           : v >= 1000 ? (v/1000).toFixed(1) + 'k'
+                           : v.toLocaleString('es-PE',{maximumFractionDigits:0})); },
   t: v => Number(v||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}),
   pct: v => (Number(v||0)*100).toFixed(2)+'%',
   hm: d => d.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit',hour12:false}),
@@ -231,7 +236,7 @@ function columna(m, b){
       '<div class="kpi"><div class="lbl">Sesiones</div><div class="v">'+fmt.n(k.sesiones)+'</div></div>'+
       '<div class="kpi"><div class="lbl">Transacc.</div><div class="v">'+fmt.n(k.compras)+'</div></div>'+
       '<div class="kpi"><div class="lbl">CR</div><div class="v">'+fmt.pct(k.cr)+'</div></div>'+
-      '<div class="kpi"><div class="lbl">Ticket</div><div class="v">S/ '+fmt.s(k.ticket)+'</div></div>'+
+      '<div class="kpi"><div class="lbl">Ticket</div><div class="v" title="S/ '+fmt.s(k.ticket)+'">'+fmt.sk(k.ticket)+'</div></div>'+
     '</div>'+
     '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día · '+(b.funnel.tipo==='sesiones'?'sesiones':'unidades de producto')+'</div>'+
       '<div class="funnel">'+funnelHTML(b.funnel)+'</div></div>'+
