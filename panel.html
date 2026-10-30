@@ -54,13 +54,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);
 .kpi{min-width:0;}
 .kpi .v{font-size:2.6vh;font-weight:800;margin-top:.4vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-.funnel{display:flex;flex-direction:column;gap:.7vh;}
-.fr{display:grid;grid-template-columns:10vw 1fr 4.6vw;align-items:center;gap:.6vw;font-size:1.5vh;}
-.fr .n{color:var(--muted);}
-.fr .bar{height:1.7vh;background:var(--grid);border-radius:4px;overflow:hidden;}
-.fr .bar i{display:block;height:100%;background:var(--c);border-radius:4px;}
-.fr .v{text-align:right;font-weight:700;}
-.fr .p{grid-column:2/4;font-size:1.2vh;color:var(--hint);margin-top:-.5vh;}
+.funnel svg{display:block;width:100%;height:14vh;}
+.funnel .bandtxt{font-family:var(--font);font-weight:700;}
+.funnel .conv{font-family:var(--font);fill:var(--muted);}
 
 .top10{flex:1;min-height:0;overflow:hidden;}
 .src td.nm{color:var(--text);}
@@ -94,7 +90,7 @@ td.s{font-weight:700;white-space:nowrap;}
   <div class="cols" id="cols"></div>
   <div class="foot">
     <span id="dia">—</span>
-    <span>Se actualiza solo · datos cada ~10 min · revisa la pantalla cada 60 s</span>
+    <span>Actualización cada 5 minutos</span>
   </div>
 </div>
 <div class="err" id="err">No se pudo cargar panel.json — reintentando…</div>
@@ -103,18 +99,19 @@ td.s{font-weight:700;white-space:nowrap;}
 /* ======================= CONFIG ======================= */
 const REPO = "https://raw.githubusercontent.com/analyticsdatajg2025-cmd/cyber-dashboard/main/";
 const FUENTES = [REPO + "panel.json", "./panel.json"];
-const FILAS_FUENTES = 6;               // fuentes visibles por marca
-const FILAS_TOP = 3;                  // filas visibles del top por marca
+const FILAS_FUENTES = 5;               // fuentes visibles por marca
+const FILAS_TOP = 5;                  // filas visibles del top por marca
 const REFRESCO_MS = 60 * 1000;        // cada cuanto revisa si hay datos nuevos
-const FRESCO_MIN = 20, ATRASO_MIN = 35; // verde <= 20 min, ambar <= 35, rojo mas
+const FRESCO_MIN = 12, ATRASO_MIN = 25; // verde <= 12 min, ambar <= 25, rojo mas
+                                       // (corre cada 5 min + hasta 5 min de cache de GitHub)
 const EVENTOS = [                      // [nombre, inicio, fin] (incluye la vispera)
   ["CYBER WOW",  "2026-11-02", "2026-11-05"],
   ["CYBER DAYS", "2026-11-16", "2026-11-18"],
 ];
 const MARCAS = {
-  "LA CURACAO":  {css:"--lc",  nombre:"LA CURACAO"},
-  "TIENDAS EFE": {css:"--efe", nombre:"TIENDAS EFE"},
-  "JUNTOZ":      {css:"--jz",  nombre:"JUNTOZ"},
+  "LA CURACAO":  {css:"--lc",  nombre:"LA CURACAO",  txt:"#1a1d24"},
+  "TIENDAS EFE": {css:"--efe", nombre:"TIENDAS EFE", txt:"#ffffff"},
+  "JUNTOZ":      {css:"--jz",  nombre:"JUNTOZ",      txt:"#ffffff"},
 };
 /* ====================================================== */
 
@@ -178,35 +175,47 @@ function frescura(){
 }
 
 /* ---------------- render ---------------- */
-function funnelHTML(f){
+function funnelHTML(f, m){
   // tipo "sesiones" (como GA4): cada paso cuenta SESIONES, nunca supera al anterior.
   // tipo "unidades" (respaldo): fichas vistas / unidades al carrito / compradas.
   const pasos = f.tipo === 'sesiones'
-    ? [['Sesiones',f.sesiones,''], ['Vieron producto',f.vistos,'ve producto'],
-       ['Agregaron al carrito',f.carrito,'agrega al carrito'], ['Compraron',f.comprados,'compra']]
-    : [['Vistos',f.vistos,''], ['Al carrito',f.carrito,'pasa al carrito'],
-       ['Comprados',f.comprados,'compra']];
-  const max = Math.max(1, pasos[0][1]||0);
-  return pasos.map(([n,v,txt],i)=>{
-    const prev = i ? pasos[i-1][1] : null;
-    const conv = (i && prev) ? '<div class="p">▼ '+(v/prev*100).toFixed(1)+'% '+txt+'</div>' : '';
-    return '<div class="fr"><span class="n">'+n+'</span>'+
-      '<div class="bar"><i style="width:'+Math.max(1,Math.min(100,(v||0)/max*100)).toFixed(1)+'%"></i></div>'+
-      '<span class="v">'+fmt.n(v)+'</span>'+conv+'</div>';
-  }).join('');
+    ? [['Sesiones',f.sesiones], ['Vieron producto',f.vistos],
+       ['Agregaron al carrito',f.carrito], ['Compraron',f.comprados]]
+    : [['Vistos',f.vistos], ['Al carrito',f.carrito], ['Comprados',f.comprados]];
+  // Embudo: el ancho baja de forma pareja (forma fija, legible aunque las cifras
+  // caigan 100x); los numeros y el % de paso dan la magnitud real.
+  const W = 400, CX = 165, H = 34, G = 5, TOP = 330, BOT = 120;
+  const n = pasos.length, alto = n*H + (n-1)*G;
+  const ancho = y => TOP - (TOP-BOT) * (y/alto);
+  const txt = (MARCAS[m]||{}).txt || '#fff';
+  let svg = '<svg viewBox="0 0 '+W+' '+alto+'" preserveAspectRatio="xMidYMid meet">';
+  pasos.forEach(([nom, v], i) => {
+    const y0 = i*(H+G), y1 = y0 + H, a0 = ancho(y0)/2, a1 = ancho(y1)/2;
+    const op = (1 - i*0.16).toFixed(2);
+    svg += '<polygon points="'+(CX-a0)+','+y0+' '+(CX+a0)+','+y0+' '+(CX+a1)+','+y1+' '+(CX-a1)+','+y1+'" '+
+           'style="fill:var('+((MARCAS[m]||{}).css||'--muted')+')" opacity="'+op+'"/>';
+    svg += '<text class="bandtxt" x="'+CX+'" y="'+(y0+H/2+5)+'" text-anchor="middle" font-size="13" fill="'+txt+'">'+
+           esc(nom)+' · '+fmt.n(v)+'</text>';
+    if (i) {   // % que pasa desde el paso anterior, a la derecha
+      const prev = pasos[i-1][1];
+      const pc = prev ? (v/prev*100) : 0;
+      svg += '<text class="conv" x="'+(CX+TOP/2+12)+'" y="'+(y0+H/2+5)+'" font-size="13">▼ '+
+             (pc >= 10 ? pc.toFixed(0) : pc.toFixed(1))+'%</text>';
+    }
+  });
+  return svg + '</svg>';
 }
 
 function fuentesHTML(fs){
-  // % = participacion en las ventas de la marca (o en sesiones si aun no hay ventas)
+  // % sesiones = participacion del canal en las sesiones de la marca. Se calcula
+  // sobre el total (incluye "Otros", que no se muestra), asi es el peso real.
   if (!fs || !fs.length) return '<div class="empty">Sin datos de tráfico aún</div>';
-  const filas = fs.slice(0, FILAS_FUENTES);
-  const totIng = fs.reduce((a,x)=>a+(x.ingresos||0),0);
   const totSes = fs.reduce((a,x)=>a+(x.sesiones||0),0);
-  const porVentas = totIng > 0;
-  return '<table class="src"><thead><tr><th>Canal</th><th>% '+(porVentas?'ventas':'sesiones')+'</th>'+
-    '<th>Ses.</th><th>Trx</th><th>Ventas</th></tr></thead><tbody>'+
+  const filas = fs.filter(x => x.fuente !== 'Otros').slice(0, FILAS_FUENTES);
+  return '<table class="src"><thead><tr><th>Canal</th><th>% sesiones</th>'+
+    '<th>Sesiones</th><th>Trx</th><th>Venta gross</th></tr></thead><tbody>'+
     filas.map(x=>{
-      const sh = porVentas ? x.ingresos/totIng : (totSes ? x.sesiones/totSes : 0);
+      const sh = totSes ? x.sesiones/totSes : 0;
       return '<tr><td class="nm">'+esc(x.fuente)+'</td>'+
         '<td class="sh">'+(sh*100).toFixed(0)+'%</td>'+
         '<td class="u">'+fmt.n(x.sesiones)+'</td><td class="u">'+fmt.n(x.compras)+'</td>'+
@@ -217,7 +226,7 @@ function fuentesHTML(fs){
 function topHTML(top){
   if (!top || !top.length) return '<div class="empty">Aún sin compras hoy</div>';
   return '<table><thead><tr><th>#</th><th>Producto</th><th>Unid.</th><th>Ventas</th></tr></thead><tbody>'+
-    top.slice(0, FILAS_TOP).map((p,i)=>'<tr><td class="r">'+(i+1)+'</td>'+
+    top.slice().sort((a,b)=>(b.ingresos||0)-(a.ingresos||0)).slice(0, FILAS_TOP).map((p,i)=>'<tr><td class="r">'+(i+1)+'</td>'+
       '<td class="nm" title="'+esc(p.nombre)+(p.sku?' · '+esc(p.sku):'')+'">'+esc(p.nombre)+'</td>'+
       '<td class="u">'+fmt.n(p.comprados)+'</td><td class="s">S/ '+fmt.s(p.ingresos)+'</td></tr>').join('')+
     '</tbody></table>';
@@ -239,7 +248,7 @@ function columna(m, b){
       '<div class="kpi"><div class="lbl">Ticket</div><div class="v" title="S/ '+fmt.s(k.ticket)+'">'+fmt.sk(k.ticket)+'</div></div>'+
     '</div>'+
     '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día · '+(b.funnel.tipo==='sesiones'?'sesiones':'unidades de producto')+'</div>'+
-      '<div class="funnel">'+funnelHTML(b.funnel)+'</div></div>'+
+      '<div class="funnel">'+funnelHTML(b.funnel, m)+'</div></div>'+
     '<div><div class="lbl" style="margin-bottom:.6vh">Canales · hoy</div>'+fuentesHTML(b.fuentes)+'</div>'+
     '<div class="top10"><div class="lbl" style="margin-bottom:.6vh">Top productos · hoy</div>'+topHTML(b.top)+'</div>'+
   '</div>';
@@ -249,11 +258,25 @@ function render(){
   const cols = document.getElementById('cols');
   const marcas = Object.keys(MARCAS).filter(m => DATA.marcas && DATA.marcas[m]);
   cols.innerHTML = marcas.map(m => columna(m, DATA.marcas[m])).join('');
+  recortarTop();
   const f = (DATA.marcas[marcas[0]]||{}).fecha;
   document.getElementById('dia').textContent = f
     ? 'Día de los KPIs: ' + new Date(f+'T12:00:00').toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'}) +
       ' (se reinicia a las 00:00)' : '—';
 }
+
+// Oculta las filas del top que no entran completas en la columna (nunca se
+// ve una fila cortada a la mitad, en ninguna resolucion de pantalla).
+function recortarTop(){
+  document.querySelectorAll('.top10').forEach(box => {
+    const limite = box.getBoundingClientRect().bottom;
+    box.querySelectorAll('tbody tr').forEach(tr => {
+      tr.style.display = '';
+      if (tr.getBoundingClientRect().bottom > limite + 1) tr.style.display = 'none';
+    });
+  });
+}
+window.addEventListener('resize', recortarTop);
 
 async function cargar(){
   const d = await traer();
