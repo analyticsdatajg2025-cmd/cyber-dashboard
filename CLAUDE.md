@@ -42,10 +42,28 @@ Dos modos, decididos **solo por la fecha** (`CYBER_DAYS` / `CYBER_WOW` en `pipel
 | | DIARIO | CYBER |
 |---|---|---|
 | Workflow | `Diario.yml` — cron `51 19 * * *` UTC (14:51 Lima) | `cyber.yml` — cada hora 09–21 Lima |
-| Meta | Sheet mensual col F | Excel de proyección horaria |
+| Meta | Sheet mensual col F | Excel de proyección horaria (si el día está vacío en el Excel → meta diaria del Sheet) |
 | JUNTOZ | no se consulta | sí |
-| Sheets BACKEND / META HORARIA | no | sí |
+| Sheet BACKEND | no | sí |
+| Sheet META HORARIA | no | solo si `ESCRIBIR_META_HORARIA = True` (hoy False) |
 | PNG + correo | no | sí, cada hora |
+
+Interruptores del modo cyber (en `pipeline.py`, junto a las fechas):
+- `USAR_PROY_HORARIA` (True): usa el Excel `ARCHIVO_PROY`. Por día y marca, si
+  la suma del Excel es 0 se usa la meta diaria del Sheet mensual sin curva
+  (`proy_horaria()` devuelve ceros → `meta_sesiones_corte = null`).
+- `ESCRIBIR_META_HORARIA` (False): no escribe el Sheet "Meta horaria"
+  (`META_SHEET_KEY` apunta al de julio; activarlo lo sobrescribiría).
+- `NETO_HOY_ACTIVO` (False): no conserva el bloque `hoy` de `neto.json`
+  (tenía una venta neta vieja). Poner True solo si `neto.py` corre en la PC.
+- `correo.py`: sin curva horaria, el PNG muestra HORA | Sesiones + "Meta del
+  día · Avance" en vez de la tabla Proyección/Real/VAR.
+
+Formato del Excel de proyección (`PROYECCIONES_CYBER_JULIO_2026.xlsx`: conserva
+el nombre de julio pero tiene las metas de noviembre): pestañas `CYBER WOW` y
+`CYBER DAYS`; fila 3–26 = horas 0–23; columnas por **día de la semana**
+(no por fecha): LC B–H, EFE K–Q, JUNTOZ T–Z (lunes→domingo). Leído por
+`leer_proyecciones()` con `COL_BASE`.
 
 `MODO` en el workflow dice qué workflow corre; si no le toca el día, se salta
 solo (`job_le_toca()`). `MODO=auto` corre siempre (para pruebas locales).
@@ -141,14 +159,16 @@ Sheet "Meta horaria Cyber Julio26" (`META_SHEET_KEY`), Sheet
 - Fuente activa: **Yandex**. Hubo un incidente de seguridad con Yandex: se
   recomendó rotar `YANDEX_TOKEN`. La migración a **GA4** está en el PR #2
   (draft, sin mergear) — no mergear sin decidirlo con el usuario.
-- **Modo cyber del pipeline NO está configurado** para noviembre: las fechas
-  siguen en julio. Próximos eventos: **Cyber WOW 02–05 nov**, **Cyber Days
-  16–18 nov**. Para activarlo hace falta: Excel de proyecciones nuevo, copia
-  nueva del Sheet "Meta horaria" (si no, se sobrescribe el de julio) y
-  decidir si se reutiliza el Sheet BACKEND.
+- **Modo cyber configurado** (PR #10, mergeado): **Cyber WOW 02–08 nov** con
+  metas por hora del Excel (las 7 columnas llenas); **Cyber Days 16–18 nov**
+  con la pestaña del Excel **vacía** → usa la meta diaria del Sheet mensual
+  hasta que se llene. El Sheet mensual necesita la pestaña
+  `LC & EFE & SC - NOV26`.
 - Panel en vivo: listo y probado con datos reales. Requiere activar
   cron-job.org cada 5 min la noche de cada evento (20:55 → 03:05) y que
-  `panel.html` esté subido al cPanel.
+  `panel.html` esté subido al cPanel. Atraso esperado 5–11 min (caché de 5 min
+  de raw.githubusercontent, no se puede saltar con query string). Opción
+  pendiente si se quiere menos atraso: subir `panel.json` al cPanel por FTP.
 
 ## Cómo trabajar aquí
 
