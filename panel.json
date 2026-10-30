@@ -1,37 +1,25 @@
 {
-  "generado": "2026-10-30T14:47:23-05:00",
+  "generado": "2026-10-30T16:22:15-05:00",
   "marcas": {
     "LA CURACAO": {
       "ok": true,
       "fecha": "2026-10-30",
-      "actualizado": "2026-10-30T14:47:23",
+      "actualizado": "2026-10-30T16:22:15",
       "kpis": {
-        "ingresos": 25205.0,
-        "sesiones": 5622,
-        "compras": 21,
-        "cr": 0.0037,
-        "ticket": 1200.24
+        "ingresos": 34423.8,
+        "sesiones": 6874,
+        "compras": 31,
+        "cr": 0.0045,
+        "ticket": 1110.45
       },
       "funnel": {
         "tipo": "sesiones",
-        "sesiones": 5622,
-        "vistos": 4746,
-        "carrito": 217,
-        "comprados": 21
+        "sesiones": 6874,
+        "vistos": 5717,
+        "carrito": 277,
+        "comprados": 31
       },
       "horas": [
-        {
-          "fecha": "2026-10-30",
-          "h": 7,
-          "ses": 385,
-          "ing": 0.0
-        },
-        {
-          "fecha": "2026-10-30",
-          "h": 8,
-          "ses": 556,
-          "ing": 449.0
-        },
         {
           "fecha": "2026-10-30",
           "h": 9,
@@ -53,34 +41,46 @@
         {
           "fecha": "2026-10-30",
           "h": 12,
-          "ses": 607,
-          "ing": 2136.0
+          "ses": 717,
+          "ing": 6383.0
         },
         {
           "fecha": "2026-10-30",
           "h": 13,
-          "ses": 181,
-          "ing": 0.0
+          "ses": 581,
+          "ing": 3727.9
         },
         {
           "fecha": "2026-10-30",
           "h": 14,
-          "ses": 8,
+          "ses": 519,
+          "ing": 337.9
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 15,
+          "ses": 216,
+          "ing": 906.0
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 16,
+          "ses": 15,
           "ing": 0.0
         }
       ],
       "fuentes": [
         {
           "fuente": "Meta",
-          "sesiones": 343,
+          "sesiones": 399,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "Google",
-          "sesiones": 1737,
-          "compras": 15,
-          "ingresos": 10736.0
+          "sesiones": 2183,
+          "compras": 22,
+          "ingresos": 17089.8
         },
         {
           "fuente": "TikTok",
@@ -90,21 +90,21 @@
         },
         {
           "fuente": "Orgánico",
-          "sesiones": 1380,
-          "compras": 2,
-          "ingresos": 4446.0
+          "sesiones": 1717,
+          "compras": 4,
+          "ingresos": 6512.0
         },
         {
           "fuente": "Directo",
-          "sesiones": 1701,
+          "sesiones": 1977,
           "compras": 2,
           "ingresos": 697.0
         },
         {
           "fuente": "Otros",
-          "sesiones": 456,
-          "compras": 2,
-          "ingresos": 9326.0
+          "sesiones": 593,
+          "compras": 3,
+          "ingresos": 10125.0
         }
       ],
       "fuentes_crudo": [
@@ -114,7 +114,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 1701,
+          "sesiones": 1977,
           "detalle": "DIRECTO",
           "canal": "Directo"
         },
@@ -124,7 +124,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 1327,
+          "sesiones": 1657,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -134,7 +134,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_aon_pmax_high-ticket_2024_conversiones_ecommerce",
-          "sesiones": 449,
+          "sesiones": 556,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -144,7 +144,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 339,
+          "sesiones": 448,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -154,7 +154,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_pmax_lineablanca_oct_2024_conversiones",
-          "sesiones": 279,
+          "sesiones": 351,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -164,7 +164,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_search-brand_aon_2024_conversiones",
-          "sesiones": 235,
+          "sesiones": 308,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -174,7 +174,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_pmax_celulares_marcas_set_2024_conversiones",
-          "sesiones": 216,
+          "sesiones": 279,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -184,7 +184,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_aon_pmax_low_ticket_2024_conversiones_ecommerce",
-          "sesiones": 168,
+          "sesiones": 206,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -194,7 +194,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 105,
+          "sesiones": 130,
           "detalle": "GOOGLE ADS - SHOPPING",
           "canal": "Google"
         },
@@ -204,7 +204,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_search-LINEA-BLANCA_conversiones",
-          "sesiones": 101,
+          "sesiones": 129,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -214,7 +214,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_aon_pmax_laptops_2024_conversiones_ecommerce",
-          "sesiones": 80,
+          "sesiones": 97,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -224,7 +224,7 @@
           "utm": "fb",
           "medio": "paid",
           "campana": "120257324190800367",
-          "sesiones": 73,
+          "sesiones": 86,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -234,7 +234,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto",
-          "sesiones": 65,
+          "sesiones": 71,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -244,7 +244,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 57,
+          "sesiones": 69,
           "detalle": "FACEBOOK ORG",
           "canal": "Meta"
         },
@@ -254,7 +254,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "",
-          "sesiones": 53,
+          "sesiones": 66,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -264,7 +264,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 46,
+          "sesiones": 50,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -274,19 +274,9 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "CURACAO_google_pmax_video_oct_2024_conversiones",
-          "sesiones": 37,
+          "sesiones": 46,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid",
-          "campana": "120257423949140367",
-          "sesiones": 32,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
         },
         {
           "tipo": "direct",
@@ -294,7 +284,7 @@
           "utm": "chatgpt.com",
           "medio": "",
           "campana": "",
-          "sesiones": 31,
+          "sesiones": 42,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -303,10 +293,30 @@
           "motor": "Facebook",
           "utm": "fb",
           "medio": "paid",
-          "campana": "120257551707620367",
-          "sesiones": 27,
+          "campana": "120257423949140367",
+          "sesiones": 35,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid",
+          "campana": "120257551707620367",
+          "sesiones": 31,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "referral",
+          "motor": "android-app",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 17,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
         },
         {
           "tipo": "email",
@@ -319,14 +329,34 @@
           "canal": "Otros"
         },
         {
-          "tipo": "referral",
-          "motor": "android-app",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 15,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid",
+          "campana": "120256003559110367",
+          "sesiones": 12,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid_social",
+          "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto_UM",
+          "sesiones": 12,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid_social",
+          "campana": "LC-social-media_facebook_2026_tráfico_UM Expectativa Cyber WOW",
+          "sesiones": 12,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
         },
         {
           "tipo": "referral",
@@ -335,6 +365,26 @@
           "medio": "",
           "campana": "",
           "sesiones": 11,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "referral",
+          "motor": "powerpay.pe",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 10,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "referral",
+          "motor": "viabcp.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 10,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -349,44 +399,24 @@
           "canal": "Meta"
         },
         {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid_social",
-          "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto_UM",
-          "sesiones": 10,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "referral",
-          "motor": "powerpay.pe",
+          "tipo": "organic",
+          "motor": "Yahoo!",
           "utm": "",
           "medio": "",
           "campana": "",
           "sesiones": 9,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
+          "detalle": "SEO / BUSQUEDA ORG",
+          "canal": "Orgánico"
         },
         {
-          "tipo": "referral",
-          "motor": "viabcp.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
+          "tipo": "direct",
+          "motor": "",
+          "utm": "wa",
+          "medio": "paid_social",
+          "campana": "LC-social-media_facebook_2026_tráfico_UM Expectativa Cyber WOW",
           "sesiones": 8,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid",
-          "campana": "120256003559110367",
-          "sesiones": 8,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -400,23 +430,33 @@
         },
         {
           "tipo": "ad",
+          "motor": "Instagram",
+          "utm": "ig",
+          "medio": "paid",
+          "campana": "120257324190800367",
+          "sesiones": 8,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
           "motor": "Facebook",
           "utm": "fb",
           "medio": "paid_social",
-          "campana": "LC-social-media_facebook_2026_tráfico_UM Expectativa Cyber WOW",
+          "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto -telefonia_UM",
           "sesiones": 7,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
         {
-          "tipo": "organic",
-          "motor": "Yahoo!",
+          "tipo": "referral",
+          "motor": "interbank.pe",
           "utm": "",
           "medio": "",
           "campana": "",
           "sesiones": 6,
-          "detalle": "SEO / BUSQUEDA ORG",
-          "canal": "Orgánico"
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
         },
         {
           "tipo": "ad",
@@ -433,7 +473,7 @@
           "motor": "Instagram",
           "utm": "ig",
           "medio": "paid",
-          "campana": "120257324190800367",
+          "campana": "120257474587820367",
           "sesiones": 6,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
@@ -443,28 +483,18 @@
           "motor": "Instagram",
           "utm": "ig",
           "medio": "paid",
-          "campana": "120257474587820367",
-          "sesiones": 6,
+          "campana": "120257423949140367",
+          "sesiones": 5,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
         {
-          "tipo": "referral",
-          "motor": "interbank.pe",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 5,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
           "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid_social",
-          "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto -telefonia_UM",
-          "sesiones": 5,
+          "motor": "Instagram",
+          "utm": "ig",
+          "medio": "paid",
+          "campana": "120256003559110367",
+          "sesiones": 4,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -489,14 +519,14 @@
           "canal": "TikTok"
         },
         {
-          "tipo": "direct",
-          "motor": "",
-          "utm": "wa",
-          "medio": "paid_social",
-          "campana": "LC-social-media_facebook_2026_tráfico_UM Expectativa Cyber WOW",
-          "sesiones": 3,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
+          "tipo": "social",
+          "motor": "instagram.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 4,
+          "detalle": "INSTAGRAM ORG",
+          "canal": "Meta"
         },
         {
           "tipo": "referral",
@@ -529,38 +559,18 @@
           "canal": "Google"
         },
         {
-          "tipo": "ad",
-          "motor": "Instagram",
-          "utm": "ig",
-          "medio": "paid",
-          "campana": "120256003559110367",
-          "sesiones": 3,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Instagram",
-          "utm": "ig",
-          "medio": "paid",
-          "campana": "120257423949140367",
-          "sesiones": 3,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "social",
-          "motor": "instagram.com",
+          "tipo": "referral",
+          "motor": "efectibank.pe",
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 3,
-          "detalle": "INSTAGRAM ORG",
-          "canal": "Meta"
+          "sesiones": 2,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
         },
         {
           "tipo": "referral",
-          "motor": "efectibank.pe",
+          "motor": "efectivasa.sharepoint.com",
           "utm": "",
           "medio": "",
           "campana": "",
@@ -600,6 +610,16 @@
         },
         {
           "tipo": "ad",
+          "motor": "Google Ads",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 2,
+          "detalle": "GOOGLE SEM",
+          "canal": "Google"
+        },
+        {
+          "tipo": "ad",
           "motor": "Instagram",
           "utm": "ig",
           "medio": "paid_social",
@@ -607,6 +627,16 @@
           "sesiones": 2,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
+        },
+        {
+          "tipo": "email",
+          "motor": "",
+          "utm": "hs_automation",
+          "medio": "email",
+          "campana": "54832057-202610_LC_WORKFLOWS",
+          "sesiones": 2,
+          "detalle": "EMAIL",
+          "canal": "Otros"
         },
         {
           "tipo": "social",
@@ -659,48 +689,18 @@
           "canal": "TikTok"
         },
         {
+          "tipo": "direct",
+          "motor": "",
+          "utm": "wa",
+          "medio": "paid_social",
+          "campana": "CURACAO_social-media_facebook_conversiones-AON-Agosto -telefonia_UM",
+          "sesiones": 1,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
           "tipo": "referral",
           "motor": "46875189.hs-sites.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "goo.su",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "kiosko2.lacuracao.pe",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "linktr.ee",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "matching-cg.wv4.workit-software.com",
           "utm": "",
           "medio": "",
           "campana": "",
@@ -723,10 +723,22 @@
           "ingresos": 3499.0
         },
         {
+          "nombre": "Consola PlayStation 5 Sony Slim con Lectora de Discos + Videojuego Grand Theft Auto V + Mando Dualsense Blanco",
+          "sku": "TWVS4000768",
+          "comprados": 1,
+          "ingresos": 3359.0
+        },
+        {
           "nombre": "Cocina Empotrable Sole 60CM Gas Vidrio",
           "sku": "3120SOLCO049V2",
           "comprados": 4,
           "ingresos": 2396.0
+        },
+        {
+          "nombre": "Samsung S22 Ultra 128GB 8GB Negro",
+          "sku": "CELU436NEGRO-128GB3244MP",
+          "comprados": 1,
+          "ingresos": 1977.0
         },
         {
           "nombre": "Lavadora Coldex Automática 18KG WX18TL",
@@ -741,6 +753,12 @@
           "ingresos": 1699.0
         },
         {
+          "nombre": "Aire Acondicionado Portátil 12K BTU Rheem ",
+          "sku": "0220110006_2",
+          "comprados": 1,
+          "ingresos": 1599.9
+        },
+        {
           "nombre": "Tablet Lenovo Idea Tab Plus 12.1\" 8GB RAM 256GB",
           "sku": "ZAG70837PE",
           "comprados": 1,
@@ -751,58 +769,28 @@
           "sku": "C11CG92301",
           "comprados": 1,
           "ingresos": 1279.0
-        },
-        {
-          "nombre": "Rapiducha One Premium 4.5KW Bryant",
-          "sku": "RH0230050001",
-          "comprados": 8,
-          "ingresos": 1272.0
-        },
-        {
-          "nombre": "Aire Acondicionado Imaco 7000BTU AC7007",
-          "sku": "AC7007",
-          "comprados": 1,
-          "ingresos": 1199.0
-        },
-        {
-          "nombre": "Campana Extractora Sole 60CM 3 Velocidades Nyx TURE96CO",
-          "sku": "GTX-TURE96CO",
-          "comprados": 4,
-          "ingresos": 1060.0
         }
       ]
     },
     "TIENDAS EFE": {
       "ok": true,
       "fecha": "2026-10-30",
-      "actualizado": "2026-10-30T14:47:23",
+      "actualizado": "2026-10-30T16:22:15",
       "kpis": {
-        "ingresos": 21851.8,
-        "sesiones": 5840,
-        "compras": 28,
-        "cr": 0.0048,
-        "ticket": 780.42
+        "ingresos": 26417.8,
+        "sesiones": 7095,
+        "compras": 36,
+        "cr": 0.0051,
+        "ticket": 733.83
       },
       "funnel": {
         "tipo": "sesiones",
-        "sesiones": 5840,
-        "vistos": 4672,
-        "carrito": 271,
-        "comprados": 27
+        "sesiones": 7095,
+        "vistos": 5642,
+        "carrito": 340,
+        "comprados": 35
       },
       "horas": [
-        {
-          "fecha": "2026-10-30",
-          "h": 7,
-          "ses": 374,
-          "ing": 2440.0
-        },
-        {
-          "fecha": "2026-10-30",
-          "h": 8,
-          "ses": 523,
-          "ing": 2064.9
-        },
         {
           "fecha": "2026-10-30",
           "h": 9,
@@ -818,40 +806,52 @@
         {
           "fecha": "2026-10-30",
           "h": 11,
-          "ses": 851,
+          "ses": 852,
           "ing": 268.0
         },
         {
           "fecha": "2026-10-30",
           "h": 12,
-          "ses": 695,
-          "ing": 599.0
+          "ses": 829,
+          "ing": 777.0
         },
         {
           "fecha": "2026-10-30",
           "h": 13,
-          "ses": 174,
-          "ing": 0.0
+          "ses": 580,
+          "ing": 227.0
         },
         {
           "fecha": "2026-10-30",
           "h": 14,
-          "ses": 1,
+          "ses": 521,
+          "ing": 4161.0
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 15,
+          "ses": 181,
+          "ing": 0.0
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 16,
+          "ses": 12,
           "ing": 0.0
         }
       ],
       "fuentes": [
         {
           "fuente": "Meta",
-          "sesiones": 286,
+          "sesiones": 346,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "Google",
-          "sesiones": 2732,
-          "compras": 23,
-          "ingresos": 16351.8
+          "sesiones": 3359,
+          "compras": 29,
+          "ingresos": 20389.8
         },
         {
           "fuente": "TikTok",
@@ -861,21 +861,21 @@
         },
         {
           "fuente": "Orgánico",
-          "sesiones": 863,
+          "sesiones": 1061,
           "compras": 3,
           "ingresos": 3402.0
         },
         {
           "fuente": "Directo",
-          "sesiones": 1461,
+          "sesiones": 1699,
           "compras": 1,
           "ingresos": 199.0
         },
         {
           "fuente": "Otros",
-          "sesiones": 496,
-          "compras": 1,
-          "ingresos": 1899.0
+          "sesiones": 628,
+          "compras": 3,
+          "ingresos": 2427.0
         }
       ],
       "fuentes_crudo": [
@@ -885,7 +885,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 1461,
+          "sesiones": 1699,
           "detalle": "DIRECTO",
           "canal": "Directo"
         },
@@ -895,7 +895,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 824,
+          "sesiones": 1018,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -905,7 +905,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "",
-          "sesiones": 719,
+          "sesiones": 895,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -915,7 +915,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_pmax_aon_linea_hard_2024_conversiones_ecommerce",
-          "sesiones": 544,
+          "sesiones": 684,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -925,7 +925,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_pmax_aon_high_ticket_2024_PROVINCIA_conversiones",
-          "sesiones": 511,
+          "sesiones": 626,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -935,7 +935,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_pmax_aon_low-ticket_2024_conversiones",
-          "sesiones": 410,
+          "sesiones": 489,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -945,7 +945,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 346,
+          "sesiones": 439,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -955,7 +955,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_pmax_lineablanca_set_2024_conversiones",
-          "sesiones": 278,
+          "sesiones": 357,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
         },
@@ -965,19 +965,9 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_display_home_2024_trafico_ecommerce",
-          "sesiones": 178,
+          "sesiones": 187,
           "detalle": "GOOGLE DISPLAY",
           "canal": "Google"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid",
-          "campana": "120248563727980225",
-          "sesiones": 62,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -985,18 +975,18 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 59,
+          "sesiones": 85,
           "detalle": "GOOGLE ADS - SHOPPING",
           "canal": "Google"
         },
         {
-          "tipo": "ad",
+          "tipo": "social",
           "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid_social",
-          "campana": "UM_META_EFE_SALES_AON_PROSPECTING",
-          "sesiones": 57,
-          "detalle": "FACEBOOK ADS",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 73,
+          "detalle": "FACEBOOK ORG",
           "canal": "Meta"
         },
         {
@@ -1005,18 +995,28 @@
           "utm": "chatgpt.com",
           "medio": "",
           "campana": "",
-          "sesiones": 55,
+          "sesiones": 71,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
         {
-          "tipo": "social",
+          "tipo": "ad",
           "motor": "Facebook",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 49,
-          "detalle": "FACEBOOK ORG",
+          "utm": "fb",
+          "medio": "paid",
+          "campana": "120248563727980225",
+          "sesiones": 67,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid_social",
+          "campana": "UM_META_EFE_SALES_AON_PROSPECTING",
+          "sesiones": 67,
+          "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
         {
@@ -1025,7 +1025,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 36,
+          "sesiones": 40,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -1035,7 +1035,7 @@
           "utm": "fb",
           "medio": "paid",
           "campana": "120230729117380225",
-          "sesiones": 30,
+          "sesiones": 32,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1045,7 +1045,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 19,
+          "sesiones": 23,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1055,7 +1055,7 @@
           "utm": "hs_automation",
           "medio": "email",
           "campana": "57306961-202611_EFE_WORKFLOWS",
-          "sesiones": 16,
+          "sesiones": 20,
           "detalle": "EMAIL",
           "canal": "Otros"
         },
@@ -1065,19 +1065,9 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 15,
+          "sesiones": 17,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Instagram",
-          "utm": "ig",
-          "medio": "paid_social",
-          "campana": "UM_META_EFE_SALES_AON_PROSPECTING",
-          "sesiones": 12,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -1085,7 +1075,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "EFE_SOCIAL-MEDIA_FACEBOOK_2026_CONVERSIONES_BOMBAS",
-          "sesiones": 11,
+          "sesiones": 13,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1095,9 +1085,19 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 11,
+          "sesiones": 13,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Instagram",
+          "utm": "ig",
+          "medio": "paid_social",
+          "campana": "UM_META_EFE_SALES_AON_PROSPECTING",
+          "sesiones": 13,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -1105,7 +1105,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "EFE_google_search_brand_aon_2024_conversiones",
-          "sesiones": 11,
+          "sesiones": 12,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -1115,7 +1115,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 8,
+          "sesiones": 11,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1125,7 +1125,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "EFE_social-media_facebook_2026_conversiones-video_UM",
-          "sesiones": 8,
+          "sesiones": 9,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1135,9 +1135,19 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "EFE_social-media_facebook_conversiones-COMPUTO_UM",
-          "sesiones": 8,
+          "sesiones": 9,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
+        },
+        {
+          "tipo": "direct",
+          "motor": "",
+          "utm": "wa",
+          "medio": "paid_social",
+          "campana": "EFE-social-media_facebook_2026_tráfico_UM",
+          "sesiones": 7,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
         },
         {
           "tipo": "referral",
@@ -1145,7 +1155,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 6,
+          "sesiones": 7,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1155,7 +1165,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 6,
+          "sesiones": 7,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1165,7 +1175,7 @@
           "utm": "fb",
           "medio": "paid",
           "campana": "120248701019200225",
-          "sesiones": 6,
+          "sesiones": 7,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1180,14 +1190,44 @@
           "canal": "Google"
         },
         {
-          "tipo": "direct",
-          "motor": "",
-          "utm": "wa",
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid",
+          "campana": "120230728497840225",
+          "sesiones": 5,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
           "medio": "paid_social",
-          "campana": "EFE-social-media_facebook_2026_tráfico_UM",
+          "campana": "EFE_social-media_facebook_conversiones-LINEA_BLANCA_UM",
+          "sesiones": 5,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "referral",
+          "motor": "l.wl.co",
+          "utm": "",
+          "medio": "",
+          "campana": "",
           "sesiones": 4,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "Facebook",
+          "medio": "cpc",
+          "campana": "telefonia_geo_piso",
+          "sesiones": 4,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -1204,7 +1244,7 @@
           "motor": "Facebook",
           "utm": "fb",
           "medio": "paid_social",
-          "campana": "EFE_social-media_facebook_conversiones-LINEA_BLANCA_UM",
+          "campana": "EFE_social-media_facebook_conversiones-COMPUTO",
           "sesiones": 4,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
@@ -1254,17 +1294,7 @@
           "motor": "Facebook",
           "utm": "Facebook",
           "medio": "cpc",
-          "campana": "telefonia_geo_piso",
-          "sesiones": 3,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid_social",
-          "campana": "EFE_social-media_facebook_conversiones-COMPUTO",
+          "campana": "computo_geo_piso",
           "sesiones": 3,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
@@ -1290,6 +1320,16 @@
           "canal": "Meta"
         },
         {
+          "tipo": "social",
+          "motor": "Facebook",
+          "utm": "social-media",
+          "medio": "facebook-paid",
+          "campana": " EFECTIVA_social-media_facebook_prestamo_aon_2026_7_alcance_prestamos-electro-julio",
+          "sesiones": 3,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
           "tipo": "direct",
           "motor": "",
           "utm": "eldatodeoferta",
@@ -1301,7 +1341,7 @@
         },
         {
           "tipo": "referral",
-          "motor": "l.wl.co",
+          "motor": "gemini.google.com",
           "utm": "",
           "medio": "",
           "campana": "",
@@ -1318,16 +1358,6 @@
           "sesiones": 2,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid",
-          "campana": "120230728497840225",
-          "sesiones": 2,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
         },
         {
           "tipo": "ad",
@@ -1361,6 +1391,16 @@
         },
         {
           "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid_social",
+          "campana": "EFE_social-media_facebook_conversiones-TELEFONIA",
+          "sesiones": 2,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
           "motor": "Google Ads",
           "utm": "google",
           "medio": "search-paid",
@@ -1375,16 +1415,6 @@
           "utm": "ig",
           "medio": "paid",
           "campana": "120248563727980225",
-          "sesiones": 2,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "social",
-          "motor": "Facebook",
-          "utm": "social-media",
-          "medio": "facebook-paid",
-          "campana": " EFECTIVA_social-media_facebook_prestamo_aon_2026_7_alcance_prestamos-electro-julio",
           "sesiones": 2,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
@@ -1431,52 +1461,22 @@
         },
         {
           "tipo": "referral",
+          "motor": "canva.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 1,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "referral",
           "motor": "eldato.pe",
           "utm": "eldatodeoferta",
           "medio": "web",
           "campana": "",
           "sesiones": 1,
           "detalle": "REFERRAL",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "gemini.google.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "google.com",
-          "utm": "compara2.pe",
-          "medio": "referral",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "grupoefe.i6.inconcert.cloud",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "mcstaging.efe.com.pe",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         }
       ],
@@ -1492,6 +1492,12 @@
           "sku": "V3607VJ-TK286W",
           "comprados": 1,
           "ingresos": 3499.0
+        },
+        {
+          "nombre": "Apple iPhone 15 5G 128GB 6.1\" Negro",
+          "sku": "MTP03BE/A",
+          "comprados": 1,
+          "ingresos": 2999.0
         },
         {
           "nombre": "TCL Art TV 55\" Qd-Miniled 4K UHD Smart Google 55A400Pro (2026)",
@@ -1534,46 +1540,28 @@
           "sku": "BOXSM-105-CJ1",
           "comprados": 1,
           "ingresos": 659.0
-        },
-        {
-          "nombre": "Dormitorio Paraiso Per 1.5PLZ ",
-          "sku": "DOR-PER-105",
-          "comprados": 1,
-          "ingresos": 559.0
         }
       ]
     },
     "JUNTOZ": {
       "ok": true,
       "fecha": "2026-10-30",
-      "actualizado": "2026-10-30T14:47:23",
+      "actualizado": "2026-10-30T16:22:15",
       "kpis": {
-        "ingresos": 13002.0,
-        "sesiones": 11425,
-        "compras": 4,
+        "ingresos": 15061.0,
+        "sesiones": 13162,
+        "compras": 5,
         "cr": 0.0004,
-        "ticket": 3250.5
+        "ticket": 3012.2
       },
       "funnel": {
         "tipo": "sesiones",
-        "sesiones": 11425,
-        "vistos": 5914,
-        "carrito": 212,
-        "comprados": 3
+        "sesiones": 13162,
+        "vistos": 6683,
+        "carrito": 256,
+        "comprados": 4
       },
       "horas": [
-        {
-          "fecha": "2026-10-30",
-          "h": 7,
-          "ses": 1467,
-          "ing": 0.0
-        },
-        {
-          "fecha": "2026-10-30",
-          "h": 8,
-          "ses": 855,
-          "ing": 0.0
-        },
         {
           "fecha": "2026-10-30",
           "h": 9,
@@ -1595,56 +1583,68 @@
         {
           "fecha": "2026-10-30",
           "h": 12,
-          "ses": 857,
+          "ses": 1109,
           "ing": 0.0
         },
         {
           "fecha": "2026-10-30",
           "h": 13,
-          "ses": 187,
-          "ing": 0.0
+          "ses": 943,
+          "ing": 2059.0
         },
         {
           "fecha": "2026-10-30",
           "h": 14,
-          "ses": 2,
+          "ses": 640,
+          "ing": 0.0
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 15,
+          "ses": 90,
+          "ing": 0.0
+        },
+        {
+          "fecha": "2026-10-30",
+          "h": 16,
+          "ses": 0,
           "ing": 0.0
         }
       ],
       "fuentes": [
         {
           "fuente": "Meta",
-          "sesiones": 289,
+          "sesiones": 347,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "Google",
-          "sesiones": 6608,
+          "sesiones": 7689,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "TikTok",
-          "sesiones": 1594,
+          "sesiones": 1850,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "Orgánico",
-          "sesiones": 259,
+          "sesiones": 296,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "fuente": "Directo",
-          "sesiones": 2370,
-          "compras": 4,
-          "ingresos": 13002.0
+          "sesiones": 2614,
+          "compras": 5,
+          "ingresos": 15061.0
         },
         {
           "fuente": "Otros",
-          "sesiones": 305,
+          "sesiones": 366,
           "compras": 0,
           "ingresos": 0.0
         }
@@ -1656,7 +1656,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "",
-          "sesiones": 6368,
+          "sesiones": 7404,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -1666,7 +1666,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 2320,
+          "sesiones": 2557,
           "detalle": "DIRECTO",
           "canal": "Directo"
         },
@@ -1676,7 +1676,7 @@
           "utm": "tiktok",
           "medio": "paid",
           "campana": "JZ_TRAFICO_BRAND",
-          "sesiones": 1426,
+          "sesiones": 1638,
           "detalle": "TIKTOK ADS",
           "canal": "TikTok"
         },
@@ -1686,7 +1686,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 254,
+          "sesiones": 290,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -1696,7 +1696,7 @@
           "utm": "adwords",
           "medio": "ppc",
           "campana": "JUNTOZ_google_search_brand_aon_2024_conversiones",
-          "sesiones": 215,
+          "sesiones": 257,
           "detalle": "GOOGLE SEM",
           "canal": "Google"
         },
@@ -1706,7 +1706,7 @@
           "utm": "tiktok",
           "medio": "paid_social",
           "campana": "tiktok_trafico_octubre",
-          "sesiones": 168,
+          "sesiones": 212,
           "detalle": "TIKTOK ADS",
           "canal": "TikTok"
         },
@@ -1716,7 +1716,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "JZ_VENTAS_AON_SOFT_2026",
-          "sesiones": 119,
+          "sesiones": 145,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1726,7 +1726,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 78,
+          "sesiones": 107,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1736,7 +1736,7 @@
           "utm": "efectibank",
           "medio": "embedded_app",
           "campana": "juntoz_embebido_aon",
-          "sesiones": 60,
+          "sesiones": 68,
           "detalle": "REFERRAL",
           "canal": "Otros"
         },
@@ -1746,7 +1746,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "JZ_VENTAS_AON_DIGITAL_2026",
-          "sesiones": 50,
+          "sesiones": 59,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1756,7 +1756,7 @@
           "utm": "",
           "medio": "embedded_app",
           "campana": "juntoz_embebido_aon",
-          "sesiones": 49,
+          "sesiones": 56,
           "detalle": "DIRECTO",
           "canal": "Directo"
         },
@@ -1766,7 +1766,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 44,
+          "sesiones": 53,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1776,7 +1776,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 36,
+          "sesiones": 40,
           "detalle": "FACEBOOK ORG",
           "canal": "Meta"
         },
@@ -1786,7 +1786,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "JZ_VENTAS_AON_TELEFONÍA_2026",
-          "sesiones": 25,
+          "sesiones": 28,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1796,7 +1796,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "JZ_VENTAS_AON_LINEA_BLANCA_2026",
-          "sesiones": 15,
+          "sesiones": 18,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1806,7 +1806,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 13,
+          "sesiones": 14,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1816,7 +1816,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 12,
+          "sesiones": 14,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1826,7 +1826,7 @@
           "utm": "fb",
           "medio": "paid_social",
           "campana": "JZ_VENTAS_AON_VIDEO_2026",
-          "sesiones": 10,
+          "sesiones": 12,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
         },
@@ -1836,7 +1836,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 9,
+          "sesiones": 10,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
         },
@@ -1845,10 +1845,40 @@
           "motor": "Instagram",
           "utm": "ig",
           "medio": "paid_social",
-          "campana": "JZ_VENTAS_AON_TELEFONÍA_2026",
-          "sesiones": 8,
+          "campana": "JZ_VENTAS_AON_SOFT_2026",
+          "sesiones": 10,
           "detalle": "FACEBOOK ADS",
           "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Instagram",
+          "utm": "ig",
+          "medio": "paid_social",
+          "campana": "JZ_VENTAS_AON_TELEFONÍA_2026",
+          "sesiones": 10,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid_social",
+          "campana": "JZ_VENTAS_AON_COMPUTO_2026",
+          "sesiones": 9,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Google Ads",
+          "utm": "adwords",
+          "medio": "ppc",
+          "campana": "JUNTOZ_google_pmax-generico_aon_2024_conversiones_rev1",
+          "sesiones": 8,
+          "detalle": "GOOGLE ADS - PMAX",
+          "canal": "Google"
         },
         {
           "tipo": "direct",
@@ -1859,26 +1889,6 @@
           "sesiones": 7,
           "detalle": "REFERRAL",
           "canal": "Otros"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Facebook",
-          "utm": "fb",
-          "medio": "paid_social",
-          "campana": "JZ_VENTAS_AON_COMPUTO_2026",
-          "sesiones": 7,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Google Ads",
-          "utm": "adwords",
-          "medio": "ppc",
-          "campana": "JUNTOZ_google_pmax-generico_aon_2024_conversiones_rev1",
-          "sesiones": 7,
-          "detalle": "GOOGLE ADS - PMAX",
-          "canal": "Google"
         },
         {
           "tipo": "email",
@@ -1896,7 +1906,7 @@
           "utm": "",
           "medio": "",
           "campana": "",
-          "sesiones": 5,
+          "sesiones": 6,
           "detalle": "SEO / BUSQUEDA ORG",
           "canal": "Orgánico"
         },
@@ -1921,16 +1931,6 @@
           "canal": "Google"
         },
         {
-          "tipo": "ad",
-          "motor": "Instagram",
-          "utm": "ig",
-          "medio": "paid_social",
-          "campana": "JZ_VENTAS_AON_SOFT_2026",
-          "sesiones": 5,
-          "detalle": "FACEBOOK ADS",
-          "canal": "Meta"
-        },
-        {
           "tipo": "referral",
           "motor": "dji-oficial.juntoz.com",
           "utm": "",
@@ -1943,6 +1943,16 @@
         {
           "tipo": "referral",
           "motor": "efe.juntoz.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 4,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "referral",
+          "motor": "neosalud.com.pe",
           "utm": "",
           "medio": "",
           "campana": "",
@@ -1972,16 +1982,6 @@
         },
         {
           "tipo": "referral",
-          "motor": "neosalud.com.pe",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 3,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
           "motor": "teams.public.onecdn.static.microsoft",
           "utm": "",
           "medio": "",
@@ -2001,8 +2001,28 @@
           "canal": "Google"
         },
         {
+          "tipo": "ad",
+          "motor": "Google Ads",
+          "utm": "adwords",
+          "medio": "ppc",
+          "campana": "JUNTOZ_google_display_sin_feed_aon_2024_trafico_deporte",
+          "sesiones": 3,
+          "detalle": "GOOGLE DISPLAY",
+          "canal": "Google"
+        },
+        {
           "tipo": "referral",
           "motor": "46875189.hs-sites.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 2,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "referral",
+          "motor": "android-app",
           "utm": "",
           "medio": "",
           "campana": "",
@@ -2081,6 +2101,26 @@
           "canal": "Otros"
         },
         {
+          "tipo": "referral",
+          "motor": "tiendas-ferco.juntoz.com",
+          "utm": "",
+          "medio": "",
+          "campana": "",
+          "sesiones": 2,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
+          "tipo": "ad",
+          "motor": "Facebook",
+          "utm": "fb",
+          "medio": "paid",
+          "campana": "120250735169660329",
+          "sesiones": 2,
+          "detalle": "FACEBOOK ADS",
+          "canal": "Meta"
+        },
+        {
           "tipo": "ad",
           "motor": "Facebook",
           "utm": "fb",
@@ -2105,20 +2145,20 @@
           "motor": "Google Ads",
           "utm": "adwords",
           "medio": "ppc",
-          "campana": "JUNTOZ_google_display_sin_feed_aon_2024_trafico_deporte",
-          "sesiones": 2,
-          "detalle": "GOOGLE DISPLAY",
-          "canal": "Google"
-        },
-        {
-          "tipo": "ad",
-          "motor": "Google Ads",
-          "utm": "adwords",
-          "medio": "ppc",
           "campana": "JUNTOZ_google_pmax-soft_aon_2024_conversiones",
           "sesiones": 2,
           "detalle": "GOOGLE ADS - PMAX",
           "canal": "Google"
+        },
+        {
+          "tipo": "email",
+          "motor": "",
+          "utm": "hs_email",
+          "medio": "email",
+          "campana": "55036555-202610_JUNTOZ_WORKFLOWS",
+          "sesiones": 2,
+          "detalle": "EMAIL",
+          "canal": "Otros"
         },
         {
           "tipo": "social",
@@ -2171,6 +2211,16 @@
           "canal": "Otros"
         },
         {
+          "tipo": "direct",
+          "motor": "",
+          "utm": "wa",
+          "medio": "paid_social",
+          "campana": "JZ_VENTAS_AON_SOFT_2026",
+          "sesiones": 1,
+          "detalle": "OTROS SOCIAL ORG",
+          "canal": "Otros"
+        },
+        {
           "tipo": "referral",
           "motor": "0fb10328dbe10ff0dbb2d30b41a58dfc.safeframe.googlesyndication.com",
           "utm": "",
@@ -2199,56 +2249,6 @@
           "sesiones": 1,
           "detalle": "OTROS SOCIAL ORG",
           "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "android-app",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "atpshop.juntoz.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "banbifmall.pe",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "bix.juntoz.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
-        },
-        {
-          "tipo": "referral",
-          "motor": "bps-fitness.juntoz.com",
-          "utm": "",
-          "medio": "",
-          "campana": "",
-          "sesiones": 1,
-          "detalle": "OTROS SOCIAL ORG",
-          "canal": "Otros"
         }
       ],
       "top": [
@@ -2269,6 +2269,12 @@
           "sku": "3242709",
           "comprados": 1,
           "ingresos": 3649.0
+        },
+        {
+          "nombre": "Consola Nintendo Switch 2",
+          "sku": "2770687",
+          "comprados": 1,
+          "ingresos": 2159.0
         },
         {
           "nombre": "iPhone 14 Plus eSIM 128GB 6GB Purpura | REACONDICIONADO GRADO A Color: Purpura",
@@ -2303,12 +2309,6 @@
         {
           "nombre": "100% HYDROLIZED WHEY ISOLATE 2 LB",
           "sku": "2540750",
-          "comprados": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "1099",
-          "sku": "2583406",
           "comprados": 0,
           "ingresos": 0.0
         }
