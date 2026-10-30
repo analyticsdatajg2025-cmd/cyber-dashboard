@@ -125,6 +125,9 @@ def construir_html(r):
     """
 
     proy, real, corte = r["proy"], r["real"], r["corte"]
+    if not any(proy):
+        tabla = tabla_sin_proyeccion(r, pal)
+        return pagina(r, pal, cards, tabla)
     max_p = max(proy) or 1
     max_r = max(real[:corte + 1], default=1) or 1
     filas = ""
@@ -157,15 +160,40 @@ def construir_html(r):
       <td>TOTAL</td><td>{total_p:,.0f}</td><td>{total_r:,}</td>
       <td>{tvar:,.0f}</td><td>{tpvar:.1%}</td></tr>"""
 
+    tabla = f"""<table>
+        <tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>
+        {filas}
+      </table>"""
+    return pagina(r, pal, cards, tabla)
+
+
+def tabla_sin_proyeccion(r, pal):
+    """Sin curva horaria (cyber sin Excel de proyeccion): sesiones reales por
+    hora + avance contra la meta del dia del Sheet mensual."""
+    real, corte = r["real"], r["corte"]
+    max_r = max(real[:corte + 1], default=1) or 1
+    filas = ""
+    for h in range(corte + 1):
+        filas += f"""<tr><td class="hora">{h}</td>
+          <td style="background:{color_alpha('245,178,40', real[h] / max_r)}">{real[h]:,}</td></tr>"""
+    meta = r["meta"]
+    avance = f"{r['avance']:.1%}" if meta else "—"
+    filas += f"""<tr class="total"><td>TOTAL</td><td>{r['real_acum']:,}</td></tr>"""
+    return f"""<table>
+        <tr><th>HORA</th><th>Sesiones</th></tr>
+        {filas}
+      </table>
+      <div class="pill" style="margin-top:10px;background:{pal['primary']};color:{pal['texto_header']}">Meta del día: {fmt_k(meta) if meta else '—'} · Avance: {avance}</div>"""
+
+
+def pagina(r, pal, cards, tabla):
+    prim, txt = pal["primary"], pal["texto_header"]
     return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
       <div class="logo" style="color:{prim}">{r['marca']}</div>
       <div class="pill" style="background:{prim};color:{txt}">Funnel de conversión</div>
       {cards}
       <div class="pill" style="background:{prim};color:{txt}">Tráfico</div>
-      <table>
-        <tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>
-        {filas}
-      </table>
+      {tabla}
     </body></html>"""
 
 
