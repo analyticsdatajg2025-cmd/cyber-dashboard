@@ -1,0 +1,41 @@
+name: Backfill GA4 (one-shot)
+on:
+  workflow_dispatch:      # solo manual
+    inputs:
+      dias:
+        description: "Dias cerrados a re-traer desde GA4"
+        default: "10"
+permissions:
+  contents: write
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Lima
+      MODO: auto
+      DIAS: ${{ inputs.dias }}
+      GA4_PROP_CURACAO: ${{ vars.GA4_PROP_CURACAO }}
+      GA4_PROP_EFE: ${{ vars.GA4_PROP_EFE }}
+      GA4_PROP_JUNTOZ: ${{ vars.GA4_PROP_JUNTOZ }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Escribir secretos a archivos locales
+        run: echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
+      - name: Correr backfill
+        run: python backfill_ga4.py
+      - name: Commitear historico
+        if: success()
+        run: |
+          git config user.name  "cyber-bot"
+          git config user.email "bot@conecta.pe"
+          git add historico.json
+          git commit -m "backfill GA4 $(date -u +%F) ${DIAS} dias" || echo "sin cambios"
+          git pull --rebase && git push
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f credenciales.json

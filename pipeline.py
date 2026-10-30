@@ -18,7 +18,7 @@ La variable de entorno MODO dice QUE WORKFLOW esta corriendo, no que hacer:
   MODO=auto   -> corre siempre con el modo que toque (util para probar local).
 
 Flujo de una corrida:
-  1. Extrae de Yandex (por marca): funnel, sesiones/hora, ingresos/hora,
+  1. Extrae de GA4 (por marca): funnel, sesiones/hora, ingresos/hora,
      campanias, top productos.
   2. Proyeccion: Excel horario (cyber) o Sheet mensual col F (diario).
   3. Escribe data.json + historico.json + neto.json (bloque por_dia).
@@ -43,12 +43,12 @@ RE_CAMPANA_NUMERICA = re.compile(r"^\d{15,22}$")
 # ---------------------------------------------------------------------------
 # CONFIG
 # ---------------------------------------------------------------------------
-with open("mi_token.txt", "r", encoding="utf-8") as f:
-    TOKEN = f.read().strip()
-
-HEADERS = {"Authorization": f"OAuth {TOKEN}"}
-URL_DATA   = "https://api-metrika.yandex.net/stat/v1/data"
-URL_BYTIME = "https://api-metrika.yandex.net/stat/v1/data/bytime"
+# GA4 Data API (antes Yandex Metrica). Autentica con la MISMA cuenta de
+# servicio que ya usan los Sheets (credenciales.json). Esa cuenta tiene que
+# estar agregada como Lector en cada propiedad GA4.
+GA4_CREDENCIALES = "credenciales.json"
+GA4_SCOPES = ["https://www.googleapis.com/auth/analytics.readonly"]
+URL_GA4 = "https://analyticsdata.googleapis.com/v1beta/properties/{prop}:runReport"
 
 # UN SOLO juego de archivos para los dos modos. El dashboard lee siempre estos.
 SALIDA_JSON      = "data.json"
@@ -58,15 +58,15 @@ ARCHIVO_NETO     = "neto.json"
 HIST_INICIO = date(2026, 7, 6)     # ancla del historico (no baja de aqui)
 HIST_RETENCION_DIAS = 60           # dias cerrados que se conservan
 HIST_REFRESH_DIAS = 4              # dias cerrados recientes que se vuelven a
-                                   # consultar en cada corrida diaria: Yandex
+                                   # consultar en cada corrida diaria: GA4
                                    # sigue asentando datos por 1-2 dias, asi el
                                    # historico deja de quedar congelado con la
                                    # foto del primer dia.
 BACKFILL_MAX = 7                   # dias faltantes que se rellenan por corrida
-                                   # (protege la cuota de Yandex al volver de
+                                   # (protege la cuota de GA4 al volver de
                                    #  un hueco largo, ej. JUNTOZ al entrar cyber)
 ARCHIVO_PROY = "PROYECCIONES_CYBER_JULIO_2026.xlsx"
-ATTRIBUTION  = "lastsign"
+ATTRIBUTION  = "ga4_session"      # dimensiones session* de GA4 (ultimo clic no directo)
 
 CAMPANAS_META = {
     "LA CURACAO": {
@@ -187,10 +187,12 @@ CAMPANAS_META = {
     },
 }
 
+# ID de propiedad GA4 por marca. Se leen de variables de entorno (en GitHub:
+# Settings > Secrets and variables > Actions > Variables).
 MARCAS = {
-    "LA CURACAO":  {"contador": "98373248"},
-    "TIENDAS EFE": {"contador": "98373144"},
-    "JUNTOZ": {"contador": "98373308"}
+    "LA CURACAO":  {"propiedad": os.environ.get("GA4_PROP_CURACAO", "").strip()},
+    "TIENDAS EFE": {"propiedad": os.environ.get("GA4_PROP_EFE", "").strip()},
+    "JUNTOZ":      {"propiedad": os.environ.get("GA4_PROP_JUNTOZ", "").strip()},
 }
 
 
@@ -299,42 +301,91 @@ def meta_diaria(marca, fecha=None):
 
 
 # ---------------------------------------------------------------------------
-# EXTRACCIÓN YANDEX
+# EXTRACCIÓN GA4 (Google Analytics Data API) — reemplaza a Yandex Metrica.
+# Mismas funciones, mismos nombres y mismo shape de salida que antes.
 # ---------------------------------------------------------------------------
-def traer_sesiones_hora(contador):
-    """Sesiones/hora de HOY. Devuelve (serie24, corte)."""
-    p = {"ids": contador, "metrics": "ym:s:visits",
-         "date1": "today", "date2": "today", "group": "hour"}
-    r = requests.get(URL_BYTIME, headers=HEADERS, params=p)
-    d = r.json()
-    if not d.get("data"):
+_GA4_SESION = None
+
+# Valores de sessionCampaignName que en Yandex caian como "sin campaña"
+# (trafico sin utm_campaign). Se suman en una sola fila, igual que antes.
+GA4_SIN_CAMPANA = {"", "(not set)", "(direct)", "(organic)", "(referral)",
+                   "(none)"}
+
+
+def _ga4_sesion():
+    """Sesion HTTP autenticada con la cuenta de servicio (se crea una vez)."""
+    global _GA4_SESION
+    if _GA4_SESION is None:
+        from google.oauth2 import service_account
+        from google.auth.transport.requests import AuthorizedSession
+        creds = service_account.Credentials.from_service_account_file(
+            GA4_CREDENCIALES, scopes=GA4_SCOPES)
+        _GA4_SESION = AuthorizedSession(creds)
+    return _GA4_SESION
+
+
+def ga4_reporte(propiedad, fecha, metricas, dimensiones=(), orden=None,
+                limite=None):
+    """runReport de un solo dia. `fecha` = 'today' o 'YYYY-MM-DD'.
+    Devuelve [(valores_dimension, valores_metrica_float), ...]."""
+    if not propiedad:
+        raise RuntimeError("Falta el ID de propiedad GA4 de una marca "
+                           "(variables GA4_PROP_CURACAO / GA4_PROP_EFE / "
+                           "GA4_PROP_JUNTOZ).")
+    body = {"dateRanges": [{"startDate": fecha, "endDate": fecha}],
+            "metrics": [{"name": m} for m in metricas]}
+    if dimensiones:
+        body["dimensions"] = [{"name": d} for d in dimensiones]
+    if orden:
+        body["orderBys"] = [{"metric": {"metricName": orden}, "desc": True}]
+    if limite:
+        body["limit"] = limite
+    r = _ga4_sesion().post(URL_GA4.format(prop=propiedad), json=body,
+                           timeout=60)
+    if r.status_code != 200:
         raise RuntimeError(
-            f"Yandex sin 'data' (contador {contador}, HTTP {r.status_code}): "
-            f"{d.get('message') or d.get('errors') or d}"
-        )
-    serie = [int(v or 0) for v in d["data"][0]["metrics"][0]]
-    corte = d.get("last_period_index", 23)
+            f"GA4 error (propiedad {propiedad}, HTTP {r.status_code}): "
+            f"{r.text[:500]}")
+    filas = []
+    for row in r.json().get("rows", []):
+        dims = [d.get("value", "") for d in row.get("dimensionValues", [])]
+        mets = [float(m.get("value") or 0) for m in row.get("metricValues", [])]
+        filas.append((dims, mets))
+    return filas
+
+
+def _serie_hora(propiedad, fecha, metrica):
+    """24 valores (hora 0..23) de una metrica para un dia."""
+    serie = [0.0] * 24
+    for dims, mets in ga4_reporte(propiedad, fecha, [metrica], ["hour"]):
+        h = int(dims[0])
+        if 0 <= h <= 23:
+            serie[h] = mets[0]
+    return serie
+
+
+def traer_sesiones_hora(propiedad):
+    """Sesiones/hora de HOY. Devuelve (serie24, corte).
+    GA4 no informa la ultima hora del periodo (Yandex: last_period_index):
+    el corte es la hora actual del reloj (TZ=America/Lima en los workflows)."""
+    serie = [int(v) for v in _serie_hora(propiedad, "today", "sessions")]
+    corte = datetime.now().hour
     return serie, corte
 
 
-def traer_sesiones_hora_fecha(contador, fecha):
+def traer_sesiones_hora_fecha(propiedad, fecha):
     """Sesiones/hora de una fecha específica (YYYY-MM-DD). Devuelve serie24."""
-    p = {"ids": contador, "metrics": "ym:s:visits",
-         "date1": fecha, "date2": fecha, "group": "hour"}
-    d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
-    if not d.get("data"):
-        return [0] * 24
-    return [int(v or 0) for v in d["data"][0]["metrics"][0]]
+    return [int(v) for v in _serie_hora(propiedad, fecha, "sessions")]
 
 
-def traer_funnel(contador, fecha="today"):
-    metrics = ["ym:s:visits", "ym:s:ecommerceRevenue", "ym:s:ecommercePurchases",
-               "ym:s:productImpressions", "ym:s:productBasketsQuantity",
-               "ym:s:productPurchasedQuantity"]
-    p = {"ids": contador, "metrics": ",".join(metrics),
-         "date1": fecha, "date2": fecha}
-    t = requests.get(URL_DATA, headers=HEADERS, params=p).json()["totals"]
-    sesiones, ingresos, compras, vistos, carrito, comprados = t
+def traer_funnel(propiedad, fecha="today"):
+    # Dos llamadas: las metricas de item no siempre se combinan con 'sessions'.
+    t1 = ga4_reporte(propiedad, fecha,
+                     ["sessions", "purchaseRevenue", "ecommercePurchases"])
+    t2 = ga4_reporte(propiedad, fecha,
+                     ["itemsViewed", "itemsAddedToCart", "itemsPurchased"])
+    sesiones, ingresos, compras = t1[0][1] if t1 else (0.0, 0.0, 0.0)
+    vistos, carrito, comprados = t2[0][1] if t2 else (0.0, 0.0, 0.0)
     return {
         "ingresos": ingresos, "compras": int(compras), "vistos": int(vistos),
         "carrito": int(carrito), "comprados": int(comprados),
@@ -343,7 +394,7 @@ def traer_funnel(contador, fecha="today"):
     }
 
 def evaluar_campanas_numericas(campanas, marca):
-    """Recorre la lista de campañas ya traída de Yandex y, si el nombre es
+    """Recorre la lista de campañas ya traída de GA4 y, si el nombre es
     puro número (Meta/Google sin UTM), lo reemplaza por el nombre real desde
     CAMPANAS_META. Si no está catalogado, lo deja tageado como 'sin catalogar'
     en vez de mostrar el número pelado. JUNTOZ no tiene mapa: queda igual."""
@@ -355,48 +406,45 @@ def evaluar_campanas_numericas(campanas, marca):
             c["nombre"] = real if real else f"Facebook Ads (sin catalogar: {nombre})"
     return campanas
 
-def traer_campanas(contador, top=100, fecha="today"):
-    p = {"ids": contador, "dimensions": "ym:s:UTMCampaign",
-         "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
-         "date1": fecha, "date2": fecha, "sort": "-ym:s:ecommerceRevenue",
-         "limit": top, "attribution": ATTRIBUTION}
-    d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
-    out = []
-    for fila in d.get("data", []):
-        nombre = fila["dimensions"][0].get("name") or "(sin campaña)"
-        ses, compras, ingresos = fila["metrics"]
-        out.append({"nombre": nombre, "sesiones": int(ses),
-                    "compras": int(compras), "ingresos": round(ingresos, 2)})
+def traer_campanas(propiedad, top=100, fecha="today"):
+    filas = ga4_reporte(propiedad, fecha,
+                        ["sessions", "ecommercePurchases", "purchaseRevenue"],
+                        ["sessionCampaignName"], orden="purchaseRevenue",
+                        limite=top)
+    agg = {}
+    for dims, (ses, compras, ingresos) in filas:
+        nombre = dims[0].strip()
+        if nombre.lower() in GA4_SIN_CAMPANA:
+            nombre = "(sin campaña)"
+        a = agg.setdefault(nombre, [0.0, 0.0, 0.0])
+        a[0] += ses; a[1] += compras; a[2] += ingresos
+    out = [{"nombre": n, "sesiones": int(ses), "compras": int(compras),
+            "ingresos": round(ingresos, 2)}
+           for n, (ses, compras, ingresos) in agg.items()]
+    out.sort(key=lambda c: c["ingresos"], reverse=True)
     return out
 
 
-def traer_top_productos(contador, top=100, fecha="today"):
-    p = {"ids": contador, "dimensions": "ym:s:productName,ym:s:productID",
-         "metrics": ("ym:s:productImpressions,ym:s:productBasketsQuantity,"
-                     "ym:s:productPurchasedQuantity,ym:s:visits,"
-                     "ym:s:productPurchasedPrice"),
-         "date1": fecha, "date2": fecha,
-         "sort": "-ym:s:productPurchasedQuantity", "limit": top}
-    d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
+def traer_top_productos(propiedad, top=100, fecha="today"):
+    # GA4 no permite cruzar dimensiones de item con 'sessions': ese campo
+    # se publica en 0 para no cambiar el shape del JSON.
+    filas = ga4_reporte(propiedad, fecha,
+                        ["itemsViewed", "itemsAddedToCart", "itemsPurchased",
+                         "itemRevenue"],
+                        ["itemName", "itemId"], orden="itemsPurchased",
+                        limite=top)
     out = []
-    for fila in d.get("data", []):
-        nombre = fila["dimensions"][0].get("name") or "(sin nombre)"
-        sku = fila["dimensions"][1].get("name") or ""
-        vistos, carrito, comprados, ses, ingresos = fila["metrics"]
+    for dims, (vistos, carrito, comprados, ingresos) in filas:
+        nombre = dims[0] if dims[0] not in ("", "(not set)") else "(sin nombre)"
+        sku = dims[1] if dims[1] != "(not set)" else ""
         out.append({"nombre": nombre, "sku": sku, "vistos": int(vistos),
                     "carrito": int(carrito), "comprados": int(comprados),
-                    "sesiones": int(ses), "ingresos": round(ingresos, 2)})
+                    "sesiones": 0, "ingresos": round(ingresos, 2)})
     return out
 
 
-def traer_ingresos_hora(contador, fecha="today"):
-    p = {"ids": contador, "metrics": "ym:s:ecommerceRevenue",
-         "date1": fecha, "date2": fecha, "group": "hour"}
-    d = requests.get(URL_BYTIME, headers=HEADERS, params=p).json()
-    if not d.get("data"):
-        return [0.0] * 24
-    serie = d["data"][0]["metrics"][0]
-    return [round(float(v or 0), 2) for v in serie]
+def traer_ingresos_hora(propiedad, fecha="today"):
+    return [round(v, 2) for v in _serie_hora(propiedad, fecha, "purchaseRevenue")]
 
 
 # ---------------------------------------------------------------------------
@@ -406,8 +454,8 @@ def armar_reporte(marca):
     cfg = MARCAS[marca]
     dia_idx = date.today().weekday()
     proy = proy_horaria(marca)
-    real, corte = traer_sesiones_hora(cfg["contador"])
-    funnel = traer_funnel(cfg["contador"])
+    real, corte = traer_sesiones_hora(cfg["propiedad"])
+    funnel = traer_funnel(cfg["propiedad"])
     real_acum = sum(real[:corte + 1])
     meta = meta_diaria(marca)
     return {
@@ -424,11 +472,11 @@ def armar_reporte(marca):
 # ---------------------------------------------------------------------------
 def construir_marca(marca):
     r = armar_reporte(marca)
-    contador = MARCAS[marca]["contador"]
-    campanas  = traer_campanas(contador)
+    propiedad = MARCAS[marca]["propiedad"]
+    campanas  = traer_campanas(propiedad)
     campanas  = evaluar_campanas_numericas(campanas, marca)
-    productos = traer_top_productos(contador)
-    ing_hora  = traer_ingresos_hora(contador)
+    productos = traer_top_productos(propiedad)
+    ing_hora  = traer_ingresos_hora(propiedad)
     corte = r["corte"]
     proy_json = serie_proy_json(r["proy"])
     por_hora = [{
@@ -494,14 +542,14 @@ def dias_del_evento(hoy=None):
 def construir_semana_horas(reportes, hoy=None):
     """Para cada marca y cada día del evento: 24 filas {h, proy, real}.
     Hoy usa el real ya extraído (limitado al corte); días pasados se re-consultan
-    a Yandex (día completo). Devuelve (nombre_hoja, dict)."""
+    a GA4 (día completo). Devuelve (nombre_hoja, dict)."""
     hoy = hoy or date.today()
     hoja, dias = dias_del_evento(hoy)
     out = {m: {} for m in MARCAS_ACTIVAS}
     if hoja is None:
         return None, out
     for marca, cfg in MARCAS_ACTIVAS.items():
-        cont = cfg["contador"]
+        cont = cfg["propiedad"]
         for d in dias:
             proy = proy_horaria(marca, d)
             if d == hoy:
@@ -523,7 +571,7 @@ def construir_semana_horas(reportes, hoy=None):
 def construir_bloque_fecha(marca, fecha):
     """Bloque de un día CERRADO (corte 23, 24h reales) con el MISMO shape que
     construir_marca(). `fecha` es un objeto date."""
-    cont = MARCAS[marca]["contador"]
+    cont = MARCAS[marca]["propiedad"]
     fstr = str(fecha)
     proy = proy_horaria(marca, fecha)
     real      = traer_sesiones_hora_fecha(cont, fstr)     # 24h completas
@@ -698,7 +746,7 @@ def refrescar_metas_historico(hist):
     Sheet la manana siguiente. Si en ese momento el IMPORTRANGE estaba cargando
     o daba #REF!, el dia quedaba con meta 0 para siempre (caso 2026-08-01).
     Releerla en cada corrida es barato -- la pestania del mes ya esta cacheada,
-    no cuesta llamadas extra a Yandex -- y ademas recoge cualquier correccion
+    no cuesta llamadas extra a GA4 -- y ademas recoge cualquier correccion
     que hagas despues en el Sheet.
 
     Solo pisa el valor guardado cuando el Sheet devuelve algo > 0, para que un
@@ -721,10 +769,10 @@ def actualizar_historico(hoy=None):
     """Mantiene historico.json con los dias ya CERRADOS.
 
     · Ventana: desde HIST_INICIO (o los ultimos HIST_RETENCION_DIAS) hasta ayer.
-    · 'Ayer' se refresca siempre (Yandex a veces asienta tarde).
+    · 'Ayer' se refresca siempre (GA4 a veces asienta tarde).
     · Los dias ya guardados no se vuelven a consultar.
     · Los faltantes se rellenan de a BACKFILL_MAX por corrida, del mas reciente
-      al mas antiguo. Esto evita reventar la cuota de Yandex cuando hay un hueco
+      al mas antiguo. Esto evita reventar la cuota de GA4 cuando hay un hueco
       grande (caso tipico: JUNTOZ, que no se consulta en diario, al entrar cyber
       tendria 60 dias vacios de golpe).
     · Fuera de la ventana de retencion se podan los dias viejos.
@@ -932,7 +980,7 @@ def main():
 
     print(f"MODO {'CYBER' if ES_CYBER else 'DIARIO'} · "
           f"marcas: {', '.join(MARCAS_ACTIVAS)}")
-    print("Extrayendo de Yandex...")
+    print("Extrayendo de GA4...")
     payload, reportes = construir_payload()
 
     # --- Sheets BACKEND / META HORARIA: solo tienen sentido en cyber ---
