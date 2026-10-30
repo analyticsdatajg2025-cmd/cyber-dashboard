@@ -235,28 +235,50 @@ def traer_fuentes(contador, fecha="today"):
 
 
 # ---------------------------------------------------------------------------
-# FUNNEL POR SESIONES (como GA4): sesiones que vieron producto / agregaron al
-# carrito / compraron. Se cuentan sesiones, no fichas: nunca supera a sesiones.
+# FUNNEL POR SESIONES (como GA4): se cuentan SESIONES, nunca supera al paso
+# anterior. Validado contra GA4 (LA CURACAO, 1 oct 2026):
+#   · Yandex IGNORA los filtros por metrica (productImpressions>0 devolvia
+#     todas las sesiones), por eso no se usan.
+#   · Vieron producto -> sesiones con algun producto registrado
+#                        (filtro de dimension ym:s:productID no nulo).
+#   · Carrito / compra -> metas automaticas de ecommerce del contador
+#                        (tipos e_cart / e_purchase): "sesiones con la meta".
 # ---------------------------------------------------------------------------
-_FILTROS_FUNNEL = {
-    "vistos":    "ym:s:productImpressions>0",
-    "carrito":   "ym:s:productBasketsQuantity>0",
-    "comprados": "ym:s:ecommercePurchases>0",
-}
+URL_GOALS = "https://api-metrika.yandex.net/management/v1/counter/{c}/goals"
+_METAS = {}                     # cache por contador: {"e_cart": id, "e_purchase": id}
+
+
+def metas_ecommerce(contador):
+    if contador not in _METAS:
+        r = requests.get(URL_GOALS.format(c=contador), headers=HEADERS, timeout=60)
+        if r.status_code != 200:
+            raise RuntimeError(f"metas HTTP {r.status_code}: {r.text[:150]}")
+        ids = {}
+        for g in r.json().get("goals", []):
+            if g.get("type") in ("e_cart", "e_purchase") and g.get("type") not in ids:
+                ids[g["type"]] = g["id"]
+        _METAS[contador] = ids
+    return _METAS[contador]
 
 
 def traer_funnel_sesiones(contador, sesiones, fecha="today"):
-    out = {"tipo": "sesiones", "sesiones": sesiones}
-    for paso, filtro in _FILTROS_FUNNEL.items():
-        d = _consulta({"ids": contador, "date1": fecha, "date2": fecha,
-                       "metrics": "ym:s:visits", "filters": filtro})
-        out[paso] = int((d.get("totals") or [0])[0] or 0)
+    metas = metas_ecommerce(contador)
+    if "e_cart" not in metas or "e_purchase" not in metas:
+        raise RuntimeError(f"el contador no tiene metas de ecommerce: {metas}")
+    base = {"ids": contador, "date1": fecha, "date2": fecha}
+    d = _consulta({**base, "metrics": f"ym:s:goal{metas['e_cart']}visits,"
+                                      f"ym:s:goal{metas['e_purchase']}visits"})
+    carrito, compra = [int(x or 0) for x in (d.get("totals") or [0, 0])[:2]]
+    d = _consulta({**base, "metrics": "ym:s:visits", "filters": "ym:s:productID!n"})
+    vistos = int((d.get("totals") or [0])[0] or 0)
+    out = {"tipo": "sesiones", "sesiones": sesiones, "vistos": vistos,
+           "carrito": carrito, "comprados": compra}
     # control: en un funnel de sesiones cada paso es <= al anterior. Si no se
     # cumple (p.ej. Yandex ignoro el filtro y devolvio todas las sesiones),
     # mejor caer al respaldo que mostrar un funnel incoherente.
     v = [out["sesiones"], out["vistos"], out["carrito"], out["comprados"]]
     if any(b > a * 1.02 + 5 for a, b in zip(v, v[1:])) or \
-       (v[0] > 50 and v[1] == v[2] == v[3] == v[0]):
+       (v[0] > 50 and v[1] == v[0]):
         raise RuntimeError(f"funnel incoherente {v}")
     return out
 
