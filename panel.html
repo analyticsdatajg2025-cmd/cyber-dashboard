@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Panel en vivo · Cyber</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* Pantalla TV horizontal (pensado para 1920x1080, escala con la ventana). */
+:root{
+  --bg:#0b0d12; --card:#12151c; --line:#232834; --grid:#1b1f29;
+  --text:#eef0f4; --muted:#9aa0ad; --hint:#6b7180;
+  --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444;
+  --lc:#F5B800; --efe:#2b8af0; --jz:#a259e6;
+  --font:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);
+     font-variant-numeric:tabular-nums;overflow:hidden;}
+.app{height:100vh;display:flex;flex-direction:column;padding:1.6vh 1.4vw;gap:1.6vh;}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:2vw;
+     background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4vh 1.6vw;}
+.title{font-size:3.2vh;font-weight:800;letter-spacing:.12em;white-space:nowrap;}
+.title .ev{color:var(--lc);}
+.title .sub{display:block;font-size:1.4vh;font-weight:600;letter-spacing:.1em;color:var(--muted);margin-top:.4vh;}
+.fresh{display:flex;align-items:center;gap:.6vw;font-size:1.8vh;font-weight:700;
+       padding:.8vh 1.2vw;border-radius:999px;border:1px solid currentColor;white-space:nowrap;}
+.fresh::before{content:'';width:1.1vh;height:1.1vh;border-radius:50%;background:currentColor;}
+.fresh.ok{color:var(--ok);} .fresh.warn{color:var(--warn);} .fresh.bad{color:var(--bad);}
+.clock{text-align:right;}
+.clock b{display:block;font-size:4vh;font-weight:800;letter-spacing:.06em;}
+.clock span{font-size:1.4vh;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+
+/* ---------- columnas por marca ---------- */
+.cols{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2vw;}
+.col{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);
+     border-radius:12px;padding:1.6vh 1.2vw;display:flex;flex-direction:column;gap:1.5vh;min-height:0;min-width:0;}
+.bh{display:flex;align-items:center;justify-content:space-between;}
+.bn{font-size:2.4vh;font-weight:800;letter-spacing:.08em;}
+.bn::before{content:'';display:inline-block;width:1.4vh;height:1.4vh;border-radius:3px;
+            background:var(--c);margin-right:.6vw;vertical-align:.1vh;}
+.st{font-size:1.3vh;font-weight:700;padding:.4vh .8vw;border-radius:999px;}
+.st.ok{color:var(--ok);background:rgba(34,197,94,.12);}
+.st.bad{color:var(--warn);background:rgba(245,158,11,.14);}
+
+.lbl{font-size:1.25vh;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hint);}
+.big{font-size:6.2vh;font-weight:800;letter-spacing:-.02em;line-height:1.05;}
+.big small{font-size:3vh;color:var(--muted);font-weight:700;margin-right:.4vw;}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.6vw;}
+.kpi{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:8px;padding:1vh .7vw;}
+.kpi{min-width:0;}
+.kpi .v{font-size:2.6vh;font-weight:800;margin-top:.4vh;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.funnel{display:flex;flex-direction:column;gap:.7vh;}
+.fr{display:grid;grid-template-columns:8.5vw 1fr 4.6vw;align-items:center;gap:.6vw;font-size:1.5vh;}
+.fr .n{color:var(--muted);}
+.fr .bar{height:1.7vh;background:var(--grid);border-radius:4px;overflow:hidden;}
+.fr .bar i{display:block;height:100%;background:var(--c);border-radius:4px;}
+.fr .v{text-align:right;font-weight:700;}
+.fr .p{grid-column:2/4;font-size:1.2vh;color:var(--hint);margin-top:-.5vh;}
+
+.chart{position:relative;height:15vh;}
+
+.top10{flex:1;min-height:0;overflow:hidden;}
+table{width:100%;border-collapse:collapse;font-size:1.45vh;}
+th{font-size:1.1vh;color:var(--hint);text-align:left;font-weight:700;letter-spacing:.1em;
+   text-transform:uppercase;padding:0 0 .6vh;}
+td{padding:.55vh 0;border-top:1px solid var(--grid);}
+th:nth-child(n+3),td:nth-child(n+3){text-align:right;}
+td.r{color:var(--hint);padding-right:.8vw;white-space:nowrap;}
+th:first-child{padding-right:.8vw;}
+td.nm{max-width:0;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-right:.8vw;}
+td.u{color:var(--muted);padding-right:.8vw;white-space:nowrap;}
+td.s{font-weight:700;white-space:nowrap;}
+.empty{color:var(--hint);font-size:1.5vh;padding:1vh 0;}
+
+.foot{display:flex;justify-content:space-between;font-size:1.2vh;color:var(--hint);letter-spacing:.06em;}
+.err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+     font-size:2.4vh;color:var(--muted);background:var(--bg);}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="title"><span id="ev">VENTAS EN VIVO</span>
+      <span class="sub">LA CURACAO · TIENDAS EFE · JUNTOZ — GROSS YANDEX · INCLUYE IGV</span></div>
+    <div class="fresh warn" id="fresh">Cargando…</div>
+    <div class="clock"><b id="hora">--:--:--</b><span id="fecha"></span></div>
+  </div>
+  <div class="cols" id="cols"></div>
+  <div class="foot">
+    <span id="dia">—</span>
+    <span>Se actualiza solo · datos cada ~10 min · revisa la pantalla cada 60 s</span>
+  </div>
+</div>
+<div class="err" id="err">No se pudo cargar panel.json — reintentando…</div>
+
+<script>
+/* ======================= CONFIG ======================= */
+const REPO = "https://raw.githubusercontent.com/analyticsdatajg2025-cmd/cyber-dashboard/main/";
+const FUENTES = [REPO + "panel.json", "./panel.json"];
+const FILAS_TOP = 5;                  // filas visibles del top por marca
+const REFRESCO_MS = 60 * 1000;        // cada cuanto revisa si hay datos nuevos
+const FRESCO_MIN = 20, ATRASO_MIN = 35; // verde <= 20 min, ambar <= 35, rojo mas
+const EVENTOS = [                      // [nombre, inicio, fin] (incluye la vispera)
+  ["CYBER WOW",  "2026-11-02", "2026-11-05"],
+  ["CYBER DAYS", "2026-11-16", "2026-11-18"],
+];
+const MARCAS = {
+  "LA CURACAO":  {css:"--lc",  nombre:"LA CURACAO"},
+  "TIENDAS EFE": {css:"--efe", nombre:"TIENDAS EFE"},
+  "JUNTOZ":      {css:"--jz",  nombre:"JUNTOZ"},
+};
+/* ====================================================== */
+
+const fmt = {
+  n: v => Number(v||0).toLocaleString('es-PE'),
+  s: v => Number(v||0).toLocaleString('es-PE',{maximumFractionDigits:0}),
+  t: v => Number(v||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}),
+  pct: v => (Number(v||0)*100).toFixed(2)+'%',
+  hm: d => d.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit',hour12:false}),
+};
+const colorDe = m => getComputedStyle(document.documentElement)
+                      .getPropertyValue((MARCAS[m]||{}).css||'--muted').trim();
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let DATA = null, charts = {};
+
+async function traer(){
+  for (const u of FUENTES){
+    try{
+      const r = await fetch(u + '?t=' + Date.now(), {cache:'no-store'});
+      if (r.ok) return await r.json();
+    }catch(e){}
+  }
+  return null;
+}
+
+function nombreEvento(hoy){
+  // La noche de lanzamiento (vispera desde las 20:00) ya muestra el evento.
+  const d = new Date(hoy);
+  const manana = new Date(d.getTime() + 4*3600e3);
+  const iso = x => x.toLocaleDateString('en-CA');
+  for (const [n, ini, fin] of EVENTOS){
+    if (iso(d) >= ini && iso(d) <= fin) return n;
+    if (iso(manana) === ini) return n;
+  }
+  return null;
+}
+
+function reloj(){
+  const ahora = new Date();
+  document.getElementById('hora').textContent =
+    ahora.toLocaleTimeString('es-PE',{hour12:false});
+  document.getElementById('fecha').textContent =
+    ahora.toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'});
+  const ev = nombreEvento(ahora);
+  document.getElementById('ev').innerHTML = ev
+    ? '<span class="ev">'+ev+'</span> · VENTAS EN VIVO' : 'VENTAS EN VIVO';
+  frescura();
+}
+
+function frescura(){
+  const el = document.getElementById('fresh');
+  if (!DATA || !DATA.generado){ el.className='fresh warn'; el.textContent='Cargando…'; return; }
+  const min = (Date.now() - new Date(DATA.generado).getTime()) / 60000;
+  const t = min < 1 ? 'hace menos de 1 min' : 'hace ' + Math.round(min) + ' min';
+  el.className = 'fresh ' + (min <= FRESCO_MIN ? 'ok' : min <= ATRASO_MIN ? 'warn' : 'bad');
+  el.textContent = 'Datos de ' + t + ' · ' + fmt.hm(new Date(DATA.generado));
+}
+
+/* ---------------- render ---------------- */
+function funnelHTML(f){
+  const pasos = [['Sesiones',f.sesiones],['Vieron producto',f.vistos],
+                 ['Carrito',f.carrito],['Comprados',f.comprados]];
+  const max = Math.max(1, ...pasos.map(p=>p[1]||0));
+  return pasos.map(([n,v],i)=>{
+    const prev = i ? pasos[i-1][1] : null;
+    // sesiones -> vistos no es una tasa (un producto visto no es una sesion)
+    const conv = (i >= 2 && prev) ? '<div class="p">↳ '+(v/prev*100).toFixed(1)+'% del paso anterior</div>' : '';
+    return '<div class="fr"><span class="n">'+n+'</span>'+
+      '<div class="bar"><i style="width:'+Math.max(1,(v||0)/max*100).toFixed(1)+'%"></i></div>'+
+      '<span class="v">'+fmt.n(v)+'</span>'+conv+'</div>';
+  }).join('');
+}
+
+function topHTML(top){
+  if (!top || !top.length) return '<div class="empty">Aún sin compras hoy</div>';
+  return '<table><thead><tr><th>#</th><th>Producto</th><th>Unid.</th><th>Ventas</th></tr></thead><tbody>'+
+    top.slice(0, FILAS_TOP).map((p,i)=>'<tr><td class="r">'+(i+1)+'</td>'+
+      '<td class="nm" title="'+esc(p.nombre)+(p.sku?' · '+esc(p.sku):'')+'">'+esc(p.nombre)+'</td>'+
+      '<td class="u">'+fmt.n(p.comprados)+'</td><td class="s">S/ '+fmt.s(p.ingresos)+'</td></tr>').join('')+
+    '</tbody></table>';
+}
+
+function columna(m, b){
+  const k = b.kpis, id = m.replace(/\W/g,'');
+  const estado = b.ok
+    ? '<span class="st ok">● En línea</span>'
+    : '<span class="st bad" title="'+esc(b.error||'')+'">⚠ Último dato '+fmt.hm(new Date(b.actualizado))+'</span>';
+  return '<div class="col" style="--c:var('+MARCAS[m].css+')">'+
+    '<div class="bh"><span class="bn">'+MARCAS[m].nombre+'</span>'+estado+'</div>'+
+    '<div><div class="lbl">Ventas gross · hoy</div>'+
+      '<div class="big"><small>S/</small>'+fmt.s(k.ingresos)+'</div></div>'+
+    '<div class="kpis">'+
+      '<div class="kpi"><div class="lbl">Sesiones</div><div class="v">'+fmt.n(k.sesiones)+'</div></div>'+
+      '<div class="kpi"><div class="lbl">Transacc.</div><div class="v">'+fmt.n(k.compras)+'</div></div>'+
+      '<div class="kpi"><div class="lbl">CR</div><div class="v">'+fmt.pct(k.cr)+'</div></div>'+
+      '<div class="kpi"><div class="lbl">Ticket</div><div class="v">S/ '+fmt.s(k.ticket)+'</div></div>'+
+    '</div>'+
+    '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día</div>'+
+      '<div class="funnel">'+funnelHTML(b.funnel)+'</div></div>'+
+    '<div><div class="lbl" style="margin-bottom:.6vh">Ventas por hora · últimas '+b.horas.length+' h</div>'+
+      '<div class="chart"><canvas id="ch'+id+'"></canvas></div></div>'+
+    '<div class="top10"><div class="lbl" style="margin-bottom:.6vh">Top productos · hoy</div>'+topHTML(b.top)+'</div>'+
+  '</div>';
+}
+
+function dibujar(m, b){
+  const id = 'ch'+m.replace(/\W/g,'');
+  if (charts[id]) charts[id].destroy();
+  const c = colorDe(m), horas = b.horas || [];
+  const ultima = horas.length - 1;   // hora en curso (parcial): se pinta mas tenue
+  charts[id] = new Chart(document.getElementById(id), {
+    type:'bar',
+    data:{
+      labels: horas.map(x=>String(x.h).padStart(2,'0')+'h'),
+      datasets:[{label:'Ventas', data: horas.map(x=>x.ing),
+        backgroundColor: horas.map((x,i)=> i===ultima ? c+'80' : c),
+        borderRadius:4, borderSkipped:'bottom', maxBarThickness:42}]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false, animation:false,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{
+          title: it => { const x = horas[it[0].dataIndex];
+                         return x.fecha.split('-').reverse().slice(0,2).join('/')+' '+String(x.h).padStart(2,'0')+':00'+
+                                (it[0].dataIndex===ultima?' (en curso)':''); },
+          label: it => { const x = horas[it.dataIndex];
+                         return ['Ventas: S/ '+fmt.s(x.ing), 'Sesiones: '+fmt.n(x.ses)]; }}}},
+      scales:{
+        y:{beginAtZero:true, border:{display:false}, grid:{color:'#1b1f29'},
+           ticks:{color:'#6b7180', font:{size:11}, maxTicksLimit:4,
+                  callback:v=>'S/'+(v>=1000?(v/1000).toFixed(0)+'k':v)}},
+        x:{grid:{display:false}, border:{color:'#232834'}, ticks:{color:'#9aa0ad', font:{size:12}}}
+      }
+    }
+  });
+}
+
+function render(){
+  const cols = document.getElementById('cols');
+  const marcas = Object.keys(MARCAS).filter(m => DATA.marcas && DATA.marcas[m]);
+  cols.innerHTML = marcas.map(m => columna(m, DATA.marcas[m])).join('');
+  marcas.forEach(m => dibujar(m, DATA.marcas[m]));
+  const f = (DATA.marcas[marcas[0]]||{}).fecha;
+  document.getElementById('dia').textContent = f
+    ? 'Día de los KPIs: ' + new Date(f+'T12:00:00').toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'}) +
+      ' (se reinicia a las 00:00)' : '—';
+}
+
+async function cargar(){
+  const d = await traer();
+  const err = document.getElementById('err');
+  if (!d){ if (!DATA) err.style.display='flex'; return; }
+  err.style.display = 'none';
+  const nuevo = !DATA || d.generado !== DATA.generado;
+  DATA = d;
+  if (nuevo) render();
+  frescura();
+}
+
+reloj(); setInterval(reloj, 1000);
+cargar(); setInterval(cargar, REFRESCO_MS);
+</script>
+</body>
+</html>
