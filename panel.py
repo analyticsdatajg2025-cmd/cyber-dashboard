@@ -8,9 +8,8 @@ historico.json, neto.json, Sheets ni manda correos. El pipeline horario
 
 Por marca (las 3 por separado, gross de Yandex, sin metas):
   · KPIs del dia en curso: ventas, sesiones, transacciones, CR, ticket.
-  · Funnel: sesiones -> vieron producto -> carrito -> comprados.
-  · Ventas y sesiones por hora de las ultimas HORAS_PANEL horas
-    (cruza la medianoche: incluye las horas de ayer).
+  · Funnel en unidades de producto: vistos -> al carrito -> comprados.
+  · Ventas, sesiones y transacciones por tipo de fuente de trafico.
   · Top productos del dia por ventas.
 
 Si una marca falla, se conserva su ultimo dato bueno (marcado ok=false) para
@@ -24,11 +23,11 @@ from datetime import datetime, date, timedelta
 
 import requests
 
-from pipeline import (MARCAS, HEADERS, URL_BYTIME, traer_funnel,
-                      traer_top_productos)
+from pipeline import (MARCAS, HEADERS, URL_BYTIME, URL_DATA, ATTRIBUTION,
+                      traer_funnel, traer_top_productos)
 
 SALIDA_PANEL = "panel.json"
-HORAS_PANEL = 8          # horas que muestra el grafico por hora
+HORAS_PANEL = 8          # horas por hora que se guardan (no se grafican hoy)
 TOP_PANEL = 10          # productos por marca (el panel muestra 5)
 
 
@@ -60,12 +59,51 @@ def traer_horas(contador, ahora):
     return filas[-HORAS_PANEL:], ses_hoy
 
 
+# Tipos de trafico de Yandex (id de la dimension TrafficSource) -> etiqueta.
+FUENTES = {
+    "ad": "Pagado (anuncios)", "organic": "Orgánico (buscadores)",
+    "direct": "Directo", "social": "Redes sociales", "referral": "Otros sitios",
+    "email": "Email", "messenger": "Mensajería", "internal": "Interno",
+    "saved": "Guardados", "recommend": "Recomendaciones", "qrcode": "Código QR",
+    "undefined": "Sin definir",
+}
+
+
+def traer_fuentes(contador):
+    """Sesiones, transacciones y ventas de hoy por tipo de trafico."""
+    p = {"ids": contador, "dimensions": "ym:s:<attribution>TrafficSource",
+         "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
+         "date1": "today", "date2": "today", "attribution": ATTRIBUTION,
+         "sort": "-ym:s:ecommerceRevenue", "limit": 20}
+    r = requests.get(URL_DATA, headers=HEADERS, params=p, timeout=60)
+    d = r.json()
+    if r.status_code != 200 or "data" not in d:
+        raise RuntimeError(f"Yandex HTTP {r.status_code}: "
+                           f"{d.get('message') or d.get('errors') or d}")
+    out = []
+    for fila in d["data"]:
+        dim = fila["dimensions"][0] or {}
+        ses, compras, ingresos = fila["metrics"]
+        nombre = FUENTES.get(dim.get("id"), dim.get("name") or "Sin definir")
+        out.append({"fuente": nombre, "sesiones": int(ses or 0),
+                    "compras": int(compras or 0),
+                    "ingresos": round(float(ingresos or 0), 2)})
+    # orden: ventas y, a igualdad, sesiones (de madrugada puede no haber ventas)
+    out.sort(key=lambda x: (x["ingresos"], x["sesiones"]), reverse=True)
+    return out
+
+
 def construir_marca(contador, ahora):
     f = traer_funnel(contador)                       # hoy
     horas, sesiones = traer_horas(contador, ahora)
     hoy = ahora.date().isoformat()
     productos = traer_top_productos(contador)        # top 100 por unidades
     top = sorted(productos, key=lambda p: p["ingresos"], reverse=True)[:TOP_PANEL]
+    try:
+        fuentes = traer_fuentes(contador)
+    except Exception as e:                       # no tumba la marca entera
+        print(f"  Aviso fuentes ({contador}): {e}", file=sys.stderr)
+        fuentes = None
     return {
         "ok": True,
         "fecha": hoy,
@@ -80,6 +118,7 @@ def construir_marca(contador, ahora):
         "funnel": {"sesiones": sesiones, "vistos": f["vistos"],
                    "carrito": f["carrito"], "comprados": f["comprados"]},
         "horas": horas,
+        "fuentes": fuentes,
         "top": [{"nombre": p["nombre"], "sku": p["sku"],
                  "comprados": p["comprados"], "ingresos": p["ingresos"]}
                 for p in top],
