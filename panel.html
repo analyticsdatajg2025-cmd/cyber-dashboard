@@ -4,7 +4,6 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Panel en vivo · Cyber</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 /* Pantalla TV horizontal (pensado para 1920x1080, escala con la ventana). */
 :root{
@@ -63,8 +62,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);
 .fr .v{text-align:right;font-weight:700;}
 .fr .p{grid-column:2/4;font-size:1.2vh;color:var(--hint);margin-top:-.5vh;}
 
-.chart{position:relative;height:15vh;}
-
 .top10{flex:1;min-height:0;overflow:hidden;}
 table{width:100%;border-collapse:collapse;font-size:1.45vh;}
 th{font-size:1.1vh;color:var(--hint);text-align:left;font-weight:700;letter-spacing:.1em;
@@ -87,7 +84,7 @@ td.s{font-weight:700;white-space:nowrap;}
 <div class="app">
   <div class="top">
     <div class="title"><span id="ev">VENTAS EN VIVO</span>
-      <span class="sub">LA CURACAO · TIENDAS EFE · JUNTOZ — GROSS YANDEX · INCLUYE IGV</span></div>
+      <span class="sub">LA CURACAO · TIENDAS EFE · JUNTOZ — DATA GROSS · INCLUYE IGV</span></div>
     <div class="fresh warn" id="fresh">Cargando…</div>
     <div class="clock"><b id="hora">--:--:--</b><span id="fecha"></span></div>
   </div>
@@ -103,7 +100,7 @@ td.s{font-weight:700;white-space:nowrap;}
 /* ======================= CONFIG ======================= */
 const REPO = "https://raw.githubusercontent.com/analyticsdatajg2025-cmd/cyber-dashboard/main/";
 const FUENTES = [REPO + "panel.json", "./panel.json"];
-const FILAS_TOP = 5;                  // filas visibles del top por marca
+const FILAS_TOP = 8;                  // filas visibles del top por marca
 const REFRESCO_MS = 60 * 1000;        // cada cuanto revisa si hay datos nuevos
 const FRESCO_MIN = 20, ATRASO_MIN = 35; // verde <= 20 min, ambar <= 35, rojo mas
 const EVENTOS = [                      // [nombre, inicio, fin] (incluye la vispera)
@@ -124,11 +121,9 @@ const fmt = {
   pct: v => (Number(v||0)*100).toFixed(2)+'%',
   hm: d => d.toLocaleTimeString('es-PE',{hour:'2-digit',minute:'2-digit',hour12:false}),
 };
-const colorDe = m => getComputedStyle(document.documentElement)
-                      .getPropertyValue((MARCAS[m]||{}).css||'--muted').trim();
 const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-let DATA = null, charts = {};
+let DATA = null;
 
 async function traer(){
   for (const u of FUENTES){
@@ -175,15 +170,18 @@ function frescura(){
 
 /* ---------------- render ---------------- */
 function funnelHTML(f){
-  const pasos = [['Sesiones',f.sesiones],['Vieron producto',f.vistos],
-                 ['Carrito',f.carrito],['Comprados',f.comprados]];
-  const max = Math.max(1, ...pasos.map(p=>p[1]||0));
-  return pasos.map(([n,v],i)=>{
+  // Los 3 pasos se miden en unidades de producto (vistas de ficha, unidades
+  // al carrito, unidades compradas), asi el porcentaje entre pasos es valido.
+  // Las sesiones NO van aqui: una sesion ve varias fichas.
+  const pasos = [['Vistos',f.vistos,''],
+                 ['Al carrito',f.carrito,'pasa al carrito'],
+                 ['Comprados',f.comprados,'compra']];
+  const max = Math.max(1, pasos[0][1]||0);
+  return pasos.map(([n,v,txt],i)=>{
     const prev = i ? pasos[i-1][1] : null;
-    // sesiones -> vistos no es una tasa (un producto visto no es una sesion)
-    const conv = (i >= 2 && prev) ? '<div class="p">↳ '+(v/prev*100).toFixed(1)+'% del paso anterior</div>' : '';
+    const conv = (i && prev) ? '<div class="p">▼ '+(v/prev*100).toFixed(1)+'% '+txt+'</div>' : '';
     return '<div class="fr"><span class="n">'+n+'</span>'+
-      '<div class="bar"><i style="width:'+Math.max(1,(v||0)/max*100).toFixed(1)+'%"></i></div>'+
+      '<div class="bar"><i style="width:'+Math.max(1,Math.min(100,(v||0)/max*100)).toFixed(1)+'%"></i></div>'+
       '<span class="v">'+fmt.n(v)+'</span>'+conv+'</div>';
   }).join('');
 }
@@ -198,7 +196,7 @@ function topHTML(top){
 }
 
 function columna(m, b){
-  const k = b.kpis, id = m.replace(/\W/g,'');
+  const k = b.kpis;
   const estado = b.ok
     ? '<span class="st ok">● En línea</span>'
     : '<span class="st bad" title="'+esc(b.error||'')+'">⚠ Último dato '+fmt.hm(new Date(b.actualizado))+'</span>';
@@ -212,51 +210,16 @@ function columna(m, b){
       '<div class="kpi"><div class="lbl">CR</div><div class="v">'+fmt.pct(k.cr)+'</div></div>'+
       '<div class="kpi"><div class="lbl">Ticket</div><div class="v">S/ '+fmt.s(k.ticket)+'</div></div>'+
     '</div>'+
-    '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día</div>'+
+    '<div><div class="lbl" style="margin-bottom:.8vh">Funnel del día · unidades de producto</div>'+
       '<div class="funnel">'+funnelHTML(b.funnel)+'</div></div>'+
-    '<div><div class="lbl" style="margin-bottom:.6vh">Ventas por hora · últimas '+b.horas.length+' h</div>'+
-      '<div class="chart"><canvas id="ch'+id+'"></canvas></div></div>'+
     '<div class="top10"><div class="lbl" style="margin-bottom:.6vh">Top productos · hoy</div>'+topHTML(b.top)+'</div>'+
   '</div>';
-}
-
-function dibujar(m, b){
-  const id = 'ch'+m.replace(/\W/g,'');
-  if (charts[id]) charts[id].destroy();
-  const c = colorDe(m), horas = b.horas || [];
-  const ultima = horas.length - 1;   // hora en curso (parcial): se pinta mas tenue
-  charts[id] = new Chart(document.getElementById(id), {
-    type:'bar',
-    data:{
-      labels: horas.map(x=>String(x.h).padStart(2,'0')+'h'),
-      datasets:[{label:'Ventas', data: horas.map(x=>x.ing),
-        backgroundColor: horas.map((x,i)=> i===ultima ? c+'80' : c),
-        borderRadius:4, borderSkipped:'bottom', maxBarThickness:42}]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:false, animation:false,
-      plugins:{legend:{display:false},
-        tooltip:{callbacks:{
-          title: it => { const x = horas[it[0].dataIndex];
-                         return x.fecha.split('-').reverse().slice(0,2).join('/')+' '+String(x.h).padStart(2,'0')+':00'+
-                                (it[0].dataIndex===ultima?' (en curso)':''); },
-          label: it => { const x = horas[it.dataIndex];
-                         return ['Ventas: S/ '+fmt.s(x.ing), 'Sesiones: '+fmt.n(x.ses)]; }}}},
-      scales:{
-        y:{beginAtZero:true, border:{display:false}, grid:{color:'#1b1f29'},
-           ticks:{color:'#6b7180', font:{size:11}, maxTicksLimit:4,
-                  callback:v=>'S/'+(v>=1000?(v/1000).toFixed(0)+'k':v)}},
-        x:{grid:{display:false}, border:{color:'#232834'}, ticks:{color:'#9aa0ad', font:{size:12}}}
-      }
-    }
-  });
 }
 
 function render(){
   const cols = document.getElementById('cols');
   const marcas = Object.keys(MARCAS).filter(m => DATA.marcas && DATA.marcas[m]);
   cols.innerHTML = marcas.map(m => columna(m, DATA.marcas[m])).join('');
-  marcas.forEach(m => dibujar(m, DATA.marcas[m]));
   const f = (DATA.marcas[marcas[0]]||{}).fecha;
   document.getElementById('dia').textContent = f
     ? 'Día de los KPIs: ' + new Date(f+'T12:00:00').toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long'}) +
