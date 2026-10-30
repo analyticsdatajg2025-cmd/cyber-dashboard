@@ -1,0 +1,56 @@
+name: Panel en vivo
+# Corrida liviana: solo escribe panel.json (no Sheets, no correo, no data.json).
+# Disparo principal: cron-job.org llama a la API de GitHub (workflow_dispatch)
+# cada 10 min durante la noche de lanzamiento. El cron de abajo es solo un
+# respaldo: GitHub puede retrasar o saltarse corridas programadas.
+on:
+  workflow_dispatch:
+  schedule:
+    # 03:00-07:59 UTC = 22:00-02:59 Lima, noches de lanzamiento:
+    #   01->02 nov (Cyber WOW) y 15->16 nov (Cyber Days).
+    - cron: "*/10 3-7 2,16 11 *"
+permissions:
+  contents: write
+concurrency:
+  group: panel            # una corrida a la vez; si se juntan, espera
+  cancel-in-progress: false
+jobs:
+  panel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      TZ: America/Lima
+      MODO: auto
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Cache de pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: deps-${{ hashFiles('requirements.txt') }}
+      - name: Instalar dependencias
+        # Solo lo que usa panel.py (via pipeline.py): sin Playwright.
+        run: pip install requests openpyxl
+      - name: Escribir token
+        run: echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+      - name: Correr panel
+        run: python panel.py
+      - name: Commitear panel.json
+        if: success()
+        run: |
+          git config user.name  "cyber-bot"
+          git config user.email "bot@conecta.pe"
+          git add panel.json
+          git commit -m "panel $(date +%H:%M) Lima" || { echo "sin cambios"; exit 0; }
+          # el pipeline horario puede pushear a la vez: reintenta
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          exit 1
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt
