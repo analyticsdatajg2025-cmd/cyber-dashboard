@@ -64,34 +64,120 @@ def traer_horas(contador, ahora):
 
 # ---------------------------------------------------------------------------
 # FUENTES DE TRAFICO -> Meta / Google / TikTok / Organico / Directo / Otros
+#
+# Se usan las MISMAS reglas que el "FX CANAL DETALLE" de GA4 (fuente / medio /
+# campana de la sesion) para que el panel cuadre con los reportes de GA4.
+# Cuando la visita no trae UTM, la fuente/medio se arman con lo que Yandex
+# detecta (tipo de trafico + buscador / red social / dominio).
 # ---------------------------------------------------------------------------
 CANALES = ["Meta", "Google", "TikTok", "Orgánico", "Directo", "Otros"]
-_PATRONES = [                       # se busca en utm_source + motor/red social
-    ("Meta",   ("facebook", "instagram", "meta", "fb", "ig", "messenger")),
-    ("Google", ("google", "youtube", "gclid", "pmax", "adwords")),
-    ("TikTok", ("tiktok",)),
-]
 
 
-def _canal(tipo, motor, utm):
-    """Clasifica una fila de Yandex en un canal del panel.
-    tipo  = id de TrafficSource (ad, organic, direct, social, referral, ...)
-    motor = SourceEngine (Google, Facebook, TikTok, ...)
-    utm   = utm_source."""
-    texto = f"{motor} {utm}".lower()
-    pagado = tipo == "ad" or bool(utm)
-    if tipo == "direct" and not utm:
+def _rx(patron, texto):
+    return re.search(patron, texto) is not None
+
+
+def canal_detalle(fuente, medio, campana):
+    """Traduccion 1:1 del CASE 'FX CANAL DETALLE' de GA4 (sin la rama APP:
+    el contador web de Yandex no ve la app)."""
+    f, m, c = (fuente or "").lower(), (medio or "").lower(), (campana or "").lower()
+    google = _rx(r"google|adwords", f)
+    if google and (_rx(r"pmax|p-max|perf-?max|performance ?max", c)
+                   or _rx(r"cross-network|cross_network", m)):
+        return "GOOGLE ADS - PMAX"
+    if google and (_rx(r"demandgen|demand[\s-]gen|discovery", c)
+                   or _rx(r"discovery|demand[\s-]gen", m)):
+        return "GOOGLE ADS - DEMAND GEN"
+    if google and _rx(r"shopping|merchant", c) and _rx(r"cpc|ppc|paid|shopping", m):
+        return "GOOGLE ADS - SHOPPING"
+    if (_rx(r"google|adwords|youtube", f)
+            and (_rx(r"youtube|_video_|video_views|influence", c) or _rx(r"video", m))
+            and _rx(r"cpc|ppc|paid|video", m)):
+        return "GOOGLE ADS - VIDEO"
+    if ((google and (_rx(r"display|banner|gdn|prioridades", c)
+                     or _rx(r"display|banner|banners|programatica|cpm|gd(n|s)", m)))
+            or (_rx(r"social[\s-]media", f) and _rx(r"google-paid|google_paid", m))
+            or _rx(r"^gd(n|s)$", m)):
+        return "GOOGLE DISPLAY"
+    if _rx(r"google|adwords|yandex", f) and _rx(r"cpc|ppc|paid|search-paid", m):
+        return "GOOGLE SEM"
+    if google and _rx(r"cpc|ppc|paid", m):
+        return "GOOGLE ADS - OTROS (revisar)"
+    if ((_rx(r"facebook|instagram|meta", f) or f in ("fb", "ig", "an", "msg", "fb_ig")
+         or _rx(r"^fb", f)
+         or (_rx(r"social[\s-]media", f) and _rx(r"facebook|instagram|fb", m)))
+            and _rx(r"cpc|paid|paidsocial|paid_social|paid-social|dpa", m)):
+        return "FACEBOOK ADS"
+    if _rx(r"facebook-paid|facebook_paid|dpa", m) and not _rx(r"tiktok|google|adwords|yandex", f):
+        return "FACEBOOK ADS"
+    if ((_rx(r"tiktok", f) or _rx(r"tiktok-paid|tiktok_paid", m)
+         or (_rx(r"social[\s-]media", f) and _rx(r"tiktok", m)))
+            and _rx(r"cpc|paid", m)):
+        return "TIKTOK ADS"
+    if (_rx(r"email|mailing|correo|newsletter|edm|retention", m)
+            or _rx(r"sendgrid|mailchimp|emarsys|klaviyo|hubspot|vtex|salesforce|sfmc|"
+                   r"exacttarget|brevo|sendinblue|emblue|^blue$|^blue ", f)):
+        return "EMAIL"
+    if (_rx(r"sms|text|mms|sms_mkt|sms_marketing|mensajes", m)
+            or _rx(r"sms|infobip|twilio|masiv|aldamo|masivmovil|smsmkt|smsmasivo|smsup", f)):
+        return "SMS"
+    if (_rx(r"wsp|whatsapp|wa\.me|whatsapp\.com|web\.whatsapp|api\.whatsapp|"
+            r"business\.whatsapp", f)
+            or _rx(r"wsp_mkt|whatsapp_mkt|wsp_biz|whatsapp_business|wsp|whatsapp", m)):
+        return "WSP"
+    if _rx(r"organic", m) and _rx(r"google|bing|yahoo|baidu|duckduckgo|ecosia|yandex|ask|seznam", f):
+        return "SEO / BUSQUEDA ORG"
+    if (f == "(direct)" and m == "(none)") or f == "direct":
+        return "DIRECTO"
+    if (_rx(r"facebook|meta", f) or f == "fb"
+            or (_rx(r"social[\s-]media", f) and _rx(r"facebook|fb", m) and not _rx(r"paid", m))):
+        return "FACEBOOK ORG"
+    if (_rx(r"instagram", f) or f == "ig"
+            or (_rx(r"social[\s-]media", f) and _rx(r"instagram", m) and not _rx(r"paid", m))):
+        return "INSTAGRAM ORG"
+    if (_rx(r"tiktok", f) or _rx(r"tiktok", m)
+            or (_rx(r"social[\s-]media", f) and _rx(r"tiktok", m) and not _rx(r"paid", m))):
+        return "TIKTOK ORG"
+    if ((_rx(r"linkedin|twitter|t\.co|pinterest|youtube|pangleglobal", f) or f == "an"
+         or _rx(r"social|referral", m))
+            and not _rx(r"tiktok|facebook|instagram|fb", m)):
+        return "OTROS SOCIAL ORG"
+    return "REFERRAL"
+
+
+def canal_panel(detalle):
+    """Agrupa el canal detalle en los 6 canales del panel."""
+    if detalle.startswith("GOOGLE"):
+        return "Google"
+    if detalle in ("FACEBOOK ADS", "FACEBOOK ORG", "INSTAGRAM ORG"):
+        return "Meta"
+    if detalle in ("TIKTOK ADS", "TIKTOK ORG"):
+        return "TikTok"
+    if detalle == "SEO / BUSQUEDA ORG":
+        return "Orgánico"
+    if detalle == "DIRECTO":
         return "Directo"
-    if tipo == "organic" and not utm:
-        return "Orgánico"            # SEO: Google organico va aqui, no en Google
-    palabras = set(re.split(r"[^a-z0-9]+", texto))
-    for canal, claves in _PATRONES:
-        # claves cortas (fb, ig) solo como palabra completa; largas, en cualquier parte
-        if any(k in palabras or (len(k) >= 5 and k in texto) for k in claves):
-            if canal == "Google" and not pagado:
-                return "Orgánico"
-            return canal
     return "Otros"
+
+
+# Medio equivalente cuando la visita no trae UTM (tipo de trafico de Yandex)
+_MEDIO_SIN_UTM = {"organic": "organic", "ad": "cpc", "social": "social",
+                  "referral": "referral", "email": "email", "messenger": "referral",
+                  "internal": "referral", "saved": "referral",
+                  "recommend": "referral", "qrcode": "referral"}
+
+
+def fuente_medio(tipo, motor, utm_fuente, utm_medio):
+    """(fuente, medio) al estilo GA4 a partir de una fila de Yandex."""
+    if utm_fuente:
+        # sin utm_medium (p.ej. autoetiquetado de Google) se usa el tipo de
+        # trafico que detecto Yandex: "ad" -> cpc, "organic" -> organic, etc.
+        return utm_fuente, (utm_medio or _MEDIO_SIN_UTM.get(tipo, ""))
+    if tipo == "direct":
+        return "(direct)", "(none)"
+    if tipo == "internal":
+        return "(internal)", "referral"
+    return (motor or "(not set)"), _MEDIO_SIN_UTM.get(tipo, "referral")
 
 
 def _consulta(params):
@@ -104,37 +190,48 @@ def _consulta(params):
 
 
 def traer_fuentes(contador, fecha="today"):
-    """Sesiones, transacciones y ventas de hoy por canal. Devuelve
-    (lista por canal, filas crudas para revisar la clasificacion)."""
+    """Sesiones, transacciones y ventas por canal. Devuelve
+    (lista por canal del panel, lista por canal detalle, filas crudas)."""
     base = {"ids": contador, "date1": fecha, "date2": fecha,
-            "attribution": ATTRIBUTION, "limit": 500,
+            "attribution": ATTRIBUTION, "limit": 5000,
             "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
             "sort": "-ym:s:visits"}
     dims = ["ym:s:<attribution>TrafficSource", "ym:s:<attribution>SourceEngine",
-            "ym:s:<attribution>UTMSource"]
-    try:
-        d = _consulta({**base, "dimensions": ",".join(dims)})
-    except RuntimeError as e:
-        # si Yandex no acepta alguna dimension, al menos por tipo de trafico
-        print(f"  Aviso fuentes detalladas ({contador}): {e}", file=sys.stderr)
-        d = _consulta({**base, "dimensions": dims[0]})
+            "ym:s:<attribution>UTMSource", "ym:s:<attribution>UTMMedium",
+            "ym:s:<attribution>UTMCampaign"]
+    d = None
+    for n in (5, 3, 1):          # si Yandex no acepta alguna dimension, se reduce
+        try:
+            d = _consulta({**base, "dimensions": ",".join(dims[:n])})
+            break
+        except RuntimeError as e:
+            print(f"  Aviso fuentes con {n} dimensiones ({contador}): {e}",
+                  file=sys.stderr)
+    if d is None:
+        raise RuntimeError("Yandex no acepto la consulta de fuentes")
     agg = {c: [0, 0, 0.0] for c in CANALES}
+    det = {}
     crudo = []
     for fila in d.get("data") or []:
-        dd = fila["dimensions"] + [{}, {}]
-        tipo = (dd[0] or {}).get("id") or ""
-        motor = (dd[1] or {}).get("name") or ""
-        utm = (dd[2] or {}).get("name") or ""
-        ses, compras, ingresos = fila["metrics"]
-        canal = _canal(tipo, motor, utm)
-        a = agg[canal]
-        a[0] += int(ses or 0); a[1] += int(compras or 0); a[2] += float(ingresos or 0)
+        dd = [(x or {}) for x in fila["dimensions"]] + [{}] * 5
+        tipo = dd[0].get("id") or ""
+        motor, utm_f, utm_m, utm_c = (dd[i].get("name") or "" for i in (1, 2, 3, 4))
+        fuente, medio = fuente_medio(tipo, motor, utm_f, utm_m)
+        detalle = canal_detalle(fuente, medio, utm_c)
+        canal = canal_panel(detalle)
+        ses, compras, ingresos = (fila["metrics"] + [0, 0, 0])[:3]
+        for a in (agg[canal], det.setdefault(detalle, [0, 0, 0.0])):
+            a[0] += int(ses or 0); a[1] += int(compras or 0); a[2] += float(ingresos or 0)
         if len(crudo) < 60:
-            crudo.append({"tipo": tipo, "motor": motor, "utm": utm,
-                          "sesiones": int(ses or 0), "canal": canal})
+            crudo.append({"tipo": tipo, "motor": motor, "utm": utm_f, "medio": utm_m,
+                          "campana": utm_c, "sesiones": int(ses or 0),
+                          "detalle": detalle, "canal": canal})
     out = [{"fuente": c, "sesiones": v[0], "compras": v[1],
             "ingresos": round(v[2], 2)} for c, v in agg.items()]
-    return out, crudo
+    detalle = sorted(({"detalle": k, "sesiones": v[0], "compras": v[1],
+                       "ingresos": round(v[2], 2)} for k, v in det.items()),
+                     key=lambda x: -x["sesiones"])
+    return out, detalle, crudo
 
 
 # ---------------------------------------------------------------------------
@@ -171,7 +268,7 @@ def construir_marca(contador, ahora):
     productos = traer_top_productos(contador)        # top 100 por unidades
     top = sorted(productos, key=lambda p: p["ingresos"], reverse=True)[:TOP_PANEL]
     try:
-        fuentes, fuentes_crudo = traer_fuentes(contador)
+        fuentes, _, fuentes_crudo = traer_fuentes(contador)
     except Exception as e:                       # no tumba la marca entera
         print(f"  Aviso fuentes ({contador}): {e}", file=sys.stderr)
         fuentes, fuentes_crudo = None, None
