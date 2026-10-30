@@ -103,10 +103,10 @@ def _consulta(params):
     return d
 
 
-def traer_fuentes(contador):
+def traer_fuentes(contador, fecha="today"):
     """Sesiones, transacciones y ventas de hoy por canal. Devuelve
     (lista por canal, filas crudas para revisar la clasificacion)."""
-    base = {"ids": contador, "date1": "today", "date2": "today",
+    base = {"ids": contador, "date1": fecha, "date2": fecha,
             "attribution": ATTRIBUTION, "limit": 500,
             "metrics": "ym:s:visits,ym:s:ecommercePurchases,ym:s:ecommerceRevenue",
             "sort": "-ym:s:visits"}
@@ -129,7 +129,7 @@ def traer_fuentes(contador):
         canal = _canal(tipo, motor, utm)
         a = agg[canal]
         a[0] += int(ses or 0); a[1] += int(compras or 0); a[2] += float(ingresos or 0)
-        if len(crudo) < 40:
+        if len(crudo) < 60:
             crudo.append({"tipo": tipo, "motor": motor, "utm": utm,
                           "sesiones": int(ses or 0), "canal": canal})
     out = [{"fuente": c, "sesiones": v[0], "compras": v[1],
@@ -148,10 +148,10 @@ _FILTROS_FUNNEL = {
 }
 
 
-def traer_funnel_sesiones(contador, sesiones):
+def traer_funnel_sesiones(contador, sesiones, fecha="today"):
     out = {"tipo": "sesiones", "sesiones": sesiones}
     for paso, filtro in _FILTROS_FUNNEL.items():
-        d = _consulta({"ids": contador, "date1": "today", "date2": "today",
+        d = _consulta({"ids": contador, "date1": fecha, "date2": fecha,
                        "metrics": "ym:s:visits", "filters": filtro})
         out[paso] = int((d.get("totals") or [0])[0] or 0)
     # control: en un funnel de sesiones cada paso es <= al anterior. Si no se

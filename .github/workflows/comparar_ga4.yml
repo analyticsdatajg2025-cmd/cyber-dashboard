@@ -1,0 +1,39 @@
+name: Comparar con GA4
+# Validacion de solo lectura: consulta Yandex para un dia/marca y lo compara
+# con los numeros de GA4 cargados en comparar_ga4.py. No hace commits.
+on:
+  workflow_dispatch:
+    inputs:
+      fecha:
+        description: "Fecha (YYYY-MM-DD)"
+        default: "2026-10-01"
+      marca:
+        description: "Marca"
+        type: choice
+        options: ["LA CURACAO", "TIENDAS EFE", "JUNTOZ"]
+        default: "LA CURACAO"
+permissions:
+  contents: read
+jobs:
+  comparar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      TZ: America/Lima
+      MODO: auto
+      FECHA: ${{ inputs.fecha }}
+      MARCA: ${{ inputs.marca }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar dependencias
+        run: pip install requests openpyxl
+      - name: Escribir token
+        run: echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+      - name: Comparar
+        run: python comparar_ga4.py
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt
