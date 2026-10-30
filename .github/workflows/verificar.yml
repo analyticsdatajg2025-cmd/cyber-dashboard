@@ -1,0 +1,39 @@
+name: Verificar credenciales
+# Chequeo de SOLO LECTURA antes de un cyber. Solo corre a mano.
+# No escribe JSONs, no toca Sheets, no manda correos, no hace commits.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Lima
+      MODO: auto
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install chromium
+      - name: Escribir secretos a archivos locales
+        run: |
+          echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+          printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
+          echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
+      - name: Verificar
+        run: python verificar_credenciales.py
+      - name: Subir PNG de prueba
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: png-de-prueba
+          path: prueba_reporte.png
+          if-no-files-found: ignore
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt gmail.txt credenciales.json
