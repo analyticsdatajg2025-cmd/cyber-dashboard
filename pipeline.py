@@ -211,17 +211,19 @@ DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 
 # --- Ventanas de los cybers (editables) ---
 # Noviembre 2026. (Julio fue: DAYS 6-12 jul, WOW 13-19 jul.)
-CYBER_WOW  = (date(2026, 11, 2),  date(2026, 11, 5))   # 2 al 5 noviembre
+CYBER_WOW  = (date(2026, 11, 2),  date(2026, 11, 8))   # 2 al 8 noviembre
 CYBER_DAYS = (date(2026, 11, 16), date(2026, 11, 18))  # 16 al 18 noviembre
 EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
 
 # --- Que usa el modo cyber (noviembre 2026) ---
-# USAR_PROY_HORARIA: True = curva por hora del Excel ARCHIVO_PROY (como julio).
-#   False = sin curva horaria: la meta del dia sale del Sheet mensual (col F),
-#   igual que en el modo diario. El Excel de julio NO sirve para noviembre.
+# USAR_PROY_HORARIA: True = curva por hora del Excel ARCHIVO_PROY. Si para un
+#   dia/marca el Excel esta vacio (suma 0), ese dia cae solo a la meta diaria
+#   del Sheet mensual (col F), sin curva horaria.
+#   False = nunca se usa el Excel (siempre meta diaria del Sheet).
+#   ARCHIVO_PROY conserva el nombre de julio pero ya trae las metas de noviembre.
 # ESCRIBIR_META_HORARIA: True = escribe el real por hora en el Sheet
 #   "Meta horaria" (META_SHEET_KEY). False para no pisar el Sheet de julio.
-USAR_PROY_HORARIA = False
+USAR_PROY_HORARIA = True
 ESCRIBIR_META_HORARIA = False
 # NETO_HOY_ACTIVO: True solo si neto.py (en la PC) va a correr durante el
 #   cyber escribiendo el bloque 'hoy' de neto.json. Con False, pipeline.py NO
@@ -294,14 +296,15 @@ def proy_horaria(marca, fecha=None):
     En diario devuelve ceros y el JSON publica null (no hay curva horaria)."""
     if ES_DIARIO or not USAR_PROY_HORARIA:
         return [0.0] * 24
-    return leer_proyecciones(marca, fecha or date.today())
+    proy = leer_proyecciones(marca, fecha or date.today())
+    return proy if sum(proy) > 0 else [0.0] * 24   # dia sin metas en el Excel
 
 
 def serie_proy_json(proy):
     """La proyeccion tal como sale al JSON: numeros en cyber, null en diario.
     Publicar null (y no 0) evita que el grafico pinte una linea plana en cero
     y que la tabla muestre una columna de ceros."""
-    if ES_DIARIO or not USAR_PROY_HORARIA:
+    if not any(proy):                  # diario, o dia sin curva horaria
         return [None] * 24
     return [round(v) for v in proy]
 
@@ -310,9 +313,10 @@ def meta_diaria(marca, fecha=None):
     """Meta de sesiones del dia (numero unico).
     diario -> Sheet mensual col F; cyber -> suma de la proyeccion horaria."""
     fecha = fecha or date.today()
-    if ES_DIARIO or not USAR_PROY_HORARIA:
+    curva = proy_horaria(marca, fecha)
+    if not any(curva):                 # diario, o dia sin curva horaria
         return leer_proyeccion_diaria(marca, fecha)
-    return sum(leer_proyecciones(marca, fecha))
+    return sum(curva)
 
 
 # ---------------------------------------------------------------------------
@@ -457,8 +461,7 @@ def construir_marca(marca):
     f = r["funnel"]
     # meta al corte: solo tiene sentido con curva horaria (cyber).
     # En diario va null y el dashboard compara contra la meta del dia.
-    sin_curva = ES_DIARIO or not USAR_PROY_HORARIA
-    meta_corte = None if sin_curva else round(sum(r["proy"][:corte + 1]))
+    meta_corte = None if not any(r["proy"]) else round(sum(r["proy"][:corte + 1]))
     bloque = {
         "meta_sesiones_dia":   round(r["meta"]),
         "meta_sesiones_corte": meta_corte,
@@ -881,7 +884,7 @@ def escribir_semana(reportes):
     dia = DIAS_CORTOS[date.today().weekday()]
     for marca, r in reportes.items():
         proy_corte = round(sum(r["proy"][:r["corte"] + 1]))
-        if ES_DIARIO or not USAR_PROY_HORARIA:
+        if not any(r["proy"]):
             proy_corte = round(r["meta"])   # sin curva horaria: avance vs meta del día
         nueva = [marca, hoy, dia, round(r["meta"]), r["real_acum"],
                  round(r["real_acum"] / proy_corte, 4) if proy_corte else 0]
