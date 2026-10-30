@@ -1,8 +1,8 @@
 """
 panel.py — CORRIDA LIVIANA para el "Panel en vivo" (pantalla TV).
 
-Pensado para correr cada ~10 min solo la noche de lanzamiento del cyber
-(aprox. 23:00 -> 02:00). Escribe UNICAMENTE panel.json: no toca data.json,
+Pensado para correr cada 5 min solo la noche de lanzamiento del cyber
+(21:00 -> 03:00). Escribe UNICAMENTE panel.json: no toca data.json,
 historico.json, neto.json, Sheets ni manda correos. El pipeline horario
 (pipeline.py) sigue funcionando igual, por separado.
 

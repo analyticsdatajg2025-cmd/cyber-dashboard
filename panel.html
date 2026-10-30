@@ -90,7 +90,7 @@ td.s{font-weight:700;white-space:nowrap;}
   <div class="cols" id="cols"></div>
   <div class="foot">
     <span id="dia">—</span>
-    <span>Se actualiza solo · datos cada ~10 min · revisa la pantalla cada 60 s</span>
+    <span>Actualización cada 5 minutos</span>
   </div>
 </div>
 <div class="err" id="err">No se pudo cargar panel.json — reintentando…</div>
@@ -102,7 +102,8 @@ const FUENTES = [REPO + "panel.json", "./panel.json"];
 const FILAS_FUENTES = 5;               // fuentes visibles por marca
 const FILAS_TOP = 5;                  // filas visibles del top por marca
 const REFRESCO_MS = 60 * 1000;        // cada cuanto revisa si hay datos nuevos
-const FRESCO_MIN = 20, ATRASO_MIN = 35; // verde <= 20 min, ambar <= 35, rojo mas
+const FRESCO_MIN = 12, ATRASO_MIN = 25; // verde <= 12 min, ambar <= 25, rojo mas
+                                       // (corre cada 5 min + hasta 5 min de cache de GitHub)
 const EVENTOS = [                      // [nombre, inicio, fin] (incluye la vispera)
   ["CYBER WOW",  "2026-11-02", "2026-11-05"],
   ["CYBER DAYS", "2026-11-16", "2026-11-18"],
@@ -206,18 +207,15 @@ function funnelHTML(f, m){
 }
 
 function fuentesHTML(fs){
-  // % = participacion en las ventas de la marca (o en sesiones si aun no hay ventas)
+  // % sesiones = participacion del canal en las sesiones de la marca. Se calcula
+  // sobre el total (incluye "Otros", que no se muestra), asi es el peso real.
   if (!fs || !fs.length) return '<div class="empty">Sin datos de tráfico aún</div>';
-  // "Otros" no se muestra; el % se calcula sobre el total de la marca (incluye
-  // Otros), asi refleja la participacion real de cada canal en la venta.
-  const filas = fs.filter(x => x.fuente !== 'Otros').slice(0, FILAS_FUENTES);
-  const totIng = fs.reduce((a,x)=>a+(x.ingresos||0),0);
   const totSes = fs.reduce((a,x)=>a+(x.sesiones||0),0);
-  const porVentas = totIng > 0;
-  return '<table class="src"><thead><tr><th>Canal</th><th>% '+(porVentas?'ventas':'sesiones')+'</th>'+
-    '<th>Ses.</th><th>Trx</th><th>Ventas</th></tr></thead><tbody>'+
+  const filas = fs.filter(x => x.fuente !== 'Otros').slice(0, FILAS_FUENTES);
+  return '<table class="src"><thead><tr><th>Canal</th><th>% sesiones</th>'+
+    '<th>Sesiones</th><th>Trx</th><th>Venta gross</th></tr></thead><tbody>'+
     filas.map(x=>{
-      const sh = porVentas ? x.ingresos/totIng : (totSes ? x.sesiones/totSes : 0);
+      const sh = totSes ? x.sesiones/totSes : 0;
       return '<tr><td class="nm">'+esc(x.fuente)+'</td>'+
         '<td class="sh">'+(sh*100).toFixed(0)+'%</td>'+
         '<td class="u">'+fmt.n(x.sesiones)+'</td><td class="u">'+fmt.n(x.compras)+'</td>'+

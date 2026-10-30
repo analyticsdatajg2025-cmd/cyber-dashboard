@@ -1,14 +1,15 @@
 name: Panel en vivo
 # Corrida liviana: solo escribe panel.json (no Sheets, no correo, no data.json).
 # Disparo principal: cron-job.org llama a la API de GitHub (workflow_dispatch)
-# cada 10 min durante la noche de lanzamiento. El cron de abajo es solo un
-# respaldo: GitHub puede retrasar o saltarse corridas programadas.
+# cada 5 min durante la noche de lanzamiento (21:00 -> 03:00 Lima). El cron de
+# abajo es solo un respaldo, cada 15 min para no duplicar consultas a Yandex:
+# GitHub puede retrasar o saltarse corridas programadas.
 on:
   workflow_dispatch:
   schedule:
-    # 03:00-07:59 UTC = 22:00-02:59 Lima, noches de lanzamiento:
+    # 02:00-07:59 UTC = 21:00-02:59 Lima, noches de lanzamiento:
     #   01->02 nov (Cyber WOW) y 15->16 nov (Cyber Days).
-    - cron: "*/10 3-7 2,16 11 *"
+    - cron: "*/15 2-7 2,16 11 *"
 permissions:
   contents: write
 concurrency:
