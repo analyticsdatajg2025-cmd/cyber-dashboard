@@ -93,7 +93,16 @@ td { padding:4px 6px; text-align:center; border-bottom:1px solid #f2f2f2; }
 .top th.nom { text-align:left; padding-left:8px; }
 .top td.n { width:26px; font-weight:700; color:#777; }
 .vacio { text-align:center; color:#999; font-size:12px; padding:10px; }
+.nota { font-size:11px; color:#777; margin-top:6px; }
 """
+
+# La ultima hora del corte todavia se esta completando cuando sale el correo:
+# se marca con * y esta nota (texto corto, sin tecnicismos).
+NOTA_PRELIMINAR = "* Última hora preliminar: puede subir en el próximo corte."
+
+
+def etiqueta_hora(h, corte):
+    return f"{h}*" if h == corte else f"{h}"
 
 
 def color_alpha(base_rgb, frac):
@@ -148,7 +157,7 @@ def construir_html(r):
             col_v = "#1f9d57" if var >= 0 else "#c0392b"
             bg_pv = "rgba(46,160,107,0.18)" if pvar >= 0 else "rgba(192,57,43,0.16)"
             filas += f"""<tr>
-              <td class="hora">{h}</td>
+              <td class="hora">{etiqueta_hora(h, corte)}</td>
               <td style="background:{bg_p}">{p:,.0f}</td>
               <td style="background:{bg_r}">{rd:,}</td>
               <td style="color:{col_v}">{var:,.0f}</td>
@@ -169,7 +178,8 @@ def construir_html(r):
     tabla = f"""<table>
         <tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>
         {filas}
-      </table>"""
+      </table>
+      <div class="nota">{NOTA_PRELIMINAR}</div>"""
     return pagina(r, pal, cards, tabla)
 
 
@@ -180,7 +190,7 @@ def tabla_sin_proyeccion(r, pal):
     max_r = max(real[:corte + 1], default=1) or 1
     filas = ""
     for h in range(corte + 1):
-        filas += f"""<tr><td class="hora">{h}</td>
+        filas += f"""<tr><td class="hora">{etiqueta_hora(h, corte)}</td>
           <td style="background:{color_alpha('245,178,40', real[h] / max_r)}">{real[h]:,}</td></tr>"""
     meta = r["meta"]
     avance = f"{r['avance']:.1%}" if meta else "—"
@@ -189,6 +199,7 @@ def tabla_sin_proyeccion(r, pal):
         <tr><th>HORA</th><th>Sesiones</th></tr>
         {filas}
       </table>
+      <div class="nota">{NOTA_PRELIMINAR}</div>
       <div class="pill" style="margin-top:10px;background:{pal['primary']};color:{pal['texto_header']}">Meta del día: {fmt_k(meta) if meta else '—'} · Avance: {avance}</div>"""
 
 

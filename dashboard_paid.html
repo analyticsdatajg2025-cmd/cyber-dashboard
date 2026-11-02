@@ -183,6 +183,7 @@ const fmt={
   t:v=>'S/. '+Number(v||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}),
   dm:f=>{const p=String(f).split('-');return p[2]+'/'+p[1];}
 };
+const NOTA_PRELIMINAR='* Última hora preliminar: puede subir en el próximo corte.';
 const esc=t=>String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* =========================================================================
@@ -541,7 +542,8 @@ function drawSes(ph){
   document.getElementById('legSes').innerHTML=
     '<span><span class="dot" style="background:'+brandHex()+'"></span>Real</span>'+
     (hayProy?'<span><span class="dot" style="background:#b8bcc6"></span>Proyección</span>':
-             '<span class="muted">sin proyección horaria</span>');
+             '<span class="muted">sin proyección horaria</span>')+
+    (fechaSel==='hoy' && DATA.corte!=null ? '<span class="muted">* '+String(DATA.corte).padStart(2,'0')+':00 preliminar</span>' : '');
   const ds=[{type:'bar',label:'Real',data:ph.map(x=>x.ses_real),backgroundColor:brandHex(),borderRadius:3,order:2}];
   if(hayProy) ds.push({type:'line',label:'Proy',data:ph.map(x=>x.ses_proy),borderColor:'#b8bcc6',borderWidth:2,borderDash:[5,4],pointRadius:0,tension:.3,order:1});
   charts['chSes']=new Chart(document.getElementById('chSes'),
@@ -624,11 +626,13 @@ function pintarHoras(){
   const maxP=Math.max(1,...horas.map(x=>x.proy||0));
   const rgbR=hexToRgb(brandHex());
   let tp=0,tr=0,body='';
+  // Dia de hoy: la ultima hora del corte va con * (cifra preliminar).
+  const esHoyTabla = DIA_SEL===(DATA.generado||'').slice(0,10) && DATA.corte!=null;
 
   horas.forEach(x=>{
     const p=x.proy||0; tp+=p;
     const cel=[];
-    cel.push('<td class="hh">'+x.h+'</td>');
+    cel.push('<td class="hh">'+x.h+(esHoyTabla && x.h===DATA.corte?'*':'')+'</td>');
     if(hayProy) cel.push('<td style="background:rgba(46,160,107,'+(0.10+0.5*(p/maxP)).toFixed(2)+')">'+fmt.n(p)+'</td>');
     if(x.real!=null){
       const r=x.real; tr+=r;
@@ -659,7 +663,8 @@ function pintarHoras(){
   const head = hayProy
     ? '<tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>'
     : '<tr><th>HORA</th><th>Sesiones</th></tr>';
-  wrap.innerHTML='<table><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
+  wrap.innerHTML='<table><thead>'+head+'</thead><tbody>'+body+'</tbody></table>'+
+    (esHoyTabla?'<div class="muted" style="font-size:11px;padding:8px 10px 0">'+NOTA_PRELIMINAR+'</div>':'');
 }
 
 /* =========================================================================
