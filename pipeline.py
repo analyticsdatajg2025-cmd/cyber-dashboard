@@ -431,6 +431,70 @@ def traer_top_productos_hoy(contador, top=100):
     return out
 
 
+# ---------------------------------------------------------------------------
+# PALABRAS MAS BUSCADAS — buscador interno de cada web
+# ---------------------------------------------------------------------------
+# Yandex guarda la URL de cada pagina vista, y el termino buscado va en ella:
+#   La Curacao / EFE (Magento): /catalogsearch/result/?q=<termino>
+#   Juntoz: ?keywords=, ?searchTerm=, /buscar?q=, /busqueda?q=
+# Se cuentan solo las PRIMERAS paginas de resultados: pasar a la pagina 2 o
+# cambiar el orden no suma otra busqueda. (Confirmado con diag_busquedas.py.)
+PARAM_BUSQUEDA = ("q", "keywords", "searchTerm", "_q", "ft", "text", "query")
+PARAM_PAGINA = ("p", "pagina", "page", "skip")
+RE_URL_BUSQUEDA = r"[?&](q|keywords|searchTerm|_q|ft|text|query)="
+# Rutas con ?q= que NO son el buscador de productos.
+RUTAS_EXCLUIDAS = ("/beetrack", "/tiendas", "/p/", "/customer", "/checkout")
+
+
+def termino_de_url(url):
+    """Termino buscado en una URL de resultados (normalizado), o None si la
+    URL no es una busqueda de productos o es una pagina 2+."""
+    from urllib.parse import urlsplit, parse_qs
+    try:
+        partes = urlsplit(url)
+    except ValueError:
+        return None
+    ruta = partes.path.lower()
+    if any(ruta.startswith(x) for x in RUTAS_EXCLUIDAS):
+        return None
+    qs = parse_qs(partes.query)          # descarta valores vacios
+    for k in PARAM_PAGINA:             # p/pagina/page > 1, o skip > 0
+        v = (qs.get(k) or [""])[0]
+        if v.isdigit() and int(v) > (0 if k == "skip" else 1):
+            return None
+    for k in PARAM_BUSQUEDA:
+        if qs.get(k) and qs[k][0].strip():
+            t = re.sub(r"\s+", " ", qs[k][0]).strip().lower()
+            return t if 1 < len(t) <= 80 else None
+    return None
+
+
+def traer_busquedas(contador, top=10, fecha="today"):
+    """Top terminos del buscador de la web, de 00:00 al corte.
+    'busquedas' = primeras paginas de resultados vistas con ese termino.
+    Nunca rompe la corrida: ante cualquier error devuelve None."""
+    try:
+        p = {"ids": contador, "dimensions": "ym:pv:URL",
+             "metrics": "ym:pv:pageviews",
+             "filters": f"ym:pv:URL=~'{RE_URL_BUSQUEDA}'",
+             "date1": fecha, "date2": fecha,
+             "sort": "-ym:pv:pageviews", "limit": 5000}
+        d = requests.get(URL_DATA, headers=HEADERS, params=p, timeout=60).json()
+        if "errors" in d:
+            print(f"Aviso: busquedas {contador}: {d.get('message') or d['errors']}")
+            return None
+        conteo = {}
+        for fila in d.get("data", []):
+            t = termino_de_url(fila["dimensions"][0].get("name") or "")
+            if t:
+                conteo[t] = conteo.get(t, 0) + int(fila["metrics"][0])
+        top_t = sorted(conteo.items(), key=lambda kv: (-kv[1], kv[0]))[:top]
+        return [{"termino": t, "busquedas": n} for t, n in top_t]
+    except Exception as e:
+        print(f"Aviso: busquedas no traidas ({e}).")
+        return None
+
+
 def traer_ingresos_hora(contador, fecha="today"):
     p = {"ids": contador, "metrics": "ym:s:ecommerceRevenue",
          "date1": fecha, "date2": fecha, "group": "hour"}
@@ -471,7 +535,9 @@ def construir_marca(marca):
     campanas  = evaluar_campanas_numericas(campanas, marca)
     productos = traer_top_productos_hoy(contador)
     ing_hora  = traer_ingresos_hora(contador)
+    busquedas = traer_busquedas(contador)
     r["top_productos"] = productos          # el correo arma sus top 10
+    r["busquedas"] = busquedas or []
     corte = r["corte"]
     proy_json = serie_proy_json(r["proy"])
     por_hora = [{
@@ -495,6 +561,8 @@ def construir_marca(marca):
         },
         "por_hora": por_hora, "campanas": campanas, "top_productos": productos,
     }
+    if busquedas is not None:          # si Yandex fallo, el dashboard la oculta
+        bloque["busquedas"] = busquedas
     return r, bloque
 
 

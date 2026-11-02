@@ -14,40 +14,12 @@ Uso:  FECHA=today python diag_busquedas.py
 En Actions: workflow "Diagnostico busquedas" (resultado en el log).
 """
 import os
-import re
-from urllib.parse import urlsplit, parse_qs, unquote_plus
-
 import requests
 
-from pipeline import MARCAS, HEADERS, URL_DATA
+from pipeline import (MARCAS, HEADERS, URL_DATA, RE_URL_BUSQUEDA,
+                      termino_de_url)
 
 FECHA = os.environ.get("FECHA", "today").strip() or "today"
-
-PARAM_BUSQUEDA = ("_q", "q", "ft", "text", "query", "term", "search",
-                  "keyword", "searchTerm", "k")
-RE_URL_BUSQUEDA = (r"[?&](_q|q|ft|text|query|term|search|keyword|searchTerm|k)="
-                   r"|/(search|busca|buscar|busqueda)(/|[?])")
-RE_RUTA = re.compile(r"/(?:search|busca|buscar|busqueda)/([^/?#]+)", re.I)
-
-
-def termino_de_url(url):
-    try:
-        partes = urlsplit(url)
-    except ValueError:
-        return None
-    qs = parse_qs(partes.query)
-    for k in PARAM_BUSQUEDA:
-        if qs.get(k) and qs[k][0].strip():
-            t = qs[k][0]
-            break
-    else:
-        m = RE_RUTA.search(partes.path)
-        if not m:
-            return None
-        t = unquote_plus(m.group(1))
-    t = re.sub(r"\s+", " ", t.replace("+", " ")).strip().lower()
-    return t if 1 < len(t) <= 80 else None
-
 
 def consulta(params):
     d = requests.get(URL_DATA, headers=HEADERS, params=params, timeout=60).json()
@@ -77,7 +49,7 @@ def main():
                           "metrics": "ym:pv:pageviews",
                           "filters": f"ym:pv:URL=~'{RE_URL_BUSQUEDA}'",
                           "date1": FECHA, "date2": FECHA,
-                          "sort": "-ym:pv:pageviews", "limit": 1000})
+                          "sort": "-ym:pv:pageviews", "limit": 5000})
         conteo = {}
         for i, f in enumerate(filas):
             url = f["dimensions"][0].get("name") or ""
