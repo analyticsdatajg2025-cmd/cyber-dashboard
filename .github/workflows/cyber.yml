@@ -7,7 +7,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: cyber            # si cron-job.org y el cron de GitHub coinciden, no corren a la vez
+  group: cyber            # si dos disparos coinciden (cron-job.org + manual), van en fila
   cancel-in-progress: false
 jobs:
   reporte:
