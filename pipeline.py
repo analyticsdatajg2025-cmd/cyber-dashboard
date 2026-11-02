@@ -520,10 +520,13 @@ def armar_reporte(marca):
     real, corte = traer_sesiones_hora(cfg["contador"])
     funnel = traer_funnel(cfg["contador"])
     real_acum = sum(real[:corte + 1])
+    # Etiqueta del corte = hora en que se corre: a las 16:20 es "corte 16:00",
+    # con datos cerrados hasta las 15:59 (la fila 15 es la ultima, con *).
+    hora_corte = corte + 1
     meta = meta_diaria(marca)
     return {
         "marca": marca, "dia": DIAS[dia_idx], "fecha": str(date.today()),
-        "corte": corte, "proy": proy, "real": real,
+        "corte": corte, "hora_corte": hora_corte, "proy": proy, "real": real,
         "meta": meta, "real_acum": real_acum,
         "avance": (real_acum / meta) if meta else 0,
         "funnel": funnel,
@@ -586,7 +589,8 @@ def construir_payload():
         r, bloque = construir_marca(marca)
         payload["marcas"][marca] = bloque
         reportes[marca] = r
-        payload["corte"] = r["corte"]
+        payload["corte"] = r["corte"]            # ultima hora con datos (indice)
+        payload["hora_corte"] = r["hora_corte"]  # etiqueta: 'corte 16:00'
     return payload, reportes
 
 
@@ -956,7 +960,7 @@ def escribir_corte(reportes):
     filas = sh.get_all_values()
     hoy = str(date.today())
     for marca, r in reportes.items():
-        hora = f"{r['corte']:02d}:00"
+        hora = f"{r['hora_corte']:02d}:00"
         f = r["funnel"]
         nueva = [marca, hoy, hora, r["real_acum"], round(f["ingresos"], 2),
                  round(f["cr"], 4), round(f["ticket"], 2), round(r["avance"], 4)]

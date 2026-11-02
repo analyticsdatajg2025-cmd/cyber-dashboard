@@ -101,6 +101,12 @@ td { padding:4px 6px; text-align:center; border-bottom:1px solid #f2f2f2; }
 NOTA_PRELIMINAR = "* Última hora preliminar: puede subir en el próximo corte."
 
 
+def hora_corte(r):
+    """Hora que se muestra como 'corte': la hora en que se corrio (16 si
+    corrio a las 16:20). Los datos llegan hasta la hora anterior (15:59)."""
+    return r.get("hora_corte", r["corte"] + 1)
+
+
 def etiqueta_hora(h, corte):
     return f"{h}*" if h == corte else f"{h}"
 
@@ -234,12 +240,12 @@ def bloques_top(r, pal):
                      key=lambda p: -p["ingresos"])[:10]
     por_und = sorted((p for p in prods if p.get("comprados", 0) > 0),
                      key=lambda p: (-p["comprados"], -p.get("ingresos", 0)))[:10]
-    html = pill(f"Top 10 artículos por ingresos · al corte {r['corte']}:00")
+    html = pill(f"Top 10 artículos por ingresos · corte {hora_corte(r)}:00")
     html += tabla_top(por_ing, [
         ("Artículo", lambda p: p["nombre"]),
         ("Vistas", lambda p: f"{p['vistos']:,}"),
         ("Ingresos", lambda p: f"S/. {p['ingresos']:,.0f}")])
-    html += pill(f"Top 10 artículos por unidades · al corte {r['corte']}:00")
+    html += pill(f"Top 10 artículos por unidades · corte {hora_corte(r)}:00")
     html += tabla_top(por_und, [
         ("Artículo", lambda p: p["nombre"]),
         ("Vistas", lambda p: f"{p['vistos']:,}"),
@@ -281,7 +287,7 @@ def archivos_png(marca):
 
 
 def texto_corte(r):
-    return (f"SESIONES | Corte {r['corte']}:00\n"
+    return (f"SESIONES | Corte {hora_corte(r)}:00\n"
             f"• Meta del día: {fmt_k(r['meta'])}\n"
             f"• Real: {fmt_k(r['real_acum'])} - Avance al {r['avance']*100:.1f}%")
 
@@ -298,8 +304,7 @@ def render_png(html, salida):
 def construir_correo(reportes):
     """Arma un solo correo con AMBAS marcas: 2 imágenes + 2 bloques de texto."""
     msg = EmailMessage()
-    hora_corte = reportes[0]["corte"]
-    msg["Subject"] = f"Corte sesiones {hora_corte}:00 - {date.today()}"
+    msg["Subject"] = f"Corte sesiones {hora_corte(reportes[0])}:00 - {date.today()}"
     msg["From"] = GMAIL_USER
     msg["To"] = ", ".join(DESTINATARIOS)
 
@@ -335,7 +340,7 @@ if __name__ == "__main__":
         r = armar_reporte(marca)
         render_png(construir_html(r), archivos_png(marca)[0])
         reportes.append(r)
-        print(f"  OK {marca}  (corte {r['corte']}:00, avance {r['avance']:.1%})")
+        print(f"  OK {marca}  (corte {hora_corte(r)}:00, avance {r['avance']:.1%})")
     print("Enviando correo...")
     enviar(construir_correo(reportes))
     print(f"  Enviado a: {', '.join(DESTINATARIOS)}")
