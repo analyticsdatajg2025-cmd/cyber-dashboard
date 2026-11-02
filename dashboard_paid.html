@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard · Grupo EFE</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f4f5f7; --surface:#ffffff; --line:#e7e9ee; --line2:#eef0f4;
+  --text:#1a1d24; --muted:#6b7180; --hint:#9aa0ad;
+  --green:#16a34a; --red:#dc2626; --amber:#d97706;
+  --brand:#1C6DD0;
+  --lc:#F5B800; --efe:#1C6DD0; --jz:#8A38CA;
+  --r:10px; --font:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;padding:20px 18px 56px;}
+.wrap{max-width:1080px;margin:0 auto;}
+
+.header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:18px;}
+.hl{display:flex;align-items:center;gap:13px;}
+.logo{width:42px;height:42px;border-radius:9px;background:var(--brand);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;letter-spacing:-.5px;overflow:hidden;}
+.logo.lc{color:#1a1d24;}
+.logo img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block;}
+.title{font-size:18px;font-weight:700;letter-spacing:-.3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.sub{font-size:12px;color:var(--muted);margin-top:2px;}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;}
+.badge.vivo{background:rgba(22,163,74,.1);color:var(--green);}
+.badge.vivo::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite;}
+.badge.corte{background:var(--line2);color:var(--muted);}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hr{text-align:right;font-size:12px;color:var(--muted);}
+.hr strong{color:var(--text);}
+
+.stale{display:none;align-items:center;gap:8px;background:rgba(217,119,6,.08);border:1px solid rgba(217,119,6,.25);color:var(--amber);font-size:13px;padding:9px 13px;border-radius:var(--r);margin-bottom:16px;}
+.stale.show{display:flex;}
+
+.bar-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+.btab{padding:7px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);}
+.btab.on.lc{background:var(--lc);border-color:var(--lc);color:#1a1d24;}
+.btab.on.efe{background:var(--efe);border-color:var(--efe);color:#fff;}
+.btab.on.jz{background:var(--jz);border-color:var(--jz);color:#fff;}
+.vtabs{display:flex;gap:4px;margin:14px 0 20px;border-bottom:1px solid var(--line);}
+.vtab{padding:8px 16px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;}
+.vtab.on{color:var(--brand);border-color:var(--brand);}
+
+.lbl{font-size:10px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--hint);margin:0 0 9px;}
+.lbl .nota{font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);}
+
+.datebar{display:flex;align-items:center;gap:9px;margin-bottom:16px;flex-wrap:wrap;}
+.daysel{padding:7px 12px;border:1.5px solid var(--brand);border-radius:8px;background:var(--surface);color:var(--text);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;outline:none;}
+.chip{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--line);background:var(--surface);color:var(--muted);}
+.chip.on{border-color:var(--brand);color:var(--brand);}
+
+.hero{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:0 var(--r) var(--r) 0;padding:18px 20px;margin-bottom:18px;}
+.hero-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
+.hero-big{font-size:15px;}
+.hero-big b{font-size:28px;font-weight:800;letter-spacing:-1px;}
+.hero-pct{font-size:24px;font-weight:800;color:var(--brand);}
+.track{height:9px;background:var(--line2);border-radius:20px;overflow:hidden;}
+.fill{height:100%;border-radius:20px;background:var(--brand);transition:width .8s ease;}
+.hero-foot{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:7px;flex-wrap:wrap;gap:6px;}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:20px;}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;}
+.kpi .k{font-size:11px;color:var(--muted);margin-bottom:6px;}
+.kpi .v{font-size:22px;font-weight:700;letter-spacing:-.5px;}
+.kpi.wide{grid-column:1/-1;}
+
+.funnel-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 16px 10px;margin-bottom:20px;}
+
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+@media(max-width:720px){.charts{grid-template-columns:1fr;}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;}
+.card h3{font-size:13px;font-weight:700;margin-bottom:4px;}
+.card .leg{display:flex;gap:14px;font-size:11px;color:var(--muted);margin-bottom:10px;}
+.dot{width:11px;height:10px;border-radius:2px;display:inline-block;margin-right:4px;vertical-align:-1px;}
+.cwrap{position:relative;height:180px;}
+
+.tables{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:720px){.tables{grid-template-columns:1fr;}}
+.thead-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.tcount{font-size:11px;color:var(--hint);}
+.tscroll{max-height:330px;overflow:auto;border:1px solid var(--line2);border-radius:8px;}
+table{width:100%;border-collapse:collapse;}
+th{font-size:10px;color:var(--muted);text-align:left;padding:9px 10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;background:var(--surface);position:sticky;top:0;cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--line);}
+th:hover{color:var(--text);}
+th:not(:first-child),td:not(:first-child){text-align:right;}
+td{padding:8px 10px;border-top:1px solid var(--line2);font-size:13px;font-variant-numeric:tabular-nums;}
+.tname{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ing{color:var(--green);font-weight:600;}
+.muted{color:var(--muted);}
+tbody tr:hover td{background:var(--line2);}
+.arrow{font-size:9px;}
+
+.linkbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid var(--brand);color:var(--brand);background:var(--surface);border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;margin-bottom:16px;}
+.linkbtn:hover{background:var(--brand);color:#fff;}
+
+.tabla table td{padding:9px 10px;}
+.tabla table th{position:static;cursor:default;}
+.heat{padding:3px 8px;border-radius:5px;font-weight:600;font-size:12px;}
+.tabla table td.hh{font-weight:700;color:var(--muted);text-align:left;}
+.tabla table tr.tot td{font-weight:800;border-top:2px solid var(--line);background:var(--surface);}
+.tabla table tr.hoyrow td{background:rgba(28,109,208,.05);}
+
+.foot{text-align:center;font-size:11px;color:var(--hint);margin-top:36px;padding-top:18px;border-top:1px solid var(--line);}
+.hide{display:none;}
+.empty{text-align:center;color:var(--muted);padding:40px 0;font-size:13px;}
+.aviso{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;color:var(--muted);font-size:13px;margin-bottom:20px;}
+.busq{margin-top:14px;}
+.busq .bar{display:inline-block;height:8px;border-radius:4px;background:var(--brand);opacity:.55;vertical-align:middle;margin-right:8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="hl">
+      <div class="logo" id="logo">EFE</div>
+      <div>
+        <div class="title">Dashboard <span id="badge"></span></div>
+        <div class="sub" id="fecha">Cargando…</div>
+      </div>
+    </div>
+    <div class="hr">
+      Último corte: <strong id="corte">—</strong>
+    </div>
+  </div>
+
+  <div class="stale" id="stale"><span>⚠️</span><span id="stale-txt"></span></div>
+
+  <div class="bar-tabs" id="btabs"></div>
+  <div class="vtabs">
+    <div class="vtab on" data-v="dia"    onclick="setVista('dia')">Día</div>
+    <div class="vtab"    data-v="semana" onclick="setVista('semana')">Semana</div>
+    <div class="vtab"    data-v="mes"    onclick="setVista('mes')">Mes</div>
+
+  </div>
+
+  <div id="dia"></div>
+  <div id="semana" class="hide"></div>
+  <div id="mes" class="hide"></div>
+
+  <div class="foot" id="foot"></div>
+</div>
+
+<script>
+/* =========================================================================
+   CONFIG
+   ========================================================================= */
+const REPO = "https://raw.githubusercontent.com/analyticsdatajg2025-cmd/cyber-dashboard/main/";
+const FUENTES       = [REPO+"data.json",      "./data.json", "./data_ejemplo.json"];
+const HISTO_FUENTES = [REPO+"historico.json", "./historico.json"];
+const NETO_FUENTES  = [REPO+"neto.json",      "./neto.json"];
+const SHEET_GERENCIAL_URL = "https://docs.google.com/spreadsheets/d/1kucg2oRhJGWrNET_OdS-AVO9Kdc5NE7jeFJO01mT6oE/edit?gid=0#gid=0";
+/* ========================================================================= */
+
+let DATA=null, HIST=null, NETO=null;
+let marca=null, vista="dia", fechaSel="hoy", DIA_SEL=null;
+let charts={};
+let SORT={camp:{key:"ingresos",dir:-1}, prod:{key:"ingresos",dir:-1}};
+
+/* --- Logos ---------------------------------------------------------------
+   Por defecto se dibuja un badge con las iniciales sobre el color de marca:
+   siempre se ve nitido y no depende de ningun archivo.
+   Si quieres tus imagenes reales, pega el data:image/... de cada marca aqui.
+   Si el valor esta vacio o la imagen falla, cae al badge automaticamente.   */
+const LOGOS={ "LC":"", "EFE":"", "JZ":"" };
+
+const COL={
+  "LA CURACAO":{hex:"#F5B800",cls:"lc",ini:"LC", txt:"#1a1d24",img:LOGOS["LC"], nombre:"La Curacao"},
+  "TIENDAS EFE":{hex:"#1C6DD0",cls:"efe",ini:"EFE",txt:"#ffffff",img:LOGOS["EFE"],nombre:"Tiendas EFE"},
+  "JUNTOZ":{hex:"#8A38CA",cls:"jz",ini:"JZ", txt:"#ffffff",img:LOGOS["JZ"], nombre:"Juntoz"}
+};
+
+const fmt={
+  n:v=>Number(v||0).toLocaleString('es-PE'),
+  k:v=>{v=Number(v||0);return v>=10000?(v/1000).toFixed(1)+'k':v.toLocaleString('es-PE');},
+  s:v=>'S/. '+Number(v||0).toLocaleString('es-PE',{maximumFractionDigits:0}),
+  sk:v=>{v=Number(v||0);return 'S/. '+(v>=10000?(v/1000).toFixed(1)+'k':v.toLocaleString('es-PE',{maximumFractionDigits:0}));},
+  pct:v=>(Number(v||0)*100).toFixed(2)+'%',
+  t:v=>'S/. '+Number(v||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}),
+  dm:f=>{const p=String(f).split('-');return p[2]+'/'+p[1];}
+};
+const esc=t=>String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* =========================================================================
+   MODO — todo el comportamiento del front cuelga de aqui
+   ========================================================================= */
+function esCyber(){ return DATA && DATA.modo === 'cyber'; }
+
+/* Reglas de negocio, en un solo lugar:
+     GROSS  -> se muestra HOY siempre; en dias cerrados solo durante cyber.
+     NETO   -> se muestra en dias CERRADOS siempre; HOY solo durante cyber
+               (en cyber el neto de hoy lo alimenta neto.py desde el CSV).      */
+function mostrarGross(esHoy){ return esHoy || esCyber(); }
+function mostrarNeto(esHoy){ return !esHoy || esCyber(); }
+
+/* =========================================================================
+   CARGA
+   ========================================================================= */
+async function traer(urls){
+  for(const u of urls){
+    try{
+      const r=await fetch(u+'?t='+Date.now(),{cache:'no-store'});
+      if(r.ok) return await r.json();
+    }catch(e){}
+  }
+  return null;
+}
+
+async function cargar(){
+  DATA = await traer(FUENTES);
+  if(!DATA){
+    document.getElementById('dia').innerHTML='<div class="empty">No se pudo cargar data.json</div>';
+    return;
+  }
+  HIST = await traer(HISTO_FUENTES);   // opcional
+  NETO = await traer(NETO_FUENTES);    // opcional
+
+  document.getElementById('corte').textContent =
+    (DATA.corte!=null ? String(DATA.corte).padStart(2,'0')+':00' : '—');
+  document.getElementById('fecha').textContent =
+    new Date(DATA.generado).toLocaleString('es-PE',
+      {weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+
+  pintarBadge();
+  avisoFrescura();
+
+  if(!marca || !DATA.marcas[marca]) marca = Object.keys(DATA.marcas)[0];
+  fechaSel = 'hoy';
+  renderTabs();
+  render();
+}
+
+function pintarBadge(){
+  const b=document.getElementById('badge');
+  if(esCyber()){
+    b.className='badge vivo'; b.textContent='EN VIVO';
+  }else{
+    const hh = DATA.corte!=null ? String(DATA.corte).padStart(2,'0') : '--';
+    b.className='badge corte'; b.textContent='CORTE '+hh+':00';
+  }
+  document.getElementById('foot').textContent =
+    esCyber() ? 'Modo Cyber · actualiza cada hora'
+              : 'Modo diario · una actualización al día · histórico '+
+                (DATA.hist_retencion_dias||60)+' días';
+}
+
+/* En diario el JSON se escribe 1 vez al dia: si tiene mas de ~30h, algo fallo. */
+function avisoFrescura(){
+  const el=document.getElementById('stale'), tx=document.getElementById('stale-txt');
+  if(!DATA.generado) return;
+  const horas=(Date.now()-new Date(DATA.generado).getTime())/36e5;
+  const limite = esCyber() ? 3 : 30;
+  if(horas>limite){
+    tx.textContent='Los datos tienen '+horas.toFixed(0)+' horas. Revisa que el workflow haya corrido.';
+    el.classList.add('show');
+  }else{
+    el.classList.remove('show');
+  }
+}
+
+/* =========================================================================
+   NAVEGACION
+   ========================================================================= */
+function applyBrand(){
+  const c=COL[marca]||COL["TIENDAS EFE"];
+  document.documentElement.style.setProperty('--brand',c.hex);
+  const lg=document.getElementById('logo');
+  lg.className='logo'+(c.cls==='lc'?' lc':'');
+  lg.style.background=c.hex; lg.style.color=c.txt;
+  lg.innerHTML = c.img
+    ? '<img src="'+c.img+'" alt="'+marca+'" onerror="this.replaceWith(document.createTextNode(\''+c.ini+'\'))">'
+    : c.ini;
+}
+
+function renderTabs(){
+  // JUNTOZ solo aparece en cyber: en diario el pipeline ni siquiera lo publica.
+  document.getElementById('btabs').innerHTML=Object.keys(DATA.marcas).map(m=>{
+    const c=COL[m]||{cls:'',nombre:m}; const on=(m===marca);
+    return '<div class="btab '+(on?'on '+c.cls:'')+'" onclick="setMarca(\''+m+'\')">'+(c.nombre||m)+'</div>';
+  }).join('');
+}
+function setMarca(m){ marca=m; fechaSel='hoy'; DIA_SEL=null; renderTabs(); render(); }
+function setVista(v){
+  vista=v;
+  document.querySelectorAll('.vtab').forEach(t=>t.classList.toggle('on',t.dataset.v===v));
+  render();
+}
+function render(){
+  applyBrand();
+  document.getElementById('dia').classList.toggle('hide',vista!=='dia');
+  document.getElementById('semana').classList.toggle('hide',vista!=='semana');
+  document.getElementById('mes').classList.toggle('hide',vista!=='mes');
+  if(vista==='dia') renderDia();
+  else if(vista==='semana') renderSemana();
+  else renderMes();
+}
+
+/* =========================================================================
+   HISTORICO / SELECCION DE FECHA
+   ========================================================================= */
+function fechasHist(){
+  if(!HIST||!HIST.marcas||!HIST.marcas[marca]) return [];
+  return Object.keys(HIST.marcas[marca]).sort();
+}
+function bloqueActual(){
+  if(fechaSel!=='hoy' && HIST&&HIST.marcas&&HIST.marcas[marca]&&HIST.marcas[marca][fechaSel])
+    return HIST.marcas[marca][fechaSel];
+  return DATA.marcas[marca];
+}
+function bloqueNeto(){
+  if(!NETO||!NETO.marcas||!NETO.marcas[marca]) return null;
+  const nm=NETO.marcas[marca];
+  if(fechaSel==='hoy') return nm.hoy||null;
+  return (nm.por_dia && nm.por_dia[fechaSel]) || null;
+}
+function setFecha(v){
+  if(!v){ return; }
+  fechaSel = v;
+  renderDia();
+}
+function ultimoCerrado(){
+  const f=fechasHist();
+  return f.length ? f[f.length-1] : null;
+}
+function selectorFecha(){
+  const fechas=fechasHist();
+  const ayer=ultimoCerrado();
+  const hoyStr = (DATA.marcas[marca] && DATA.marcas[marca].fecha) ||
+                 (DATA.generado||'').slice(0,10);
+  const min = fechas.length?fechas[0]:hoyStr;
+  const val = (fechaSel==='hoy')?hoyStr:fechaSel;
+  const nota = (fechaSel==='hoy')
+      ? (esCyber()?'corte de la hora':'parcial · corte '+String(DATA.corte).padStart(2,'0')+':00')
+      : 'día cerrado · número final';
+  return '<div class="datebar">'+
+    '<span class="lbl" style="margin:0">Ver día</span>'+
+    '<div class="chip'+(fechaSel==='hoy'?' on':'')+'" onclick="setFecha(\'hoy\')">Hoy</div>'+
+    (ayer?'<div class="chip'+(fechaSel===ayer?' on':'')+'" onclick="setFecha(\''+ayer+'\')">Ayer</div>':'')+
+    '<input type="date" class="daysel" value="'+val+'" min="'+min+'" max="'+hoyStr+'" '+
+      'onchange="setFecha(this.value)">'+
+    '<span class="muted" style="font-size:12px">'+nota+'</span>'+
+  '</div>';
+}
+
+/* =========================================================================
+   VISTA DIA
+   ========================================================================= */
+function bloqueGross(r){
+  return '<p class="lbl">Resultados gross <span class="nota">· Yandex · incluye IGV</span></p>'+
+    '<div class="kpis">'+
+      '<div class="kpi"><div class="k">Ingresos</div><div class="v">'+fmt.sk(r.ingresos)+'</div></div>'+
+      '<div class="kpi"><div class="k">CR Gross</div><div class="v">'+fmt.pct(r.cr)+'</div></div>'+
+      '<div class="kpi"><div class="k">Ticket prom.</div><div class="v">'+fmt.t(r.ticket)+'</div></div>'+
+    '</div>';
+}
+function bloqueNetoKpis(r,esHoy){
+  const n=bloqueNeto();
+  const tit='<p class="lbl">Resultados netos <span class="nota">· web pura · pagados</span></p>';
+  if(!n){
+    const msg = COL[marca] && marca==='JUNTOZ'
+      ? 'JUNTOZ es marketplace: no lleva venta neta.'
+      : (esHoy ? 'El neto de hoy se calcula recién al cierre del día.'
+               : 'Aún no hay neto cargado para este día en el Sheet.');
+    return tit+'<div class="kpis"><div class="kpi wide"><div class="muted" style="font-size:13px">'+msg+'</div></div></div>';
+  }
+  // cr_neto viene del Sheet en dias cerrados; en 'hoy' (cyber) se deriva de trx/sesiones
+  const cr = (n.cr_neto!=null) ? n.cr_neto : (r.sesiones ? (n.trx_netas/r.sesiones) : 0);
+  return tit+'<div class="kpis">'+
+      '<div class="kpi"><div class="k">Venta neta</div><div class="v">'+fmt.sk(n.venta_neta)+'</div></div>'+
+      '<div class="kpi"><div class="k">CR Neto</div><div class="v">'+fmt.pct(cr)+'</div></div>'+
+      '<div class="kpi"><div class="k">Ticket neto</div><div class="v">'+fmt.t(n.ticket_neto)+'</div></div>'+
+    '</div>';
+}
+
+function renderDia(){
+  if(fechaSel!=='hoy' && !fechasHist().includes(fechaSel)){
+    document.getElementById('dia').innerHTML=selectorFecha()+
+      '<div class="empty">No hay datos guardados para ese día.</div>';
+    return;
+  }
+  const esHoy=(fechaSel==='hoy');
+  const d=bloqueActual(); const r=d.real;
+
+  // Referencia del avance: con curva horaria (cyber) se compara al corte;
+  // sin curva (diario) se compara siempre contra la meta del dia.
+  const usaCorte = esHoy && esCyber() && d.meta_sesiones_corte!=null;
+  const ref = usaCorte ? d.meta_sesiones_corte : d.meta_sesiones_dia;
+  const pace = ref ? (r.sesiones/ref*100) : null;
+  const w = pace ? Math.min(pace,100) : 0;
+  const lblRef = usaCorte ? 'esperadas al corte'
+               : (esHoy ? 'meta del día' : 'meta del día (cerrado)');
+  const pie = esHoy
+      ? (usaCorte
+          ? 'Proyección cierre: '+(d.meta_sesiones_corte?fmt.k(Math.round(r.sesiones/d.meta_sesiones_corte*d.meta_sesiones_dia)):'—')
+          : 'Parcial al corte '+String(DATA.corte).padStart(2,'0')+':00')
+      : 'Cierre del día: '+fmt.k(r.sesiones);
+
+  const html =
+    selectorFecha()+
+    '<p class="lbl">1 · Sesiones vs meta</p>'+
+    '<div class="hero"><div class="hero-top">'+
+      '<span class="hero-big"><b>'+fmt.k(r.sesiones)+'</b> <span class="muted">de '+fmt.k(ref)+' '+lblRef+'</span></span>'+
+      (pace!=null?'<span class="hero-pct">'+pace.toFixed(0)+'%</span>':'')+
+    '</div><div class="track"><div class="fill" style="width:'+w+'%"></div></div>'+
+    '<div class="hero-foot"><span>Meta del día: '+fmt.k(d.meta_sesiones_dia)+'</span><span>'+pie+'</span></div></div>'+
+
+    (mostrarGross(esHoy)?bloqueGross(r):'')+
+    (mostrarNeto(esHoy)?bloqueNetoKpis(r,esHoy):'')+
+
+    '<p class="lbl">2 · Funnel del día <span class="nota">· Yandex</span></p>'+
+    '<div class="funnel-card">'+buildFunnel(r)+'</div>'+
+
+    '<div class="charts">'+
+      '<div class="card"><h3>Sesiones por hora</h3><div class="leg" id="legSes"></div><div class="cwrap"><canvas id="chSes"></canvas></div></div>'+
+      '<div class="card"><h3>Ingresos por hora</h3><div class="leg"><span><span class="dot" style="background:var(--brand)"></span>Real</span></div><div class="cwrap"><canvas id="chIng"></canvas></div></div>'+
+    '</div>'+
+
+    '<div class="tables">'+
+      '<div class="card"><div class="thead-row"><p class="lbl" style="margin:0">3 · Campañas</p><span class="tcount" id="cnt-camp"></span></div><div class="tscroll" id="t-camp"></div></div>'+
+      '<div class="card"><div class="thead-row"><p class="lbl" style="margin:0">4 · Top productos</p><span class="tcount" id="cnt-prod"></span></div><div class="tscroll" id="t-prod"></div></div>'+
+    '</div>'+
+    '<div class="tables" style="margin-top:14px">'+
+      '<div class="card"><div class="thead-row"><p class="lbl" style="margin:0">5 · Top 10 por ingresos</p><span class="tcount">'+(esHoy?'al corte':'día cerrado')+'</span></div><div class="tscroll" id="t-top-ing"></div></div>'+
+      '<div class="card"><div class="thead-row"><p class="lbl" style="margin:0">6 · Top 10 por unidades</p><span class="tcount">'+(esHoy?'al corte':'día cerrado')+'</span></div><div class="tscroll" id="t-top-und"></div></div>'+
+    '</div>'+
+    /* La tarjeta de busquedas solo aparece cuando data.json trae 'busquedas'. */
+    (esHoy && Array.isArray(d.busquedas)
+      ? '<div class="card busq"><div class="thead-row"><p class="lbl" style="margin:0">7 · Palabras más buscadas <span class="nota">· buscador de la web</span></p><span class="tcount" id="cnt-bus"></span></div><div class="tscroll" id="t-bus"></div></div>'
+      : '');
+
+  document.getElementById('dia').innerHTML=html;
+  renderTablas(); renderTop10(d); renderBusquedas(d,esHoy); drawSes(d.por_hora); drawIng(d.por_hora);
+}
+
+/* ---------- TOP 10 (mismas tablas que la imagen 2 del correo) ---------- */
+function tablaTop(filas,cols){
+  if(!filas.length) return '<div class="empty" style="padding:18px 0">Sin ventas al corte</div>';
+  return '<table><thead><tr><th style="cursor:default">#</th><th style="cursor:default;text-align:left">Artículo</th>'+
+    cols.map(c=>'<th style="cursor:default">'+c[0]+'</th>').join('')+'</tr></thead><tbody>'+
+    filas.map((x,i)=>'<tr><td class="muted">'+(i+1)+'</td><td class="tname" style="text-align:left;max-width:260px" title="'+esc(x.nombre)+'">'+esc(x.nombre)+'</td>'+
+      cols.map(c=>'<td'+(c[2]?' class="'+c[2]+'"':'')+'>'+c[1](x)+'</td>').join('')+'</tr>').join('')+
+    '</tbody></table>';
+}
+function renderTop10(d){
+  const prods=d.top_productos||[];
+  const porIng=prods.filter(p=>(p.ingresos||0)>0).sort((a,b)=>b.ingresos-a.ingresos).slice(0,10);
+  const porUnd=prods.filter(p=>(p.comprados||0)>0).sort((a,b)=>(b.comprados-a.comprados)||((b.ingresos||0)-(a.ingresos||0))).slice(0,10);
+  document.getElementById('t-top-ing').innerHTML=tablaTop(porIng,[['Vistas',x=>fmt.n(x.vistos),'muted'],['Ingresos',x=>fmt.s(x.ingresos),'ing']]);
+  document.getElementById('t-top-und').innerHTML=tablaTop(porUnd,[['Vistas',x=>fmt.n(x.vistos),'muted'],['Und. vendidas',x=>fmt.n(x.comprados)]]);
+}
+
+/* ---------- PALABRAS MAS BUSCADAS ---------- */
+/* Solo existe para HOY (data.json): el historico no guarda busquedas. */
+function renderBusquedas(d,esHoy){
+  const cont=document.getElementById('t-bus'), cnt=document.getElementById('cnt-bus');
+  if(!cont) return;                       // data.json aun sin busquedas
+  const lista=d.busquedas;
+  if(!esHoy || !Array.isArray(lista)){
+    cnt.textContent='';
+    cont.innerHTML='<div class="empty" style="padding:18px 0">'+
+      (esHoy?'Aún sin datos de búsquedas':'Solo disponible para hoy')+'</div>';
+    return;
+  }
+  cnt.textContent='top '+lista.length+' · al corte';
+  if(!lista.length){
+    cont.innerHTML='<div class="empty" style="padding:18px 0">Sin búsquedas registradas al corte</div>';
+    return;
+  }
+  const max=Math.max(1,...lista.map(x=>x.busquedas||0));
+  cont.innerHTML='<table><thead><tr><th style="cursor:default">#</th><th style="cursor:default;text-align:left">Término</th><th style="cursor:default">Búsquedas</th></tr></thead><tbody>'+
+    lista.map((x,i)=>'<tr><td class="muted">'+(i+1)+'</td><td style="text-align:left">'+
+      '<span class="bar" style="width:'+Math.round(60*(x.busquedas||0)/max)+'px"></span>'+esc(x.termino)+'</td>'+
+      '<td>'+fmt.n(x.busquedas)+'</td></tr>').join('')+
+    '</tbody></table>';
+}
+
+/* ---------- FUNNEL (SVG) ---------- */
+function buildFunnel(r){
+  const st=[{n:'Vistos',v:r.vistos},{n:'Al carrito',v:r.carrito},{n:'Comprados',v:r.comprados}];
+  const c=COL[marca]||COL["TIENDAS EFE"]; const tcol=c.txt; const bh=c.hex; const cx=230;
+  const tops=[400,250,130], bots=[300,170,60], ys=[8,96,184], H=56, op=[1,0.82,0.64];
+  let svg='<svg viewBox="0 0 460 244" width="100%" style="max-width:480px;display:block;margin:0 auto">';
+  for(let i=0;i<3;i++){
+    const tw=tops[i],bw=bots[i],y=ys[i];
+    const tl=cx-tw/2,tr=cx+tw/2,bl=cx-bw/2,br=cx+bw/2;
+    svg+='<polygon points="'+tl+','+y+' '+tr+','+y+' '+br+','+(y+H)+' '+bl+','+(y+H)+'" fill="'+bh+'" opacity="'+op[i]+'"/>';
+    svg+='<text x="'+cx+'" y="'+(y+22)+'" text-anchor="middle" fill="'+tcol+'" font-size="12" opacity="0.92">'+st[i].n+'</text>';
+    svg+='<text x="'+cx+'" y="'+(y+45)+'" text-anchor="middle" fill="'+tcol+'" font-size="20" font-weight="700">'+fmt.n(st[i].v)+'</text>';
+  }
+  const c1=st[0].v?(st[1].v/st[0].v*100):0, c2=st[1].v?(st[2].v/st[1].v*100):0;
+  svg+='<text x="'+cx+'" y="84" text-anchor="middle" fill="#6b7180" font-size="11">▼ '+c1.toFixed(1)+'% pasa al carrito</text>';
+  svg+='<text x="'+cx+'" y="172" text-anchor="middle" fill="#6b7180" font-size="11">▼ '+c2.toFixed(1)+'% compra</text>';
+  return svg+'</svg>';
+}
+
+/* ---------- TABLAS ---------- */
+function sortRows(rows,st){
+  return rows.slice().sort((a,b)=>{
+    const x=a[st.key],y=b[st.key];
+    if(typeof x==='number'&&typeof y==='number')return (x-y)*st.dir;
+    return String(x).localeCompare(String(y))*st.dir;
+  });
+}
+function setSort(t,key){const s=SORT[t];if(s.key===key)s.dir*=-1;else{s.key=key;s.dir=-1;}renderTablas();}
+function arr(t,key){const s=SORT[t];return s.key===key?'<span class="arrow">'+(s.dir<0?'▼':'▲')+'</span>':'';}
+function th(t,key,label,tip){return '<th'+(tip?' title="'+tip+'"':'')+' onclick="setSort(\''+t+'\',\''+key+'\')">'+label+' '+arr(t,key)+'</th>';}
+function prepProd(list){return (list||[]).map(p=>({...p,cr:p.vistos>0?p.comprados/p.vistos:-1,carDisp:Math.max(0,p.carrito||0)}));}
+function topByIngreso(list,n){return list.slice().sort((a,b)=>(b.ingresos||0)-(a.ingresos||0)).slice(0,n);}
+function celdaCR(x){return x.cr>=0?(x.cr*100).toFixed(1)+'%':'—';}
+
+function renderTablas(){
+  const d=bloqueActual();
+  const camp=sortRows(d.campanas||[],SORT.camp);
+  document.getElementById('cnt-camp').textContent=camp.length+' campañas';
+  document.getElementById('t-camp').innerHTML=
+    '<table><thead><tr>'+th('camp','nombre','Campaña','Nombre de la campaña (UTM)')+th('camp','sesiones','Sesiones','Sesiones atribuidas')+th('camp','compras','Compras','Compras / órdenes')+th('camp','ingresos','Ingreso','Ingreso atribuido')+'</tr></thead><tbody>'+
+    (camp.length?camp.map(x=>'<tr><td class="tname" title="'+x.nombre+'">'+x.nombre+'</td><td class="muted">'+fmt.n(x.sesiones)+'</td><td class="muted">'+fmt.n(x.compras)+'</td><td class="ing">'+fmt.s(x.ingresos)+'</td></tr>').join(''):'<tr><td colspan="4" class="empty">Sin data</td></tr>')+
+    '</tbody></table>';
+
+  const total=(d.top_productos||[]).length;
+  const prod=sortRows(topByIngreso(prepProd(d.top_productos),50),SORT.prod);
+  document.getElementById('cnt-prod').textContent=prod.length+' de '+total+' productos';
+  document.getElementById('t-prod').innerHTML=
+    '<table><thead><tr>'+th('prod','nombre','Producto','Nombre · SKU')+th('prod','vistos','Vistas','Vistas de la ficha')+th('prod','carDisp','Carrito','Añadidos al carrito (negativos se muestran 0)')+th('prod','comprados','Comprados','Unidades compradas')+th('prod','cr','CR','Comprados ÷ vistas')+th('prod','ingresos','Ingreso','Ingreso del producto')+'</tr></thead><tbody>'+
+    (prod.length?prod.map(x=>'<tr><td class="tname" title="'+x.nombre+(x.sku?' · '+x.sku:'')+'">'+x.nombre+'</td><td class="muted">'+fmt.n(x.vistos)+'</td><td class="muted">'+fmt.n(x.carDisp)+'</td><td>'+fmt.n(x.comprados)+'</td><td>'+celdaCR(x)+'</td><td class="ing">'+fmt.s(x.ingresos)+'</td></tr>').join(''):'<tr><td colspan="6" class="empty">Sin data</td></tr>')+
+    '</tbody></table>';
+}
+
+/* ---------- CHARTS ---------- */
+function brandHex(){return (COL[marca]||COL["TIENDAS EFE"]).hex;}
+function hexToRgb(h){h=h.replace('#','');return parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16);}
+function destroy(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function drawSes(ph){
+  destroy('chSes');
+  // ses_proy llega null en diario: sin curva horaria no se dibuja la linea.
+  const hayProy=ph.some(x=>x.ses_proy!=null && x.ses_proy>0);
+  document.getElementById('legSes').innerHTML=
+    '<span><span class="dot" style="background:'+brandHex()+'"></span>Real</span>'+
+    (hayProy?'<span><span class="dot" style="background:#b8bcc6"></span>Proyección</span>':
+             '<span class="muted">sin proyección horaria</span>');
+  const ds=[{type:'bar',label:'Real',data:ph.map(x=>x.ses_real),backgroundColor:brandHex(),borderRadius:3,order:2}];
+  if(hayProy) ds.push({type:'line',label:'Proy',data:ph.map(x=>x.ses_proy),borderColor:'#b8bcc6',borderWidth:2,borderDash:[5,4],pointRadius:0,tension:.3,order:1});
+  charts['chSes']=new Chart(document.getElementById('chSes'),
+    {data:{labels:ph.map(x=>String(x.h).padStart(2,'0')),datasets:ds},options:baseOpts(v=>fmt.k(v))});
+}
+function drawIng(ph){
+  destroy('chIng');
+  charts['chIng']=new Chart(document.getElementById('chIng'),{
+    type:'bar',
+    data:{labels:ph.map(x=>String(x.h).padStart(2,'0')),
+          datasets:[{label:'Ingreso',data:ph.map(x=>x.ing_real),backgroundColor:brandHex(),borderRadius:3}]},
+    options:baseOpts(v=>'S/.'+(v>=1000?(v/1000).toFixed(0)+'k':v))});
+}
+function baseOpts(yf){
+  return {responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt.n(Math.round(c.parsed.y))}}},
+    scales:{y:{ticks:{font:{size:10},color:'#9aa0ad',callback:yf},grid:{color:'#eef0f4'}},
+            x:{ticks:{font:{size:10},color:'#9aa0ad'},grid:{display:false}}}};
+}
+
+/* =========================================================================
+   VISTA SEMANA
+   ========================================================================= */
+/* En cyber el detalle por hora viene de semana_horas (dias del evento).
+   En diario se deriva del historico, que ya guarda por_hora de cada dia. */
+function detalleHoras(){
+  const sh=(DATA.semana_horas||{})[marca]||{};
+  if(Object.keys(sh).length) return sh;
+  const out={};
+  const dd=(HIST&&HIST.marcas&&HIST.marcas[marca])||{};
+  Object.keys(dd).sort().slice(-14).forEach(f=>{
+    out[f]={dia:dd[f].dia||'', horas:(dd[f].por_hora||[]).map(x=>({h:x.h,proy:x.ses_proy,real:x.ses_real}))};
+  });
+  return out;
+}
+
+function renderSemana(){
+  const cont=document.getElementById('semana');
+  const link=(SHEET_GERENCIAL_URL && SHEET_GERENCIAL_URL.indexOf('http')===0)
+    ? '<a class="linkbtn" href="'+SHEET_GERENCIAL_URL+'" target="_blank" rel="noopener">📄 Sheets proyección sesiones ↗</a>' : '';
+
+  const sem=(DATA.semana||{})[marca]||[];
+  let totalsHtml='';
+  if(sem.length){
+    const rows=sem.map(d=>{
+      const av=(d.avance||0)*100;
+      const pct = d.proy ? av.toFixed(1)+'%' : '—';
+      return '<tr><td><strong>'+d.dia+'</strong> <span class="muted">'+fmt.dm(d.fecha)+'</span></td>'+
+             '<td class="muted">'+(d.proy?fmt.n(d.proy):'—')+'</td>'+
+             '<td>'+fmt.n(d.real)+'</td>'+
+             '<td><span class="heat" style="background:var(--line2)">'+pct+'</span></td></tr>';
+    }).join('');
+    totalsHtml='<p class="lbl">Últimos días cerrados — proyección vs real</p>'+
+      '<div class="card tabla"><table><thead><tr><th>Día</th><th>Proyección</th><th>Real</th><th>Avance</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  }
+
+  const sh=detalleHoras();
+  const fechas=Object.keys(sh).sort();
+  let horasHtml='';
+  if(fechas.length){
+    if(!DIA_SEL || !sh[DIA_SEL]) DIA_SEL=fechas[fechas.length-1];
+    const opts=fechas.map(f=>'<option value="'+f+'"'+(f===DIA_SEL?' selected':'')+'>'+(sh[f].dia||'')+'  '+f+'</option>').join('');
+    horasHtml='<p class="lbl" style="margin-top:24px">Detalle por hora</p>'+
+      '<div style="margin-bottom:12px"><select id="diaSel" class="daysel" onchange="DIA_SEL=this.value;pintarHoras();">'+opts+'</select></div>'+
+      '<div class="card tabla" id="horasWrap"></div>';
+  }
+
+  const vacio=(!sem.length && !fechas.length)?'<div class="empty">Aún sin días cerrados guardados</div>':'';
+  cont.innerHTML=link+totalsHtml+horasHtml+vacio;
+  if(fechas.length) pintarHoras();
+}
+
+function pintarHoras(){
+  const wrap=document.getElementById('horasWrap'); if(!wrap) return;
+  const dd=detalleHoras()[DIA_SEL]; if(!dd){wrap.innerHTML='';return;}
+  const horas=dd.horas;
+  const hayProy=horas.some(x=>x.proy!=null && x.proy>0);
+  const reales=horas.filter(x=>x.real!=null).map(x=>x.real);
+  const maxR=Math.max(1,...(reales.length?reales:[1]));
+  const maxP=Math.max(1,...horas.map(x=>x.proy||0));
+  const rgbR=hexToRgb(brandHex());
+  let tp=0,tr=0,body='';
+
+  horas.forEach(x=>{
+    const p=x.proy||0; tp+=p;
+    const cel=[];
+    cel.push('<td class="hh">'+x.h+'</td>');
+    if(hayProy) cel.push('<td style="background:rgba(46,160,107,'+(0.10+0.5*(p/maxP)).toFixed(2)+')">'+fmt.n(p)+'</td>');
+    if(x.real!=null){
+      const r=x.real; tr+=r;
+      cel.push('<td style="background:rgba('+rgbR+','+(0.12+0.55*(r/maxR)).toFixed(2)+')">'+fmt.n(r)+'</td>');
+      if(hayProy){
+        const v=r-p, pv=p?(r/p-1):0;
+        const cv=v>=0?'var(--green)':'var(--red)';
+        cel.push('<td style="color:'+cv+'">'+(v>=0?'+':'')+fmt.n(v)+'</td>');
+        cel.push('<td><span class="heat" style="background:var(--line2);color:'+cv+'">'+(pv*100).toFixed(0)+'%</span></td>');
+      }
+    }else{
+      cel.push('<td class="muted">—</td>');
+      if(hayProy){cel.push('<td class="muted">—</td>');cel.push('<td class="muted">pend.</td>');}
+    }
+    body+='<tr>'+cel.join('')+'</tr>';
+  });
+
+  const tot=['<td>TOTAL</td>'];
+  if(hayProy) tot.push('<td>'+fmt.n(tp)+'</td>');
+  tot.push('<td>'+fmt.n(tr)+'</td>');
+  if(hayProy){
+    const tv=tr-tp, tpv=tp?(tr/tp-1):0;
+    tot.push('<td>'+(tv>=0?'+':'')+fmt.n(tv)+'</td>');
+    tot.push('<td>'+(tpv*100).toFixed(0)+'%</td>');
+  }
+  body+='<tr class="tot">'+tot.join('')+'</tr>';
+
+  const head = hayProy
+    ? '<tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>'
+    : '<tr><th>HORA</th><th>Sesiones</th></tr>';
+  wrap.innerHTML='<table><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
+}
+
+/* =========================================================================
+   VISTA MES
+   ========================================================================= */
+function renderMes(){
+  const cont=document.getElementById('mes');
+  const m=(DATA.mes||{})[marca];
+  if(!m){cont.innerHTML='<div class="empty">Aún sin datos del mes</div>';return;}
+
+  const av=(m.avance||0)*100;
+  const w=Math.min(av,100);
+  const nombreMes=new Date(m.mes+'-02').toLocaleString('es-PE',{month:'long',year:'numeric'});
+
+  const rows=(m.dias||[]).map(d=>{
+    const real = d.real!=null ? fmt.n(d.real) : '<span class="muted">—</span>';
+    const pct  = (d.proy && d.real!=null) ? (d.real/d.proy*100).toFixed(0)+'%' : '—';
+    return '<tr'+(d.parcial?' class="hoyrow"':'')+'>'+
+      '<td><strong>'+d.dia+'</strong> <span class="muted">'+fmt.dm(d.fecha)+'</span>'+
+        (d.parcial?' <span class="muted">· parcial</span>':'')+'</td>'+
+      '<td class="muted">'+(d.proy?fmt.n(d.proy):'—')+'</td>'+
+      '<td>'+real+'</td>'+
+      '<td><span class="heat" style="background:var(--line2)">'+pct+'</span></td></tr>';
+  }).join('');
+
+  cont.innerHTML=
+    '<p class="lbl">Acumulado del mes · '+nombreMes+'</p>'+
+    '<div class="hero"><div class="hero-top">'+
+      '<span class="hero-big"><b>'+fmt.k(m.real)+'</b> <span class="muted">de '+fmt.k(m.meta)+' sesiones de meta</span></span>'+
+      (m.meta?'<span class="hero-pct">'+av.toFixed(0)+'%</span>':'')+
+    '</div><div class="track"><div class="fill" style="width:'+w+'%"></div></div>'+
+    '<div class="hero-foot">'+
+      '<span>'+m.dias_cerrados+' de '+m.dias_mes+' días cerrados</span>'+
+      '<span>'+(m.proy_cierre!=null?('Cierre estimado: '+fmt.k(m.proy_cierre)):'Cierre estimado: —')+'</span>'+
+    '</div></div>'+
+    '<div class="kpis">'+
+      '<div class="kpi"><div class="k">Meta del mes</div><div class="v">'+fmt.k(m.meta)+'</div></div>'+
+      '<div class="kpi"><div class="k">Real acumulado</div><div class="v">'+fmt.k(m.real)+'</div></div>'+
+      '<div class="kpi"><div class="k">Promedio diario</div><div class="v">'+
+        fmt.k(m.dias_cerrados?Math.round(m.real/Math.max(1,m.dias_cerrados)):0)+'</div></div>'+
+    '</div>'+
+    '<p class="lbl">Detalle por día</p>'+
+    '<div class="card tabla"><table><thead><tr><th>Día</th><th>Proyección</th><th>Real</th><th>Avance</th></tr></thead><tbody>'+
+      (rows||'<tr><td colspan="4" class="empty">Sin data</td></tr>')+'</tbody></table></div>';
+}
+
+/* ========================================================================= */
+cargar();
+// En cyber el JSON cambia cada hora; en diario 1 vez al dia. Refrescamos cada
+// 30 min: barato y suficiente para los dos casos.
+setInterval(cargar, 30*60*1000);
+</script>
+</body>
+</html>

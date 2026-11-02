@@ -87,6 +87,12 @@ td { padding:4px 6px; text-align:center; border-bottom:1px solid #f2f2f2; }
 .hora { font-weight:700; background:#fafafa; }
 .pend { color:#bbb; }
 .total td { font-weight:800; background:#111; color:#fff; }
+.top td { padding:5px 6px; }
+.top td.nom { text-align:left; max-width:330px; overflow:hidden;
+              text-overflow:ellipsis; white-space:nowrap; }
+.top th.nom { text-align:left; padding-left:8px; }
+.top td.n { width:26px; font-weight:700; color:#777; }
+.vacio { text-align:center; color:#999; font-size:12px; padding:10px; }
 """
 
 
@@ -186,6 +192,56 @@ def tabla_sin_proyeccion(r, pal):
       <div class="pill" style="margin-top:10px;background:{pal['primary']};color:{pal['texto_header']}">Meta del día: {fmt_k(meta) if meta else '—'} · Avance: {avance}</div>"""
 
 
+def _esc(t):
+    return (str(t).replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def tabla_top(filas, cols, vacio="Sin datos al corte"):
+    """Tabla compacta de ranking. cols = [(titulo, funcion(fila) -> texto)];
+    la primera columna es el nombre (alineado a la izquierda)."""
+    if not filas:
+        return f'<div class="vacio">{vacio}</div>'
+    head = '<th>#</th><th class="nom">' + cols[0][0] + "</th>" + "".join(
+        f"<th>{c[0]}</th>" for c in cols[1:])
+    body = ""
+    for i, f in enumerate(filas, 1):
+        nombre = _esc(cols[0][1](f))
+        body += (f'<tr><td class="n">{i}</td><td class="nom" title="{nombre}">'
+                 f"{nombre}</td>" + "".join(
+                     f"<td>{c[1](f)}</td>" for c in cols[1:]) + "</tr>")
+    return f'<table class="top"><tr>{head}</tr>{body}</table>'
+
+
+def bloques_top(r, pal):
+    """Top 10 por ingresos, top 10 por unidades y palabras mas buscadas.
+    Todo es de HOY de 00:00 al corte."""
+    prim, txt = pal["primary"], pal["texto_header"]
+    prods = r.get("top_productos") or []
+    pill = lambda t: f'<div class="pill" style="background:{prim};color:{txt}">{t}</div>'
+    por_ing = sorted((p for p in prods if p.get("ingresos", 0) > 0),
+                     key=lambda p: -p["ingresos"])[:10]
+    por_und = sorted((p for p in prods if p.get("comprados", 0) > 0),
+                     key=lambda p: (-p["comprados"], -p.get("ingresos", 0)))[:10]
+    html = pill(f"Top 10 artículos por ingresos · al corte {r['corte']}:00")
+    html += tabla_top(por_ing, [
+        ("Artículo", lambda p: p["nombre"]),
+        ("Vistas", lambda p: f"{p['vistos']:,}"),
+        ("Ingresos", lambda p: f"S/. {p['ingresos']:,.0f}")])
+    html += pill(f"Top 10 artículos por unidades · al corte {r['corte']}:00")
+    html += tabla_top(por_und, [
+        ("Artículo", lambda p: p["nombre"]),
+        ("Vistas", lambda p: f"{p['vistos']:,}"),
+        ("Und. vendidas", lambda p: f"{p['comprados']:,}")])
+    if "busquedas" in r:
+        html += pill("Palabras más buscadas en la web")
+        html += tabla_top(r["busquedas"], [
+            ("Término", lambda b: b["termino"]),
+            ("Búsquedas", lambda b: f"{b['busquedas']:,}")],
+            vacio="Sin búsquedas registradas al corte")
+    return html
+
+
 def pagina(r, pal, cards, tabla):
     prim, txt = pal["primary"], pal["texto_header"]
     return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
@@ -195,6 +251,22 @@ def pagina(r, pal, cards, tabla):
       <div class="pill" style="background:{prim};color:{txt}">Tráfico</div>
       {tabla}
     </body></html>"""
+
+
+def construir_html_top(r):
+    """Imagen 2 de la marca: rankings de productos (y busquedas cuando
+    esten). Va aparte para que la imagen 1 no se vuelva enorme en WhatsApp."""
+    pal = PALETA[r["marca"]]
+    return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
+      <div class="logo" style="color:{pal['primary']}">{r['marca']}</div>
+      {bloques_top(r, pal)}
+    </body></html>"""
+
+
+def archivos_png(marca):
+    """Nombres de las 2 imagenes de una marca (trafico y top)."""
+    base = marca.replace(" ", "_")
+    return f"reporte_{base}.png", f"reporte_{base}_top.png"
 
 
 def texto_corte(r):
@@ -221,14 +293,18 @@ def construir_correo(reportes):
     msg["To"] = ", ".join(DESTINATARIOS)
 
     cuerpo = "\n\n".join(texto_corte(r) + f"  ({r['marca']})" for r in reportes)
-    cuerpo += "\n\n---\nLas imágenes están adjuntas. Reenvía cada una por WhatsApp."
+    cuerpo += ("\n\n---\nLas imágenes están adjuntas (2 por marca: tráfico y "
+               "top productos). Reenvía cada una por WhatsApp.")
     msg.set_content(cuerpo)
 
+    import os
     for r in reportes:
-        archivo = f"reporte_{r['marca'].replace(' ', '_')}.png"
-        with open(archivo, "rb") as f:
-            data = f.read()
-        msg.add_attachment(data, maintype="image", subtype="png", filename=archivo)
+        for archivo in archivos_png(r["marca"]):
+            if not os.path.exists(archivo):      # imagen 2 opcional
+                continue
+            with open(archivo, "rb") as f:
+                data = f.read()
+            msg.add_attachment(data, maintype="image", subtype="png", filename=archivo)
     return msg
 
 
@@ -246,7 +322,7 @@ if __name__ == "__main__":
     reportes = []
     for marca in MARCAS:
         r = armar_reporte(marca)
-        render_png(construir_html(r), f"reporte_{marca.replace(' ', '_')}.png")
+        render_png(construir_html(r), archivos_png(marca)[0])
         reportes.append(r)
         print(f"  OK {marca}  (corte {r['corte']}:00, avance {r['avance']:.1%})")
     print("Enviando correo...")

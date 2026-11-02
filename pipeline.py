@@ -391,13 +391,14 @@ def traer_campanas(contador, top=100, fecha="today"):
     return out
 
 
-def traer_top_productos(contador, top=100, fecha="today"):
+def traer_top_productos(contador, top=100, fecha="today",
+                        orden="ym:s:productPurchasedQuantity"):
     p = {"ids": contador, "dimensions": "ym:s:productName,ym:s:productID",
          "metrics": ("ym:s:productImpressions,ym:s:productBasketsQuantity,"
                      "ym:s:productPurchasedQuantity,ym:s:visits,"
                      "ym:s:productPurchasedPrice"),
          "date1": fecha, "date2": fecha,
-         "sort": "-ym:s:productPurchasedQuantity", "limit": top}
+         "sort": "-" + orden, "limit": top}
     d = requests.get(URL_DATA, headers=HEADERS, params=p).json()
     out = []
     for fila in d.get("data", []):
@@ -407,6 +408,26 @@ def traer_top_productos(contador, top=100, fecha="today"):
         out.append({"nombre": nombre, "sku": sku, "vistos": int(vistos),
                     "carrito": int(carrito), "comprados": int(comprados),
                     "sesiones": int(ses), "ingresos": round(ingresos, 2)})
+    return out
+
+
+def traer_top_productos_hoy(contador, top=100):
+    """Top de HOY por unidades vendidas UNIDO al top por ingresos.
+    Solo con el top por unidades, un producto caro que vende 1-2 unidades
+    (TV, laptop) puede quedar fuera aunque sea de lo que mas factura."""
+    por_und = traer_top_productos(contador, top)
+    try:
+        por_ing = traer_top_productos(contador, top,
+                                      orden="ym:s:productPurchasedPrice")
+    except Exception as e:
+        print(f"Aviso: top por ingresos no traido ({e}).")
+        por_ing = []
+    vistos, out = set(), []
+    for p in por_und + por_ing:
+        clave = (p["sku"], p["nombre"])
+        if clave not in vistos:
+            vistos.add(clave)
+            out.append(p)
     return out
 
 
@@ -448,8 +469,9 @@ def construir_marca(marca):
     contador = MARCAS[marca]["contador"]
     campanas  = traer_campanas(contador)
     campanas  = evaluar_campanas_numericas(campanas, marca)
-    productos = traer_top_productos(contador)
+    productos = traer_top_productos_hoy(contador)
     ing_hora  = traer_ingresos_hora(contador)
+    r["top_productos"] = productos          # el correo arma sus top 10
     corte = r["corte"]
     proy_json = serie_proy_json(r["proy"])
     por_hora = [{
@@ -1015,10 +1037,16 @@ def main():
 
     # PNG + correo: solo en cyber
     if ES_CYBER:
-        from correo import construir_html, render_png, construir_correo, enviar
+        from correo import (construir_html, construir_html_top, archivos_png,
+                            render_png, construir_correo, enviar)
         reps_lista = []
         for marca, r in reportes.items():
-            render_png(construir_html(r), f"reporte_{marca.replace(' ', '_')}.png")
+            png_trafico, png_top = archivos_png(marca)
+            render_png(construir_html(r), png_trafico)
+            try:
+                render_png(construir_html_top(r), png_top)
+            except Exception as e:      # la imagen 2 nunca frena el correo
+                print(f"Aviso: imagen top de {marca} no generada ({e}).")
             reps_lista.append(r)
         enviar(construir_correo(reps_lista))
         print("PNG + correo enviados.")
