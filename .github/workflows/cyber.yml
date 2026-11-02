@@ -9,9 +9,13 @@ on:
   workflow_dispatch:   # boton para correr manual
 permissions:
   contents: write
+concurrency:
+  group: cyber            # si cron-job.org y el cron de GitHub coinciden, no corren a la vez
+  cancel-in-progress: false
 jobs:
   reporte:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       MODO: cyber
       TZ: America/Lima    # el runner corre en UTC; sin esto date.today() se adelanta de noche
@@ -48,8 +52,12 @@ jobs:
           git add historico.json || true
           git add neto.json || true
           git commit -m "corte $(date -u +%H:%M) UTC" || echo "sin cambios"
-          # neto.py pushea neto.json desde la PC: rebase antes de empujar
-          git pull --rebase && git push
+          # neto.py (PC) y panel.yml tambien pushean: rebase y reintenta
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep 5
+          done
+          exit 1
       - name: Limpiar secretos
         if: always()
         run: rm -f mi_token.txt gmail.txt credenciales.json
