@@ -184,6 +184,14 @@ const fmt={
   dm:f=>{const p=String(f).split('-');return p[2]+'/'+p[1];}
 };
 const NOTA_PRELIMINAR='* Última hora preliminar: puede subir en el próximo corte.';
+/* corte = ultima hora con datos (fila con *). La etiqueta 'corte HH:00' es la
+   hora en que se corrio: hora_corte (o corte+1 en JSON viejos). */
+function horaCorte(){
+  if(!DATA) return null;
+  if(DATA.hora_corte!=null) return DATA.hora_corte;
+  return DATA.corte!=null ? DATA.corte+1 : null;
+}
+function lblCorte(){ const h=horaCorte(); return h!=null ? String(h).padStart(2,'0')+':00' : '—'; }
 const esc=t=>String(t==null?'':t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 
 /* =========================================================================
@@ -221,7 +229,7 @@ async function cargar(){
   NETO = await traer(NETO_FUENTES);    // opcional
 
   document.getElementById('corte').textContent =
-    (DATA.corte!=null ? String(DATA.corte).padStart(2,'0')+':00' : '—');
+    lblCorte();
   document.getElementById('fecha').textContent =
     new Date(DATA.generado).toLocaleString('es-PE',
       {weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
@@ -240,8 +248,7 @@ function pintarBadge(){
   if(esCyber()){
     b.className='badge vivo'; b.textContent='EN VIVO';
   }else{
-    const hh = DATA.corte!=null ? String(DATA.corte).padStart(2,'0') : '--';
-    b.className='badge corte'; b.textContent='CORTE '+hh+':00';
+    b.className='badge corte'; b.textContent='CORTE '+lblCorte();
   }
   document.getElementById('foot').textContent =
     esCyber() ? 'Modo Cyber · actualiza cada hora'
@@ -335,7 +342,7 @@ function selectorFecha(){
   const min = fechas.length?fechas[0]:hoyStr;
   const val = (fechaSel==='hoy')?hoyStr:fechaSel;
   const nota = (fechaSel==='hoy')
-      ? (esCyber()?'corte de la hora':'parcial · corte '+String(DATA.corte).padStart(2,'0')+':00')
+      ? (esCyber()?'corte de la hora':'parcial · corte '+lblCorte())
       : 'día cerrado · número final';
   return '<div class="datebar">'+
     '<span class="lbl" style="margin:0">Ver día</span>'+
@@ -397,7 +404,7 @@ function renderDia(){
   const pie = esHoy
       ? (usaCorte
           ? 'Proyección cierre: '+(d.meta_sesiones_corte?fmt.k(Math.round(r.sesiones/d.meta_sesiones_corte*d.meta_sesiones_dia)):'—')
-          : 'Parcial al corte '+String(DATA.corte).padStart(2,'0')+':00')
+          : 'Parcial al corte '+lblCorte())
       : 'Cierre del día: '+fmt.k(r.sesiones);
 
   const html =
@@ -542,8 +549,7 @@ function drawSes(ph){
   document.getElementById('legSes').innerHTML=
     '<span><span class="dot" style="background:'+brandHex()+'"></span>Real</span>'+
     (hayProy?'<span><span class="dot" style="background:#b8bcc6"></span>Proyección</span>':
-             '<span class="muted">sin proyección horaria</span>')+
-    (fechaSel==='hoy' && DATA.corte!=null ? '<span class="muted">* '+String(DATA.corte).padStart(2,'0')+':00 preliminar</span>' : '');
+             '<span class="muted">sin proyección horaria</span>');
   const ds=[{type:'bar',label:'Real',data:ph.map(x=>x.ses_real),backgroundColor:brandHex(),borderRadius:3,order:2}];
   if(hayProy) ds.push({type:'line',label:'Proy',data:ph.map(x=>x.ses_proy),borderColor:'#b8bcc6',borderWidth:2,borderDash:[5,4],pointRadius:0,tension:.3,order:1});
   charts['chSes']=new Chart(document.getElementById('chSes'),
