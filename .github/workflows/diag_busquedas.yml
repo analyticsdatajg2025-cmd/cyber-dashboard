@@ -1,0 +1,33 @@
+name: Diagnostico busquedas
+# Solo lectura: revisa si Yandex tiene las palabras buscadas en el buscador de
+# cada web (parametros de URL). No hace commits, no toca Sheets, no manda correo.
+on:
+  workflow_dispatch:
+    inputs:
+      fecha:
+        description: "Fecha (YYYY-MM-DD, o today / yesterday)"
+        default: "today"
+permissions:
+  contents: read
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      TZ: America/Lima
+      MODO: auto
+      FECHA: ${{ inputs.fecha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Instalar dependencias
+        run: pip install requests openpyxl gspread google-auth
+      - name: Escribir token
+        run: echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+      - name: Diagnostico
+        run: python diag_busquedas.py
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt
