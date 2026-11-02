@@ -334,7 +334,12 @@ def traer_sesiones_hora(contador):
             f"{d.get('message') or d.get('errors') or d}"
         )
     serie = [int(v or 0) for v in d["data"][0]["metrics"][0]]
-    corte = d.get("last_period_index", 23)
+    # Yandex devuelve como ultimo periodo la hora EN CURSO (a las 16:20 -> 16,
+    # con 20 min de datos). El corte es la ultima hora CERRADA: corriendo a las
+    # 16:20 el corte es 15, que cubre 15:00-15:59. Asi no sale una hora a
+    # medias en -100% ni se compara contra su proyeccion completa.
+    en_curso = d.get("last_period_index", 23)
+    corte = max(0, en_curso - 1)
     return serie, corte
 
 
