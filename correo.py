@@ -54,13 +54,21 @@ def cargar_neto():
         return {}
 
 
-def neto_de_marca(marca, sesiones):
+def neto_de_marca(marca, sesiones, fecha=None):
     """Bloque 'hoy' de neto.json para la marca. Devuelve dict con
     venta_neta / cr_neto / ticket_neto, o None si esa marca no tiene neto
     (ej. JUNTOZ, o neto.json ausente).
     CR neto = trx_netas / sesiones (las mismas sesiones gross del corte),
     igual que lo calcula el dashboard para 'hoy'."""
-    bloque = cargar_neto().get("marcas", {}).get(marca, {}).get("hoy")
+    datos = cargar_neto().get("marcas", {}).get(marca, {})
+    if fecha:      # dia cerrado: bloque por_dia (viene del Sheet, ya con CR)
+        dia = datos.get("por_dia", {}).get(str(fecha))
+        if not dia:
+            return None
+        return {"venta_neta":  dia.get("venta_neta", 0.0),
+                "ticket_neto": dia.get("ticket_neto", 0.0),
+                "cr_neto":     dia.get("cr_neto", 0.0)}
+    bloque = datos.get("hoy")
     if not bloque:
         return None
     trx = bloque.get("trx_netas", 0)
@@ -101,14 +109,29 @@ td { padding:4px 6px; text-align:center; border-bottom:1px solid #f2f2f2; }
 NOTA_PRELIMINAR = "* Última hora preliminar: puede subir en el próximo corte."
 
 
+def es_cierre(r):
+    """Reporte de un dia YA CERRADO (cierre.py): 24 h completas, sin hora
+    preliminar."""
+    return bool(r.get("cierre"))
+
+
+def etiqueta_corte(r):
+    """'corte 16:00' en vivo, 'cierre 2026-11-03' en un dia cerrado."""
+    return f"cierre {r['fecha']}" if es_cierre(r) else f"corte {hora_corte(r)}:00"
+
+
+def nota(r):
+    return "" if es_cierre(r) else f'<div class="nota">{NOTA_PRELIMINAR}</div>'
+
+
 def hora_corte(r):
     """Hora que se muestra como 'corte': la hora en que se corrio (16 si
     corrio a las 16:20). Los datos llegan hasta la hora anterior (15:59)."""
     return r.get("hora_corte", r["corte"] + 1)
 
 
-def etiqueta_hora(h, corte):
-    return f"{h}*" if h == corte else f"{h}"
+def etiqueta_hora(h, corte, cierre=False):
+    return f"{h}*" if h == corte and not cierre else f"{h}"
 
 
 def color_alpha(base_rgb, frac):
@@ -122,7 +145,8 @@ def construir_html(r):
     f = r["funnel"]
 
     # --- Tarjetas superiores: NETO si hay, si no GROSS (JUNTOZ / neto.json ausente) ---
-    neto = neto_de_marca(r["marca"], r["real_acum"])
+    neto = neto_de_marca(r["marca"], r["real_acum"],
+                         r["fecha"] if es_cierre(r) else None)
     if neto:
         card_venta  = f'<div class="card"><div class="lbl">Venta neta</div><div class="val">{fmt_k(neto["venta_neta"])} S/.</div></div>'
         card_cr     = f'<div class="card"><div class="lbl">CR Neto</div><div class="val">{neto["cr_neto"]*100:.2f} %</div></div>'
@@ -163,7 +187,7 @@ def construir_html(r):
             col_v = "#1f9d57" if var >= 0 else "#c0392b"
             bg_pv = "rgba(46,160,107,0.18)" if pvar >= 0 else "rgba(192,57,43,0.16)"
             filas += f"""<tr>
-              <td class="hora">{etiqueta_hora(h, corte)}</td>
+              <td class="hora">{etiqueta_hora(h, corte, es_cierre(r))}</td>
               <td style="background:{bg_p}">{p:,.0f}</td>
               <td style="background:{bg_r}">{rd:,}</td>
               <td style="color:{col_v}">{var:,.0f}</td>
@@ -185,7 +209,7 @@ def construir_html(r):
         <tr><th>HORA</th><th>Proyección</th><th>Real</th><th>VAR</th><th>%VAR</th></tr>
         {filas}
       </table>
-      <div class="nota">{NOTA_PRELIMINAR}</div>"""
+      {nota(r)}"""
     return pagina(r, pal, cards, tabla)
 
 
@@ -196,7 +220,7 @@ def tabla_sin_proyeccion(r, pal):
     max_r = max(real[:corte + 1], default=1) or 1
     filas = ""
     for h in range(corte + 1):
-        filas += f"""<tr><td class="hora">{etiqueta_hora(h, corte)}</td>
+        filas += f"""<tr><td class="hora">{etiqueta_hora(h, corte, es_cierre(r))}</td>
           <td style="background:{color_alpha('245,178,40', real[h] / max_r)}">{real[h]:,}</td></tr>"""
     meta = r["meta"]
     avance = f"{r['avance']:.1%}" if meta else "—"
@@ -205,7 +229,7 @@ def tabla_sin_proyeccion(r, pal):
         <tr><th>HORA</th><th>Sesiones</th></tr>
         {filas}
       </table>
-      <div class="nota">{NOTA_PRELIMINAR}</div>
+      {nota(r)}
       <div class="pill" style="margin-top:10px;background:{pal['primary']};color:{pal['texto_header']}">Meta del día: {fmt_k(meta) if meta else '—'} · Avance: {avance}</div>"""
 
 
@@ -240,12 +264,12 @@ def bloques_top(r, pal):
                      key=lambda p: -p["ingresos"])[:10]
     por_und = sorted((p for p in prods if p.get("comprados", 0) > 0),
                      key=lambda p: (-p["comprados"], -p.get("ingresos", 0)))[:10]
-    html = pill(f"Top 10 artículos por ingresos · corte {hora_corte(r)}:00")
+    html = pill(f"Top 10 artículos por ingresos · {etiqueta_corte(r)}")
     html += tabla_top(por_ing, [
         ("Artículo", lambda p: p["nombre"]),
         ("Vistas", lambda p: f"{p['vistos']:,}"),
         ("Ingresos", lambda p: f"S/. {p['ingresos']:,.0f}")])
-    html += pill(f"Top 10 artículos por unidades · corte {hora_corte(r)}:00")
+    html += pill(f"Top 10 artículos por unidades · {etiqueta_corte(r)}")
     html += tabla_top(por_und, [
         ("Artículo", lambda p: p["nombre"]),
         ("Vistas", lambda p: f"{p['vistos']:,}"),
@@ -287,7 +311,9 @@ def archivos_png(marca):
 
 
 def texto_corte(r):
-    return (f"SESIONES | Corte {hora_corte(r)}:00\n"
+    titulo = (f"Cierre {r['dia']} {r['fecha']}" if es_cierre(r)
+              else f"Corte {hora_corte(r)}:00")
+    return (f"SESIONES | {titulo}\n"
             f"• Meta del día: {fmt_k(r['meta'])}\n"
             f"• Real: {fmt_k(r['real_acum'])} - Avance al {r['avance']*100:.1f}%")
 
@@ -304,7 +330,11 @@ def render_png(html, salida):
 def construir_correo(reportes):
     """Arma un solo correo con AMBAS marcas: 2 imágenes + 2 bloques de texto."""
     msg = EmailMessage()
-    msg["Subject"] = f"Corte sesiones {hora_corte(reportes[0])}:00 - {date.today()}"
+    r0 = reportes[0]
+    if es_cierre(r0):
+        msg["Subject"] = f"Cierre sesiones - {r0['fecha']} (día completo)"
+    else:
+        msg["Subject"] = f"Corte sesiones {hora_corte(r0)}:00 - {date.today()}"
     msg["From"] = GMAIL_USER
     msg["To"] = ", ".join(DESTINATARIOS)
 
