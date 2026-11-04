@@ -1,0 +1,44 @@
+name: Cierre del dia
+on:
+  # Manda el correo con el dia ANTERIOR cerrado (24 h completas).
+  # Correr a mano con "Run workflow" (fecha opcional, por defecto ayer) o
+  # dispararlo desde cron-job.org a primera hora (ej. 06:00 Lima).
+  workflow_dispatch:
+    inputs:
+      fecha:
+        description: "Fecha a cerrar (YYYY-MM-DD). Vacio = ayer (hora Lima)"
+        required: false
+        default: ""
+jobs:
+  cierre:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: America/Lima
+      FECHA: ${{ inputs.fecha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Cache de pip y Playwright
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/ms-playwright
+          key: deps-${{ hashFiles('requirements.txt') }}
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          python -m playwright install chromium
+      - name: Escribir secretos a archivos locales
+        run: |
+          echo "${{ secrets.YANDEX_TOKEN }}" > mi_token.txt
+          printf '%s\n%s\n' "${{ secrets.GMAIL_USER }}" "${{ secrets.GMAIL_PASS }}" > gmail.txt
+          echo '${{ secrets.GOOGLE_CREDS }}' > credenciales.json
+      - name: Armar y mandar correo de cierre
+        run: python cierre.py
+      - name: Limpiar secretos
+        if: always()
+        run: rm -f mi_token.txt gmail.txt credenciales.json
