@@ -22,6 +22,7 @@ from pipeline import (MARCAS, DIAS, dia_pertenece_a_evento, meta_diaria,
                       leer_proyecciones, USAR_PROY_HORARIA,
                       traer_sesiones_hora_fecha, traer_funnel,
                       traer_top_productos, traer_busquedas, alerta)
+from proy_diaria import leer_neto_diario
 
 
 def fecha_objetivo():
@@ -59,6 +60,21 @@ def top_productos_fecha(contador, fstr, top=100):
     return out
 
 
+def neto_cierre(marca, fecha):
+    """Neto del dia cerrado leido DIRECTO del Sheet al momento de correr (asi
+    no depende de que pipeline.py ya haya refrescado neto.json). None si el
+    Sheet aun no lo tiene o falla: correo.py prueba neto.json y si tampoco
+    hay, muestra gross."""
+    try:
+        n = leer_neto_diario(marca, fecha)
+    except Exception as e:
+        print(f"Aviso: neto de {marca} no leido del Sheet ({e}).")
+        return None
+    if not n:
+        return None
+    return {k: n[k] for k in ("venta_neta", "cr_neto", "ticket_neto")}
+
+
 def armar_reporte_cierre(marca, fecha):
     cont = MARCAS[marca]["contador"]
     fstr = str(fecha)
@@ -75,6 +91,7 @@ def armar_reporte_cierre(marca, fecha):
         "funnel": traer_funnel(cont, fstr),
         "top_productos": top_productos_fecha(cont, fstr),
         "busquedas": traer_busquedas(cont, fecha=fstr) or [],
+        "neto": neto_cierre(marca, fecha),
     }
 
 
@@ -96,7 +113,8 @@ def main():
         except Exception as e:
             print(f"Aviso: imagen top de {marca} no generada ({e}).")
         reportes.append(r)
-        print(f"  OK {marca}: {r['real_acum']:,} sesiones, avance {r['avance']:.1%}")
+        print(f"  OK {marca}: {r['real_acum']:,} sesiones, avance {r['avance']:.1%}, "
+              f"neto: {'Sheet' if r['neto'] else 'neto.json o gross'}")
     enviar(construir_correo(reportes))
     print("Correo de cierre enviado.")
 
