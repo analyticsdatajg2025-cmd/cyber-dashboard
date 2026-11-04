@@ -145,8 +145,9 @@ def construir_html(r):
     f = r["funnel"]
 
     # --- Tarjetas superiores: NETO si hay, si no GROSS (JUNTOZ / neto.json ausente) ---
-    neto = neto_de_marca(r["marca"], r["real_acum"],
-                         r["fecha"] if es_cierre(r) else None)
+    # Cierre: 1) neto del Sheet (cierre.py), 2) neto.json por_dia, 3) gross.
+    neto = (r.get("neto") if es_cierre(r) else None) or neto_de_marca(
+        r["marca"], r["real_acum"], r["fecha"] if es_cierre(r) else None)
     if neto:
         card_venta  = f'<div class="card"><div class="lbl">Venta neta</div><div class="val">{fmt_k(neto["venta_neta"])} S/.</div></div>'
         card_cr     = f'<div class="card"><div class="lbl">CR Neto</div><div class="val">{neto["cr_neto"]*100:.2f} %</div></div>'
