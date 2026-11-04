@@ -221,10 +221,11 @@ EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
 #   del Sheet mensual (col F), sin curva horaria.
 #   False = nunca se usa el Excel (siempre meta diaria del Sheet).
 #   ARCHIVO_PROY conserva el nombre de julio pero ya trae las metas de noviembre.
-# ESCRIBIR_META_HORARIA: True = escribe el real por hora en el Sheet
-#   "Meta horaria" (META_SHEET_KEY). False para no pisar el Sheet de julio.
+# ESCRIBIR_META_HORARIA: True = en cada corte reescribe el Sheet "Meta horaria"
+#   (META_SHEET_KEY) completo: proyeccion (Excel), real (Yandex), VAR y %VAR
+#   de todos los dias del evento. Los dias ya pasados se rellenan solos.
 USAR_PROY_HORARIA = True
-ESCRIBIR_META_HORARIA = False
+ESCRIBIR_META_HORARIA = True
 # NETO_HOY_ACTIVO: True solo si neto.py (en la PC) va a correr durante el
 #   cyber escribiendo el bloque 'hoy' de neto.json. Con False, pipeline.py NO
 #   conserva ese bloque: evita que el dashboard y el correo muestren como "hoy"
@@ -914,32 +915,89 @@ def actualizar_historico(hoy=None):
 # ---------------------------------------------------------------------------
 # GOOGLE SHEET "META HORARIA" — escribe la columna Real por día/hora
 # ---------------------------------------------------------------------------
-# Sheet: "Meta horaria Cyber Julio26"
+# Sheet: "Meta horaria Cyber Noviembre2026" (mismo key; antes era el de julio)
 META_SHEET_KEY = "1kucg2oRhJGWrNET_OdS-AVO9Kdc5NE7jeFJO01mT6oE"
 META_TAB = {"CYBER DAYS": "Cyber days", "CYBER WOW": "Cyber wow"}
 # Fila de la hora 0 de cada bloque de marca:
 META_BASE_ROW = {"LA CURACAO": 3, "TIENDAS EFE": 33, "JUNTOZ": 63}
 
 
+def _rango_evento(nombre_evento):
+    ini, fin = CYBER_DAYS if nombre_evento == "CYBER DAYS" else CYBER_WOW
+    dias, d = [], ini
+    while d <= fin:
+        dias.append(d)
+        d += timedelta(days=1)
+    return dias
+
+
 def escribir_meta_horaria(nombre_evento, semana_horas):
-    """Escribe la columna Real de cada día (por marca) en el Sheet Meta horaria.
-    Real col = 3 + weekday*4 (C,G,K,O,S,W,AA). VAR/%VAR son fórmulas del Sheet."""
+    """Escribe el bloque completo de cada marca en la pestania del evento:
+        fila base-2 : nombre de la marca
+        fila base-1 : encabezados (HORA, Proyeccion <dia>, Real <dia>, VAR, %VAR)
+        filas base..base+23 : horas 0-23
+        fila base+24 : TOTAL
+    Por dia de la semana (w = 0 lunes): Proy col 2+4w, Real 3+4w, VAR 4+4w,
+    %VAR 5+4w  (B-E lunes, F-I martes, ...). La proyeccion sale del Excel para
+    TODOS los dias del evento; el real solo hasta la ultima hora cerrada.
+    VAR / %VAR se escriben como numeros (sin formulas: evita lios de locale)."""
     import gspread
     if not nombre_evento:
         return
     gc = gspread.service_account(filename="credenciales.json")
-    ws = gc.open_by_key(META_SHEET_KEY).worksheet(META_TAB[nombre_evento])
-    reqs = []
-    for marca, dias in semana_horas.items():
+    sh = gc.open_by_key(META_SHEET_KEY)
+    tab = META_TAB[nombre_evento]
+    try:
+        ws = sh.worksheet(tab)
+    except gspread.WorksheetNotFound:
+        ws = sh.add_worksheet(title=tab, rows=100, cols=30)
+
+    dias = _rango_evento(nombre_evento)
+    reqs, fmt_pct = [], []
+    for marca in MARCAS_ACTIVAS:
         base = META_BASE_ROW[marca]
-        for fecha, info in dias.items():
-            w = date.fromisoformat(fecha).weekday()
-            col = get_column_letter(3 + w * 4)
-            valores = [[(fila["real"] if fila["real"] is not None else "")]
-                       for fila in info["horas"]]
-            reqs.append({"range": f"{col}{base}:{col}{base + 23}", "values": valores})
-    if reqs:
-        ws.batch_update(reqs, value_input_option="USER_ENTERED")
+        reqs.append({"range": f"A{base - 2}", "values": [[marca]]})
+        reqs.append({"range": f"A{base - 1}", "values": [["HORA"]]})
+        reqs.append({"range": f"A{base}:A{base + 24}",
+                     "values": [[h] for h in range(24)] + [["TOTAL"]]})
+        horas_dia = semana_horas.get(marca, {})
+        for d in dias:
+            w = d.weekday()
+            c_p = get_column_letter(2 + w * 4)
+            c_v = get_column_letter(5 + w * 4)
+            proy = [round(v) for v in proy_horaria(marca, d)]
+            info = horas_dia.get(str(d))
+            real = ([f["real"] for f in info["horas"]] if info else [None] * 24)
+            filas = []
+            for h in range(24):
+                p, r = proy[h], real[h]
+                if r is None:
+                    filas.append([p, "", "", ""])
+                else:
+                    filas.append([p, r, r - p, (r / p - 1) if p else ""])
+            tp = sum(proy)
+            reales = [r for r in real if r is not None]
+            if reales:
+                tr = sum(reales)
+                tp_corte = sum(p for p, r in zip(proy, real) if r is not None)
+                filas.append([tp, tr, tr - tp_corte,
+                              (tr / tp_corte - 1) if tp_corte else ""])
+            else:
+                filas.append([tp, "", "", ""])
+            dia = DIAS[w]
+            reqs.append({"range": f"{c_p}{base - 1}:{c_v}{base - 1}",
+                         "values": [[f"Proyección {dia}", f"Real {dia}",
+                                     "VAR", "%VAR"]]})
+            reqs.append({"range": f"{c_p}{base}:{c_v}{base + 24}",
+                         "values": filas})
+            fmt_pct.append(f"{c_v}{base}:{c_v}{base + 24}")
+    ws.batch_update(reqs, value_input_option="RAW")
+    try:
+        ws.batch_format([{"range": r, "format": {"numberFormat":
+                         {"type": "PERCENT", "pattern": "0.00%"}}}
+                         for r in fmt_pct])
+    except Exception as e:        # el formato nunca frena la corrida
+        print(f"Aviso: formato %VAR no aplicado ({e}).")
 
 
 # ---------------------------------------------------------------------------
