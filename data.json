@@ -1,6 +1,6 @@
 {
-  "generado": "2026-11-05T12:00:41-05:00",
-  "corte": 11,
+  "generado": "2026-11-05T14:00:42-05:00",
+  "corte": 13,
   "attribution": "lastsign",
   "modo": "cyber",
   "evento": "CYBER WOW",
@@ -9,22 +9,22 @@
   "marcas": {
     "LA CURACAO": {
       "meta_sesiones_dia": 65155,
-      "meta_sesiones_corte": 23448,
+      "meta_sesiones_corte": 30450,
       "real": {
-        "sesiones": 23393,
-        "ingresos": 211841.6,
-        "cr": 0.0083,
-        "ticket": 1086.37,
-        "compras": 195,
-        "vistos": 23762,
-        "carrito": 1681,
-        "comprados": 304
+        "sesiones": 28236,
+        "ingresos": 317843.3,
+        "cr": 0.0094,
+        "ticket": 1203.95,
+        "compras": 264,
+        "vistos": 29503,
+        "carrito": 2224,
+        "comprados": 459
       },
       "por_hora": [
         {
           "h": 0,
           "ses_proy": 1990,
-          "ses_real": 2227,
+          "ses_real": 2228,
           "ing_real": 34548.7
         },
         {
@@ -60,7 +60,7 @@
         {
           "h": 6,
           "ses_proy": 1774,
-          "ses_real": 1742,
+          "ses_real": 1743,
           "ing_real": 10575.8
         },
         {
@@ -78,32 +78,32 @@
         {
           "h": 9,
           "ses_proy": 3189,
-          "ses_real": 3410,
-          "ing_real": 50013.5
+          "ses_real": 3411,
+          "ing_real": 53541.5
         },
         {
           "h": 10,
           "ses_proy": 3367,
-          "ses_real": 4094,
-          "ing_real": 49824.8
+          "ses_real": 4096,
+          "ing_real": 53606.8
         },
         {
           "h": 11,
           "ses_proy": 3424,
-          "ses_real": 3057,
-          "ing_real": 13321.9
+          "ses_real": 3364,
+          "ing_real": 30698.9
         },
         {
           "h": 12,
           "ses_proy": 3471,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 2435,
+          "ing_real": 31152.7
         },
         {
           "h": 13,
           "ses_proy": 3531,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 2096,
+          "ing_real": 50162.0
         },
         {
           "h": 14,
@@ -169,39 +169,51 @@
       "campanas": [
         {
           "nombre": "CURACAO_google_search-brand_aon_2024_conversiones",
-          "sesiones": 1712,
-          "compras": 52,
-          "ingresos": 78047.1
-        },
-        {
-          "nombre": "CURACAO_google_aon_pmax_laptops_2024_conversiones_ecommerce",
-          "sesiones": 1494,
-          "compras": 11,
-          "ingresos": 13934.9
+          "sesiones": 2353,
+          "compras": 72,
+          "ingresos": 136992.8
         },
         {
           "nombre": "CURACAO_google_aon_pmax_high-ticket_2024_conversiones_ecommerce",
-          "sesiones": 2427,
+          "sesiones": 3021,
+          "compras": 22,
+          "ingresos": 21147.0
+        },
+        {
+          "nombre": "CURACAO_google_aon_pmax_laptops_2024_conversiones_ecommerce",
+          "sesiones": 1671,
+          "compras": 13,
+          "ingresos": 15108.9
+        },
+        {
+          "nombre": "CURACAO_google_aon_pmax_low_ticket_2024_conversiones_ecommerce",
+          "sesiones": 1517,
           "compras": 12,
-          "ingresos": 10869.0
+          "ingresos": 8490.0
         },
         {
           "nombre": "CURACAO_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 305,
-          "compras": 3,
-          "ingresos": 5647.0
+          "sesiones": 373,
+          "compras": 4,
+          "ingresos": 6446.0
         },
         {
           "nombre": "CURACAO_social-media_facebook_conversiones-AON-Agosto_UM",
-          "sesiones": 1261,
+          "sesiones": 1601,
           "compras": 16,
           "ingresos": 5243.9
         },
         {
           "nombre": "CURACAO_google_pmax_video_oct_2024_conversiones",
-          "sesiones": 1395,
-          "compras": 9,
-          "ingresos": 4012.9
+          "sesiones": 1435,
+          "compras": 11,
+          "ingresos": 4184.9
+        },
+        {
+          "nombre": "CURACAO_google_pmax_celulares_marcas_set_2024_conversiones",
+          "sesiones": 1768,
+          "compras": 11,
+          "ingresos": 3813.9
         },
         {
           "nombre": "la-curacao_google_search_aon_2024_01_conversiones_brand ",
@@ -211,27 +223,21 @@
         },
         {
           "nombre": "CURACAO_google_pmax_lineablanca_oct_2024_conversiones",
-          "sesiones": 1135,
-          "compras": 4,
-          "ingresos": 2166.0
+          "sesiones": 1163,
+          "compras": 5,
+          "ingresos": 2716.0
         },
         {
           "nombre": "CURACAO_google_search-LINEA-BLANCA_conversiones",
-          "sesiones": 403,
-          "compras": 3,
-          "ingresos": 1786.0
+          "sesiones": 477,
+          "compras": 4,
+          "ingresos": 1875.0
         },
         {
-          "nombre": "CURACAO_google_aon_pmax_low_ticket_2024_conversiones_ecommerce",
-          "sesiones": 1120,
-          "compras": 5,
-          "ingresos": 1758.0
-        },
-        {
-          "nombre": "CURACAO_google_pmax_celulares_marcas_set_2024_conversiones",
-          "sesiones": 1410,
-          "compras": 9,
-          "ingresos": 1186.9
+          "nombre": "57269373-202611_LC_WORKFLOWS",
+          "sesiones": 14,
+          "compras": 1,
+          "ingresos": 1498.0
         },
         {
           "nombre": "Sebas / CURACAO_social-media_facebook_conversiones-VIDEO",
@@ -247,7 +253,7 @@
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120256003559110367)",
-          "sesiones": 52,
+          "sesiones": 63,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -259,13 +265,13 @@
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120257423949140367)",
-          "sesiones": 29,
+          "sesiones": 34,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120257474587820367)",
-          "sesiones": 1,
+          "sesiones": 2,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -277,13 +283,7 @@
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120257687611300367)",
-          "sesiones": 7,
-          "compras": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "57269373-202611_LC_WORKFLOWS",
-          "sesiones": 13,
+          "sesiones": 8,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -295,7 +295,7 @@
         },
         {
           "nombre": "CURACAO_google_display_home_2024_trafico_ecommerce",
-          "sesiones": 8,
+          "sesiones": 10,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -313,13 +313,13 @@
         },
         {
           "nombre": "CURACAO_social-media_facebook_conversiones-AON-Agosto",
-          "sesiones": 26,
+          "sesiones": 33,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "CURACAO_social-media_facebook_conversiones-AON-Agosto -telefonia_UM",
-          "sesiones": 14,
+          "sesiones": 18,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -331,7 +331,7 @@
         },
         {
           "nombre": "CURACAO_social-media_tiktok_trafico_generico",
-          "sesiones": 1,
+          "sesiones": 2,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -343,80 +343,122 @@
         },
         {
           "nombre": "JZ_VENTAS_AON_SOFT_2026",
-          "sesiones": 3,
+          "sesiones": 4,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "LACURACAO-TRAFICO-AON-JUN26",
-          "sesiones": 4584,
+          "sesiones": 4755,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "carrusel_hp_hyperx_rtx5050_nvidia",
+          "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
         }
       ],
       "top_productos": [
         {
+          "nombre": "Celular Samsung Galaxy A17 256GB 8GB 6.7\" Negro",
+          "sku": "SM-A175FZKKLTP",
+          "vistos": 187,
+          "carrito": -1,
+          "comprados": 58,
+          "sesiones": 748,
+          "ingresos": 43742.0
+        },
+        {
           "nombre": "Silla de Oficina Bord Giratoria Negro",
           "sku": "SOBORD5958",
-          "vistos": 90,
-          "carrito": 67,
+          "vistos": 110,
+          "carrito": 70,
           "comprados": 22,
-          "sesiones": 146,
+          "sesiones": 184,
           "ingresos": 1518.0
         },
         {
           "nombre": "Cocina de pie Mabe 4 Hornillas a Gas CMP6010FG1 Silver",
           "sku": "CMP6010FG1",
-          "vistos": 145,
-          "carrito": 19,
-          "comprados": 18,
-          "sesiones": 1041,
-          "ingresos": 8982.0
+          "vistos": 180,
+          "carrito": 22,
+          "comprados": 20,
+          "sesiones": 1212,
+          "ingresos": 9980.0
         },
         {
           "nombre": "Parrilla Mr Grill Cilíndrica con Tapa                                                                                          ",
           "sku": "0055CC",
-          "vistos": 289,
-          "carrito": 40,
-          "comprados": 10,
-          "sesiones": 295,
-          "ingresos": 890.0
+          "vistos": 351,
+          "carrito": 58,
+          "comprados": 20,
+          "sesiones": 368,
+          "ingresos": 1780.0
+        },
+        {
+          "nombre": "Poncho sin Mangas Cerrado con Capucha Ajustable y Botones Laterales EVA Morado",
+          "sku": "CAM_137_MOR4254MP",
+          "vistos": 6,
+          "carrito": 11,
+          "comprados": 16,
+          "sesiones": 2,
+          "ingresos": 208.0
         },
         {
           "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
           "sku": "BLSTKAGRPB053",
-          "vistos": 602,
-          "carrito": 22,
-          "comprados": 8,
-          "sesiones": 637,
-          "ingresos": 1032.0
+          "vistos": 667,
+          "carrito": 28,
+          "comprados": 9,
+          "sesiones": 726,
+          "ingresos": 1161.0
         },
         {
           "nombre": "Dormitorio Paraíso Amanecer 2PLZ + Sofá cama",
           "sku": "DOR-AMA135-SOF",
-          "vistos": 66,
-          "carrito": 18,
-          "comprados": 7,
-          "sesiones": 145,
-          "ingresos": 3913.0
+          "vistos": 87,
+          "carrito": 25,
+          "comprados": 8,
+          "sesiones": 183,
+          "ingresos": 4472.0
         },
         {
           "nombre": "Lavadora LG 19 KG WT19OBVTB Negro",
           "sku": "WT19OBVTB",
-          "vistos": 62,
+          "vistos": 68,
           "carrito": 12,
           "comprados": 7,
-          "sesiones": 999,
+          "sesiones": 1141,
           "ingresos": 7693.0
         },
         {
           "nombre": "Silla Plegable Bord 50cm blanco",
           "sku": "SILLAPL50BL",
-          "vistos": 39,
-          "carrito": 11,
+          "vistos": 50,
+          "carrito": 14,
           "comprados": 7,
-          "sesiones": 44,
+          "sesiones": 56,
           "ingresos": 343.0
+        },
+        {
+          "nombre": "Laptop Gamer HP Victus 15.6\" Windows 11 Home AMD Ryzen 7 512GB 8GB GeForce RTX 4050 15-FB3049LA",
+          "sku": "15-FB3049LA",
+          "vistos": 260,
+          "carrito": 0,
+          "comprados": 6,
+          "sesiones": 1189,
+          "ingresos": 19194.0
+        },
+        {
+          "nombre": "Refrigeradora Mabe Automatica 243LT Black Steel RMN245PAPRP0",
+          "sku": "RMN245PAPRP0",
+          "vistos": 193,
+          "carrito": 16,
+          "comprados": 6,
+          "sesiones": 1315,
+          "ingresos": 4794.0
         },
         {
           "nombre": "TV 43\" LG Nano 4K UHD AI NU80 Smart TV 2026",
@@ -424,143 +466,188 @@
           "vistos": 5,
           "carrito": 0,
           "comprados": 6,
-          "sesiones": 566,
+          "sesiones": 665,
           "ingresos": 6594.0
         },
         {
-          "nombre": "Celular Samsung Galaxy A17 256GB 8GB 6.7\" Negro",
-          "sku": "SM-A175FZKKLTP",
-          "vistos": 110,
-          "carrito": 0,
+          "nombre": "Poncho sin Mangas Cerrado con Capucha Ajustable y Botones Laterales EVA Plomo",
+          "sku": "CAM_137_PLO4254MP",
+          "vistos": 4,
+          "carrito": 4,
           "comprados": 5,
-          "sesiones": 557,
-          "ingresos": 4045.0
+          "sesiones": 1,
+          "ingresos": 65.0
         },
         {
-          "nombre": "Refrigeradora Mabe Automatica 243LT Black Steel RMN245PAPRP0",
-          "sku": "RMN245PAPRP0",
-          "vistos": 154,
-          "carrito": 14,
+          "nombre": "Silla de Oficina Bord Ejecutiva Negro",
+          "sku": "SOBORD6161",
+          "vistos": 99,
+          "carrito": 19,
           "comprados": 5,
-          "sesiones": 1118,
-          "ingresos": 3995.0
+          "sesiones": 164,
+          "ingresos": 495.0
         },
         {
           "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
           "sku": "SM-A576BDBNLTP",
-          "vistos": 85,
-          "carrito": -2,
+          "vistos": 108,
+          "carrito": -4,
           "comprados": 4,
-          "sesiones": 534,
+          "sesiones": 688,
           "ingresos": 5896.0
-        },
-        {
-          "nombre": "Cocina de pie Electrolux 60CM 4 Hornillas VaporBake",
-          "sku": "FE4GMR",
-          "vistos": 30,
-          "carrito": 13,
-          "comprados": 4,
-          "sesiones": 175,
-          "ingresos": 1996.0
-        },
-        {
-          "nombre": "Laptop Gamer HP Victus 15.6\" Windows 11 Home AMD Ryzen 7 512GB 8GB GeForce RTX 4050 15-FB3049LA",
-          "sku": "15-FB3049LA",
-          "vistos": 193,
-          "carrito": 0,
-          "comprados": 4,
-          "sesiones": 981,
-          "ingresos": 12796.0
         },
         {
           "nombre": "Cocina de Piso Mabe a Gas 51CM EMP2000AN0 Negro",
           "sku": "EMP2000AN0",
-          "vistos": 36,
-          "carrito": 6,
-          "comprados": 3,
-          "sesiones": 922,
-          "ingresos": 1077.0
+          "vistos": 53,
+          "carrito": 18,
+          "comprados": 4,
+          "sesiones": 1064,
+          "ingresos": 1436.0
+        },
+        {
+          "nombre": "Cocina de pie Electrolux 60CM 4 Hornillas VaporBake",
+          "sku": "FE4GMR",
+          "vistos": 92,
+          "carrito": 20,
+          "comprados": 4,
+          "sesiones": 279,
+          "ingresos": 1996.0
         },
         {
           "nombre": "Congelador Indurama 297LT CI-320DG",
           "sku": "CI-320DG",
-          "vistos": 40,
+          "vistos": 45,
           "carrito": 8,
+          "comprados": 4,
+          "sesiones": 138,
+          "ingresos": 3396.0
+        },
+        {
+          "nombre": "Lavadora LG 19KG TurboDrum WT19BVTB Negro Claro",
+          "sku": "WT19BVTB",
+          "vistos": 59,
+          "carrito": 13,
+          "comprados": 4,
+          "sesiones": 365,
+          "ingresos": 4796.0
+        },
+        {
+          "nombre": "Lavadora LG TurboDrum 13 KG WT13BVTB Negro Claro",
+          "sku": "WT13BVTB",
+          "vistos": 90,
+          "carrito": 12,
+          "comprados": 4,
+          "sesiones": 1180,
+          "ingresos": 3196.0
+        },
+        {
+          "nombre": "Lavadora Samsung 17KG EcoBubble WA40F17E7CPE Gris Grafito",
+          "sku": "WA40F17E7CPE",
+          "vistos": 227,
+          "carrito": 24,
+          "comprados": 4,
+          "sesiones": 1281,
+          "ingresos": 3996.0
+        },
+        {
+          "nombre": "Refrigeradora Electrolux 419LT Side By Side No Frost Inverter Negro",
+          "sku": "ERS45F2P5EB",
+          "vistos": 251,
+          "carrito": 27,
+          "comprados": 4,
+          "sesiones": 1338,
+          "ingresos": 5196.0
+        },
+        {
+          "nombre": "TV LG 65\" LG QNED AI Mini LED QNED70 4K Smart TV 2026",
+          "sku": "65QNED70BSA",
+          "vistos": 88,
+          "carrito": -1,
+          "comprados": 4,
+          "sesiones": 735,
+          "ingresos": 5996.0
+        },
+        {
+          "nombre": "Caja China Mr Grill Mini Nogal + Parrilla de Varillas",
+          "sku": "CCMININOGAL+PV",
+          "vistos": 59,
+          "carrito": 6,
           "comprados": 3,
-          "sesiones": 114,
-          "ingresos": 2547.0
+          "sesiones": 154,
+          "ingresos": 267.0
+        },
+        {
+          "nombre": "Cocina de pie Electrolux 5 Quemadores 76CM FE5LMR",
+          "sku": "FE5LMR",
+          "vistos": 76,
+          "carrito": 14,
+          "comprados": 3,
+          "sesiones": 292,
+          "ingresos": 2697.0
         },
         {
           "nombre": "Juego de Dormitorio Forli Aria 2PLZ + Almohada",
           "sku": "FR171082",
-          "vistos": 103,
+          "vistos": 126,
           "carrito": 17,
           "comprados": 3,
-          "sesiones": 127,
+          "sesiones": 149,
           "ingresos": 1677.0
         },
         {
           "nombre": "Juego de ollas  Bord Gala Plus 10PZS Acero Inoxidable ",
           "sku": "GALA10",
-          "vistos": 43,
+          "vistos": 52,
           "carrito": 3,
           "comprados": 3,
-          "sesiones": 94,
+          "sesiones": 119,
           "ingresos": 477.0
-        },
-        {
-          "nombre": "Lavadora LG TurboDrum 13 KG WT13BVTB Negro Claro",
-          "sku": "WT13BVTB",
-          "vistos": 79,
-          "carrito": 11,
-          "comprados": 3,
-          "sesiones": 1037,
-          "ingresos": 2397.0
         },
         {
           "nombre": "Lavadora Mabe 13KG Aqua Care Automática Diamond LMAP3120WDGBB0 Gray",
           "sku": "LMAP3120WDGBB0",
-          "vistos": 49,
-          "carrito": 4,
+          "vistos": 50,
+          "carrito": 6,
           "comprados": 3,
-          "sesiones": 269,
+          "sesiones": 320,
           "ingresos": 1947.0
         },
         {
-          "nombre": "Lavadora Samsung 17KG EcoBubble WA40F17E7CPE Gris Grafito",
-          "sku": "WA40F17E7CPE",
-          "vistos": 189,
-          "carrito": 20,
+          "nombre": "Licuadora Oster 1.5LT 2V Negro",
+          "sku": "BLSTKAGBPB053",
+          "vistos": 24,
+          "carrito": 9,
           "comprados": 3,
-          "sesiones": 1109,
-          "ingresos": 2997.0
+          "sesiones": 154,
+          "ingresos": 387.0
         },
         {
           "nombre": "Refrigeradora Electrolux 166LT Frost Bottom Freezer ERB162HB Inox Black",
           "sku": "ERB162HB",
-          "vistos": 125,
-          "carrito": 9,
+          "vistos": 142,
+          "carrito": 10,
           "comprados": 3,
-          "sesiones": 415,
+          "sesiones": 540,
           "ingresos": 1947.0
         },
         {
           "nombre": "Silla Gamer Lyzor con posapiés SGBWTWN135B Black White + Lentes Skullcandy Aloha Negro Verde Botella",
           "sku": "ALOHABGREEN_b-1",
-          "vistos": 435,
-          "carrito": 43,
+          "vistos": 642,
+          "carrito": 51,
           "comprados": 3,
-          "sesiones": 430,
+          "sesiones": 642,
           "ingresos": 627.0
         },
         {
-          "nombre": "TV LG 65\" LG QNED AI Mini LED QNED70 4K Smart TV 2026",
-          "sku": "65QNED70BSA",
-          "vistos": 73,
-          "carrito": 0,
-          "comprados": 3,
-          "sesiones": 620,
-          "ingresos": 4497.0
+          "nombre": "Apple iPhone 17 256GB 6.3\" Lavanda",
+          "sku": "MG6M4BE/A",
+          "vistos": 280,
+          "carrito": -3,
+          "comprados": 2,
+          "sesiones": 739,
+          "ingresos": 6798.0
         },
         {
           "nombre": "Aspiradora Sin Bolsa Electrolux 1500W Ciclónica y Filtro HEPA Efficient azul ABS05",
@@ -574,118 +661,127 @@
         {
           "nombre": "Audífonos In Ear Skullcandy Jib Usb C Bone",
           "sku": "S2JMY-S001",
-          "vistos": 8,
-          "carrito": 0,
+          "vistos": 9,
+          "carrito": -2,
           "comprados": 2,
-          "sesiones": 80,
+          "sesiones": 95,
           "ingresos": 78.0
         },
         {
           "nombre": "Audífonos True Wireless JBL Tune Flex 2 Negro",
           "sku": "JBLTFLEX2BLKAM",
-          "vistos": 31,
+          "vistos": 32,
           "carrito": 9,
           "comprados": 2,
-          "sesiones": 49,
+          "sesiones": 57,
           "ingresos": 378.0
-        },
-        {
-          "nombre": "Caja China Mr Grill Mini Nogal + Parrilla de Varillas",
-          "sku": "CCMININOGAL+PV",
-          "vistos": 41,
-          "carrito": 4,
-          "comprados": 2,
-          "sesiones": 115,
-          "ingresos": 178.0
         },
         {
           "nombre": "Celular Motorola Moto G06 128GB 4GB 6.9\" Azul",
           "sku": "MOTOG06AZL128IN",
-          "vistos": 120,
+          "vistos": 138,
           "carrito": 0,
           "comprados": 2,
-          "sesiones": 501,
+          "sesiones": 633,
           "ingresos": 738.0
         },
         {
           "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" Azul + Buds 6 Play Negro",
           "sku": "NOTE17BLUE+BUND",
-          "vistos": 106,
+          "vistos": 121,
           "carrito": -3,
           "comprados": 2,
-          "sesiones": 515,
+          "sesiones": 654,
           "ingresos": 1598.0
         },
         {
           "nombre": "Celular Redmi Note 17 Pro 5G 256GB 6GB 6.83\" Naranja + Headphones Neo",
           "sku": "N17PRO5GORG+BUN",
-          "vistos": 94,
+          "vistos": 114,
           "carrito": 0,
           "comprados": 2,
-          "sesiones": 270,
+          "sesiones": 338,
           "ingresos": 2398.0
-        },
-        {
-          "nombre": "Cocina de pie Electrolux 5 Quemadores 76CM FE5LMR",
-          "sku": "FE5LMR",
-          "vistos": 57,
-          "carrito": 7,
-          "comprados": 2,
-          "sesiones": 221,
-          "ingresos": 1798.0
         },
         {
           "nombre": "Colchón Paraíso Amanecer 1.5PLZ",
           "sku": "AMA-105-N",
-          "vistos": 15,
+          "vistos": 16,
           "carrito": 7,
           "comprados": 2,
-          "sesiones": 57,
+          "sesiones": 76,
           "ingresos": 458.0
+        },
+        {
+          "nombre": "Combo Karcher Aspiradora WDL1 + Aspiradora Manual CVL1",
+          "sku": "WDL 1-CVL1",
+          "vistos": 305,
+          "carrito": 22,
+          "comprados": 2,
+          "sesiones": 339,
+          "ingresos": 398.0
+        },
+        {
+          "nombre": "Consola Nintendo Switch 2 LED 256GB Negro",
+          "sku": "TWVS4001063",
+          "vistos": 33,
+          "carrito": 10,
+          "comprados": 2,
+          "sesiones": 100,
+          "ingresos": 4298.0
         },
         {
           "nombre": "Freidora de aire Coldex 6LT 1500W CX-AF6DIG",
           "sku": "CX-AF6DIG",
-          "vistos": 55,
-          "carrito": 5,
+          "vistos": 70,
+          "carrito": 4,
           "comprados": 2,
-          "sesiones": 127,
+          "sesiones": 152,
           "ingresos": 318.0
         },
         {
           "nombre": "Impresora Multifuncional HP Smart Tank 580 Sistema Continuo Wi-Fi Color HP App",
           "sku": "ST 580",
-          "vistos": 126,
-          "carrito": 12,
+          "vistos": 164,
+          "carrito": 16,
           "comprados": 2,
-          "sesiones": 258,
+          "sesiones": 341,
           "ingresos": 798.0
         },
         {
           "nombre": "Juego de Sartenes Tramontina Linz 3 Piezas Negro",
           "sku": "20297/909",
-          "vistos": 30,
+          "vistos": 33,
           "carrito": 2,
           "comprados": 2,
-          "sesiones": 50,
+          "sesiones": 62,
           "ingresos": 118.0
+        },
+        {
+          "nombre": "Lavadora Samsung 19KG AI Wash EcoBubble WA80F19S8BPE Negra",
+          "sku": "WA80F19S8BPE",
+          "vistos": 31,
+          "carrito": 4,
+          "comprados": 2,
+          "sesiones": 1180,
+          "ingresos": 3198.0
         },
         {
           "nombre": "Lavadora Samsung 19KG Ecobubble WA19CG6441BDPE Silver",
           "sku": "WA19CG6441BDPE",
-          "vistos": 51,
+          "vistos": 68,
           "carrito": 4,
           "comprados": 2,
-          "sesiones": 1018,
+          "sesiones": 1167,
           "ingresos": 2398.0
         },
         {
           "nombre": "Licuadora Oster 1.5LT 2112242 Roja",
           "sku": "BLSTKAGRRD053",
-          "vistos": 8,
+          "vistos": 9,
           "carrito": -3,
           "comprados": 2,
-          "sesiones": 33,
+          "sesiones": 40,
           "ingresos": 278.0
         },
         {
@@ -694,34 +790,43 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 2,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 358.0
+        },
+        {
+          "nombre": "Mesa Plegable Merci Hogar 150cm MESAPL150BL",
+          "sku": "MESAPL150BL",
+          "vistos": 98,
+          "carrito": 12,
+          "comprados": 2,
+          "sesiones": 115,
+          "ingresos": 178.0
         },
         {
           "nombre": "Poncho para lluvia con Capucha y botones Negro",
           "sku": "CAM_082_NEG",
-          "vistos": 21,
+          "vistos": 25,
           "carrito": 15,
           "comprados": 2,
-          "sesiones": 18,
+          "sesiones": 25,
           "ingresos": 38.0
         },
         {
           "nombre": "Sandwichera Oster 750W Compacta CKSTSM400 Negro",
           "sku": "GTX-CKSTSM400",
-          "vistos": 11,
+          "vistos": 14,
           "carrito": 5,
           "comprados": 2,
-          "sesiones": 15,
+          "sesiones": 20,
           "ingresos": 178.0
         },
         {
           "nombre": "Silla de oficina Blazze Nazka Negro",
           "sku": "ATP1741991375854",
-          "vistos": 2,
+          "vistos": 3,
           "carrito": 0,
           "comprados": 2,
-          "sesiones": 36,
+          "sesiones": 44,
           "ingresos": 238.0
         },
         {
@@ -730,34 +835,43 @@
           "vistos": 1,
           "carrito": 2,
           "comprados": 2,
-          "sesiones": 23,
+          "sesiones": 29,
           "ingresos": 298.0
         },
         {
           "nombre": "TV LG 70\" Nano 4K UHD AI Smart TV",
           "sku": "70NU850BPSD",
-          "vistos": 150,
+          "vistos": 203,
           "carrito": -1,
           "comprados": 2,
-          "sesiones": 669,
+          "sesiones": 799,
           "ingresos": 2998.0
+        },
+        {
+          "nombre": "TV Samsung 55\" UHD Ultra HD Smart UN55U8000HGXPE",
+          "sku": "UN55U8000HGXPE",
+          "vistos": 646,
+          "carrito": -1,
+          "comprados": 2,
+          "sesiones": 1444,
+          "ingresos": 2398.0
         },
         {
           "nombre": "TV Samsung 75\" UHD Ultra HD Smart UN75U8000HGXPE",
           "sku": "UN75U8000HGXPE",
-          "vistos": 56,
+          "vistos": 61,
           "carrito": 0,
           "comprados": 2,
-          "sesiones": 590,
+          "sesiones": 699,
           "ingresos": 3598.0
         },
         {
           "nombre": "Ventilador de pared Imaco 45W FW450 Gris",
           "sku": "FW450",
-          "vistos": 6,
+          "vistos": 8,
           "carrito": 2,
           "comprados": 2,
-          "sesiones": 111,
+          "sesiones": 148,
           "ingresos": 358.0
         },
         {
@@ -772,10 +886,10 @@
         {
           "nombre": "Aire Acondicionado Mabe 9000 BTU MMT09CDBWCC32EC1 Blanco",
           "sku": "MMT09CDBWCC32EC",
-          "vistos": 12,
+          "vistos": 17,
           "carrito": 7,
           "comprados": 1,
-          "sesiones": 79,
+          "sesiones": 100,
           "ingresos": 1099.0
         },
         {
@@ -784,53 +898,53 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 69,
+          "sesiones": 90,
           "ingresos": 299.0
         },
         {
           "nombre": "Altavoz inteligente Amazon Echo Dot Max Grafito",
           "sku": "B0FTC3LTLG",
-          "vistos": 6,
+          "vistos": 9,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 70,
+          "sesiones": 92,
           "ingresos": 349.0
         },
         {
           "nombre": "Apple iPhone 16 128GB Negro",
           "sku": "MYE73BE/A",
-          "vistos": 19,
+          "vistos": 21,
           "carrito": 9,
           "comprados": 1,
-          "sesiones": 344,
+          "sesiones": 411,
           "ingresos": 2899.0
-        },
-        {
-          "nombre": "Apple iPhone 17 256GB 6.3\" Lavanda",
-          "sku": "MG6M4BE/A",
-          "vistos": 223,
-          "carrito": -3,
-          "comprados": 1,
-          "sesiones": 599,
-          "ingresos": 3399.0
         },
         {
           "nombre": "Apple iPhone 17 256GB Blanco",
           "sku": "MG6K4BE/A",
-          "vistos": 147,
-          "carrito": 23,
+          "vistos": 185,
+          "carrito": 26,
           "comprados": 1,
-          "sesiones": 540,
+          "sesiones": 656,
           "ingresos": 3399.0
         },
         {
           "nombre": "Apple iPhone 17 Pro 5G 256GB 12GB 6.3\" Naranja",
           "sku": "MG8H4BE/A",
-          "vistos": 428,
+          "vistos": 439,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 935,
+          "sesiones": 1059,
           "ingresos": 4799.0
+        },
+        {
+          "nombre": "Apple iPhone 17 Pro Max 5G 256GB 6.9\" Silver",
+          "sku": "MFYM4BE/A",
+          "vistos": 18,
+          "carrito": -1,
+          "comprados": 1,
+          "sesiones": 628,
+          "ingresos": 5299.0
         },
         {
           "nombre": "Aspiradora Ciclónica Electrolux 2200W EasyBox con Boquilla PET EAS41",
@@ -838,25 +952,25 @@
           "vistos": 4,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 8,
+          "sesiones": 9,
           "ingresos": 309.0
         },
         {
           "nombre": "Aspiradora vertical Eletrolux 1000W Power Speed Negro",
           "sku": "STK12",
-          "vistos": 82,
+          "vistos": 99,
           "carrito": 14,
           "comprados": 1,
-          "sesiones": 866,
+          "sesiones": 976,
           "ingresos": 69.0
         },
         {
           "nombre": "Audífonos In Ear Skullcandy Jib Usb C Black",
           "sku": "S2JMY-S740",
-          "vistos": 11,
-          "carrito": 0,
+          "vistos": 14,
+          "carrito": 1,
           "comprados": 1,
-          "sesiones": 72,
+          "sesiones": 86,
           "ingresos": 39.0
         },
         {
@@ -865,17 +979,26 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 23,
+          "sesiones": 26,
           "ingresos": 49.0
         },
         {
           "nombre": "Audífonos True Wireless Skullcandy Dime Evo Black",
           "sku": "S2DTW-S740",
-          "vistos": 9,
+          "vistos": 10,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 89,
+          "sesiones": 103,
           "ingresos": 189.0
+        },
+        {
+          "nombre": "Audífonos True Wireless Skullcandy Jib True 2 Negro",
+          "sku": "BS-1020076",
+          "vistos": 18,
+          "carrito": 5,
+          "comprados": 1,
+          "sesiones": 34,
+          "ingresos": 69.0
         },
         {
           "nombre": "Audífonos True Wireless Skullcandy Smokin Buds Black",
@@ -883,8 +1006,17 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 64,
+          "sesiones": 75,
           "ingresos": 89.0
+        },
+        {
+          "nombre": "Balanza digital 1 a 10KG Repostera Blanco ",
+          "sku": "S0153",
+          "vistos": 3,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 19,
+          "ingresos": 29.0
         },
         {
           "nombre": "Bolo de 950ML Pyrex con tapa plástica azul",
@@ -901,16 +1033,16 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 5,
+          "sesiones": 7,
           "ingresos": 659.0
         },
         {
           "nombre": "Box Tarima 2PLZ Paraíso Cajones Charcoal ",
           "sku": "BOXSM-135-CJ4",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 11,
+          "sesiones": 15,
           "ingresos": 809.0
         },
         {
@@ -919,7 +1051,7 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 2,
+          "sesiones": 3,
           "ingresos": 219.0
         },
         {
@@ -928,7 +1060,7 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 19,
+          "sesiones": 27,
           "ingresos": 49.0
         },
         {
@@ -937,17 +1069,26 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 19,
+          "sesiones": 20,
           "ingresos": 9.0
         },
         {
           "nombre": "Cafetera Electrolux 1.5LT Programable Experience ECM30",
           "sku": "ECM30",
-          "vistos": 12,
+          "vistos": 18,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 28,
+          "sesiones": 36,
           "ingresos": 129.0
+        },
+        {
+          "nombre": "Cargador Samsung 15W tipo C con Cable EP-T1510NWEGWW",
+          "sku": "PZC952093",
+          "vistos": 2,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 8,
+          "ingresos": 119.0
         },
         {
           "nombre": "Cargador Samsung 25W tipo C con Cable EP-TA800XWEGCA",
@@ -955,26 +1096,35 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 5,
+          "sesiones": 9,
           "ingresos": 129.0
         },
         {
           "nombre": "Cargador Ugreen 2 Puertos USB-C + USB-A 65025",
           "sku": "EFEGC05430",
-          "vistos": 1,
+          "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 9,
+          "sesiones": 10,
           "ingresos": 59.0
         },
         {
           "nombre": "Case Galaxy S25 Ultra",
           "sku": "CASE-S25ULT",
           "vistos": 3,
-          "carrito": -7,
+          "carrito": -9,
           "comprados": 1,
-          "sesiones": 75,
+          "sesiones": 92,
           "ingresos": 100.0
+        },
+        {
+          "nombre": "Case OEM silicona iPhone 16 Pro Negro",
+          "sku": "SILC-IPH-16P-NE",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 2,
+          "ingresos": 65.0
         },
         {
           "nombre": "Celular Azumi SA4 4G 128MB 2.8\" Azul",
@@ -982,70 +1132,115 @@
           "vistos": 2,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 15,
+          "sesiones": 19,
           "ingresos": 85.0
         },
         {
           "nombre": "Celular Bmobile AX754+ Pro 32GB 1GB 5\" Negro",
           "sku": "AX754+PRONEGR",
-          "vistos": 10,
+          "vistos": 11,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 19,
+          "sesiones": 23,
           "ingresos": 99.0
         },
         {
           "nombre": "Celular Motorola Moto G47 128GB 4GB 6.72\" Gris",
           "sku": "MOTOG47GRI128IN",
-          "vistos": 117,
+          "vistos": 143,
           "carrito": -1,
           "comprados": 1,
-          "sesiones": 502,
+          "sesiones": 641,
           "ingresos": 499.0
+        },
+        {
+          "nombre": "Celular Motorola Moto G77 256GB 8GB 6.8\" Negro",
+          "sku": "MOTOG77NEG256IN",
+          "vistos": 93,
+          "carrito": -3,
+          "comprados": 1,
+          "sesiones": 203,
+          "ingresos": 849.0
+        },
+        {
+          "nombre": "Celular Motorola Moto G77 Moto G77 256GB 8GB 6.8\" Negro",
+          "sku": "MOTOG77BLACK2",
+          "vistos": 16,
+          "carrito": -1,
+          "comprados": 1,
+          "sesiones": 106,
+          "ingresos": 1099.0
+        },
+        {
+          "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" Negro + Buds 6 Play Negro",
+          "sku": "NOTE17BLK+BUND",
+          "vistos": 72,
+          "carrito": -1,
+          "comprados": 1,
+          "sesiones": 597,
+          "ingresos": 799.0
+        },
+        {
+          "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" P rpura + Buds 6 Play Negro",
+          "sku": "NOTE17PURP+BUND",
+          "vistos": 63,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 198,
+          "ingresos": 799.0
         },
         {
           "nombre": "Celular Redmi Note 17 Pro 5G 256GB 6GB 6.83\" Azul + Headphones Neo",
           "sku": "N17PRO5GBLU+BUN",
-          "vistos": 20,
+          "vistos": 23,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 203,
+          "sesiones": 255,
+          "ingresos": 1199.0
+        },
+        {
+          "nombre": "Celular Redmi Note 17 Pro 5G 256GB 6GB 6.83\" Negro + Headphones Neo",
+          "sku": "N17PRO5GBLK+BUN",
+          "vistos": 227,
+          "carrito": -2,
+          "comprados": 1,
+          "sesiones": 750,
           "ingresos": 1199.0
         },
         {
           "nombre": "Celular Redmi Note 17 Pro Max 5G 256GB 8GB 6.83\" Verde + Headphones Neo",
           "sku": "N17PMX5GGRN+BUN",
-          "vistos": 7,
+          "vistos": 9,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 199,
+          "sesiones": 257,
           "ingresos": 1699.0
         },
         {
           "nombre": "Celular Samsung Galaxy S25 Ultra 512GB 12GB 6.9\" Titanio Azul Plata",
           "sku": "S25UL-512SILBLU",
-          "vistos": 519,
+          "vistos": 548,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 998,
+          "sesiones": 1157,
           "ingresos": 3299.0
         },
         {
           "nombre": "Celular Samsung Galaxy S25 Ultra 512GB 12GB 6.9\" Titanio Negro",
           "sku": "S25UL-512BLACK",
-          "vistos": 67,
+          "vistos": 85,
           "carrito": -2,
           "comprados": 1,
-          "sesiones": 54,
+          "sesiones": 67,
           "ingresos": 3299.0
         },
         {
           "nombre": "Cocina Indurama 4 Hornillas Granada Croma",
           "sku": "GRANADA",
-          "vistos": 35,
-          "carrito": 1,
+          "vistos": 44,
+          "carrito": 2,
           "comprados": 1,
-          "sesiones": 191,
+          "sesiones": 256,
           "ingresos": 799.0
         },
         {
@@ -1054,7 +1249,7 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 10,
+          "sesiones": 14,
           "ingresos": 1339.0
         },
         {
@@ -1067,193 +1262,13 @@
           "ingresos": 669.0
         },
         {
-          "nombre": "Combo Facusa Tetera Hogar 3LT + Termo Sifón 1.9LT Acero Inoxidable + Set de tazas 6PZS Aurora",
-          "sku": "F135002132_b",
-          "vistos": 18,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 59,
-          "ingresos": 89.0
-        },
-        {
-          "nombre": "Combo Karcher Aspiradora WDL1 + Aspiradora Manual CVL1",
-          "sku": "WDL 1-CVL1",
-          "vistos": 279,
-          "carrito": 18,
-          "comprados": 1,
-          "sesiones": 306,
-          "ingresos": 199.0
-        },
-        {
-          "nombre": "Combo Skullcandy Silla Gamer con Posapiés Negro + Mochila Plain",
-          "sku": "SKBLK135A_b1",
-          "vistos": 36,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 139,
-          "ingresos": 249.0
-        },
-        {
-          "nombre": "Combo Taurus: Freidora de Aire Aero Crispy II 8LT  + Licuadora Elite Profesional",
-          "sku": "PE9359610A",
-          "vistos": 8,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 29,
-          "ingresos": 439.0
-        },
-        {
-          "nombre": "Consola Nintendo Switch 2 LED 256GB Negro",
-          "sku": "TWVS4001063",
-          "vistos": 20,
-          "carrito": 7,
-          "comprados": 1,
-          "sesiones": 74,
-          "ingresos": 2149.0
-        },
-        {
-          "nombre": "Consola PlayStation 5 Con Lectora Call of Duty: Black Ops 6 Bundle",
-          "sku": "PS5-REGULAR-BLA",
-          "vistos": 53,
-          "carrito": 12,
-          "comprados": 1,
-          "sesiones": 52,
-          "ingresos": 2499.0
-        },
-        {
-          "nombre": "Consola PlayStation 5 Sony + Mando Dualsense Negro + Videojuego EA Sports FC 26",
-          "sku": "TWVS4001102",
-          "vistos": 5,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 23,
-          "ingresos": 3419.0
-        },
-        {
-          "nombre": "Cooler Merci Hogar Pinguino 18 LT Azul",
-          "sku": "COOLER18AZM",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 1,
-          "ingresos": 38.0
-        },
-        {
-          "nombre": "Cooler Merci Hogar Pinguino 18 LT Rojo",
-          "sku": "COOLER18RJM",
-          "vistos": 1,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 10,
-          "ingresos": 49.0
-        },
-        {
           "nombre": "CuatriMoto Jettor T - Rex 180 Negro (2026)",
           "sku": "T-REX180/NR",
           "vistos": 5,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 4,
+          "sesiones": 5,
           "ingresos": 7620.0
-        },
-        {
-          "nombre": "Deshumedecedor digital 10LT DHE1002 Plata",
-          "sku": "G2100282",
-          "vistos": 5,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 6,
-          "ingresos": 569.0
-        },
-        {
-          "nombre": "Dime 3 Black",
-          "sku": "S2DCW-R740",
-          "vistos": 18,
-          "carrito": 4,
-          "comprados": 1,
-          "sesiones": 89,
-          "ingresos": 79.0
-        },
-        {
-          "nombre": "Dormitorio Paraíso Pocket Star con cajones 1.5PLZ con Cabecera Loft Chocolate",
-          "sku": "DOR-PSCLT-1051",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 4,
-          "ingresos": 1329.0
-        },
-        {
-          "nombre": "Dormitorio Paraíso Pocket Star con cajones 2PLZ con Cabecera Loft Chocolate",
-          "sku": "DOR-PSCLT-1351",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 7,
-          "ingresos": 1629.0
-        },
-        {
-          "nombre": "Ducha Eléctrica Maxi Línea 5.5KW Bryant",
-          "sku": "RH0080040004",
-          "vistos": 6,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 11,
-          "ingresos": 27.0
-        },
-        {
-          "nombre": "Enfriador de Aire 3 en 1 Ventilador Portatil Humidificador Rosado",
-          "sku": "j3634658MP",
-          "vistos": 4,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 23,
-          "ingresos": 39.9
-        },
-        {
-          "nombre": "Escurridor de Platos 2 Niveles de Acero Inoxidable Cromado con Bandeja de Drenaje",
-          "sku": "SHO-066307011MP",
-          "vistos": 3,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 7,
-          "ingresos": 192.6
-        },
-        {
-          "nombre": "Extractor de jugos Oster 1.25LT 600W FPSTJE320S",
-          "sku": "DM-FPSTJE320S",
-          "vistos": 3,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 2,
-          "ingresos": 339.0
-        },
-        {
-          "nombre": "Frigobar Electrolux Erd50G2Hpi",
-          "sku": "INV-00109",
-          "vistos": 2,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 92,
-          "ingresos": 369.0
-        },
-        {
-          "nombre": "Frigobar Electrolux Frost One Door 90L ERD090G2HWB Negro",
-          "sku": "ERD090G2HWB",
-          "vistos": 98,
-          "carrito": 20,
-          "comprados": 1,
-          "sesiones": 179,
-          "ingresos": 399.0
-        },
-        {
-          "nombre": "Juego de Dormitorio Forli Sabanera Acqua Beige 2PLZ + Velador Turín Caramelo",
-          "sku": "FR169294",
-          "vistos": 1,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 54,
-          "ingresos": 769.0
         },
         {
           "nombre": "Moto Eléctrica REBEL 50kmh, 45km, 2000W Negro - Batería de Litio Extraíble + PLACA GRATIS",
@@ -1265,30 +1280,66 @@
           "ingresos": 5379.0
         },
         {
+          "nombre": "Laptop Lenovo LOQ Essential 15.6\" AMD Ryzen 7 512GB SSD 16GB NVIDIA GeForce RTX 3050 6GB",
+          "sku": "P67852234",
+          "vistos": 4,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 118,
+          "ingresos": 3979.0
+        },
+        {
+          "nombre": "Consola Sony PlayStation 5 Slim Lectora de Discos + Mando Negro + Videojuego PS5 FC 27",
+          "sku": "TWVS4001388",
+          "vistos": 8,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 50,
+          "ingresos": 3639.0
+        },
+        {
+          "nombre": "Consola PlayStation 5 Sony + Mando Dualsense Negro + Videojuego EA Sports FC 26",
+          "sku": "TWVS4001102",
+          "vistos": 7,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 35,
+          "ingresos": 3419.0
+        },
+        {
           "nombre": "Scooter Eléctrico Xiaomi 6 Ultra + REGALO Cargador de Scooter",
           "sku": "CN0700037NA83128MP",
-          "vistos": 9,
+          "vistos": 11,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 11,
+          "sesiones": 12,
           "ingresos": 3299.0
         },
         {
           "nombre": "Laptop Asus Gaming V16 16\" Intel Core 5 210H 512GB SSD 8GB RAM RTX3050 V3607VJ-TK185W",
           "sku": "V3607VJ-TK185W",
-          "vistos": 26,
-          "carrito": -1,
+          "vistos": 34,
+          "carrito": -2,
           "comprados": 1,
-          "sesiones": 816,
+          "sesiones": 967,
           "ingresos": 2999.0
         },
         {
           "nombre": "Laptop Asus TUF Gaming F16 Intel Core 5 205H 16\" 512GB SSD 8GB con mochila",
           "sku": "FX607VJR-TU302W",
-          "vistos": 48,
+          "vistos": 56,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 748,
+          "sesiones": 853,
+          "ingresos": 2899.0
+        },
+        {
+          "nombre": "TV TCL 75” QD-Mini LED Dimming 144HZ 4K UHD Smart Google 75P8L (2026)",
+          "sku": "75P8L",
+          "vistos": 17,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 662,
           "ingresos": 2899.0
         },
         {
@@ -1301,12 +1352,30 @@
           "ingresos": 2789.0
         },
         {
+          "nombre": "Consola PlayStation 5 Con Lectora Call of Duty: Black Ops 6 Bundle",
+          "sku": "PS5-REGULAR-BLA",
+          "vistos": 68,
+          "carrito": 12,
+          "comprados": 1,
+          "sesiones": 62,
+          "ingresos": 2499.0
+        },
+        {
+          "nombre": "Scooter Eléctrico Segway F3 Pro IPX6",
+          "sku": "BG8721008535814",
+          "vistos": 5,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 37,
+          "ingresos": 2349.0
+        },
+        {
           "nombre": "Laptop HP 15.6\" Windows 11 Home AI Intel Core Ultra 5 512GB 8GB 15-FD2350LA",
           "sku": "15-FD2350LA",
-          "vistos": 51,
+          "vistos": 70,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 842,
+          "sesiones": 1004,
           "ingresos": 2199.0
         },
         {
@@ -1315,70 +1384,70 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 76,
+          "sesiones": 89,
           "ingresos": 2199.0
         },
         {
           "nombre": "TV TCL 65\" QLED 4K UHD Google TV 65P7L",
           "sku": "65P7LFG",
-          "vistos": 6,
+          "vistos": 8,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 25,
+          "sesiones": 32,
           "ingresos": 2009.0
         },
         {
           "nombre": "Juego de Sala 3-2-1 Forli Montiano Negro",
           "sku": "FR151675",
-          "vistos": 8,
+          "vistos": 9,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 27,
+          "sesiones": 33,
           "ingresos": 1949.0
         },
         {
           "nombre": "Refrigeradora Indurama 529LT RI-795DNI",
           "sku": "RI-795DNI",
-          "vistos": 6,
-          "carrito": 4,
+          "vistos": 13,
+          "carrito": 5,
           "comprados": 1,
-          "sesiones": 341,
+          "sesiones": 459,
           "ingresos": 1849.0
         },
         {
-          "nombre": "Lavadora Samsung 19KG AI Wash EcoBubble WA80F19S8BPE Negra",
-          "sku": "WA80F19S8BPE",
-          "vistos": 21,
-          "carrito": 3,
+          "nombre": "Dormitorio Paraíso Pocket Star con cajones 2PLZ con Cabecera Loft Chocolate",
+          "sku": "DOR-PSCLT-1351",
+          "vistos": 0,
+          "carrito": 0,
           "comprados": 1,
-          "sesiones": 1028,
-          "ingresos": 1599.0
-        },
-        {
-          "nombre": "Lavadora LG 19KG TurboDrum WT19BVTB Negro Claro",
-          "sku": "WT19BVTB",
-          "vistos": 30,
-          "carrito": 7,
-          "comprados": 1,
-          "sesiones": 286,
-          "ingresos": 1499.0
+          "sesiones": 7,
+          "ingresos": 1629.0
         },
         {
           "nombre": "TV TCL 55” QD-Mini LED Dimming 144Hz 4K UHD Smart Google 55P8L (2026)",
           "sku": "55P8L",
-          "vistos": 24,
+          "vistos": 35,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 580,
+          "sesiones": 677,
           "ingresos": 1499.0
+        },
+        {
+          "nombre": "Juego de Dormitorio Paraiso Royal Prince 2PLZ Chocolate + 2 Almohadas Viscoelásticas",
+          "sku": "CAMCS-135-ROP2-N",
+          "vistos": 7,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 125,
+          "ingresos": 1439.0
         },
         {
           "nombre": "Lavaseca Hisense 14/9KG WD3S1443BB",
           "sku": "WD3S1443BB",
-          "vistos": 13,
+          "vistos": 14,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 43,
+          "sesiones": 52,
           "ingresos": 1399.0
         },
         {
@@ -1393,20 +1462,20 @@
         {
           "nombre": "TV LG 65\" LG NANO 4K UHD AI NU80 Smart TV 2026",
           "sku": "65NU800BPSB",
-          "vistos": 29,
-          "carrito": 0,
+          "vistos": 33,
+          "carrito": -1,
           "comprados": 1,
-          "sesiones": 594,
+          "sesiones": 707,
           "ingresos": 1399.0
         },
         {
-          "nombre": "Refrigeradora Electrolux 419LT Side By Side No Frost Inverter Negro",
-          "sku": "ERS45F2P5EB",
-          "vistos": 200,
-          "carrito": 22,
+          "nombre": "Dormitorio Paraíso Pocket Star con cajones 1.5PLZ con Cabecera Loft Chocolate",
+          "sku": "DOR-PSCLT-1051",
+          "vistos": 0,
+          "carrito": 0,
           "comprados": 1,
-          "sesiones": 1135,
-          "ingresos": 1299.0
+          "sesiones": 5,
+          "ingresos": 1329.0
         },
         {
           "nombre": "Juego de Sala Forli Spring 3-2 Tela Beige+5 Cojines Decorativos",
@@ -1414,17 +1483,8 @@
           "vistos": 4,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 33,
+          "sesiones": 41,
           "ingresos": 1289.0
-        },
-        {
-          "nombre": "TV Samsung 55\" UHD Ultra HD Smart UN55U8000HGXPE",
-          "sku": "UN55U8000HGXPE",
-          "vistos": 616,
-          "carrito": -1,
-          "comprados": 1,
-          "sesiones": 1300,
-          "ingresos": 1199.0
         },
         {
           "nombre": "Refrigeradora Bord 263LT Inverter REINV263NFSD-M",
@@ -1432,17 +1492,44 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 98,
+          "sesiones": 136,
           "ingresos": 1099.0
         },
         {
           "nombre": "Lavadora Mabe Automática Direct Motion 21 Kg LMA1220WDGBB0 Diamond Gray",
           "sku": "LMA1220WDGBB0",
+          "vistos": 51,
+          "carrito": 4,
+          "comprados": 1,
+          "sesiones": 1121,
+          "ingresos": 999.0
+        },
+        {
+          "nombre": "Refrigeradora Indurama 246LT 130W RI-389DI",
+          "sku": "RI-389DI",
+          "vistos": 24,
+          "carrito": 4,
+          "comprados": 1,
+          "sesiones": 478,
+          "ingresos": 999.0
+        },
+        {
+          "nombre": "Refrigeradora LG Multi Air Flow 215LT VT22BPY Plateada",
+          "sku": "VT22BPY",
           "vistos": 43,
           "carrito": 4,
           "comprados": 1,
-          "sesiones": 989,
+          "sesiones": 1258,
           "ingresos": 999.0
+        },
+        {
+          "nombre": "Colchón Paraíso Royal Elizabeth 2PLZ + 02 Almohadas Viscoelásticas",
+          "sku": "ROE-135-OC",
+          "vistos": 7,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 71,
+          "ingresos": 939.0
         },
         {
           "nombre": "Lavadora Indurama 18KG Automática LRI-18DGR",
@@ -1450,25 +1537,25 @@
           "vistos": 12,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 245,
+          "sesiones": 296,
           "ingresos": 899.0
         },
         {
           "nombre": "Lavadora Samsung 13KG EcoBubble WA40F13E4CPE Gris Grafito",
           "sku": "WA40F13E4CPE",
-          "vistos": 24,
-          "carrito": 2,
+          "vistos": 31,
+          "carrito": 4,
           "comprados": 1,
-          "sesiones": 1018,
+          "sesiones": 1162,
           "ingresos": 899.0
         },
         {
           "nombre": "Refrigeradora Electrolux Bottom Freezer 237LT Inverter con Frío Directo Negro",
           "sku": "ERB25A2P5AB",
-          "vistos": 51,
+          "vistos": 61,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 1050,
+          "sesiones": 1244,
           "ingresos": 899.0
         },
         {
@@ -1477,16 +1564,16 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 5,
+          "sesiones": 8,
           "ingresos": 812.9
         },
         {
           "nombre": "Parlante Inalámbrico LG Xboom Power 5000 will.i.am",
           "sku": "POWER5000",
-          "vistos": 17,
+          "vistos": 19,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 78,
+          "sesiones": 102,
           "ingresos": 799.0
         },
         {
@@ -1495,8 +1582,26 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 32,
+          "sesiones": 41,
           "ingresos": 799.0
+        },
+        {
+          "nombre": "Combo Sole Encimera 3120SOLCO047V3 + Campana 3120TURE96CO",
+          "sku": "3131COMBO1701",
+          "vistos": 25,
+          "carrito": 4,
+          "comprados": 1,
+          "sesiones": 27,
+          "ingresos": 789.0
+        },
+        {
+          "nombre": "Juego de Dormitorio Forli Sabanera Acqua Beige 2PLZ + Velador Turín Caramelo",
+          "sku": "FR169294",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 66,
+          "ingresos": 769.0
         },
         {
           "nombre": "Tablet Miray 10.1\" 256GB 8GB TM4G-1008 SpaceGray",
@@ -1504,8 +1609,17 @@
           "vistos": 2,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 29,
+          "sesiones": 34,
           "ingresos": 769.0
+        },
+        {
+          "nombre": "Dormitorio Paraíso Edén Plus 2PLZ",
+          "sku": "DOR-EDE-135",
+          "vistos": 2,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 53,
+          "ingresos": 729.0
         },
         {
           "nombre": "Kit 3 Cámaras de Seguridad Hikvision Full Hd 1080P mas Disco 1Tb Hdmi P2P",
@@ -1519,10 +1633,10 @@
         {
           "nombre": "Licuadora Oster 2LT ActiveSense Rojo",
           "sku": "BLSTTDGRBG053",
-          "vistos": 2,
+          "vistos": 4,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 50,
+          "sesiones": 63,
           "ingresos": 649.0
         },
         {
@@ -1531,125 +1645,98 @@
           "vistos": 3,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 56,
+          "sesiones": 57,
           "ingresos": 649.0
+        },
+        {
+          "nombre": "Extractor de jugos Oster 1.25LT FPSTJE318R",
+          "sku": "INV-00199",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 7,
+          "ingresos": 599.0
         },
         {
           "nombre": "Refrigeradora Electrolux Top Freezer Frost 138L Negra ERT18G2HNB ",
           "sku": "ERT18G2HNB",
-          "vistos": 32,
-          "carrito": 1,
+          "vistos": 39,
+          "carrito": 5,
           "comprados": 1,
-          "sesiones": 349,
+          "sesiones": 459,
           "ingresos": 599.0
         },
         {
-          "nombre": "Set de Batería Tramontina 40PZAS Allegra",
-          "sku": "65660/604",
-          "vistos": 27,
+          "nombre": "Deshumedecedor digital 10LT DHE1002 Plata",
+          "sku": "G2100282",
+          "vistos": 5,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 80,
+          "sesiones": 8,
           "ingresos": 569.0
-        },
-        {
-          "nombre": "Parlante inalámbrico JBL Bluetooth IP68 Charge 6 Azul",
-          "sku": "BGJBLCHARGE6BL",
-          "vistos": 1,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 42,
-          "ingresos": 549.0
-        },
-        {
-          "nombre": "Refrigeradora Electrolux 138LT ERT18G2HNI",
-          "sku": "ERT18G2HNI",
-          "vistos": 395,
-          "carrito": 30,
-          "comprados": 1,
-          "sesiones": 618,
-          "ingresos": 499.0
-        },
-        {
-          "nombre": "Parlante inalámbrico JBL Bluetooth IP68 Flip 7 Azul",
-          "sku": "BGJBLFLIP7BL",
-          "vistos": 5,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 42,
-          "ingresos": 399.0
-        },
-        {
-          "nombre": "Silla Gamer Kuzler Masajeador Lumbar RIK-101CAMO Camuflado",
-          "sku": "20205109-10",
-          "vistos": 3,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 79,
-          "ingresos": 359.0
         }
       ],
       "busquedas": [
         {
           "termino": "iphone 17",
-          "busquedas": 71
+          "busquedas": 89
+        },
+        {
+          "termino": "laptop gamer",
+          "busquedas": 35
         },
         {
           "termino": "celular samsung galaxy s25 ultra 512gb 12gb 6.9",
-          "busquedas": 27
+          "busquedas": 29
         },
         {
           "termino": "iphone 17 pro",
-          "busquedas": 25
+          "busquedas": 28
         },
         {
           "termino": "iphone 17 pro max",
-          "busquedas": 22
+          "busquedas": 28
+        },
+        {
+          "termino": "redmi note 17 pro",
+          "busquedas": 25
         },
         {
           "termino": "lenovo loq",
-          "busquedas": 21
+          "busquedas": 23
         },
         {
           "termino": "ventilador torre",
+          "busquedas": 23
+        },
+        {
+          "termino": "samsung a17",
           "busquedas": 21
         },
         {
           "termino": "refrigerador indurama",
-          "busquedas": 18
-        },
-        {
-          "termino": "laptop gamer",
-          "busquedas": 17
-        },
-        {
-          "termino": "samsung a57",
-          "busquedas": 17
-        },
-        {
-          "termino": "boombox 4",
-          "busquedas": 15
+          "busquedas": 20
         }
       ]
     },
     "TIENDAS EFE": {
       "meta_sesiones_dia": 51193,
-      "meta_sesiones_corte": 20847,
+      "meta_sesiones_corte": 26093,
       "real": {
-        "sesiones": 20869,
-        "ingresos": 96026.0,
-        "cr": 0.0042,
-        "ticket": 1103.75,
-        "compras": 87,
-        "vistos": 15784,
-        "carrito": 1076,
-        "comprados": 110
+        "sesiones": 24740,
+        "ingresos": 134159.4,
+        "cr": 0.0052,
+        "ticket": 1048.12,
+        "compras": 128,
+        "vistos": 19831,
+        "carrito": 1402,
+        "comprados": 166
       },
       "por_hora": [
         {
           "h": 0,
           "ses_proy": 1489,
-          "ses_real": 1729,
+          "ses_real": 1730,
           "ing_real": 3401.0
         },
         {
@@ -1697,38 +1784,38 @@
         {
           "h": 8,
           "ses_proy": 2607,
-          "ses_real": 2628,
+          "ses_real": 2629,
           "ing_real": 8980.9
         },
         {
           "h": 9,
           "ses_proy": 2760,
-          "ses_real": 2930,
+          "ses_real": 2931,
           "ing_real": 18896.7
         },
         {
           "h": 10,
           "ses_proy": 2748,
-          "ses_real": 3444,
+          "ses_real": 3446,
           "ing_real": 22017.8
         },
         {
           "h": 11,
           "ses_proy": 2652,
-          "ses_real": 2678,
-          "ing_real": 14574.0
+          "ses_real": 2980,
+          "ing_real": 17600.0
         },
         {
           "h": 12,
           "ses_proy": 2613,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 2148,
+          "ing_real": 15272.4
         },
         {
           "h": 13,
           "ses_proy": 2633,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 1416,
+          "ing_real": 19835.0
         },
         {
           "h": 14,
@@ -1794,55 +1881,55 @@
       "campanas": [
         {
           "nombre": "EFE_google_pmax_aon_linea_hard_2024_conversiones_ecommerce",
-          "sesiones": 1307,
-          "compras": 9,
-          "ingresos": 11539.7
+          "sesiones": 1657,
+          "compras": 11,
+          "ingresos": 12657.7
         },
         {
           "nombre": "EFE_google_pmax_lineablanca_set_2024_conversiones",
-          "sesiones": 1636,
-          "compras": 6,
-          "ingresos": 6891.0
+          "sesiones": 1865,
+          "compras": 8,
+          "ingresos": 7619.0
         },
         {
           "nombre": "EFE_google_pmax_aon_high_ticket_2024_PROVINCIA_conversiones",
-          "sesiones": 2132,
+          "sesiones": 2455,
           "compras": 7,
           "ingresos": 4514.9
         },
         {
           "nombre": "EFE_google_shopping_marca_tactica_2024_conversiones_top-index",
-          "sesiones": 529,
-          "compras": 1,
-          "ingresos": 1299.0
+          "sesiones": 623,
+          "compras": 2,
+          "ingresos": 2666.0
+        },
+        {
+          "nombre": "Facebook Ads (sin catalogar: 120248163338030225)",
+          "sesiones": 101,
+          "compras": 4,
+          "ingresos": 857.0
         },
         {
           "nombre": "EFE_SOCIAL-MEDIA_FACEBOOK_2026_CONVERSIONES_BOMBAS_UM",
-          "sesiones": 35,
+          "sesiones": 40,
           "compras": 1,
           "ingresos": 849.0
         },
         {
-          "nombre": "Facebook Ads (sin catalogar: 120248163338030225)",
-          "sesiones": 80,
-          "compras": 3,
-          "ingresos": 658.0
+          "nombre": "EFE_google_pmax_aon_low-ticket_2024_conversiones",
+          "sesiones": 639,
+          "compras": 5,
+          "ingresos": 677.0
         },
         {
           "nombre": "EFE_google_search_brand_aon_2024_conversiones",
-          "sesiones": 20,
+          "sesiones": 22,
           "compras": 1,
           "ingresos": 269.9
         },
         {
-          "nombre": "EFE_google_pmax_aon_low-ticket_2024_conversiones",
-          "sesiones": 378,
-          "compras": 1,
-          "ingresos": 99.0
-        },
-        {
           "nombre": "UM_META_EFE_SALES_AON_PROSPECTING",
-          "sesiones": 110,
+          "sesiones": 125,
           "compras": 2,
           "ingresos": 69.0
         },
@@ -1871,26 +1958,32 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "EFE_social-media_facebook_conversiones-COMPUTO",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "Facebook Ads (sin catalogar: 120248701019200225)",
-          "sesiones": 10,
+          "sesiones": 14,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120248919788930225)",
-          "sesiones": 9,
+          "sesiones": 11,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120248935423710225)",
-          "sesiones": 6,
+          "sesiones": 8,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120257687611300367)",
-          "sesiones": 6,
+          "sesiones": 7,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1902,7 +1995,7 @@
         },
         {
           "nombre": "57803901-202611_EFE_ECOM",
-          "sesiones": 2,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1919,14 +2012,26 @@
           "ingresos": 0.0
         },
         {
+          "nombre": "EFE-EFE_social-media_facebook_marca_tactica_2024_9_conversiones_ecommerce-hard",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
           "nombre": "EFE-TRAFICO-AON-JUN26",
-          "sesiones": 7820,
+          "sesiones": 8066,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "EFE_SOCIAL-MEDIA_FACEBOOK_2026_CONVERSIONES_BOMBAS",
+          "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_google_display_home_2024_trafico_ecommerce",
-          "sesiones": 160,
+          "sesiones": 175,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1944,13 +2049,13 @@
         },
         {
           "nombre": "EFE_social-media_facebook_2026_conversiones-video_UM",
-          "sesiones": 15,
+          "sesiones": 20,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_social-media_facebook_conversiones-COMPUTO_UM",
-          "sesiones": 29,
+          "sesiones": 37,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1968,19 +2073,19 @@
         },
         {
           "nombre": "EFE_social-media_facebook_conversiones-LINEA_BLANCA_UM",
-          "sesiones": 10,
+          "sesiones": 16,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_social-media_facebook_conversiones-TELEFONIA_UM",
-          "sesiones": 31,
+          "sesiones": 42,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "EFE_social-media_facebook_trafico_patrocinados_UM",
-          "sesiones": 74,
+          "sesiones": 85,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -1992,7 +2097,7 @@
         },
         {
           "nombre": "UM_META_EFE_SALES_AON_PROSPECTING_UM",
-          "sesiones": 5,
+          "sesiones": 7,
           "compras": 0,
           "ingresos": 0.0
         }
@@ -2001,100 +2106,199 @@
         {
           "nombre": "Celular Samsung Galaxy A27 5G 256GB + 8GB 6.7\" Negro",
           "sku": "SM-A276BZKFLTP",
-          "vistos": 25,
+          "vistos": 34,
           "carrito": 0,
           "comprados": 8,
-          "sesiones": 477,
+          "sesiones": 632,
           "ingresos": 8392.0
+        },
+        {
+          "nombre": "Celular Samsung Galaxy A17 256GB 8GB 6.7\" Negro",
+          "sku": "SM-A175FZKKLTP",
+          "vistos": 54,
+          "carrito": 0,
+          "comprados": 7,
+          "sesiones": 686,
+          "ingresos": 5343.0
         },
         {
           "nombre": "Juego de dormitorio Paraíso Nappy 2PLZ + 2 Almohadas + Protector de colchón",
           "sku": "CAM-135-NAP-N",
-          "vistos": 38,
+          "vistos": 45,
           "carrito": 8,
           "comprados": 6,
-          "sesiones": 106,
+          "sesiones": 128,
           "ingresos": 3954.0
+        },
+        {
+          "nombre": "Refrigeradora Electrolux 419LT Side By Side No Frost Inverter Negro",
+          "sku": "ERS45F2P5EB",
+          "vistos": 289,
+          "carrito": 19,
+          "comprados": 5,
+          "sesiones": 620,
+          "ingresos": 6495.0
+        },
+        {
+          "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" Negro + Buds 6 Play Negro",
+          "sku": "NOTE17BLK+BUND",
+          "vistos": 313,
+          "carrito": -3,
+          "comprados": 4,
+          "sesiones": 824,
+          "ingresos": 3196.0
         },
         {
           "nombre": "Lavadora Samsung 17KG EcoBubble WA40F17E7CPE Gris Grafito",
           "sku": "WA40F17E7CPE",
-          "vistos": 51,
-          "carrito": 10,
+          "vistos": 58,
+          "carrito": 11,
           "comprados": 4,
-          "sesiones": 397,
+          "sesiones": 505,
           "ingresos": 3996.0
+        },
+        {
+          "nombre": "Refrigeradora Mabe Automatica 243LT Black Steel RMN245PAPRP0",
+          "sku": "RMN245PAPRP0",
+          "vistos": 120,
+          "carrito": 22,
+          "comprados": 4,
+          "sesiones": 511,
+          "ingresos": 3196.0
         },
         {
           "nombre": "Apple iPhone 15 5G 128GB 6.1\" Negro",
           "sku": "MTP03BE/A",
-          "vistos": 37,
+          "vistos": 47,
           "carrito": 0,
           "comprados": 3,
-          "sesiones": 678,
+          "sesiones": 871,
           "ingresos": 8097.0
         },
         {
           "nombre": "Lavadora LG 19 KG WT19OBVTB Negro",
           "sku": "WT19OBVTB",
-          "vistos": 41,
+          "vistos": 42,
           "carrito": 20,
           "comprados": 3,
-          "sesiones": 389,
+          "sesiones": 489,
           "ingresos": 3297.0
         },
         {
-          "nombre": "Refrigeradora Electrolux 419LT Side By Side No Frost Inverter Negro",
-          "sku": "ERS45F2P5EB",
-          "vistos": 218,
-          "carrito": 8,
+          "nombre": "Lavadora Samsung 13KG EcoBubble WA40F13E4CPE Gris Grafito",
+          "sku": "WA40F13E4CPE",
+          "vistos": 40,
+          "carrito": 9,
           "comprados": 3,
-          "sesiones": 486,
-          "ingresos": 3897.0
+          "sesiones": 497,
+          "ingresos": 2697.0
+        },
+        {
+          "nombre": "Apple iPhone 17 256GB 6.3\" Lavanda",
+          "sku": "MG6M4BE/A",
+          "vistos": 110,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 389,
+          "ingresos": 6798.0
+        },
+        {
+          "nombre": "Cabecera 2PLZ Paraíso Blocks Gris ",
+          "sku": "CAB-135-BLOCKS3",
+          "vistos": 5,
+          "carrito": 2,
+          "comprados": 2,
+          "sesiones": 6,
+          "ingresos": 398.0
+        },
+        {
+          "nombre": "Celular Motorola Moto G06 128GB 4GB 6.9\" Azul",
+          "sku": "MOTOG06AZL128IN",
+          "vistos": 88,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 633,
+          "ingresos": 738.0
         },
         {
           "nombre": "Celular Motorola Moto G47 128GB 4GB 6.72\" Gris",
           "sku": "MOTOG47GRI128IN",
-          "vistos": 57,
-          "carrito": 0,
+          "vistos": 75,
+          "carrito": -5,
           "comprados": 2,
-          "sesiones": 480,
+          "sesiones": 630,
           "ingresos": 998.0
         },
         {
-          "nombre": "Celular Samsung Galaxy A17 256GB 8GB 6.7\" Negro",
-          "sku": "SM-A175FZKKLTP",
-          "vistos": 41,
-          "carrito": 0,
+          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
+          "sku": "SM-A576BDBNLTP",
+          "vistos": 76,
+          "carrito": -1,
           "comprados": 2,
-          "sesiones": 516,
-          "ingresos": 1598.0
+          "sesiones": 711,
+          "ingresos": 2798.0
         },
         {
           "nombre": "Cocina de Piso Mabe a Gas 51CM EMP2000AN0 Negro",
           "sku": "EMP2000AN0",
-          "vistos": 70,
-          "carrito": 10,
+          "vistos": 93,
+          "carrito": 12,
           "comprados": 2,
-          "sesiones": 325,
+          "sesiones": 416,
           "ingresos": 718.0
+        },
+        {
+          "nombre": "Cocina de pie Electrolux 60CM 4 Hornillas VaporBake",
+          "sku": "FE4GMR",
+          "vistos": 41,
+          "carrito": 8,
+          "comprados": 2,
+          "sesiones": 158,
+          "ingresos": 998.0
+        },
+        {
+          "nombre": "Cocina de pie Mabe 4 Hornillas a Gas CMP6010FG1 Silver",
+          "sku": "CMP6010FG1",
+          "vistos": 141,
+          "carrito": 16,
+          "comprados": 2,
+          "sesiones": 447,
+          "ingresos": 998.0
+        },
+        {
+          "nombre": "Colchón El Cisne Coral 1.5PLZ",
+          "sku": "COL-CORAL1.5PZ",
+          "vistos": 1,
+          "carrito": 3,
+          "comprados": 2,
+          "sesiones": 29,
+          "ingresos": 578.0
+        },
+        {
+          "nombre": "Dormitorio Paraíso Amanecer 2PLZ + Sofá cama",
+          "sku": "DOR-AMA135-SOF",
+          "vistos": 131,
+          "carrito": 12,
+          "comprados": 2,
+          "sesiones": 239,
+          "ingresos": 1118.0
         },
         {
           "nombre": "Freidora de aire Coldex 6LT 1500W CX-AF6DIG",
           "sku": "CX-AF6DIG",
-          "vistos": 23,
+          "vistos": 29,
           "carrito": 7,
           "comprados": 2,
-          "sesiones": 97,
+          "sesiones": 127,
           "ingresos": 318.0
         },
         {
           "nombre": "Lavadora LG TurboDrum 13 KG WT13BVTB Negro Claro",
           "sku": "WT13BVTB",
-          "vistos": 116,
-          "carrito": 12,
+          "vistos": 132,
+          "carrito": 13,
           "comprados": 2,
-          "sesiones": 457,
+          "sesiones": 568,
           "ingresos": 1598.0
         },
         {
@@ -2103,17 +2307,8 @@
           "vistos": 2,
           "carrito": 3,
           "comprados": 2,
-          "sesiones": 5,
+          "sesiones": 7,
           "ingresos": 1030.0
-        },
-        {
-          "nombre": "Refrigeradora Mabe Automatica 243LT Black Steel RMN245PAPRP0",
-          "sku": "RMN245PAPRP0",
-          "vistos": 93,
-          "carrito": 16,
-          "comprados": 2,
-          "sesiones": 386,
-          "ingresos": 1598.0
         },
         {
           "nombre": "SAMSUNG A17 4G 4GB RAM + 128GB NEGRO",
@@ -2121,25 +2316,34 @@
           "vistos": 0,
           "carrito": 11,
           "comprados": 2,
-          "sesiones": 29,
+          "sesiones": 37,
           "ingresos": 1198.0
         },
         {
           "nombre": "TV LG 70\" Nano 4K UHD AI Smart TV",
           "sku": "70NU850BPSD",
-          "vistos": 27,
+          "vistos": 36,
           "carrito": 0,
           "comprados": 2,
-          "sesiones": 251,
+          "sesiones": 335,
           "ingresos": 2998.0
+        },
+        {
+          "nombre": "Ventilador 3 en 1 Pie Pared Mesa 18\"  Pulgadas 65W",
+          "sku": "VTRY-46554190MP",
+          "vistos": 3,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 16,
+          "ingresos": 158.0
         },
         {
           "nombre": "Aire Acondicionado Mabe 9000 BTU MMT09CDBWCC32EC1 Blanco",
           "sku": "MMT09CDBWCC32EC",
-          "vistos": 86,
-          "carrito": 4,
+          "vistos": 100,
+          "carrito": 5,
           "comprados": 1,
-          "sesiones": 124,
+          "sesiones": 153,
           "ingresos": 1099.0
         },
         {
@@ -2152,13 +2356,22 @@
           "ingresos": 1599.9
         },
         {
-          "nombre": "Apple iPhone 17 256GB 6.3\" Lavanda",
-          "sku": "MG6M4BE/A",
-          "vistos": 81,
+          "nombre": "Altavoz inteligente Amazon Echo Dot 5ta Generación Azul + Foco LED",
+          "sku": "BGALEXA5TABLFOC",
+          "vistos": 2,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 293,
-          "ingresos": 3399.0
+          "sesiones": 24,
+          "ingresos": 249.0
+        },
+        {
+          "nombre": "Amazon Echo Glow Lámpara Inteligente Multicolor Alexa",
+          "sku": "2021956-484546MP",
+          "vistos": 3,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 7,
+          "ingresos": 149.0
         },
         {
           "nombre": "Aspiradora Karcher 1000W 10LT WDL1",
@@ -2166,7 +2379,7 @@
           "vistos": 2,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 5,
           "ingresos": 199.0
         },
         {
@@ -2175,7 +2388,7 @@
           "vistos": 6,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 20,
+          "sesiones": 25,
           "ingresos": 30.0
         },
         {
@@ -2184,16 +2397,16 @@
           "vistos": 4,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 83,
+          "sesiones": 100,
           "ingresos": 499.0
         },
         {
           "nombre": "Audífonos True Wireless Skullcandy Smokin Buds Black",
           "sku": "S2TAW-R740",
-          "vistos": 3,
+          "vistos": 6,
           "carrito": -1,
           "comprados": 1,
-          "sesiones": 70,
+          "sesiones": 81,
           "ingresos": 89.0
         },
         {
@@ -2202,17 +2415,8 @@
           "vistos": 2,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 45,
+          "sesiones": 53,
           "ingresos": 89.0
-        },
-        {
-          "nombre": "Cabecera 2PLZ Paraíso Blocks Gris ",
-          "sku": "CAB-135-BLOCKS3",
-          "vistos": 3,
-          "carrito": 1,
-          "comprados": 1,
-          "sesiones": 4,
-          "ingresos": 199.0
         },
         {
           "nombre": "Cable Xiaomi 6A Tipo-A a Tipo-C",
@@ -2226,74 +2430,56 @@
         {
           "nombre": "Caja China Mr Grill Mini Nogal + Parrilla de Varillas",
           "sku": "CCMININOGAL+PV",
-          "vistos": 32,
-          "carrito": 2,
+          "vistos": 47,
+          "carrito": 3,
           "comprados": 1,
-          "sesiones": 61,
+          "sesiones": 83,
           "ingresos": 89.0
         },
         {
           "nombre": "Celular BMobile AX754+ Pro 32GB 1GB 5\" Azul",
           "sku": "AX754PLUSPROAZ",
-          "vistos": 35,
+          "vistos": 40,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 34,
+          "sesiones": 41,
           "ingresos": 99.0
         },
         {
           "nombre": "Celular Bmobile AX754+ Pro 32GB 1GB 5\" Negro",
           "sku": "AX754+PRONEGR",
-          "vistos": 11,
+          "vistos": 12,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 14,
+          "sesiones": 18,
           "ingresos": 99.0
         },
         {
           "nombre": "Celular Motorola Moto G77 256GB 8GB 6.8\" Negro",
           "sku": "MOTOG77NEG256IN",
-          "vistos": 46,
+          "vistos": 57,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 125,
+          "sesiones": 157,
           "ingresos": 849.0
-        },
-        {
-          "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" Negro + Buds 6 Play Negro",
-          "sku": "NOTE17BLK+BUND",
-          "vistos": 301,
-          "carrito": -3,
-          "comprados": 1,
-          "sesiones": 676,
-          "ingresos": 799.0
         },
         {
           "nombre": "Celular Redmi Note 17 Pro 5G 256GB 6GB 6.83\" Naranja + Headphones Neo",
           "sku": "N17PRO5GORG+BUN",
-          "vistos": 50,
+          "vistos": 60,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 179,
+          "sesiones": 222,
           "ingresos": 1199.0
         },
         {
           "nombre": "Celular Redmi Note 17 Pro Max 5G 256GB 8GB 6.83\" Blanco + Headphones Neo",
           "sku": "N17PMX5GWHT+BUN",
-          "vistos": 17,
+          "vistos": 18,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 161,
+          "sesiones": 206,
           "ingresos": 1699.0
-        },
-        {
-          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB 6.7\" Dark Blue",
-          "sku": "SM-A576BDBNLTP",
-          "vistos": 52,
-          "carrito": -1,
-          "comprados": 1,
-          "sesiones": 535,
-          "ingresos": 1399.0
         },
         {
           "nombre": "Coche cuna Ebaby Rossi Gris",
@@ -2301,97 +2487,142 @@
           "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 6,
+          "sesiones": 8,
           "ingresos": 279.0
         },
         {
-          "nombre": "Cocina de pie Electrolux 60CM 4 Hornillas VaporBake",
-          "sku": "FE4GMR",
-          "vistos": 31,
-          "carrito": 6,
+          "nombre": "Coche para Bebé Macarena City Beige",
+          "sku": "BBM400003",
+          "vistos": 18,
+          "carrito": 1,
           "comprados": 1,
-          "sesiones": 112,
-          "ingresos": 499.0
+          "sesiones": 20,
+          "ingresos": 199.0
         },
         {
-          "nombre": "Cocina de pie Mabe 4 Hornillas a Gas CMP6010FG1 Silver",
-          "sku": "CMP6010FG1",
-          "vistos": 71,
-          "carrito": 10,
+          "nombre": "Cocina Indurama 6 Hornillas Galicia Croma",
+          "sku": "GALICIA",
+          "vistos": 7,
+          "carrito": 1,
           "comprados": 1,
-          "sesiones": 321,
-          "ingresos": 499.0
+          "sesiones": 44,
+          "ingresos": 1389.0
+        },
+        {
+          "nombre": "Cocina a Gas Coldex 24\" CX 608 Plus",
+          "sku": "CX 608 PLUS",
+          "vistos": 9,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 159,
+          "ingresos": 799.0
+        },
+        {
+          "nombre": "Cocina a Gas Mabe 6 Quemadores 76CM CMP3020FN1 Negro",
+          "sku": "CMP3020FN1",
+          "vistos": 22,
+          "carrito": 5,
+          "comprados": 1,
+          "sesiones": 151,
+          "ingresos": 899.0
         },
         {
           "nombre": "Colchón Paraíso Amanecer 2PLZ",
           "sku": "AMA-135-N",
-          "vistos": 14,
+          "vistos": 17,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 44,
+          "sesiones": 57,
           "ingresos": 289.0
         },
         {
           "nombre": "Colchón Paraíso Edén Plus 2PLZ",
           "sku": "EDE-135-N",
-          "vistos": 5,
+          "vistos": 8,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 34,
+          "sesiones": 49,
           "ingresos": 379.0
         },
         {
           "nombre": "Combo OEM Soporte de Aluminio + Mochila ",
           "sku": "COMBOSOPORTEAL1",
-          "vistos": 9,
+          "vistos": 14,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 14,
+          "sesiones": 19,
           "ingresos": 39.0
         },
         {
           "nombre": "Combo Practika Freidora de Aire Gourmet 5.5 Plus + Licuadora ML600 + Hervidor 18 Plus + Cafetera Vicenza + Sandwichera Panini Grill",
           "sku": "PE9360920A",
-          "vistos": 57,
+          "vistos": 68,
           "carrito": 8,
           "comprados": 1,
-          "sesiones": 304,
+          "sesiones": 391,
           "ingresos": 299.0
+        },
+        {
+          "nombre": "Combo Record Tetera Letizia 1.9LT + Termo Bomba 1.9LT",
+          "sku": "P108040018",
+          "vistos": 8,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 130,
+          "ingresos": 130.0
+        },
+        {
+          "nombre": "Combo Taurus Licuadora Shake Away + Hervidor Eléctrico + Aspiradora Ultimate Comfort 3 en 1",
+          "sku": "PE9359840A",
+          "vistos": 3,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 119,
+          "ingresos": 239.0
         },
         {
           "nombre": "Congeladora Mabe 200 LT CHMHM200PHVLB0 Blanco",
           "sku": "CHMHM200PHVLB0",
-          "vistos": 5,
+          "vistos": 6,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 24,
+          "sesiones": 30,
           "ingresos": 789.0
+        },
+        {
+          "nombre": "Consola Nintendo Switch 2 LED 256GB Negro",
+          "sku": "TWVS4001063",
+          "vistos": 18,
+          "carrito": 4,
+          "comprados": 1,
+          "sesiones": 103,
+          "ingresos": 2149.0
         },
         {
           "nombre": "Convertidor a Smart Amazon Fire TV Stick 4K Select",
           "sku": "B0H72MJKLW",
-          "vistos": 20,
+          "vistos": 27,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 30,
+          "sesiones": 44,
           "ingresos": 129.0
         },
         {
           "nombre": "Dispensador de Agua Electrolux Pure Sense con Botellón Oculto Negro ED30SRBL",
           "sku": "27072613340MP",
-          "vistos": 1,
+          "vistos": 3,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 2,
+          "sesiones": 4,
           "ingresos": 779.9
         },
         {
           "nombre": "Dormitorio Paraiso Per 2PLZ  con Cajones",
           "sku": "DOR-PER-135-CJ",
-          "vistos": 8,
+          "vistos": 10,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 60,
+          "sesiones": 74,
           "ingresos": 739.0
         },
         {
@@ -2404,30 +2635,57 @@
           "ingresos": 359.0
         },
         {
+          "nombre": "Ducha Eléctrica Maxi Línea 5.5KW Bryant",
+          "sku": "RH0080040004",
+          "vistos": 3,
+          "carrito": -1,
+          "comprados": 1,
+          "sesiones": 8,
+          "ingresos": 27.0
+        },
+        {
+          "nombre": "Freidora de Aire Digital Coldex 6LT Y Vaporera",
+          "sku": "CX-AF6D",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 21,
+          "ingresos": 199.0
+        },
+        {
           "nombre": "Horno Microondas Oster 25LT POGKCW25040 Negro",
           "sku": "POGKCW25040",
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 51,
+          "sesiones": 63,
           "ingresos": 349.0
+        },
+        {
+          "nombre": "Impresora Multifuncional HP Smart Tank 580 Sistema Continuo Wi-Fi Color HP App",
+          "sku": "ST 580",
+          "vistos": 144,
+          "carrito": 20,
+          "comprados": 1,
+          "sesiones": 189,
+          "ingresos": 399.0
         },
         {
           "nombre": "Juego de Ollas Tramontina Linz 7 Piezas Moca",
           "sku": "28299/308",
-          "vistos": 8,
+          "vistos": 11,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 49,
+          "sesiones": 63,
           "ingresos": 179.0
         },
         {
           "nombre": "Juego de ollas  Bord Gala Plus 10PZS Acero Inoxidable ",
           "sku": "GALA10",
-          "vistos": 4,
+          "vistos": 10,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 48,
+          "sesiones": 66,
           "ingresos": 159.0
         },
         {
@@ -2436,43 +2694,43 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 14,
+          "sesiones": 16,
           "ingresos": 739.0
         },
         {
           "nombre": "Laptop HP 15.6\" Windows 11 Home AI Intel Core Ultra 5 512GB 8GB 15-FD2350LA",
           "sku": "15-FD2350LA",
-          "vistos": 21,
+          "vistos": 28,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 232,
+          "sesiones": 297,
           "ingresos": 2199.0
         },
         {
           "nombre": "Laptop IA Lenovo Ideapad 5 2 on 1 Amd Ryzen AI 7 16GB RAM 512GB SSD 14\" Touch",
           "sku": "83KT006PLM",
-          "vistos": 28,
+          "vistos": 37,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 239,
+          "sesiones": 313,
           "ingresos": 3399.0
         },
         {
           "nombre": "Laptop Lenovo IA Ideapad Slim 3i Intel Core 5 8GB RAM 512GB SSD 15.3\"",
           "sku": "83RR00R7LM",
-          "vistos": 47,
+          "vistos": 61,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 287,
+          "sesiones": 365,
           "ingresos": 2199.0
         },
         {
           "nombre": "Laptop Lenovo LOQ 15.6\" Intel Core i7-13650HX 16GB 512GB SSD NVIDIA RTX 3050 144Hz",
           "sku": "83DV0187LM",
-          "vistos": 19,
+          "vistos": 27,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 266,
+          "sesiones": 351,
           "ingresos": 4549.0
         },
         {
@@ -2481,43 +2739,70 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 6,
+          "sesiones": 8,
           "ingresos": 2999.0
         },
         {
-          "nombre": "Lavadora Samsung 13KG EcoBubble WA40F13E4CPE Gris Grafito",
-          "sku": "WA40F13E4CPE",
-          "vistos": 32,
-          "carrito": 6,
+          "nombre": "Lavadora LG 19KG TurboDrum WT19BVTB Negro Claro",
+          "sku": "WT19BVTB",
+          "vistos": 31,
+          "carrito": 4,
           "comprados": 1,
-          "sesiones": 394,
-          "ingresos": 899.0
+          "sesiones": 292,
+          "ingresos": 1099.0
+        },
+        {
+          "nombre": "Lavadora LG Inteligencia Artificial 22KG WT22EGTX Negro",
+          "sku": "WT22EGTX",
+          "vistos": 6,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 86,
+          "ingresos": 2199.0
+        },
+        {
+          "nombre": "Lavadora Mabe Automática Direct Motion 21 Kg LMA1220WDGBB0 Diamond Gray",
+          "sku": "LMA1220WDGBB0",
+          "vistos": 32,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 469,
+          "ingresos": 999.0
         },
         {
           "nombre": "Licuadora Coldex 2LT Glass Pro 1500W",
           "sku": "CX-LIC2/1500M",
-          "vistos": 101,
-          "carrito": 1,
+          "vistos": 108,
+          "carrito": 2,
           "comprados": 1,
-          "sesiones": 199,
+          "sesiones": 246,
           "ingresos": 149.0
         },
         {
           "nombre": "Licuadora Oster 1.25LT 1V 700W BLSTBH4655053",
           "sku": "BLSTBH4655053",
-          "vistos": 9,
+          "vistos": 12,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 114,
+          "sesiones": 155,
           "ingresos": 329.0
         },
         {
           "nombre": "Licuadora Oster 1.5LT 2V BLSTKAGRPB",
           "sku": "BLSTKAGRPB053",
-          "vistos": 24,
+          "vistos": 30,
           "carrito": 5,
           "comprados": 1,
-          "sesiones": 90,
+          "sesiones": 140,
+          "ingresos": 129.0
+        },
+        {
+          "nombre": "Licuadora Oster 1.5LT 2V Negro",
+          "sku": "BLSTKAGBPB053",
+          "vistos": 6,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 76,
           "ingresos": 129.0
         },
         {
@@ -2526,25 +2811,25 @@
           "vistos": 14,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 108,
+          "sesiones": 148,
           "ingresos": 69.0
         },
         {
           "nombre": "Mesa Plegable Bord 180CM Blanco MESAPL180BL",
           "sku": "MESAPL180BL",
-          "vistos": 12,
-          "carrito": 2,
+          "vistos": 15,
+          "carrito": 3,
           "comprados": 1,
-          "sesiones": 33,
+          "sesiones": 44,
           "ingresos": 109.0
         },
         {
           "nombre": "Mini Cilindro Ahumador Mr. Grill Fierro",
           "sku": "MINICILINDROMG",
-          "vistos": 5,
-          "carrito": 1,
+          "vistos": 11,
+          "carrito": 2,
           "comprados": 1,
-          "sesiones": 28,
+          "sesiones": 37,
           "ingresos": 99.0
         },
         {
@@ -2553,7 +2838,7 @@
           "vistos": 2,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 3,
+          "sesiones": 4,
           "ingresos": 269.9
         },
         {
@@ -2562,17 +2847,44 @@
           "vistos": 10,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 27,
+          "sesiones": 32,
           "ingresos": 209.0
+        },
+        {
+          "nombre": "Pack Facusa: Termo Sifón 1.9LT + Tetéra 3LT Eco Plus",
+          "sku": "F135002133",
+          "vistos": 9,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 34,
+          "ingresos": 79.0
+        },
+        {
+          "nombre": "Pantalla Inteligente Amazon Echo Show 11 Grafito",
+          "sku": "B0FKX1M63D",
+          "vistos": 3,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 31,
+          "ingresos": 999.0
         },
         {
           "nombre": "Plancha a Vapor 1400W Oster GCSTBS5004053 ",
           "sku": "GCSTBS5004053",
-          "vistos": 4,
+          "vistos": 5,
           "carrito": 2,
           "comprados": 1,
-          "sesiones": 21,
+          "sesiones": 28,
           "ingresos": 64.0
+        },
+        {
+          "nombre": "Plancha de Vapor Ligera Oster GCSTBS3802 ",
+          "sku": "G2100480",
+          "vistos": 16,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 11,
+          "ingresos": 69.0
         },
         {
           "nombre": "Power Bank Samsung 5000mAh Magnético Wireless U2500",
@@ -2580,26 +2892,44 @@
           "vistos": 0,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 6,
+          "sesiones": 9,
           "ingresos": 175.0
+        },
+        {
+          "nombre": "Rapiducha One Premium 4.5KW Bryant",
+          "sku": "RH0230050001",
+          "vistos": 13,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 21,
+          "ingresos": 159.0
         },
         {
           "nombre": "Refrigeradora Electrolux 436LT No Frost Side By Side Inverter ERS432HBWD",
           "sku": "ERS432HBWD",
-          "vistos": 27,
+          "vistos": 32,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 93,
+          "sesiones": 122,
           "ingresos": 1799.0
         },
         {
           "nombre": "Refrigeradora Electrolux Bottom Freezer 237LT Inverter con Frío Directo Negro",
           "sku": "ERB25A2P5AB",
-          "vistos": 25,
+          "vistos": 40,
+          "carrito": 4,
+          "comprados": 1,
+          "sesiones": 469,
+          "ingresos": 899.0
+        },
+        {
+          "nombre": "Refrigeradora LG Door Cooling+ 374 LT VT38SPYC Plateada",
+          "sku": "VT38SPYC",
+          "vistos": 19,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 358,
-          "ingresos": 899.0
+          "sesiones": 463,
+          "ingresos": 1499.0
         },
         {
           "nombre": "SAMSUNG GALAXY S25 ULTRA 256GB 12GB 200MP 6.9\" TITANIUM WHITESILVER",
@@ -2607,7 +2937,7 @@
           "vistos": 1,
           "carrito": 0,
           "comprados": 1,
-          "sesiones": 8,
+          "sesiones": 11,
           "ingresos": 2899.0
         },
         {
@@ -2616,8 +2946,17 @@
           "vistos": 7,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 12,
+          "sesiones": 13,
           "ingresos": 89.0
+        },
+        {
+          "nombre": "Set de Batería Tramontina 40PZAS Allegra",
+          "sku": "65660/604",
+          "vistos": 18,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 62,
+          "ingresos": 569.0
         },
         {
           "nombre": "Set de Ollas Coldex 9PZ Culinaria",
@@ -2629,85 +2968,40 @@
           "ingresos": 184.0
         },
         {
+          "nombre": "Set de Ollas Facusa Clásica 12PZS + Tetera 3LT",
+          "sku": "CLASICASX12T3L",
+          "vistos": 26,
+          "carrito": -1,
+          "comprados": 1,
+          "sesiones": 82,
+          "ingresos": 229.0
+        },
+        {
+          "nombre": "Silicona para trotadora Sport Fitness 500ML FP-1078341 Transparente",
+          "sku": "FP-1078341",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 8,
+          "ingresos": 89.0
+        },
+        {
           "nombre": "Silla Gamer Lyzor Posapiés SGMTWN135A Militar",
           "sku": "SGMTWN135A",
-          "vistos": 13,
+          "vistos": 19,
           "carrito": 3,
           "comprados": 1,
-          "sesiones": 39,
+          "sesiones": 55,
           "ingresos": 199.0
         },
         {
           "nombre": "Silla de Oficina Bord Ergonómica Negro + Mochila Skullcandy Plain Branded Portalaptop 15\" Negro",
           "sku": "SKMOCHILAPLAIN_b",
-          "vistos": 4,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 32,
-          "ingresos": 98.0
-        },
-        {
-          "nombre": "Starlink Kit Mini X Wifi 5 Blanco",
-          "sku": "SMX100022526",
-          "vistos": 14,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 7,
-          "ingresos": 279.0
-        },
-        {
-          "nombre": "TV MINILED QNED 4K UHD 55\" WEBOS",
-          "sku": "55QNED70BSA",
-          "vistos": 11,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 233,
-          "ingresos": 1299.0
-        },
-        {
-          "nombre": "TV Samsung 55\" Mini LED 4K UHD One UI Tizen OS M80H Vision AI (2026)",
-          "sku": "55M80HAGXPEOTB",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 19,
-          "ingresos": 1679.0
-        },
-        {
-          "nombre": "TV TCL 65” QD-Mini LED Dimming 144Hz 4K UHD Smart Google 65P8L (2026)",
-          "sku": "65P8L",
-          "vistos": 16,
-          "carrito": 2,
-          "comprados": 1,
-          "sesiones": 260,
-          "ingresos": 1899.0
-        },
-        {
-          "nombre": "Timón para Nintendo Switch Edition Set 2 Wheel",
-          "sku": "EFEGC04713",
           "vistos": 5,
-          "carrito": 1,
+          "carrito": 0,
           "comprados": 1,
           "sesiones": 40,
-          "ingresos": 169.0
-        },
-        {
-          "nombre": "Ventilador 3 en 1 Pie Pared Mesa 18\"  Pulgadas 65W",
-          "sku": "VTRY-46554190MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 14,
-          "ingresos": 79.0
-        },
-        {
-          "nombre": "Ventilador Imaco FS9320 Semi Industrial De Pedestal 20\" 93 Watts",
-          "sku": "IM013HL1CFDYULPE-9346463879MP",
-          "vistos": 3,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 6,
-          "ingresos": 299.0
+          "ingresos": 98.0
         },
         {
           "nombre": "iPhone 12 Pro Max 128GB 6GB Azul | OPEN BOX",
@@ -2715,213 +3009,131 @@
           "vistos": 1,
           "carrito": 1,
           "comprados": 1,
-          "sesiones": 27,
+          "sesiones": 29,
           "ingresos": 2156.0
         },
         {
-          "nombre": " Impresora Multifuncional HP Smart Tank 720 Sistema Continuo, Color, Wi-Fi, Dúplex (Impresión a doble cara), HP App",
-          "sku": "TANK 720 WL",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 61,
-          "ingresos": 0.0
+          "nombre": "TV TCL 65” QD-Mini LED Dimming 144Hz 4K UHD Smart Google 65P8L (2026)",
+          "sku": "65P8L",
+          "vistos": 17,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 344,
+          "ingresos": 1899.0
         },
         {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 1TB BLACK - ESIM",
-          "sku": "18PROMAX1TBBLACK5903MP",
+          "nombre": "TV Samsung 55\" Mini LED 4K UHD One UI Tizen OS M80H Vision AI (2026)",
+          "sku": "55M80HAGXPEOTB",
           "vistos": 0,
           "carrito": 0,
-          "comprados": 0,
-          "sesiones": 30,
-          "ingresos": 0.0
+          "comprados": 1,
+          "sesiones": 32,
+          "ingresos": 1679.0
         },
         {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 1TB BURGUNDY - ESIM",
-          "sku": "18PROMAX1TBBURGUNDY5903MP",
+          "nombre": "TV MINILED QNED 4K UHD 55\" WEBOS",
+          "sku": "55QNED70BSA",
+          "vistos": 11,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 312,
+          "ingresos": 1299.0
+        },
+        {
+          "nombre": "Sofá seccional Chaisse 3 Cuerpos",
+          "sku": "SEC-CHAISSEV4946MP",
+          "vistos": 0,
+          "carrito": 3,
+          "comprados": 1,
+          "sesiones": 5,
+          "ingresos": 1229.0
+        },
+        {
+          "nombre": "Videojuego Nintendo Switch 2 Mario Party Jamboree and Jamboree TV Latam",
+          "sku": "EFEGC04623",
           "vistos": 0,
           "carrito": 0,
-          "comprados": 0,
-          "sesiones": 47,
-          "ingresos": 0.0
+          "comprados": 1,
+          "sesiones": 6,
+          "ingresos": 389.0
         },
         {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 1TB GLACIER - ESIM",
-          "sku": "18PROMAX1TBGLACIER5903MP",
+          "nombre": "Tricombo Oster Licuadora BLSTKAGBPB+Olla Arrocera CKSTRCB10DFBLK +Hervidor BVSTKT3101",
+          "sku": "1610202522223340MP",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 11,
+          "ingresos": 369.0
+        },
+        {
+          "nombre": "Videojuego Nintendo Switch 2 Mario Kart World",
+          "sku": "TWVS4001068",
           "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 47,
-          "ingresos": 0.0
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 14,
+          "ingresos": 359.0
         },
         {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 2TB BLACK - ESIM",
-          "sku": "18PROMAX2TBBLACK5903MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 30,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 2TB GLACIER - ESIM",
-          "sku": "18PROMAX2TBGLACIER5903MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 47,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 512GB BLACK - ESIM",
-          "sku": "18PROMAX512GBBLACK5903MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 31,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 512GB BURGUNDY - ESIM",
-          "sku": "18PROMAX512GBBURGUNDY5903MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 30,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 512GB GLACIER - ESIM",
-          "sku": "18PROMAX512GBGLACIER5903MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 46,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": " Set de ollas Bord Vulcano 13 Piezas Antiadherente",
-          "sku": "13VULCANO",
+          "nombre": "Ventilador Imaco FS9320 Semi Industrial De Pedestal 20\" 93 Watts",
+          "sku": "IM013HL1CFDYULPE-9346463879MP",
           "vistos": 4,
           "carrito": 0,
-          "comprados": 0,
+          "comprados": 1,
           "sesiones": 8,
-          "ingresos": 0.0
+          "ingresos": 299.0
         },
         {
-          "nombre": "\"Adaptador USB Concentrador 3.0 Compacto 4 en 1 \"",
-          "sku": "TEC-CAB-00505414MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
+          "nombre": "Starlink Kit Mini X Wifi 5 Blanco",
+          "sku": "SMX100022526",
+          "vistos": 15,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 9,
+          "ingresos": 279.0
         },
         {
-          "nombre": "\"MANDO DUALSENSE GOD OF WAR20 ANIVERSA\n\"",
-          "sku": "TWVS4001149",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "007 First Light Playstation 5 Latam",
-          "sku": "GC057352037MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "1 Aloe Vera 99% Gel Calmante 260ml + 1 Crema Depiladora Dr Rashel 100G",
-          "sku": "COD4535034MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "1-2 Nintendo Switch Euro",
-          "sku": "GC008582037MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% Cold-Pressed Virgin Marula Oil The Ordinary 30ml",
-          "sku": "COD7235261MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% L-Ascorbic Acid Powder - The Ordinary 20g",
-          "sku": "ICOD1215261MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% PROTEINA ISOLATADA ISO SURGE 5 LB CHOCOLATE",
-          "sku": "2024010275711MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% PROTEINA ISOLATADA ISO SURGE 5 LB VAINILLA",
-          "sku": "2024010265711MP",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "12 Cintas De Montaje De Doble Contacto Genérico SA1190",
-          "sku": "S2131",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
+          "nombre": "Timón para Nintendo Switch Edition Set 2 Wheel",
+          "sku": "EFEGC04713",
+          "vistos": 5,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 50,
+          "ingresos": 169.0
         }
       ],
       "busquedas": [
         {
           "termino": "iphone 16",
-          "busquedas": 17
+          "busquedas": 23
         },
         {
           "termino": "camara imou",
           "busquedas": 15
         },
         {
-          "termino": "xiaomi redmi note 15 pro 5g",
-          "busquedas": 13
+          "termino": "s25 ultra",
+          "busquedas": 15
         },
         {
           "termino": "calm",
-          "busquedas": 12
+          "busquedas": 14
         },
         {
-          "termino": "refrigerador de electrolux",
-          "busquedas": 12
+          "termino": "redmi note 17 pro max",
+          "busquedas": 14
+        },
+        {
+          "termino": "xiaomi redmi note 15 pro 5g",
+          "busquedas": 14
         },
         {
           "termino": "samsung a57",
+          "busquedas": 13
+        },
+        {
+          "termino": "refrigerador de electrolux",
           "busquedas": 12
         },
         {
@@ -2931,29 +3143,21 @@
         {
           "termino": "lenovo loq",
           "busquedas": 11
-        },
-        {
-          "termino": "torre lg karaoke",
-          "busquedas": 11
-        },
-        {
-          "termino": "todo sobre muebles",
-          "busquedas": 10
         }
       ]
     },
     "JUNTOZ": {
       "meta_sesiones_dia": 49891,
-      "meta_sesiones_corte": 19233,
+      "meta_sesiones_corte": 24616,
       "real": {
-        "sesiones": 13627,
-        "ingresos": 30822.74,
-        "cr": 0.0037,
-        "ticket": 604.37,
-        "compras": 51,
-        "vistos": 10191,
-        "carrito": 868,
-        "comprados": 80
+        "sesiones": 18669,
+        "ingresos": 70527.72,
+        "cr": 0.0054,
+        "ticket": 705.28,
+        "compras": 100,
+        "vistos": 14417,
+        "carrito": 1305,
+        "comprados": 150
       },
       "por_hora": [
         {
@@ -3007,38 +3211,38 @@
         {
           "h": 8,
           "ses_proy": 2219,
-          "ses_real": 2347,
+          "ses_real": 2350,
           "ing_real": 5360.53
         },
         {
           "h": 9,
           "ses_proy": 2582,
-          "ses_real": 2274,
-          "ing_real": 3742.76
+          "ses_real": 2504,
+          "ing_real": 11488.11
         },
         {
           "h": 10,
           "ses_proy": 2776,
-          "ses_real": 55,
-          "ing_real": 0.0
+          "ses_real": 2345,
+          "ing_real": 19314.72
         },
         {
           "h": 11,
           "ses_proy": 2823,
-          "ses_real": 0,
-          "ing_real": 0.0
+          "ses_real": 2473,
+          "ing_real": 12644.91
         },
         {
           "h": 12,
           "ses_proy": 2723,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 46,
+          "ing_real": 0.0
         },
         {
           "h": 13,
           "ses_proy": 2659,
-          "ses_real": null,
-          "ing_real": null
+          "ses_real": 0,
+          "ing_real": 0.0
         },
         {
           "h": 14,
@@ -3103,16 +3307,34 @@
       ],
       "campanas": [
         {
+          "nombre": "juntoz_embebido_aon",
+          "sesiones": 85,
+          "compras": 3,
+          "ingresos": 7467.0
+        },
+        {
           "nombre": "JUNTOZ_google_search_brand_aon_2024_conversiones",
-          "sesiones": 336,
-          "compras": 9,
-          "ingresos": 3924.18
+          "sesiones": 542,
+          "compras": 16,
+          "ingresos": 6964.66
+        },
+        {
+          "nombre": "JZ_VENTAS_AON_DIGITAL_2026",
+          "sesiones": 168,
+          "compras": 1,
+          "ingresos": 508.3
         },
         {
           "nombre": "JZ_VENTAS_AON_SOFT_2026",
-          "sesiones": 431,
+          "sesiones": 615,
+          "compras": 2,
+          "ingresos": 395.06
+        },
+        {
+          "nombre": "JUNTOZ_social-media_facebook_marca_aon_2025_conversiones_juntoz-hard",
+          "sesiones": 3,
           "compras": 1,
-          "ingresos": 185.16
+          "ingresos": 254.15
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120250769056970329)",
@@ -3122,7 +3344,7 @@
         },
         {
           "nombre": "Facebook Ads (sin catalogar: 120251409553750329)",
-          "sesiones": 44,
+          "sesiones": 59,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -3152,7 +3374,7 @@
         },
         {
           "nombre": "57969954-202611_JUNTOZ_WORKFLOWS",
-          "sesiones": 8,
+          "sesiones": 9,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -3170,7 +3392,7 @@
         },
         {
           "nombre": "JUNTOZ_google_display_sin_feed_aon_2024_trafico_deporte",
-          "sesiones": 1,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -3182,79 +3404,79 @@
         },
         {
           "nombre": "JUNTOZ_google_pmax-generico_aon_2024_conversiones_rev1",
-          "sesiones": 4,
+          "sesiones": 6,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JUNTOZ_google_pmax-hard_aon_2024_conversiones",
-          "sesiones": 2,
+          "sesiones": 3,
           "compras": 0,
           "ingresos": 0.0
         },
         {
-          "nombre": "JUNTOZ_social-media_facebook_marca_aon_2025_conversiones_juntoz-hard",
-          "sesiones": 2,
+          "nombre": "JUNTOZ_social-media_facebook_marca_aon_2025_conversiones_juntoz-soft",
+          "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_ALCANCE_BRAND_112026",
-          "sesiones": 3,
+          "sesiones": 4,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_TRAFICO_BRAND",
-          "sesiones": 3,
+          "sesiones": 4,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_TRÁFICO_BRAND_112026",
-          "sesiones": 124,
+          "sesiones": 154,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_VENTAS_AON_COMPUTO_2026",
-          "sesiones": 18,
-          "compras": 0,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "JZ_VENTAS_AON_DIGITAL_2026",
-          "sesiones": 120,
+          "sesiones": 23,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_VENTAS_AON_LINEA_BLANCA_2026",
-          "sesiones": 66,
+          "sesiones": 90,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_VENTAS_AON_TELEFONÍA_2026",
-          "sesiones": 51,
+          "sesiones": 73,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "JZ_VENTAS_AON_VIDEO_2026",
-          "sesiones": 21,
+          "sesiones": 30,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "Juntoz-social_media_facebook_soft_aon_2026_conversiones_cpa",
+          "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "_CyberWow_Digital",
-          "sesiones": 305,
+          "sesiones": 404,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "_CyberWow_Hard",
-          "sesiones": 5,
+          "sesiones": 7,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -3266,19 +3488,25 @@
         },
         {
           "nombre": "_CyberWow_Video",
-          "sesiones": 8,
+          "sesiones": 9,
           "compras": 0,
           "ingresos": 0.0
         },
         {
           "nombre": "_CyberWow_telefonía",
-          "sesiones": 11,
+          "sesiones": 13,
           "compras": 0,
           "ingresos": 0.0
         },
         {
-          "nombre": "juntoz_embebido_aon",
-          "sesiones": 50,
+          "nombre": "bbva",
+          "sesiones": 1,
+          "compras": 0,
+          "ingresos": 0.0
+        },
+        {
+          "nombre": "cuotealo",
+          "sesiones": 1,
           "compras": 0,
           "ingresos": 0.0
         },
@@ -3290,7 +3518,7 @@
         },
         {
           "nombre": "tiktok_trafico_octubre",
-          "sesiones": 1,
+          "sesiones": 2,
           "compras": 0,
           "ingresos": 0.0
         }
@@ -3301,9 +3529,45 @@
           "sku": "TWVS4001436",
           "vistos": 0,
           "carrito": 0,
+          "comprados": 9,
+          "sesiones": 5,
+          "ingresos": 2691.0
+        },
+        {
+          "nombre": "Grand Theft Auto VI (PS5) GTA 6 - Preventa",
+          "sku": "TWVS4001384",
+          "vistos": 0,
+          "carrito": 0,
           "comprados": 8,
-          "sesiones": 4,
+          "sesiones": 7,
           "ingresos": 2392.0
+        },
+        {
+          "nombre": "Bravecto 4,5 - 10 kg 250 mg",
+          "sku": "1649470060375",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 5,
+          "sesiones": 2,
+          "ingresos": 392.5
+        },
+        {
+          "nombre": "LOCION MINOXIDIL 5 60ML",
+          "sku": "NUEVOCOD1248",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 3,
+          "sesiones": 1,
+          "ingresos": 119.7
+        },
+        {
+          "nombre": "Silla Gamer Lyzor con posapiés SGBTWN135A Negra",
+          "sku": "SGBTWN135A",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 3,
+          "sesiones": 2,
+          "ingresos": 597.0
         },
         {
           "nombre": "Barra Solar Cootton SPF 50+++ - Tocobo 19gr",
@@ -3315,13 +3579,13 @@
           "ingresos": 148.0
         },
         {
-          "nombre": "Bravecto 4,5 - 10 kg 250 mg",
-          "sku": "1649470060375",
+          "nombre": "Bravecto 10 - 20 kg 500 mg",
+          "sku": "1649470089782",
           "vistos": 0,
           "carrito": 0,
           "comprados": 2,
           "sesiones": 1,
-          "ingresos": 157.0
+          "ingresos": 164.0
         },
         {
           "nombre": "CREATINA MONOHIDRATADA 500GR KEVIN LEVRONE",
@@ -3331,6 +3595,33 @@
           "comprados": 2,
           "sesiones": 1,
           "ingresos": 187.8
+        },
+        {
+          "nombre": "Celular Redmi Note 17 256GB 6GB 6.99\" Azul + Buds 6 Play Negro",
+          "sku": "NOTE17BLUE+BUND",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 1,
+          "ingresos": 1698.0
+        },
+        {
+          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB Dark Blue",
+          "sku": "SM-A576BDBNLTP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 3198.0
+        },
+        {
+          "nombre": "Cerave Gel Limpiador Espumoso De 473ml",
+          "sku": "CRV015",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 1,
+          "ingresos": 146.86
         },
         {
           "nombre": "Desodorante Body Spray Old Spice Vip - Frasco 150 ML",
@@ -3351,15 +3642,6 @@
           "ingresos": 31.8
         },
         {
-          "nombre": "Grand Theft Auto VI (PS5) GTA 6 - Preventa",
-          "sku": "TWVS4001384",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 2,
-          "sesiones": 2,
-          "ingresos": 598.0
-        },
-        {
           "nombre": "Lavadora LG 13 KG WT13BVTB Negro",
           "sku": "WT13BVTB",
           "vistos": 0,
@@ -3367,6 +3649,24 @@
           "comprados": 2,
           "sesiones": 2,
           "ingresos": 1598.0
+        },
+        {
+          "nombre": "MINOXIDIL 5MG - 60 CAPS",
+          "sku": "DDERM61",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 1,
+          "ingresos": 199.8
+        },
+        {
+          "nombre": "Minoxidil Kirkland 5% Caja 6 Frascos - Barba - Cabello y Cejas",
+          "sku": "LK415",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 356.0
         },
         {
           "nombre": "OLD-SPICE BARRA B.FRESH 50G.",
@@ -3396,6 +3696,24 @@
           "ingresos": 389.8
         },
         {
+          "nombre": "Refrigeradora Electrolux Bottom Freezer 237LT Inverter con Frío Directo Negro",
+          "sku": "ERB25A2P5AB",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 1598.0
+        },
+        {
+          "nombre": "Scooter Eléctrico Xiaomi 6 GL Negro",
+          "sku": "CN0700038NA8",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 3098.0
+        },
+        {
           "nombre": "Smartphone HONOR X6e 4GB+256GB - Dorado",
           "sku": "5109CLVB",
           "vistos": 0,
@@ -3412,6 +3730,24 @@
           "comprados": 2,
           "sesiones": 1,
           "ingresos": 159.8
+        },
+        {
+          "nombre": "VENTILADOR DE TORRE 39\"",
+          "sku": "2310100103",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 263.8
+        },
+        {
+          "nombre": "VENTILADOR TORRE KVT-TOUCHTOWER BLANCO",
+          "sku": "1009040004",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 2,
+          "sesiones": 2,
+          "ingresos": 478.0
         },
         {
           "nombre": "100% HYDROLYZED  5LB Color: CHOCOLATE",
@@ -3432,6 +3768,15 @@
           "ingresos": 509.0
         },
         {
+          "nombre": "Airpods 4ta Gen (OEM) Cancelacion de Ruido Certificados - BLANCO",
+          "sku": "HBLU4GB",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 135.0
+        },
+        {
           "nombre": "Anthelios Dermo-Pediatrics Spray SPF 50+ 200 ml",
           "sku": "LRP201",
           "vistos": 0,
@@ -3439,6 +3784,15 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 118.93
+        },
+        {
+          "nombre": "Audifonos Skullcandy Smokin Buds 20hrs Bluetooth 5.2 - Negro",
+          "sku": "SMOKINBUDS",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 95.0
         },
         {
           "nombre": "Audífonos Aula G7 Inalámbricos con Micrófono Tri-modo Negro",
@@ -3450,6 +3804,24 @@
           "ingresos": 155.0
         },
         {
+          "nombre": "Audífonos True Wireless Skullcandy Dime 3 Black",
+          "sku": "S2DCW-R740",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 79.0
+        },
+        {
+          "nombre": "Batidora de Pedestal Taurus Mod. BP53L",
+          "sku": "PE9130200A",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 299.9
+        },
+        {
           "nombre": "Billeteras Guess Para Mujer PG8500137 GUMLO",
           "sku": "CUR0000246",
           "vistos": 0,
@@ -3457,6 +3829,15 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 219.0
+        },
+        {
+          "nombre": "Bravecto 20 - 40 kg 1000 mg",
+          "sku": "1649470112450",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 106.0
         },
         {
           "nombre": "CARNIVOR BEEF PROTEIN 4.2 LIBRAS - CHOCOLATE",
@@ -3504,13 +3885,31 @@
           "ingresos": 44.9
         },
         {
-          "nombre": "Celular Samsung Galaxy A57 5G 256GB 8GB Dark Blue",
-          "sku": "SM-A576BDBNLTP",
+          "nombre": "Cocina De Pie Sole Bahamas Glp 60 Cm Color: Negro",
+          "sku": "3120COSOL039",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 1599.0
+          "ingresos": 999.0
+        },
+        {
+          "nombre": "Cocina Indurama 5 Hornillas Montecarlo Croma",
+          "sku": "MONTECARLO",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 1949.0
+        },
+        {
+          "nombre": "Cocina de Piso a Gas GLP 4 Hornillas Vital AGHASO",
+          "sku": "2965220",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 459.0
         },
         {
           "nombre": "Colección OHM Clasico, Black y Now Perfume Hombre",
@@ -3531,6 +3930,24 @@
           "ingresos": 199.0
         },
         {
+          "nombre": "Combo Taurus Licuadora Shake Away + Hervidor Eléctrico + Aspiradora Ultimate Comfort 3 en 1",
+          "sku": "PE9358940A",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 199.0
+        },
+        {
+          "nombre": "Combo Tonno Plus Efecto Brasilero 1Lt",
+          "sku": "100000000001104",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 107.76
+        },
+        {
           "nombre": "Comida para Perro Adulto Pequeño Canbo Cordero 7 kg",
           "sku": "CANBO003",
           "vistos": 0,
@@ -3538,6 +3955,33 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 122.9
+        },
+        {
+          "nombre": "Consola PlayStation 5 PRO Digital 2 TB",
+          "sku": "2657296",
+          "vistos": 11,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 10,
+          "ingresos": 5069.0
+        },
+        {
+          "nombre": "Corps Lignea Gel para Masaje Corporal Refrescante x2 und",
+          "sku": "HND45132",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 99.0
+        },
+        {
+          "nombre": "Creatina Universe Nutrition 250Gr Pack X2+2 Diabolus",
+          "sku": "UN99068",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 84.0
         },
         {
           "nombre": "Cámara De Acción Insta360 X6 Essential Bundle",
@@ -3556,6 +4000,15 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 1499.0
+        },
+        {
+          "nombre": "Dormitorio Paraiso Per 2PLZ  con Cajones",
+          "sku": "DOR-PER-135-CJ",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 739.0
         },
         {
           "nombre": "EUCERIN BABY BAÑOS Y SHAMPOO 240 ML",
@@ -3585,6 +4038,15 @@
           "ingresos": 40.41
         },
         {
+          "nombre": "Gin BULLDOG London Dry Botella 750ml",
+          "sku": "GB000039",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 89.9
+        },
+        {
           "nombre": "Horno Microondas LG EasyClean 30LT MH7032JAS",
           "sku": "MH7032JAS",
           "vistos": 0,
@@ -3592,6 +4054,15 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 379.0
+        },
+        {
+          "nombre": "Horno microondas Bord 20L BO120E-M Espejado",
+          "sku": "BO120E-M",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 199.0
         },
         {
           "nombre": "Hyalu B5 Gel Matificante 40ml",
@@ -3603,6 +4074,15 @@
           "ingresos": 86.03
         },
         {
+          "nombre": "IPHONE 17 PRO MAX 256GB- SILVER -EN LISTA BLANCA",
+          "sku": "1782245543122",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 4949.0
+        },
+        {
           "nombre": "Iphone 17 pro max 256gb chip fisico - NARANJA + regalo Color: NARANJA",
           "sku": "2367444",
           "vistos": 0,
@@ -3612,6 +4092,24 @@
           "ingresos": 5599.0
         },
         {
+          "nombre": "Iso Whey 90 de 1.1 kg Chocolate",
+          "sku": "UN0090",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 119.0
+        },
+        {
+          "nombre": "LENTES DE SOL RAYBAN JUSTIN RB4165 POLARIZADO/ COLOR: NEGRO Y AZUL",
+          "sku": "R55876",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 419.0
+        },
+        {
           "nombre": "Laptop Lenovo IdeaPad Slim3 15AMN8 AMD RYZEN 5 7520U 16GB RAM 512GB SSD 15.6 FHD FreeDOS + Maletin",
           "sku": "82XQ00N6LM",
           "vistos": 0,
@@ -3619,6 +4117,24 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 2399.0
+        },
+        {
+          "nombre": "Laptop Lenovo Ideapad 5 2 en 1 AMD Ryzen AI 7 16GB RAM 512GB SSD 14\" Touch",
+          "sku": "83KT006PLM",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 3449.0
+        },
+        {
+          "nombre": "Laptop Lenovo V15 G5 IRL Intel Core i5-13420H 16Gb Ram 512Gb SSD 15.6” FHD-83GW005JLD",
+          "sku": "MJZ-LEN211LAP",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 2649.0
         },
         {
           "nombre": "Lavadora Samsung 17KG EcoBubble WA40F17E7CPE Gris Grafito",
@@ -3648,13 +4164,22 @@
           "ingresos": 120.9
         },
         {
-          "nombre": "Minoxidil Kirkland 5% Caja 6 Frascos - Barba - Cabello y Cejas",
-          "sku": "LK415",
+          "nombre": "Motorola G17 256GB 4GB Rosa",
+          "sku": "PS34768255",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 178.0
+          "ingresos": 724.0
+        },
+        {
+          "nombre": "Máquina Pop cornera Miray POPM-14 120gr",
+          "sku": "20620268",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 119.0
         },
         {
           "nombre": "Nordic Naturals Ultimate Omega 1280mg (2 gels) Omega 3 Premium EPA DHA – 180 Softgels",
@@ -3693,6 +4218,15 @@
           "ingresos": 489.0
         },
         {
+          "nombre": "PROTEINA WHEY PRO 90 3KG CHOCOLATE + CREATINA MADE IN USA 150GR UN",
+          "sku": "BPSFIT-232",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 139.0
+        },
+        {
           "nombre": "Protector Solar Sun Screen Color Velvet Face Cream Spf 50 50ml Frezyderm",
           "sku": "FZM002",
           "vistos": 0,
@@ -3720,22 +4254,76 @@
           "ingresos": 389.0
         },
         {
-          "nombre": "Refrigeradora Electrolux Bottom Freezer 237LT Inverter con Frío Directo Negro",
-          "sku": "ERB25A2P5AB",
+          "nombre": "Record Hervidor eléctrico 1.7 Lt Negro",
+          "sku": "2106100002",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 799.0
+          "ingresos": 39.0
         },
         {
-          "nombre": "Scooter Eléctrico Xiaomi 6 GL Negro",
-          "sku": "CN0700038NA8",
+          "nombre": "Refrigeradora Electrolux 166LT Frost Bottom Freezer ERB162HB Negro",
+          "sku": "2619824",
+          "vistos": 3,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 4,
+          "ingresos": 949.0
+        },
+        {
+          "nombre": "Reloj Guess Para Hombre GW1006G1",
+          "sku": "REL0025362",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 1549.0
+          "ingresos": 399.0
+        },
+        {
+          "nombre": "Reloj Guess Para Hombre GW1049G1",
+          "sku": "REL0025605",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 379.0
+        },
+        {
+          "nombre": "Reloj Guess Para Hombre GW1053G7",
+          "sku": "REL0025714",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 489.0
+        },
+        {
+          "nombre": "Ron Flor de Caña 18 años 750ml",
+          "sku": "FL180008",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 137.0
+        },
+        {
+          "nombre": "SAMSUNG GALAXY S25 ULTRA 256GB 12GB 200MP 6.9\" TITANIUM WHITESILVER",
+          "sku": "SS25UL256CM",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 2999.0
+        },
+        {
+          "nombre": "Secador de cabello Xiaomi H101 Rosa",
+          "sku": "CN0806024PK0",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 65.0
         },
         {
           "nombre": "Set de ollas Bord Vulcano 13 Piezas Antiadherente",
@@ -3756,6 +4344,15 @@
           "ingresos": 81.0
         },
         {
+          "nombre": "Silla Gamer Lyzor con posapiés SGBWTWN135B Black White",
+          "sku": "SGBWTWN135B",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 199.0
+        },
+        {
           "nombre": "Snack para Perros Dingo Dental Stix de Pollo x48 und Color: Multicolor",
           "sku": "P-45020",
           "vistos": 0,
@@ -3774,6 +4371,24 @@
           "ingresos": 319.0
         },
         {
+          "nombre": "TV LG 70\" Nano 4K UHD AI Smart TV",
+          "sku": "3313472",
+          "vistos": 1,
+          "carrito": 1,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 1549.0
+        },
+        {
+          "nombre": "Televisor LG 65\" NANO 4K UHD AI Smart TV 2026 65NU800BPSBQ",
+          "sku": "3261223",
+          "vistos": 10,
+          "carrito": 2,
+          "comprados": 1,
+          "sesiones": 7,
+          "ingresos": 1449.0
+        },
+        {
           "nombre": "Timbre inalambrico USB luz RGB 60 melodias Opalux",
           "sku": "OP-5990",
           "vistos": 0,
@@ -3783,22 +4398,31 @@
           "ingresos": 48.9
         },
         {
-          "nombre": "VENTILADOR TORRE KVT-TOUCHTOWER BLANCO",
-          "sku": "1009040004",
+          "nombre": "Tonno Plus Mascarilla Efecto Brasilero con Keratina 350g",
+          "sku": "2022010900001",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 239.0
+          "ingresos": 23.12
         },
         {
-          "nombre": "Ventilador Inteligente Xiaomi Mi Smart Standing Fan 2",
-          "sku": "fun2",
+          "nombre": "Tripack Isdin Fotoprotector 50+ Fusion Fluid - Frasco 50 ML",
+          "sku": "22084-3",
           "vistos": 0,
           "carrito": 0,
           "comprados": 1,
           "sesiones": 1,
-          "ingresos": 379.0
+          "ingresos": 209.9
+        },
+        {
+          "nombre": "Ventilador 3 en 1 Pie Pared Mesa 18\"  Pulgadas 65W",
+          "sku": "VTRY-4655",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 79.0
         },
         {
           "nombre": "WHISKY ROYAL SALUTE 21 AÑOS 700ml",
@@ -3810,15 +4434,6 @@
           "ingresos": 635.0
         },
         {
-          "nombre": "Whey Pro 5 kg Vainilla",
-          "sku": "UN0006",
-          "vistos": 0,
-          "carrito": 0,
-          "comprados": 1,
-          "sesiones": 1,
-          "ingresos": 144.0
-        },
-        {
           "nombre": "Whisky Johnnie Walker Blue Label 750ml",
           "sku": "BLUE109",
           "vistos": 0,
@@ -3826,6 +4441,24 @@
           "comprados": 1,
           "sesiones": 1,
           "ingresos": 633.0
+        },
+        {
+          "nombre": "Ventilador Inteligente Xiaomi Mi Smart Standing Fan 2",
+          "sku": "fun2",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 379.0
+        },
+        {
+          "nombre": "Whey Pro 5 kg Vainilla",
+          "sku": "UN0006",
+          "vistos": 0,
+          "carrito": 0,
+          "comprados": 1,
+          "sesiones": 1,
+          "ingresos": 144.0
         },
         {
           "nombre": "Xiaomi Smart Band 11 Active bateria hasta 14 días blanco",
@@ -3846,372 +4479,34 @@
           "ingresos": 115.0
         },
         {
-          "nombre": " PRE-VENTA IPHONE 18 PRO MAX 512GB BLACK - ESIM",
-          "sku": "3284089",
-          "vistos": 1,
+          "nombre": "Xiaomi Compact Hair Dryer H101 Secadora de cabello compacta 1600W Rosado",
+          "sku": "BHR7474EU",
+          "vistos": 0,
           "carrito": 0,
-          "comprados": 0,
+          "comprados": 1,
           "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% CREATINA MONOHIDRATADA 500 GRAMOS UNIVERSE NUTRITION",
-          "sku": "2886783",
-          "vistos": 5,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 5,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% HYDRO WHEY ISOLATE 5 LIBRAS - VAINILLA CREAM",
-          "sku": "2922892",
-          "vistos": 4,
-          "carrito": 2,
-          "comprados": 0,
-          "sesiones": 4,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% HYDROLIZED WHEY ISOLATE 2 LB",
-          "sku": "2540750",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% HYDROLYZED  5LB",
-          "sku": "2540755",
-          "vistos": 5,
-          "carrito": 2,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% Hydro Whey Isolate Chocolate 2.43Lb+Agressive Pump 350Gr",
-          "sku": "2792877",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% Hydro Whey Isolate Vainilla 2.4 lb",
-          "sku": "2792810",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "100% PROTEINA ISOLATADA ISO SURGE 5 LB CHOCOLATE",
-          "sku": "2886739",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "12 Jabón Con Glutathione Aclara - T",
-          "sku": "2515330",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "2 Crema Fotoprotectora Visage 100 Spf - Dermosol",
-          "sku": "2515366",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "2 Locion Minoxidil 5% 60ml Dermo Sumak",
-          "sku": "2774022",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "2 Máscara Rectificadora Bella - Pos 500Gr - La Brasiliana",
-          "sku": "2907169",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "2 Shampoo Matizador Violeta Acción Anti-Amarillo - La Brasiliana X 250G",
-          "sku": "2907382",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "2 pack Hair growth & volume duo - the inkey list 150ml/100ml",
-          "sku": "2430084",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "24 Jabón Con Glutathione Aclara - T",
-          "sku": "2515331",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Crema Fotoprotectora Pediatrico 100 Spf- Dermosol",
-          "sku": "2515373",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Minoxidil 5% + 1 Dermaroller + 1 Gotero",
-          "sku": "3072861",
-          "vistos": 6,
-          "carrito": 1,
-          "comprados": 0,
-          "sesiones": 6,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "3 Máscara Capilar Pos - La Brasiliana 250Gr",
-          "sku": "2907338",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "349",
-          "sku": "3264416",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "429",
-          "sku": "1852466",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "999",
-          "sku": "2709476",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "A.H. Set X2 Pz Cr. Dia Y Cr. Noche Estelin 3 Unidades",
-          "sku": "2727220",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ADAPTADOR DE CORRIENTE APPLE USB-C DE 20W",
-          "sku": "2891535",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AFNAN 9 PM NIGHT OUT EXTRAIT DE PARFUM UNISEX 3.4 OZ / 100 ML",
-          "sku": "3024392",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AFNAN 9AM DIVE EAU DE PARFUM 150ML",
-          "sku": "3281577",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AFNAN 9PM EDP 100ML",
-          "sku": "3307332",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AFNAN 9PM ELIXIR 100ML",
-          "sku": "3307337",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AIRE ACONDICIONADO PORTATIL 6500 BTU C/CONTROL REMOTO IMACO AC6584",
-          "sku": "3303683",
-          "vistos": 6,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 6,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AIRPODS PRO CON MAGSAFE CHARGING CASE APPLE",
-          "sku": "2811389",
-          "vistos": 3,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AL HARAMAIN AMBER OUD GOLD EDITION EXTREME PURE PERFUME 200 ML",
-          "sku": "3269108",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALCATEL 1 1RAM 16GB NEGRO + REGALO",
-          "sku": "2968255",
-          "vistos": 4,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALCATEL 1V 2RAM 16GB NEGRO",
-          "sku": "2963818",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALCATEL 1V 2RAM 16GB NEGRO + REGALO",
-          "sku": "2968253",
-          "vistos": 2,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 2,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALIMENTO DE GATO CAT CHOW DELIMIX 15KG",
-          "sku": "3044360",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALIMENTO DE PERRO DOGCHOW CACHORROS MEDIANOS Y GRANDES 21 KG",
-          "sku": "2508639",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALISADORA MOD. PLASMA SLIM TITANIUM",
-          "sku": "2950433",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "ALMOHADA COJÍN ANTIVARICES Y PROTECTOR DE TALONES MEMORY FOAM GEL TECH / TERAFLEX / 64x32x20 CM",
-          "sku": "2841225",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AMAZON ECHO SHOW 8 4TA GEN NEGRO",
-          "sku": "3259236",
-          "vistos": 6,
-          "carrito": 2,
-          "comprados": 0,
-          "sesiones": 4,
-          "ingresos": 0.0
-        },
-        {
-          "nombre": "AMAZON ECHO SPOT MODELO 2024",
-          "sku": "2607087",
-          "vistos": 1,
-          "carrito": 0,
-          "comprados": 0,
-          "sesiones": 1,
-          "ingresos": 0.0
+          "ingresos": 89.0
         }
       ],
       "busquedas": [
         {
           "termino": "lentes",
-          "busquedas": 55
+          "busquedas": 73
         },
         {
           "termino": "playstation 5 slim",
-          "busquedas": 8
+          "busquedas": 9
+        },
+        {
+          "termino": "aire acondicionado",
+          "busquedas": 7
         },
         {
           "termino": "ps5",
           "busquedas": 7
         },
         {
-          "termino": "aire acondicionado",
+          "termino": "mabe 243",
           "busquedas": 5
         },
         {
@@ -4223,20 +4518,16 @@
           "busquedas": 3
         },
         {
-          "termino": "muebles",
+          "termino": "caja rejistradora",
           "busquedas": 3
         },
         {
-          "termino": "playstation 5",
+          "termino": "camas",
           "busquedas": 3
         },
         {
-          "termino": "campana extractora",
-          "busquedas": 2
-        },
-        {
-          "termino": "celular 256 gb",
-          "busquedas": 2
+          "termino": "iphone",
+          "busquedas": 3
         }
       ]
     }
@@ -4338,8 +4629,8 @@
         "fecha": "2026-11-04",
         "dia": "Mié",
         "proy": 72397,
-        "real": 65053,
-        "avance": 0.8985593325690291
+        "real": 65058,
+        "avance": 0.8986283962042626
       }
     ],
     "TIENDAS EFE": [
@@ -4438,8 +4729,8 @@
         "fecha": "2026-11-04",
         "dia": "Mié",
         "proy": 56884,
-        "real": 57339,
-        "avance": 1.007998734266226
+        "real": 57346,
+        "avance": 1.0081217917164755
       }
     ],
     "JUNTOZ": [
@@ -4538,8 +4829,8 @@
         "fecha": "2026-11-04",
         "dia": "Mié",
         "proy": 74027,
-        "real": 45283,
-        "avance": 0.6117092412227971
+        "real": 45288,
+        "avance": 0.611776784146325
       }
     ]
   },
@@ -4876,12 +5167,12 @@
           {
             "h": 15,
             "proy": 3969,
-            "real": 3765
+            "real": 3766
           },
           {
             "h": 16,
             "proy": 4010,
-            "real": 3987
+            "real": 3989
           },
           {
             "h": 17,
@@ -4901,7 +5192,7 @@
           {
             "h": 20,
             "proy": 4049,
-            "real": 4019
+            "real": 4020
           },
           {
             "h": 21,
@@ -4911,7 +5202,7 @@
           {
             "h": 22,
             "proy": 3411,
-            "real": 3885
+            "real": 3886
           },
           {
             "h": 23,
@@ -4926,7 +5217,7 @@
           {
             "h": 0,
             "proy": 1990,
-            "real": 2227
+            "real": 2228
           },
           {
             "h": 1,
@@ -4956,7 +5247,7 @@
           {
             "h": 6,
             "proy": 1774,
-            "real": 1742
+            "real": 1743
           },
           {
             "h": 7,
@@ -4971,27 +5262,27 @@
           {
             "h": 9,
             "proy": 3189,
-            "real": 3410
+            "real": 3411
           },
           {
             "h": 10,
             "proy": 3367,
-            "real": 4094
+            "real": 4096
           },
           {
             "h": 11,
             "proy": 3424,
-            "real": 3057
+            "real": 3364
           },
           {
             "h": 12,
             "proy": 3471,
-            "real": null
+            "real": 2435
           },
           {
             "h": 13,
             "proy": 3531,
-            "real": null
+            "real": 2096
           },
           {
             "h": 14,
@@ -5363,7 +5654,7 @@
           {
             "h": 12,
             "proy": 2903,
-            "real": 3174
+            "real": 3175
           },
           {
             "h": 13,
@@ -5383,7 +5674,7 @@
           {
             "h": 16,
             "proy": 3014,
-            "real": 3241
+            "real": 3242
           },
           {
             "h": 17,
@@ -5393,27 +5684,27 @@
           {
             "h": 18,
             "proy": 3000,
-            "real": 3486
+            "real": 3487
           },
           {
             "h": 19,
             "proy": 2940,
-            "real": 3517
+            "real": 3518
           },
           {
             "h": 20,
             "proy": 2843,
-            "real": 3502
+            "real": 3503
           },
           {
             "h": 21,
             "proy": 2690,
-            "real": 3511
+            "real": 3512
           },
           {
             "h": 22,
             "proy": 2364,
-            "real": 3399
+            "real": 3400
           },
           {
             "h": 23,
@@ -5428,7 +5719,7 @@
           {
             "h": 0,
             "proy": 1489,
-            "real": 1729
+            "real": 1730
           },
           {
             "h": 1,
@@ -5468,32 +5759,32 @@
           {
             "h": 8,
             "proy": 2607,
-            "real": 2628
+            "real": 2629
           },
           {
             "h": 9,
             "proy": 2760,
-            "real": 2930
+            "real": 2931
           },
           {
             "h": 10,
             "proy": 2748,
-            "real": 3444
+            "real": 3446
           },
           {
             "h": 11,
             "proy": 2652,
-            "real": 2678
+            "real": 2980
           },
           {
             "h": 12,
             "proy": 2613,
-            "real": null
+            "real": 2148
           },
           {
             "h": 13,
             "proy": 2633,
-            "real": null
+            "real": 1416
           },
           {
             "h": 14,
@@ -5880,7 +6171,7 @@
           {
             "h": 15,
             "proy": 4047,
-            "real": 2410
+            "real": 2412
           },
           {
             "h": 16,
@@ -5890,7 +6181,7 @@
           {
             "h": 17,
             "proy": 4039,
-            "real": 2831
+            "real": 2832
           },
           {
             "h": 18,
@@ -5905,7 +6196,7 @@
           {
             "h": 20,
             "proy": 3715,
-            "real": 2767
+            "real": 2768
           },
           {
             "h": 21,
@@ -5915,7 +6206,7 @@
           {
             "h": 22,
             "proy": 3254,
-            "real": 3454
+            "real": 3455
           },
           {
             "h": 23,
@@ -5970,32 +6261,32 @@
           {
             "h": 8,
             "proy": 2219,
-            "real": 2347
+            "real": 2350
           },
           {
             "h": 9,
             "proy": 2582,
-            "real": 2274
+            "real": 2504
           },
           {
             "h": 10,
             "proy": 2776,
-            "real": 55
+            "real": 2345
           },
           {
             "h": 11,
             "proy": 2823,
-            "real": 0
+            "real": 2473
           },
           {
             "h": 12,
             "proy": 2723,
-            "real": null
+            "real": 46
           },
           {
             "h": 13,
             "proy": 2659,
-            "real": null
+            "real": 0
           },
           {
             "h": 14,
@@ -6055,11 +6346,11 @@
     "LA CURACAO": {
       "mes": "2026-11",
       "meta": 836119,
-      "real": 232237,
-      "avance": 0.27775591751891776,
+      "real": 237085,
+      "avance": 0.2835541352367307,
       "dias_cerrados": 4,
       "dias_mes": 30,
-      "proy_cierre": 1537512,
+      "proy_cierre": 1542391,
       "dias": [
         {
           "fecha": "2026-11-01",
@@ -6086,14 +6377,14 @@
           "fecha": "2026-11-04",
           "dia": "Mié",
           "proy": 72397,
-          "real": 65053,
+          "real": 65058,
           "parcial": false
         },
         {
           "fecha": "2026-11-05",
           "dia": "Jue",
           "proy": 65155,
-          "real": 23393,
+          "real": 28236,
           "parcial": true
         },
         {
@@ -6276,11 +6567,11 @@
     "TIENDAS EFE": {
       "mes": "2026-11",
       "meta": 671641,
-      "real": 195861,
-      "avance": 0.29161561012505194,
+      "real": 199739,
+      "avance": 0.2973895280365552,
       "dias_cerrados": 4,
       "dias_mes": 30,
-      "proy_cierre": 1289561,
+      "proy_cierre": 1293483,
       "dias": [
         {
           "fecha": "2026-11-01",
@@ -6307,14 +6598,14 @@
           "fecha": "2026-11-04",
           "dia": "Mié",
           "proy": 56884,
-          "real": 57339,
+          "real": 57346,
           "parcial": false
         },
         {
           "fecha": "2026-11-05",
           "dia": "Jue",
           "proy": 51194,
-          "real": 20869,
+          "real": 24740,
           "parcial": true
         },
         {
@@ -6497,11 +6788,11 @@
     "JUNTOZ": {
       "mes": "2026-11",
       "meta": 0,
-      "real": 194611,
+      "real": 199658,
       "avance": 0,
       "dias_cerrados": 4,
       "dias_mes": 30,
-      "proy_cierre": 1325761,
+      "proy_cierre": 1330839,
       "dias": [
         {
           "fecha": "2026-11-01",
@@ -6528,14 +6819,14 @@
           "fecha": "2026-11-04",
           "dia": "Mié",
           "proy": 0,
-          "real": 45283,
+          "real": 45288,
           "parcial": false
         },
         {
           "fecha": "2026-11-05",
           "dia": "Jue",
           "proy": 0,
-          "real": 13627,
+          "real": 18669,
           "parcial": true
         },
         {
@@ -6716,5 +7007,5 @@
       ]
     }
   },
-  "hora_corte": 12
+  "hora_corte": 14
 }
