@@ -102,7 +102,14 @@ td { padding:4px 6px; text-align:center; border-bottom:1px solid #f2f2f2; }
 .top td.n { width:26px; font-weight:700; color:#777; }
 .vacio { text-align:center; color:#999; font-size:12px; padding:10px; }
 .nota { font-size:11px; color:#777; margin-top:6px; }
+.head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; }
+.head .logo { margin-bottom:0; }
+.sub { font-size:11px; color:#999; }
 """
+
+# Aclaracion discreta en la imagen top: solo marcas web pura (JUNTOZ no lo es).
+MARCAS_WEB_PURA = {"LA CURACAO", "TIENDAS EFE"}
+ETIQUETA_GROSS = "(*) Datos gross · Web Pura"
 
 # La ultima hora del corte todavia se esta completando cuando sale el correo:
 # se marca con * y esta nota (texto corto, sin tecnicismos).
@@ -299,8 +306,13 @@ def construir_html_top(r):
     """Imagen 2 de la marca: rankings de productos (y busquedas cuando
     esten). Va aparte para que la imagen 1 no se vuelva enorme en WhatsApp."""
     pal = PALETA[r["marca"]]
+    sub = (f'<div class="sub">{ETIQUETA_GROSS}</div>'
+           if r["marca"] in MARCAS_WEB_PURA else "")
     return f"""<html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
-      <div class="logo" style="color:{pal['primary']}">{r['marca']}</div>
+      <div class="head">
+        <div class="logo" style="color:{pal['primary']}">{r['marca']}</div>
+        {sub}
+      </div>
       {bloques_top(r, pal)}
     </body></html>"""
 
