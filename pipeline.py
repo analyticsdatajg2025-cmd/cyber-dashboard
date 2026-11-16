@@ -212,7 +212,7 @@ DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
 # --- Ventanas de los cybers (editables) ---
 # Noviembre 2026. (Julio fue: DAYS 6-12 jul, WOW 13-19 jul.)
 CYBER_WOW  = (date(2026, 11, 2),  date(2026, 11, 8))   # 2 al 8 noviembre
-CYBER_DAYS = (date(2026, 11, 16), date(2026, 11, 18))  # 16 al 18 noviembre
+CYBER_DAYS = (date(2026, 11, 16), date(2026, 11, 20))  # 16 al 20 noviembre (extendido)
 EVENTOS = [("CYBER DAYS", CYBER_DAYS), ("CYBER WOW", CYBER_WOW)]
 
 # --- Que usa el modo cyber (noviembre 2026) ---
