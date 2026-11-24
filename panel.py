@@ -125,6 +125,14 @@ def canal_detalle(fuente, medio, campana):
             r"business\.whatsapp", f)
             or _rx(r"wsp_mkt|whatsapp_mkt|wsp_biz|whatsapp_business|wsp|whatsapp", m)):
         return "WSP"
+    # asistentes de IA: antes caian en REFERRAL / OTROS SOCIAL ORG ("chatgpt.com"
+    # contiene "t.co"). Va antes de SEO y de las redes: "gemini.google.com" y
+    # "meta.ai" son IA aunque traigan "google" / "meta" en la fuente.
+    if _rx(r"chatgpt|openai|perplexity|gemini|copilot|claude\.ai|anthropic|notebooklm|"
+           r"notebook\.google|deepseek|grok|qwen|meta\.ai|manus\.im|duck\.ai|"
+           r"mammouth\.ai|monica\.(so|im)|chaton\.ai|ecogpt|scispace|mistral|phind|"
+           r"poe\.com|character\.ai|kimi\.(ai|com)|(^|\.)you\.com", f):
+        return "IA"
     if _rx(r"organic", m) and _rx(r"google|bing|yahoo|baidu|duckduckgo|ecosia|yandex|ask|seznam", f):
         return "SEO / BUSQUEDA ORG"
     if (f == "(direct)" and m == "(none)") or f == "direct":
@@ -146,7 +154,8 @@ def canal_detalle(fuente, medio, campana):
 
 
 def canal_panel(detalle):
-    """Agrupa el canal detalle en los 6 canales del panel."""
+    """Agrupa el canal detalle en los 6 canales del panel. IA, REFERRAL, otros
+    social, email, SMS y WSP quedan en "Otros"."""
     if detalle.startswith("GOOGLE"):
         return "Google"
     if detalle in ("FACEBOOK ADS", "FACEBOOK ORG", "INSTAGRAM ORG"):

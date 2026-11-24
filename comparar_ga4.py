@@ -30,7 +30,7 @@ MARCA = os.environ.get("MARCA", "LA CURACAO").strip().upper()
 #   Meta    = Facebook Ads + Facebook org + Instagram org
 #   TikTok  = TikTok Ads + TikTok org
 #   Organico= SEO / busqueda org ; Directo = Directo
-#   Otros   = el resto (otros social, referral, APP, email)
+#   Otros   = el resto (otros social, referral, IA, APP, email)
 GA4 = {
     ("2026-10-01", "LA CURACAO"): {
         "total": {"sesiones": 30345, "compras": 137, "ingresos": 145821.1},
