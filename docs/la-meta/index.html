@@ -1,0 +1,636 @@
+<title>La Meta, ilustrada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: libro de planta — columna de lectura estrecha, láminas (figuras) a ancho completo, rótulos como señalética de fábrica */
+:root{
+  --bg:#E9EDF0; --paper:#F7F8F9; --ink:#17212B; --muted:#56626E; --line:#C5CDD4;
+  --steel:#2B58A6; --hazard:#E3A400; --stop:#BF3A2B; --go:#2C7A4D; --hazard-ink:#17212B;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11171D; --paper:#18212A; --ink:#E4E9ED; --muted:#9AA6B1; --line:#2D3844;
+  --steel:#77A1EC; --hazard:#F2B705; --stop:#EA6A58; --go:#5DBF86; --hazard-ink:#11171D; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11171D; --paper:#18212A; --ink:#E4E9ED; --muted:#9AA6B1; --line:#2D3844;
+  --steel:#77A1EC; --hazard:#F2B705; --stop:#EA6A58; --go:#5DBF86; --hazard-ink:#11171D; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:1.08rem;line-height:1.62;padding-inline:16px;padding-block:0 64px}
+.book{max-width:1040px;margin:0 auto}
+.read{max-width:66ch}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1;margin:0}
+h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+p{margin:0}
+.label{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+em{font-style:italic}
+strong{font-weight:600}
+
+/* Portada */
+.cover{padding-block:56px 40px;display:grid;gap:28px;border-bottom:3px solid var(--ink)}
+.hazard{height:14px;background:repeating-linear-gradient(135deg,var(--hazard) 0 14px,var(--ink) 14px 28px);border-radius:2px}
+.cover h1{font-size:clamp(4.5rem,16vw,11rem);font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.82}
+.cover h1 span{color:var(--stop)}
+.cover .sub{font-size:1.3rem;max-width:40ch}
+.cover-meta{display:flex;flex-wrap:wrap;gap:8px 28px}
+.formula{font-family:var(--f-mono);font-size:clamp(.9rem,2.4vw,1.1rem);background:var(--paper);border:1px solid var(--line);padding:14px 18px;border-radius:4px;display:inline-block}
+
+/* Índice */
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 24px;padding-block:28px;border-bottom:1px solid var(--line);list-style:none;margin:0;padding-inline:0;counter-reset:c}
+.toc li{counter-increment:c}
+.toc a{color:var(--ink);text-decoration:none;display:flex;gap:10px;padding-block:4px}
+.toc a::before{content:counter(c,decimal-leading-zero);font-family:var(--f-mono);color:var(--muted);font-size:.85rem;padding-top:.2em}
+.toc a:hover,.toc a:focus-visible{color:var(--steel)}
+
+/* Capítulos */
+.chap{padding-block:64px 8px;display:grid;gap:22px;border-bottom:1px solid var(--line)}
+.chap-head{display:grid;gap:10px}
+.chap-no{font-family:var(--f-display);font-weight:900;font-size:1.1rem;color:var(--hazard-ink);background:var(--hazard);display:inline-block;padding:2px 10px;justify-self:start;letter-spacing:.06em}
+.plate{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px;display:grid;gap:12px}
+.plate figcaption{font-size:.92rem;color:var(--muted);max-width:70ch}
+.plate figcaption b{color:var(--ink)}
+figure{margin:0}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--f-mono);fill:var(--ink)}
+.quote{font-size:1.45rem;line-height:1.35;font-style:italic;border-left:6px solid var(--hazard);padding-left:18px;max-width:40ch}
+.quote small{display:block;font-style:normal;font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin-top:8px;letter-spacing:.08em;text-transform:uppercase}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.grid2>*,.grid3>*{min-width:0}
+
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.person{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.person h4{margin:0;font-family:var(--f-display);font-size:1.3rem;font-weight:800;text-transform:uppercase}
+.person p{font-size:.95rem}
+
+.measure{background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:4px;padding:16px;display:grid;gap:8px;align-content:start}
+.measure .arrow{font-family:var(--f-display);font-weight:900;font-size:2.6rem;line-height:1;color:var(--c)}
+.measure h3{font-size:1.35rem}
+.measure p{font-size:.96rem}
+
+.rule{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;padding-block:12px;border-top:1px solid var(--line)}
+.rule:first-child{border-top:0}
+.rule .n{font-family:var(--f-mono);color:var(--muted);font-size:.85rem}
+
+table{border-collapse:collapse;width:100%;font-size:.96rem}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td:first-child{font-weight:600;white-space:nowrap}
+
+.timeline{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.timeline li{display:grid;grid-template-columns:5.5rem 1fr;gap:14px;padding-block:10px;border-top:1px dashed var(--line)}
+.timeline li:first-child{border-top:0}
+.timeline .when{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);padding-top:.25em}
+
+/* Simulador */
+.sim-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{font:600 .95rem var(--f-body);background:var(--ink);color:var(--paper);border:0;border-radius:4px;padding:9px 16px;cursor:pointer}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+button:hover{opacity:.9}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--hazard);outline-offset:2px}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px 28px}
+.stat{display:grid}
+.stat b{font-family:var(--f-display);font-size:2.2rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.chart-wrap{position:relative}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);font:500 .78rem/1.4 var(--f-mono);padding:6px 9px;border-radius:4px;white-space:nowrap;transform:translate(-50%,-110%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.legend i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:6px;border-radius:2px}
+.toggle{display:flex;gap:8px;align-items:center;font-size:.95rem}
+
+.checklist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.checklist li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
+.checklist li::before{content:"";width:16px;height:16px;border:2px solid var(--ink);border-radius:2px;margin-top:.3em}
+
+footer{padding-block:40px 0;color:var(--muted);font-size:.9rem;display:grid;gap:14px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="book">
+
+<header class="cover">
+  <div class="hazard" aria-hidden="true"></div>
+  <p class="label">Resumen ilustrado · Eliyahu M. Goldratt &amp; Jeff Cox · 1984</p>
+  <h1>La<br><span>Meta</span></h1>
+  <p class="sub">Una novela de fábrica sobre cómo pensar un sistema. Este libro corto la cuenta capítulo a capítulo, con láminas y un simulador para ver las ideas funcionando.</p>
+  <div class="cover-meta">
+    <span class="formula">Meta = ganar dinero, hoy y en el futuro</span>
+    <span class="formula">↑ Throughput &nbsp;·&nbsp; ↓ Inventario &nbsp;·&nbsp; ↓ Gasto operativo</span>
+  </div>
+</header>
+
+<ol class="toc" aria-label="Índice">
+  <li><a href="#crisis">La planta en crisis</a></li>
+  <li><a href="#personajes">Quién es quién</a></li>
+  <li><a href="#meta">¿Cuál es la meta?</a></li>
+  <li><a href="#medidas">Las tres medidas</a></li>
+  <li><a href="#dados">El juego de los cerillos</a></li>
+  <li><a href="#herbie">Herbie y la excursión</a></li>
+  <li><a href="#cuellos">Los cuellos de botella</a></li>
+  <li><a href="#acciones">Qué hizo la planta</a></li>
+  <li><a href="#dbr">Tambor, amortiguador, cuerda</a></li>
+  <li><a href="#lotes">Lotes más pequeños</a></li>
+  <li><a href="#cinco">Los cinco pasos</a></li>
+  <li><a href="#pensar">Cómo pensar el cambio</a></li>
+  <li><a href="#mundos">Mundo de costos vs. mundo del throughput</a></li>
+  <li><a href="#llevar">Para llevártelo al trabajo</a></li>
+</ol>
+
+<!-- 1 -->
+<section class="chap" id="crisis">
+  <div class="chap-head"><span class="chap-no">CAP. 01</span><h2>La planta en crisis</h2></div>
+  <div class="read"><p><strong>Alex Rogo</strong> dirige la planta de UniCo en Bearington. Los pedidos salen tarde, el inventario en proceso llena los pasillos y las horas extra no alcanzan. Un día llega su jefe, <strong>Bill Peach</strong>, furioso por el pedido 41427, que lleva siete semanas de atraso. Le da un ultimátum: <em>tres meses</em> para mostrar mejoras o la planta se cierra.</p></div>
+  <div class="read"><p>Lo raro es que, según todos los indicadores habituales, la planta está haciendo bien las cosas: acaban de instalar robots y la eficiencia de esas estaciones subió. Aun así, la planta pierde dinero. Esa contradicción arranca la historia.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 1 · El arco de la novela</p>
+    <ol class="timeline">
+      <li><span class="when">Día 0</span><span>Ultimátum de Peach: 3 meses. Alex se reencuentra por casualidad con <strong>Jonah</strong>, un viejo profesor de física, que le pregunta si los robots aumentaron las ganancias.</span></li>
+      <li><span class="when">Semana 1</span><span>Alex entiende que no sabe cuál es la meta. Define con su contralor, Lou, tres medidas nuevas.</span></li>
+      <li><span class="when">Semana 2</span><span>Excursión con los scouts de su hijo: Herbie, los cerillos y los dados le muestran los eventos dependientes.</span></li>
+      <li><span class="when">Semana 3–4</span><span>El equipo encuentra los dos cuellos de botella: la máquina <strong>NCX‑10</strong> y el <strong>horno de tratamiento térmico</strong>.</span></li>
+      <li><span class="when">Mes 2</span><span>Cambian prioridades, calidad y liberación de material. Los envíos suben y el inventario baja.</span></li>
+      <li><span class="when">Mes 3</span><span>Reducen el tamaño de los lotes, recortan tiempos de entrega y ganan pedidos nuevos. La restricción pasa a ser el mercado.</span></li>
+      <li><span class="when">Final</span><span>La planta se salva. Alex asciende a gerente de división y descubre que su nuevo reto es aprender a <em>pensar</em> los problemas, no a copiar soluciones.</span></li>
+    </ol>
+    <figcaption>En paralelo, su matrimonio con <b>Julie</b> se tensa por las horas de trabajo. La novela usa esa subtrama para mostrar que el mismo método sirve fuera de la fábrica.</figcaption>
+  </figure>
+</section>
+
+<!-- 2 -->
+<section class="chap" id="personajes">
+  <div class="chap-head"><span class="chap-no">CAP. 02</span><h2>Quién es quién</h2></div>
+  <div class="cast">
+    <div class="person"><span class="label">Protagonista</span><h4>Alex Rogo</h4><p>Gerente de planta. Aprende preguntando, no recibiendo respuestas.</p></div>
+    <div class="person"><span class="label">Mentor</span><h4>Jonah</h4><p>Físico. Nunca da la solución: hace preguntas socráticas y deja que Alex llegue solo.</p></div>
+    <div class="person"><span class="label">Finanzas</span><h4>Lou</h4><p>Contralor. Traduce las ideas nuevas a números y descubre que la contabilidad de costos engaña.</p></div>
+    <div class="person"><span class="label">Producción</span><h4>Bob Donovan</h4><p>Jefe de producción. Pasa de defender las eficiencias locales a cuidar el flujo.</p></div>
+    <div class="person"><span class="label">Materiales</span><h4>Stacey</h4><p>Control de inventario. Detecta cuándo los cuellos de botella se están moviendo.</p></div>
+    <div class="person"><span class="label">Sistemas</span><h4>Ralph</h4><p>Datos. Calcula la carga de los cuellos y arma la programación basada en ellos.</p></div>
+    <div class="person"><span class="label">Jefe</span><h4>Bill Peach</h4><p>Vicepresidente de división. Mide todo con indicadores de costos.</p></div>
+    <div class="person"><span class="label">Rival</span><h4>Hilton Smyth</h4><p>Gerente de otra planta. Obsesionado con la eficiencia local; su planta empeora.</p></div>
+    <div class="person"><span class="label">Scout</span><h4>Herbie</h4><p>El niño más lento de la excursión. Sin querer, enseña qué es un cuello de botella.</p></div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="chap" id="meta">
+  <div class="chap-head"><span class="chap-no">CAP. 03</span><h2>¿Cuál es la meta?</h2></div>
+  <blockquote class="quote" style="margin:0">“La meta de una empresa manufacturera es ganar dinero.”<small>Alex, después de descartar calidad, tecnología y eficiencia</small></blockquote>
+  <div class="read"><p>Jonah le pregunta a Alex si sus robots aumentaron la productividad. Alex responde que sí, un 36 % en esa área. Jonah insiste: ¿vendieron más? ¿bajó el inventario? ¿despidieron a alguien? La respuesta a todo es no. Entonces los robots <em>no</em> hicieron a la planta más productiva.</p></div>
+  <div class="read"><p>Alex hace una lista de candidatos a meta: costos bajos, calidad, tecnología, participación de mercado, empleo. Descubre que todos son <strong>medios</strong>. Solo una cosa es el fin: ganar dinero, ahora y también en el futuro. Todo lo que acerca a la empresa a esa meta es productivo; lo que no, es improductivo.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 2 · Medios y fin</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 230" role="img" aria-label="Cinco medios (calidad, tecnología, eficiencia, costos, mercado) apuntan todos a la meta: ganar dinero">
+      <g font-size="13">
+        <g><rect x="10" y="12" width="170" height="36" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="95" y="35" text-anchor="middle">Calidad</text></g>
+        <g><rect x="10" y="56" width="170" height="36" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="95" y="79" text-anchor="middle">Tecnología</text></g>
+        <g><rect x="10" y="100" width="170" height="36" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="95" y="123" text-anchor="middle">Eficiencia local</text></g>
+        <g><rect x="10" y="144" width="170" height="36" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="95" y="167" text-anchor="middle">Costos bajos</text></g>
+        <g><rect x="10" y="188" width="170" height="36" rx="4" fill="var(--bg)" stroke="var(--line)"/><text x="95" y="211" text-anchor="middle">Cuota de mercado</text></g>
+      </g>
+      <g stroke="var(--muted)" stroke-width="1.5" fill="none">
+        <path d="M180 30 C 330 30, 360 118, 470 118"/><path d="M180 74 C 330 74, 360 118, 470 118"/><path d="M180 118 L 470 118"/><path d="M180 162 C 330 162, 360 118, 470 118"/><path d="M180 206 C 330 206, 360 118, 470 118"/>
+      </g>
+      <text x="300" y="104" font-size="11" fill="var(--muted)" style="fill:var(--muted)">MEDIOS</text>
+      <polygon points="470,110 484,118 470,126" fill="var(--muted)"/>
+      <rect x="488" y="68" width="262" height="100" rx="6" fill="var(--hazard)"/>
+      <text x="619" y="108" text-anchor="middle" font-size="12" style="fill:var(--hazard-ink)">LA META</text>
+      <text x="619" y="138" text-anchor="middle" font-size="19" font-weight="500" style="fill:var(--hazard-ink)">Ganar dinero</text>
+    </svg>
+    </div>
+    <figcaption>Cualquier medio que no mueva la meta, por más “moderno” que sea, no cuenta como mejora.</figcaption>
+  </figure>
+</section>
+
+<!-- 4 -->
+<section class="chap" id="medidas">
+  <div class="chap-head"><span class="chap-no">CAP. 04</span><h2>Las tres medidas</h2></div>
+  <div class="read"><p>Utilidad neta, retorno sobre la inversión y flujo de caja dicen si la empresa gana dinero, pero no sirven para decidir en el piso de planta. Jonah le da a Alex tres medidas operativas que sí sirven y que se conectan directo con las financieras:</p></div>
+  <div class="grid3">
+    <div class="measure" style="--c:var(--go)"><span class="arrow">↑</span><h3>Throughput (T)</h3><p>La velocidad a la que el sistema genera dinero <strong>a través de las ventas</strong>. Producir sin vender no es throughput: es inventario.</p></div>
+    <div class="measure" style="--c:var(--steel)"><span class="arrow">↓</span><h3>Inventario (I)</h3><p>Todo el dinero que el sistema invirtió en comprar cosas que <strong>pretende vender</strong>. Incluye máquinas y edificios.</p></div>
+    <div class="measure" style="--c:var(--stop)"><span class="arrow">↓</span><h3>Gasto operativo (GO)</h3><p>Todo el dinero que el sistema gasta para <strong>convertir inventario en throughput</strong>: sueldos, luz, mantenimiento.</p></div>
+  </div>
+  <figure class="plate">
+    <p class="label">Lámina 3 · Cómo se conectan con las finanzas</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 200" role="img" aria-label="Utilidad neta es T menos GO; ROI es T menos GO sobre I; el dinero entra como inventario, sale como throughput y el gasto operativo es lo que cuesta mover la máquina">
+      <g font-size="14">
+        <rect x="10" y="20" width="360" height="70" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+        <text x="30" y="48" font-size="11" style="fill:var(--muted)">UTILIDAD NETA</text>
+        <text x="30" y="74" font-size="20"><tspan style="fill:var(--go)">T</tspan> − <tspan style="fill:var(--stop)">GO</tspan></text>
+        <rect x="390" y="20" width="360" height="70" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+        <text x="410" y="48" font-size="11" style="fill:var(--muted)">RETORNO SOBRE LA INVERSIÓN</text>
+        <text x="410" y="74" font-size="20">(<tspan style="fill:var(--go)">T</tspan> − <tspan style="fill:var(--stop)">GO</tspan>) ÷ <tspan style="fill:var(--steel)">I</tspan></text>
+      </g>
+      <g font-size="12">
+        <text x="10" y="130" style="fill:var(--muted)">DINERO QUE ENTRA</text>
+        <text x="10" y="150" style="fill:var(--muted)">AL SISTEMA → <tspan style="fill:var(--steel)">I</tspan></text>
+        <rect x="200" y="118" width="360" height="50" rx="25" fill="none" stroke="var(--ink)" stroke-width="2"/>
+        <text x="380" y="148" text-anchor="middle">la planta (lo que cuesta moverla: <tspan style="fill:var(--stop)">GO</tspan>)</text>
+        <path d="M150 143 L196 143" stroke="var(--steel)" stroke-width="3"/><polygon points="196,137 206,143 196,149" fill="var(--steel)"/>
+        <path d="M562 143 L610 143" stroke="var(--go)" stroke-width="3"/><polygon points="610,137 620,143 610,149" fill="var(--go)"/>
+        <text x="628" y="138" style="fill:var(--muted)">DINERO QUE SALE</text>
+        <text x="628" y="156" style="fill:var(--muted)">VENDIDO → <tspan style="fill:var(--go)">T</tspan></text>
+      </g>
+    </svg>
+    </div>
+    <figcaption>Cualquier decisión se evalúa preguntando qué hace con <b>T</b>, con <b>I</b> y con <b>GO</b>. Los robots bajaron un poco el costo por pieza, pero subieron el inventario y no subieron las ventas: empeoraron la situación.</figcaption>
+  </figure>
+</section>
+
+<!-- 5 -->
+<section class="chap" id="dados">
+  <div class="chap-head"><span class="chap-no">CAP. 05</span><h2>El juego de los cerillos</h2></div>
+  <div class="read"><p>En la excursión, Alex arma un juego con cinco niños, cerillos, tazones y un dado. Cada niño tira el dado y mueve esa cantidad de cerillos de su tazón al del siguiente, pero <strong>solo si los tiene</strong>. El primero toma de una caja sin fondo. El promedio de un dado es 3,5, así que en 20 rondas “deberían” salir 70 cerillos.</p></div>
+  <div class="read"><p>Nunca salen 70. Los cerillos se amontonan entre estaciones y la salida queda por debajo. Dos fenómenos juntos lo explican: <strong>eventos dependientes</strong> (cada uno depende del anterior) y <strong>fluctuaciones estadísticas</strong> (nadie rinde siempre su promedio). Las bajas se transmiten hacia adelante; las altas se pierden porque el de adelante no tenía con qué aprovecharlas.</p></div>
+  <figure class="plate" aria-labelledby="sim-title">
+    <p class="label" id="sim-title">Lámina 4 · Simulador: 5 estaciones, 20 rondas, un dado cada una</p>
+    <div class="sim-controls">
+      <button id="sim-run" type="button">Tirar 20 rondas otra vez</button>
+      <label class="toggle"><input type="checkbox" id="sim-herbie"> Hacer más lenta la estación 3 (dado de 1 a 4, como Herbie)</label>
+    </div>
+    <div class="stat-row" aria-live="polite">
+      <div class="stat"><span class="label">Esperado</span><b id="st-exp">70</b></div>
+      <div class="stat"><span class="label">Salió al cliente</span><b id="st-out">–</b></div>
+      <div class="stat"><span class="label">Atrapado en proceso</span><b id="st-wip">–</b></div>
+    </div>
+    <div class="legend"><span><i style="background:var(--steel)"></i>Salida real acumulada</span><span><i style="background:var(--muted)"></i>Salida “esperada” (3,5 por ronda)</span></div>
+    <div class="chart-wrap scroll" id="sim-chart-wrap"><svg id="sim-chart" viewBox="0 0 760 280" role="img" aria-label="Salida acumulada por ronda comparada con la esperada"></svg><div class="tip" id="sim-tip" hidden></div></div>
+    <p class="label">Cerillos esperando frente a cada estación al terminar</p>
+    <div class="scroll"><svg id="sim-wip" viewBox="0 0 760 150" role="img" aria-label="Inventario en proceso frente a cada estación"></svg></div>
+    <figcaption>Cada vez que tiras, el resultado cambia, pero la salida casi siempre queda por debajo de 70 y el inventario crece. Si activas el “Herbie”, verás que la salida pasa a depender de la estación lenta y el inventario se acumula justo delante de ella.</figcaption>
+  </figure>
+</section>
+
+<!-- 6 -->
+<section class="chap" id="herbie">
+  <div class="chap-head"><span class="chap-no">CAP. 06</span><h2>Herbie y la excursión</h2></div>
+  <div class="read"><p>La fila de scouts se estira cada vez más: los de adelante caminan rápido y se alejan, y la distancia entre el primero y el último no para de crecer. Alex busca la causa y la encuentra en <strong>Herbie</strong>, un niño con sobrepeso cargando una mochila enorme. La tropa entera no puede llegar antes que Herbie.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 5 · La fila antes y después</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 250" role="img" aria-label="Antes: Herbie en el medio y huecos grandes. Después: Herbie adelante, su carga repartida, fila compacta">
+      <text x="10" y="22" font-size="12" style="fill:var(--muted)">ANTES · cada uno camina a su ritmo</text>
+      <line x1="10" y1="70" x2="750" y2="70" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
+      <g id="before"></g>
+      <text x="10" y="142" font-size="12" style="fill:var(--muted)">DESPUÉS · Herbie adelante, su mochila repartida</text>
+      <line x1="10" y1="190" x2="750" y2="190" stroke="var(--line)" stroke-width="10" stroke-linecap="round"/>
+      <g id="after"></g>
+      <text x="750" y="238" text-anchor="end" font-size="11" style="fill:var(--muted)">dirección de la marcha →</text>
+    </svg>
+    </div>
+    <figcaption><b>Dos cambios</b>: poner a Herbie al frente, para que nadie “adelante” inventario de camino, y repartir el contenido de su mochila entre los demás, para que el más lento vaya más rápido. La fila se compacta y la tropa entera avanza más.</figcaption>
+  </figure>
+  <div class="read"><p>La lección para la planta: el ritmo del sistema lo marca su recurso más lento. Acelerar a los rápidos solo agranda los huecos, es decir, el inventario.</p></div>
+</section>
+
+<!-- 7 -->
+<section class="chap" id="cuellos">
+  <div class="chap-head"><span class="chap-no">CAP. 07</span><h2>Los cuellos de botella</h2></div>
+  <div class="read"><p>Un <strong>cuello de botella</strong> es un recurso cuya capacidad es igual o menor que la demanda que recibe. Un <strong>no cuello</strong> tiene capacidad de sobra. En Bearington eran dos: la <strong>NCX‑10</strong>, una máquina automática cara que pocos sabían operar, y el <strong>horno de tratamiento térmico</strong>.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 6 · La capacidad del sistema es la del eslabón más angosto</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 210" role="img" aria-label="Cinco estaciones con capacidades 30, 25, 12, 22 y 28 piezas por hora. La salida del sistema es 12 por hora, la de la estación 3">
+      <g id="pipe"></g>
+    </svg>
+    </div>
+    <figcaption>Capacidades ilustrativas. Mejorar cualquier estación que no sea la tercera no sube la salida: solo acumula piezas delante de ella.</figcaption>
+  </figure>
+  <div class="grid2">
+    <blockquote class="quote" style="margin:0">“Una hora perdida en un cuello de botella es una hora perdida para todo el sistema.”</blockquote>
+    <blockquote class="quote" style="margin:0">“Una hora ahorrada en un no cuello de botella es un espejismo.”</blockquote>
+  </div>
+  <figure class="plate">
+    <p class="label">Lámina 7 · Las cuatro relaciones entre un cuello (X) y un no cuello (Y)</p>
+    <div class="grid2" id="xy"></div>
+    <figcaption>En ningún caso conviene que <b>Y</b> trabaje al 100 %: si produce más de lo que X puede absorber o de lo que el mercado compra, solo genera inventario. <b>Activar</b> un recurso no es lo mismo que <b>utilizarlo</b>.</figcaption>
+  </figure>
+</section>
+
+<!-- 8 -->
+<section class="chap" id="acciones">
+  <div class="chap-head"><span class="chap-no">CAP. 08</span><h2>Qué hizo la planta</h2></div>
+  <div class="read"><p>Con los cuellos identificados, el equipo dejó de buscar eficiencia en todas partes y se concentró en que cada minuto de la NCX‑10 y del horno produjera algo que se iba a vender.</p></div>
+  <div class="plate">
+    <div class="rule"><span class="n">A</span><div><strong>Nada de tiempo muerto en el cuello.</strong> Los descansos y el almuerzo de los operadores se escalonan para que la NCX‑10 y el horno nunca se detengan.</div></div>
+    <div class="rule"><span class="n">B</span><div><strong>Control de calidad antes del cuello.</strong> Una pieza defectuosa que pasa por la NCX‑10 desperdicia tiempo del recurso más valioso. Se inspecciona antes, no después.</div></div>
+    <div class="rule"><span class="n">C</span><div><strong>Solo trabajo que se vende.</strong> Los cuellos procesan primero los pedidos atrasados de clientes, no piezas para inventario. Las piezas destinadas a un cuello se marcan con etiqueta roja y tienen prioridad; el resto lleva etiqueta verde.</div></div>
+    <div class="rule"><span class="n">D</span><div><strong>Descargar el cuello.</strong> Reactivan máquinas viejas que se habían dado de baja para hacer parte del trabajo de la NCX‑10, y subcontratan parte del tratamiento térmico.</div></div>
+    <div class="rule"><span class="n">E</span><div><strong>Llenar el horno con criterio.</strong> Se deja de esperar lotes completos cuando hay pedidos urgentes, y se evita meter piezas que no hacen falta.</div></div>
+    <div class="rule"><span class="n">F</span><div><strong>Liberar material al ritmo del cuello.</strong> Los no cuellos dejan de trabajar “por trabajar”. Aunque su eficiencia baja, el inventario cae y los pedidos salen.</div></div>
+  </div>
+  <div class="read"><p>El efecto fue rápido: los envíos subieron, el inventario bajó y el pedido 41427 salió. Pero apareció un problema nuevo: con algunas estaciones paradas a propósito, los indicadores de eficiencia empeoraron, y la dirección corporativa los seguía mirando.</p></div>
+</section>
+
+<!-- 9 -->
+<section class="chap" id="dbr">
+  <div class="chap-head"><span class="chap-no">CAP. 09</span><h2>Tambor, amortiguador, cuerda</h2></div>
+  <div class="read"><p>La solución de Herbie, llevada a la planta, se convirtió en un método de programación. Después la escuela de Goldratt la bautizó <strong>Tambor‑Amortiguador‑Cuerda</strong> (DBR).</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 8 · DBR</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 250" role="img" aria-label="Liberación de material, estaciones 1 y 2, amortiguador, cuello de botella que marca el tambor, estaciones 4 y 5, cliente. Una cuerda une el cuello con la liberación de material">
+      <g id="dbr-g"></g>
+    </svg>
+    </div>
+    <figcaption><b>Tambor</b>: el cuello marca el ritmo de toda la planta. <b>Amortiguador</b>: una pequeña reserva de trabajo delante del cuello para que nunca se quede sin material. <b>Cuerda</b>: el material solo entra al sistema cuando el cuello lo va a poder procesar, igual que Herbie al frente de la fila.</figcaption>
+  </figure>
+</section>
+
+<!-- 10 -->
+<section class="chap" id="lotes">
+  <div class="chap-head"><span class="chap-no">CAP. 10</span><h2>Lotes más pequeños</h2></div>
+  <div class="read"><p>El tiempo de una pieza en la planta es mayormente <strong>espera</strong>: espera a que la máquina se libere o espera a que termine el resto de su lote. Alex y su equipo reducen los lotes a la mitad en los no cuellos, donde hacer más preparaciones de máquina no cuesta nada porque les sobra capacidad.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 9 · Mismo trabajo, lote partido en dos</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 240" role="img" aria-label="Un lote de 100 piezas pasa por dos máquinas en 20 horas. Partido en dos lotes de 50, la segunda máquina empieza antes y todo termina en 15 horas">
+      <g id="gantt"></g>
+    </svg>
+    </div>
+    <figcaption>Ejemplo de dos máquinas a 10 piezas/hora. Con lotes chicos la segunda máquina empieza antes, el inventario en proceso baja y el plazo de entrega se acorta. En la novela eso permitió prometer entregas mucho más rápidas y ganar pedidos nuevos, hasta que el cuello pasó a estar <b>fuera de la planta</b>: en el mercado.</figcaption>
+  </figure>
+</section>
+
+<!-- 11 -->
+<section class="chap" id="cinco">
+  <div class="chap-head"><span class="chap-no">CAP. 11</span><h2>Los cinco pasos</h2></div>
+  <div class="read"><p>Cerca del final, Alex y su equipo ordenan lo aprendido en un proceso que se repite. Es el corazón de la <strong>Teoría de Restricciones</strong>.</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 10 · Ciclo de mejora continua</p>
+    <div class="grid2" style="align-items:center">
+      <svg viewBox="0 0 360 360" role="img" aria-label="Ciclo de cinco pasos: identificar, explotar, subordinar, elevar, volver al inicio">
+        <g id="cycle"></g>
+      </svg>
+      <div>
+        <div class="rule"><span class="n">1</span><div><strong>Identificar</strong> la restricción del sistema.</div></div>
+        <div class="rule"><span class="n">2</span><div><strong>Explotar</strong> la restricción: sacarle todo sin gastar (sin paradas, sin defectos, solo trabajo vendible).</div></div>
+        <div class="rule"><span class="n">3</span><div><strong>Subordinar</strong> todo lo demás a esa decisión: el resto trabaja al ritmo de la restricción.</div></div>
+        <div class="rule"><span class="n">4</span><div><strong>Elevar</strong> la restricción: ahora sí, invertir para ampliarla (máquinas, turnos, subcontratar).</div></div>
+        <div class="rule"><span class="n">5</span><div>Si la restricción se rompió, <strong>volver al paso 1</strong>. Y no dejar que la <em>inercia</em> se convierta en la nueva restricción.</div></div>
+      </div>
+    </div>
+    <figcaption>El orden importa: explotar y subordinar antes de invertir. Muchas empresas saltan directo al paso 4 y compran capacidad que no necesitaban.</figcaption>
+  </figure>
+</section>
+
+<!-- 12 -->
+<section class="chap" id="pensar">
+  <div class="chap-head"><span class="chap-no">CAP. 12</span><h2>Cómo pensar el cambio</h2></div>
+  <div class="read"><p>Ya ascendido, Alex se da cuenta de que no puede llamar a Jonah para cada problema. Lo que necesita es un método para pensar. La novela lo resume en tres preguntas:</p></div>
+  <figure class="plate">
+    <p class="label">Lámina 11 · Las tres preguntas</p>
+    <div class="scroll">
+    <svg viewBox="0 0 760 170" role="img" aria-label="Tres preguntas en secuencia: qué cambiar, hacia qué cambiar, cómo provocar el cambio">
+      <g font-size="13">
+        <rect x="10" y="30" width="220" height="110" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+        <text x="28" y="60" font-size="11" style="fill:var(--muted)">1 · DIAGNÓSTICO</text>
+        <text x="28" y="92" font-size="18" font-weight="500">¿Qué cambiar?</text>
+        <text x="28" y="120" font-size="11" style="fill:var(--muted)">el problema raíz</text>
+        <rect x="270" y="30" width="220" height="110" rx="6" fill="var(--bg)" stroke="var(--line)"/>
+        <text x="288" y="60" font-size="11" style="fill:var(--muted)">2 · SOLUCIÓN</text>
+        <text x="288" y="92" font-size="18" font-weight="500">¿Hacia qué?</text>
+        <text x="288" y="120" font-size="11" style="fill:var(--muted)">una solución simple</text>
+        <rect x="530" y="30" width="220" height="110" rx="6" fill="var(--hazard)"/>
+        <text x="548" y="60" font-size="11" style="fill:var(--hazard-ink)">3 · IMPLEMENTACIÓN</text>
+        <text x="548" y="92" font-size="18" font-weight="500" style="fill:var(--hazard-ink)">¿Cómo provocarlo?</text>
+        <text x="548" y="120" font-size="11" style="fill:var(--hazard-ink)">que la gente lo haga suyo</text>
+      </g>
+      <g fill="var(--muted)"><polygon points="238,78 262,85 238,92"/><polygon points="498,78 522,85 498,92"/></g>
+    </svg>
+    </div>
+    <figcaption>La tercera pregunta se responde con el <b>método socrático</b> de Jonah: en lugar de imponer la solución, hacer preguntas hasta que la gente la descubra. Así la sienten propia y la sostienen.</figcaption>
+  </figure>
+</section>
+
+<!-- 13 -->
+<section class="chap" id="mundos">
+  <div class="chap-head"><span class="chap-no">CAP. 13</span><h2>Mundo de costos vs. mundo del throughput</h2></div>
+  <div class="read"><p>El conflicto de fondo del libro es entre dos formas de ver la empresa. Lou y Alex tienen que defender ante la dirección resultados que los indicadores tradicionales castigan.</p></div>
+  <div class="plate scroll">
+    <table>
+      <thead><tr><th>Tema</th><th>Mundo de costos</th><th>Mundo del throughput</th></tr></thead>
+      <tbody>
+        <tr><td>Prioridad</td><td>Bajar costos en cada área</td><td>Subir las ventas del sistema</td></tr>
+        <tr><td>Eficiencia</td><td>Todos ocupados al 100 %</td><td>Solo el cuello al 100 %; el resto, al ritmo del cuello</td></tr>
+        <tr><td>Inventario</td><td>Un activo en el balance</td><td>Un pasivo: esconde problemas y alarga plazos</td></tr>
+        <tr><td>Óptimo</td><td>Suma de óptimos locales</td><td>El óptimo global rara vez es la suma de óptimos locales</td></tr>
+        <tr><td>Lotes</td><td>Grandes, para diluir preparaciones</td><td>Chicos en los no cuellos; grandes solo si protegen al cuello</td></tr>
+        <tr><td>Inversión</td><td>Donde baje el costo unitario</td><td>Donde suba el throughput del sistema</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="chap" id="llevar">
+  <div class="chap-head"><span class="chap-no">CAP. 14</span><h2>Para llevártelo al trabajo</h2></div>
+  <div class="read"><p>Las ideas de La Meta sirven para cualquier sistema con pasos encadenados: una fábrica, un equipo de software, un pipeline de datos, un proceso de ventas. Antes de mejorar algo, repasa esta lista:</p></div>
+  <ul class="checklist plate">
+    <li><span>¿Sé cuál es la meta del sistema y cómo la mido?</span></li>
+    <li><span>¿Dónde se acumula el trabajo en espera? Ahí suele estar la restricción.</span></li>
+    <li><span>¿La restricción pierde tiempo en paradas, retrabajos o tareas que no aportan a la meta?</span></li>
+    <li><span>¿El resto del sistema produce más de lo que la restricción puede absorber?</span></li>
+    <li><span>¿Esta mejora sube el throughput, o solo mejora un indicador local?</span></li>
+    <li><span>Después de mejorar, ¿la restricción se movió? ¿Dónde está ahora?</span></li>
+  </ul>
+  <blockquote class="quote" style="margin:0">“Cuéntame cómo me mides y te diré cómo me comportaré.”<small>Idea que Goldratt repite en toda su obra</small></blockquote>
+</section>
+
+<footer>
+  <div class="hazard" aria-hidden="true"></div>
+  <p>Resumen elaborado a partir de <em>La Meta: un proceso de mejora continua</em>, de Eliyahu M. Goldratt y Jeff Cox (North River Press, 1984). Las capacidades y tiempos en las láminas 6 y 9 son ejemplos ilustrativos, no datos de la novela.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;if(parent)parent.appendChild(e);return e}
+
+  /* Lámina 5 — excursión */
+  (function(){
+    const b=document.getElementById('before'),a=document.getElementById('after');
+    const xsB=[700,640,590,520,470,300,250,190,90,40]; const herbieB=5;
+    xsB.forEach((x,i)=>hiker(b,x,70,i===herbieB,false));
+    el('text',{x:385,y:112,'text-anchor':'middle','font-size':11,style:'fill:var(--stop)'},b,'hueco = inventario');
+    el('path',{d:'M314 98 L456 98',stroke:'var(--stop)','stroke-width':1.5,'stroke-dasharray':'4 3',fill:'none'},b);
+    const xsA=[520,478,436,394,352,310,268,226,184,142]; const herbieA=0;
+    xsA.forEach((x,i)=>hiker(a,x,190,i===herbieA,i>0&&i<4));
+    function hiker(g,x,y,isH,extra){
+      const c=isH?'var(--stop)':'var(--steel)';
+      el('circle',{cx:x,cy:y-26,r:7,fill:c},g);
+      el('rect',{x:x-6,y:y-18,width:12,height:22,rx:4,fill:c},g);
+      if(isH&&g.id==='before'){el('rect',{x:x-20,y:y-20,width:14,height:20,rx:3,fill:'var(--hazard)'},g)}
+      if(extra){el('rect',{x:x-14,y:y-14,width:8,height:10,rx:2,fill:'var(--hazard)'},g)}
+      if(isH)el('text',{x:x,y:y+26,'text-anchor':'middle','font-size':11},g,'Herbie');
+    }
+  })();
+
+  /* Lámina 6 — tubería */
+  (function(){
+    const g=document.getElementById('pipe');const caps=[30,25,12,22,28];const max=30;const w=120,gap=26,x0=14,mid=95;
+    caps.forEach((c,i)=>{
+      const x=x0+i*(w+gap);const h=20+120*(c/max);const isB=c===12;
+      el('rect',{x:x,y:mid-h/2,width:w,height:h,rx:6,fill:isB?'var(--stop)':'var(--bg)',stroke:isB?'var(--stop)':'var(--line)','stroke-width':1.5},g);
+      el('text',{x:x+w/2,y:mid+5,'text-anchor':'middle','font-size':15,style:isB?'fill:var(--paper)':''},g,c+'/h');
+      el('text',{x:x+w/2,y:186,'text-anchor':'middle','font-size':11,style:'fill:var(--muted)'},g,isB?'CUELLO':'Estación '+(i+1));
+      if(i<caps.length-1){el('path',{d:`M${x+w+3} ${mid} L${x+w+gap-5} ${mid}`,stroke:'var(--muted)','stroke-width':1.5},g);el('polygon',{points:`${x+w+gap-7},${mid-4} ${x+w+gap-1},${mid} ${x+w+gap-7},${mid+4}`,fill:'var(--muted)'},g)}
+    });
+    el('text',{x:746,y:22,'text-anchor':'end','font-size':13},g,'Salida del sistema = 12/h');
+  })();
+
+  /* Lámina 7 — relaciones X/Y */
+  (function(){
+    const host=document.getElementById('xy');
+    const cases=[
+      {t:'X → Y',d:'Y recibe de X. Y nunca podrá hacer más que X; su tiempo libre es inevitable.',seq:['X','Y']},
+      {t:'Y → X',d:'Y alimenta a X. Si Y trabaja a full, se amontona inventario delante de X.',seq:['Y','X']},
+      {t:'X y Y → ensamble',d:'Ambos alimentan un ensamble. Las piezas extra de Y esperan a las de X.',seq:['X','Y','A']},
+      {t:'X y Y → mercado',d:'Cada uno vende por separado. Y está limitado por su propia demanda.',seq:['X','Y','M']}
+    ];
+    cases.forEach(c=>{
+      const box=document.createElement('div');
+      const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 300 90');s.setAttribute('aria-hidden','true');
+      const node=(x,y,l)=>{const isX=l==='X';el('rect',{x:x-22,y:y-16,width:44,height:32,rx:4,fill:isX?'var(--stop)':(l==='Y'?'var(--bg)':'var(--hazard)'),stroke:isX?'var(--stop)':'var(--line)'},s);el('text',{x:x,y:y+5,'text-anchor':'middle','font-size':14,style:isX?'fill:var(--paper)':(l==='Y'?'':'fill:var(--hazard-ink)')},s,l==='A'?'Ens.':(l==='M'?'Merc.':l))};
+      const arr=(x1,y1,x2,y2)=>el('path',{d:`M${x1} ${y1} L${x2} ${y2}`,stroke:'var(--muted)','stroke-width':1.5,fill:'none','marker-end':''},s);
+      if(c.seq.length===2){node(80,45,c.seq[0]);node(220,45,c.seq[1]);arr(104,45,194,45);el('polygon',{points:'192,40 200,45 192,50',fill:'var(--muted)'},s)}
+      else if(c.seq[2]==='A'){node(70,22,'X');node(70,68,'Y');node(230,45,'A');arr(94,22,204,42);arr(94,68,204,48);el('polygon',{points:'200,38 208,45 200,52',fill:'var(--muted)'},s)}
+      else{node(70,22,'X');node(70,68,'Y');node(230,22,'M');node(230,68,'M');arr(94,22,204,22);arr(94,68,204,68);el('polygon',{points:'200,17 208,22 200,27',fill:'var(--muted)'},s);el('polygon',{points:'200,63 208,68 200,73',fill:'var(--muted)'},s)}
+      const h=document.createElement('h3');h.textContent=c.t;h.style.fontSize='1.2rem';
+      const p=document.createElement('p');p.textContent=c.d;p.style.fontSize='.95rem';
+      box.style.display='grid';box.style.gap='8px';
+      box.append(h,s,p);host.appendChild(box);
+    });
+  })();
+
+  /* Lámina 8 — DBR */
+  (function(){
+    const g=document.getElementById("dbr-g");const y=150;
+    const nodes=[{x:60,l:'Material',t:'m'},{x:180,l:'Est. 1'},{x:290,l:'Est. 2'},{x:400,l:'Amort.',t:'buf'},{x:510,l:'CUELLO',t:'x'},{x:620,l:'Est. 4–5'},{x:715,l:'Cliente',t:'c'}];
+    nodes.forEach((n,i)=>{
+      const w=n.t==='c'?70:84;
+      const fill=n.t==='x'?'var(--stop)':n.t==='buf'?'var(--hazard)':'var(--bg)';
+      el('rect',{x:n.x-w/2,y:y-22,width:w,height:44,rx:6,fill:fill,stroke:n.t==='x'?'var(--stop)':'var(--line)'},g);
+      el('text',{x:n.x,y:y+5,'text-anchor':'middle','font-size':13,style:n.t==='x'?'fill:var(--paper)':n.t==='buf'?'fill:var(--hazard-ink)':''},g,n.l);
+      if(i<nodes.length-1){const nx=nodes[i+1].x-(nodes[i+1].t==='c'?35:42);el('path',{d:`M${n.x+w/2+2} ${y} L${nx-6} ${y}`,stroke:'var(--muted)','stroke-width':1.5},g);el('polygon',{points:`${nx-8},${y-4} ${nx-2},${y} ${nx-8},${y+4}`,fill:'var(--muted)'},g)}
+    });
+    // tambor
+    el('ellipse',{cx:510,cy:78,rx:30,ry:10,fill:'var(--stop)'},g);el('rect',{x:480,y:78,width:60,height:26,fill:'var(--stop)'},g);el('ellipse',{cx:510,cy:104,rx:30,ry:10,fill:'var(--stop)'},g);
+    el('text',{x:552,y:88,'font-size':12},g,'TAMBOR: marca el ritmo');
+    // cuerda
+    el('path',{d:'M510 128 C 510 40, 60 40, 60 128',fill:'none',stroke:'var(--steel)','stroke-width':3,'stroke-dasharray':'8 5'},g);
+    el('text',{x:285,y:40,'text-anchor':'middle','font-size':12,style:'fill:var(--steel)'},g,'CUERDA: solo entra lo que el cuello procesará');
+    el('text',{x:400,y:200,'text-anchor':'middle','font-size':12},g,'AMORTIGUADOR: nunca dejar');
+    el('text',{x:400,y:216,'text-anchor':'middle','font-size':12},g,'al cuello sin trabajo');
+  })();
+
+  /* Lámina 9 — Gantt */
+  (function(){
+    const g=document.getElementById('gantt');const x0=110,px=30; // 1h = 30px
+    const row=(y,label,start,dur,col,txt)=>{el('rect',{x:x0+start*px,y:y,width:dur*px-2,height:24,rx:4,fill:col},g);el('text',{x:x0+start*px+8,y:y+16,'font-size':11,style:'fill:var(--paper)'},g,txt)};
+    el('text',{x:10,y:20,'font-size':12,style:'fill:var(--muted)'},g,'1 LOTE DE 100');
+    el('text',{x:10,y:52,'font-size':12},g,'Máquina A');el('text',{x:10,y:82,'font-size':12},g,'Máquina B');
+    row(36,'',0,10,'var(--steel)','100 pzs · 10 h');row(66,'',10,10,'var(--steel)','100 pzs · 10 h');
+    el('text',{x:x0+20*px+6,y:84,'font-size':12,style:'fill:var(--stop)'},g,'20 h');
+    el('text',{x:10,y:130,'font-size':12,style:'fill:var(--muted)'},g,'2 LOTES DE 50');
+    el('text',{x:10,y:162,'font-size':12},g,'Máquina A');el('text',{x:10,y:192,'font-size':12},g,'Máquina B');
+    row(146,'',0,5,'var(--go)','50 · 5 h');row(146,'',5,5,'var(--go)','50 · 5 h');
+    row(176,'',5,5,'var(--go)','50 · 5 h');row(176,'',10,5,'var(--go)','50 · 5 h');
+    el('text',{x:x0+15*px+6,y:194,'font-size':12,style:'fill:var(--go)'},g,'15 h');
+    for(let h=0;h<=20;h+=5){el('line',{x1:x0+h*px,y1:212,x2:x0+h*px,y2:218,stroke:'var(--muted)'},g);el('text',{x:x0+h*px,y:232,'text-anchor':'middle','font-size':10,style:'fill:var(--muted)'},g,h+' h')}
+    el('line',{x1:x0,y1:212,x2:x0+20*px,y2:212,stroke:'var(--line)'},g);
+  })();
+
+  /* Lámina 10 — ciclo */
+  (function(){
+    const g=document.getElementById('cycle');const cx=180,cy=180,r=120;
+    const steps=['Identificar','Explotar','Subordinar','Elevar','Repetir'];
+    el('circle',{cx,cy,r,fill:'none',stroke:'var(--line)','stroke-width':10},g);
+    steps.forEach((s,i)=>{
+      const a=-Math.PI/2+i*2*Math.PI/5;const x=cx+r*Math.cos(a),y=cy+r*Math.sin(a);
+      el('circle',{cx:x,cy:y,r:30,fill:i===0?'var(--stop)':'var(--paper)',stroke:i===0?'var(--stop)':'var(--ink)','stroke-width':2},g);
+      el('text',{x:x,y:y+7,'text-anchor':'middle','font-size':20,'font-weight':500,style:i===0?'fill:var(--paper)':''},g,String(i+1));
+    });
+    el('text',{x:cx,y:cy-6,'text-anchor':'middle','font-size':13,style:'fill:var(--muted)'},g,'la restricción');
+    el('text',{x:cx,y:cy+14,'text-anchor':'middle','font-size':13,style:'fill:var(--muted)'},g,'se mueve');
+    // arrowheads between nodes
+    for(let i=0;i<5;i++){const a=-Math.PI/2+(i+.5)*2*Math.PI/5;const x=cx+r*Math.cos(a),y=cy+r*Math.sin(a);const t=a+Math.PI/2;
+      const p=(dx,dy)=>`${x+dx*Math.cos(t)-dy*Math.sin(t)},${y+dx*Math.sin(t)+dy*Math.cos(t)}`;
+      el('polygon',{points:`${p(8,0)} ${p(-6,-7)} ${p(-6,7)}`,fill:'var(--ink)'},g)}
+  })();
+
+  /* Lámina 4 — simulador */
+  (function(){
+    const chart=document.getElementById('sim-chart'),wip=document.getElementById('sim-wip'),tip=document.getElementById('sim-tip'),wrap=document.getElementById('sim-chart-wrap');
+    const herbie=document.getElementById('sim-herbie');
+    const R=20,N=5,W=760,H=280,m={l:44,r:56,t:14,b:34};
+    const die=n=>1+Math.floor(Math.random()*n);
+    function simulate(){
+      const q=new Array(N).fill(0);let out=0;const cum=[0];
+      for(let r=0;r<R;r++){
+        for(let s=0;s<N;s++){
+          const roll=(herbie.checked&&s===2)?die(4):die(6);
+          const moved=s===0?roll:Math.min(roll,q[s]);
+          if(s>0)q[s]-=moved;
+          if(s<N-1)q[s+1]+=moved;else out+=moved;
+        }
+        cum.push(out);
+      }
+      return {cum,q,out};
+    }
+    function draw(res){
+      chart.innerHTML='';
+      const x=i=>m.l+(W-m.l-m.r)*i/R, maxY=80, y=v=>H-m.b-(H-m.t-m.b)*v/maxY;
+      for(let v=0;v<=80;v+=20){el('line',{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v),stroke:'var(--line)','stroke-width':1},chart);el('text',{x:m.l-8,y:y(v)+4,'text-anchor':'end','font-size':11,style:'fill:var(--muted)'},chart,v)}
+      for(let i=0;i<=R;i+=5)el('text',{x:x(i),y:H-m.b+18,'text-anchor':'middle','font-size':11,style:'fill:var(--muted)'},chart,i);
+      el('text',{x:W-m.r,y:H-4,'text-anchor':'end','font-size':11,style:'fill:var(--muted)'},chart,'ronda');
+      el('path',{d:`M${x(0)} ${y(0)} L${x(R)} ${y(3.5*R)}`,stroke:'var(--muted)','stroke-width':2,'stroke-dasharray':'5 4',fill:'none'},chart);
+      el('text',{x:x(R)+6,y:y(70)+4,'font-size':11,style:'fill:var(--muted)'},chart,'70');
+      const pts=res.cum.map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+      el('polygon',{points:`${x(0)},${y(0)} ${pts} ${x(R)},${y(0)}`,fill:'var(--steel)','fill-opacity':.12},chart);
+      el('polyline',{points:pts,fill:'none',stroke:'var(--steel)','stroke-width':2,'stroke-linejoin':'round'},chart);
+      el('circle',{cx:x(R),cy:y(res.out),r:5,fill:'var(--steel)',stroke:'var(--paper)','stroke-width':2},chart);
+      el('text',{x:x(R)+10,y:y(res.out)+4,'font-size':12,'font-weight':500},chart,res.out);
+      const cross=el('line',{x1:0,x2:0,y1:m.t,y2:H-m.b,stroke:'var(--muted)','stroke-width':1,visibility:'hidden'},chart);
+      const dot=el('circle',{r:5,fill:'var(--steel)',stroke:'var(--paper)','stroke-width':2,visibility:'hidden'},chart);
+      const hit=el('rect',{x:m.l,y:m.t,width:W-m.l-m.r,height:H-m.t-m.b,fill:'transparent'},chart);
+      function move(ev){
+        const b=chart.getBoundingClientRect();const sx=(ev.clientX-b.left)*W/b.width;
+        const i=Math.max(0,Math.min(R,Math.round((sx-m.l)/(W-m.l-m.r)*R)));
+        cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.setAttribute('visibility','visible');
+        dot.setAttribute('cx',x(i));dot.setAttribute('cy',y(res.cum[i]));dot.setAttribute('visibility','visible');
+        tip.hidden=false;tip.textContent=`Ronda ${i} · real ${res.cum[i]} · esperado ${(3.5*i).toFixed(1).replace('.',',')}`;
+        const wb=wrap.getBoundingClientRect();tip.style.left=(b.left-wb.left+x(i)*b.width/W+wrap.scrollLeft)+'px';tip.style.top=(b.top-wb.top+y(res.cum[i])*b.height/H)+'px';
+      }
+      hit.addEventListener('pointermove',move);
+      hit.addEventListener('pointerleave',()=>{tip.hidden=true;cross.setAttribute('visibility','hidden');dot.setAttribute('visibility','hidden')});
+
+      wip.innerHTML='';
+      const bw=110,gap=(760-5*bw)/6,maxQ=Math.max(20,...res.q);
+      for(let s=0;s<N;s++){
+        const bx=gap+s*(bw+gap);const v=s===0?0:res.q[s];const h=90*v/maxQ;
+        const isH=herbie.checked&&s===2;
+        el('rect',{x:bx,y:110-Math.max(h,0),width:bw,height:Math.max(h,0),rx:4,fill:isH?'var(--stop)':'var(--hazard)'},wip);
+        el('line',{x1:bx-6,x2:bx+bw+6,y1:110,y2:110,stroke:'var(--line)'},wip);
+        el('text',{x:bx+bw/2,y:104-h,'text-anchor':'middle','font-size':12},wip,s===0?'∞':v);
+        el('text',{x:bx+bw/2,y:132,'text-anchor':'middle','font-size':11,style:'fill:var(--muted)'},wip,(isH?'Herbie · ':'')+'Est. '+(s+1));
+      }
+      document.getElementById('st-out').textContent=res.out;
+      document.getElementById('st-wip').textContent=res.q.slice(1).reduce((a,b)=>a+b,0);
+    }
+    function run(){draw(simulate())}
+    document.getElementById('sim-run').addEventListener('click',run);
+    herbie.addEventListener('change',run);
+    run();
+  })();
+})();
+</script>
