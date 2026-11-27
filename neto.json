@@ -1,16 +1,11 @@
 {
-  "generado": "2026-11-25T21:30:02-05:00",
-  "fecha_hoy": "2026-11-25",
+  "generado": "2026-11-26T21:26:56-05:00",
+  "fecha_hoy": "2026-11-26",
   "modo": "diario",
   "fuente_dias_cerrados": "sheet_reporte_diario",
   "marcas": {
     "TIENDAS EFE": {
       "por_dia": {
-        "2026-09-26": {
-          "venta_neta": 70443.01,
-          "cr_neto": 0.004099,
-          "ticket_neto": 903.12
-        },
         "2026-09-27": {
           "venta_neta": 45428.72,
           "cr_neto": 0.003581,
@@ -302,19 +297,19 @@
           "ticket_neto": 690.31
         },
         "2026-11-24": {
-          "venta_neta": 57313.13,
-          "cr_neto": 0.004226,
-          "ticket_neto": 530.68
+          "venta_neta": 65691.48,
+          "cr_neto": 0.004539,
+          "ticket_neto": 566.31
+        },
+        "2026-11-25": {
+          "venta_neta": 79902.59,
+          "cr_neto": 0.004976,
+          "ticket_neto": 639.22
         }
       }
     },
     "LA CURACAO": {
       "por_dia": {
-        "2026-09-26": {
-          "venta_neta": 81752.03,
-          "cr_neto": 0.005916,
-          "ticket_neto": 592.41
-        },
         "2026-09-27": {
           "venta_neta": 62007.6,
           "cr_neto": 0.005993,
@@ -606,9 +601,14 @@
           "ticket_neto": 737.21
         },
         "2026-11-24": {
-          "venta_neta": 94973.03,
-          "cr_neto": 0.005732,
-          "ticket_neto": 558.66
+          "venta_neta": 119015.13,
+          "cr_neto": 0.006339,
+          "ticket_neto": 633.06
+        },
+        "2026-11-25": {
+          "venta_neta": 103012.17,
+          "cr_neto": 0.0,
+          "ticket_neto": 585.3
         }
       }
     }
